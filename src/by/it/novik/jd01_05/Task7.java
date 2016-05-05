@@ -22,17 +22,22 @@ public class Task7 {
     }
 
     /**
-     * Печать массива
+     * Печать массива A
      * @param array Массив A
      */
     private static void printArrayA (int[] array){
         int coll=1;
         System.out.println("Массив A");
+        System.out.print('\u2554');
+        for (int m=0;m<33;m++)
+        System.out.print('\u2550');
+        System.out.println('\u2557');
         //System.out.println("");
         for (int i=0;i<array.length;i++){
-            System.out.format(" A[%2d]=%3d",i,array[i]);
+            System.out.print('\u2551');
+            System.out.format("A[%2d]=%3d",i,array[i]);
             if (coll%5==0 || coll==array.length)//Вывод массива в 5 столбцов
-            {
+            {System.out.print('\u2551');
                 System.out.println("");
             }
             coll++;
