@@ -22,7 +22,7 @@ public class Task7 {
     }
 
     /**
-     * Печать массива
+     * Печать массива A
      * @param array Массив A
      */
     private static void printArrayA (int[] array){
