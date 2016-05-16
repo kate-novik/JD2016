@@ -4,13 +4,13 @@ package by.it.novik.jd01_08;
  * Created by Kate Novik.
  */
 public abstract class Things {
-    private String nameThing; // Название вещи
+    private String name; // Название вещи
 
-    public void setNameThing (String nameThing) {
-        this.nameThing = nameThing;
+    public void setName (String name) {
+        this.name = name;
     }
 
-    public String getNameThing () {
-        return nameThing;
+    public String getName () {
+        return name;
     }
 }

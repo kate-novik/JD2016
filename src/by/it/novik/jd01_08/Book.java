@@ -9,8 +9,14 @@ public class Book extends Things {
     // Поле автор
     private String author;
 
-    public Book (String isbnBook, String author, String nameThing) {
-        super.setNameThing(nameThing);
+    public Book () {
+        super();
+        this.isbnBook = null;
+        this.author = null;
+    }
+
+    public Book (String isbnBook, String author, String name) {
+        super.setName(name);
         this.isbnBook = isbnBook;
         this.author = author;
     }
