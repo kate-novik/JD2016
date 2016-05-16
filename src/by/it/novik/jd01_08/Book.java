@@ -4,7 +4,9 @@ package by.it.novik.jd01_08;
  * Created by Kate Novik.
  */
 public class Book extends Things {
+    // Поле ISBN книги
     private String isbnBook;
+    // Поле автор
     private String author;
 
     public Book (String isbnBook, String author, String nameThing) {
