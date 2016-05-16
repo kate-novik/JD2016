@@ -1,9 +1,8 @@
 package by.it.novik.jd01_08;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
+
 
 /**
  * Created by Kate Novik.
@@ -11,16 +10,13 @@ import java.util.List;
 public class Bookcase extends Cupboards {
     // Укажем состояние для книжных шкафов по вешанью
     private boolean stateHang;
-    //Укажем список книг в шкафу
-    private List <Book> listOfBooks;
 
-    public Bookcase () {
+    public Bookcase() {
         super();
         stateHang = false;
-        this.listOfBooks = new ArrayList<>();
     }
 
-    public Bookcase (double stateX, double stateY) {
+    public Bookcase(double stateX, double stateY) {
         super();
         stateHang = false;
         setStateX(stateX);
@@ -30,36 +26,37 @@ public class Bookcase extends Cupboards {
     /**
      * Метод повесить шкаф
      */
-    public void hangBookcase () {
+    public void hangBookcase() {
         stateHang = true;
     }
 
     /**
-     * Перегрузка метода putThing - положить вещь в шкаф
+     * Перегрузка метода put - положить вещь в шкаф
      * @param book Объект книга
      * @return true - книга положена, в противном случае - false
      */
-    public boolean putThing (Book book){
+    public boolean put(Book book) {
         if (book != null) { // Проверка на не пустой объект
-            listOfBooks.add(book);
+            listOfThings.add(book);
             return true;
         }
         return false;
     }
 
     /**
-     * Перегрузка метода takeThing - взять вещь
-     * @param isbnBook Поле ISBN книги
+     * Переопределение метода getByName - взять вещь
+     * @param name Поле ISBN книги
      * @return Обект book или null
      */
-    public Book takeThing (String isbnBook){
-        if (!isbnBook.isEmpty()) { // Проверка на не пустой ISBN книги
-                   for (Book book : listOfBooks) {
-                      if (book.getISBNBook().equals(isbnBook)) {
-                          listOfBooks.remove(book);
-                       }
-                       return book;
-                   }
+    @Override
+    public Book getByName(String name) {
+        if (!name.isEmpty()) { // Проверка на не пусте имя книги
+            for (Things book : listOfThings) {
+                if (book.getName().equals(name)) {
+                    listOfThings.remove(book);
+                    return (Book) book;
+                }
+            }
         }
         return null;
     }
@@ -69,7 +66,7 @@ public class Bookcase extends Cupboards {
      * Добавляем значение поля stateHang = false, т.к. при разборке шкаф не повешен
      */
     @Override
-    public boolean disassemble () { // Динамическое связывание
+    public boolean disassemble() { // Динамическое связывание
         super.disassemble();
         stateHang = false; // Добавляем значение поля повешен
         return getStateAssemble();
@@ -78,45 +75,63 @@ public class Bookcase extends Cupboards {
     /**
      * Показать состояния шкафа
      */
-    public void showState (){
+    public void showState() {
         System.out.print("Состояние книжного шкафа:");
-       if (getStateAssemble()) {
-           System.out.print("собран");
-           if (stateHang) {
-               System.out.print(", повешен"); }
-           else { System.out.print(", не повешен"); }
-           if (getStateOpen()) {
-               System.out.print(", открыт"); }
-           else { System.out.print(", закрыт"); }
+        if (getStateAssemble()) {
+            System.out.print("собран");
+            if (stateHang) {
+                System.out.print(", повешен");
+            } else {
+                System.out.print(", не повешен");
+            }
+            if (getStateOpen()) {
+                System.out.print(", открыт");
+            } else {
+                System.out.print(", закрыт");
+            }
+        } else {
+            System.out.print("разобран, не повешен, открыт");
+        }
+        System.out.print(", положение x=" + getStateX() + ", положение y=" + getStateY());
+        System.out.println("");
     }
-    else {
-        System.out.print("разобран, не повешен, открыт");
-    }
-    System.out.print(", положение x=" + getStateX()+", положение y="+getStateY());
-}
 
     /**
      * Сортировка книг
      * @return true - книги отсортированы
      */
-    public boolean sortThings () {
-        Collections.sort(listOfBooks, new Comparator <Book> () {
-            public int compare(Book book1, Book book2) {
+    public boolean sortThings() {
+        Collections.sort(listOfThings, new Comparator<Things>() {
+            public int compare(Things thing1, Things thing2) {
+                Book book1 = (Book) thing1;
+                Book book2 = (Book) thing2;
                 return book1.getISBNBook().compareToIgnoreCase(book2.getISBNBook());
             }
         });
-return true;
+        return true;
     }
 
-    public void setStateHang (boolean stateHang) {
+    public void setStateHang(boolean stateHang) {
         this.stateHang = stateHang;
     }
-    public boolean getStateHang () {
+
+    public boolean getStateHang() {
         return stateHang;
     }
 
-    public List getListOfBooks () {
-        return listOfBooks;
+    /**
+     * Печать списка книг
+     */
+    public void printListOfBooks() {
+        int i = 0;
+        for (Things thing : listOfThings) {
+            Book book = (Book) thing;
+            i++;
+            System.out.println("Книга " + i);
+            System.out.print("ISBN: " + book.getISBNBook() + ",");
+            System.out.print("Автор: " + book.getAuthor() + ",");
+            System.out.println("Название: " + book.getName() + ".");
+        }
     }
 
 
