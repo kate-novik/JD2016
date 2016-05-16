@@ -1,6 +1,8 @@
 package by.it.novik.jd01_08;
 
 
+import by.it.novik.jd01_08.Entity.Book;
+import by.it.novik.jd01_08.Furniture.Bookcase;
 
 /**
  * Created by Kate Novik.
