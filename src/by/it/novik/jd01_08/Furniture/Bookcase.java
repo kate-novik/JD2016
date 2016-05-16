@@ -1,4 +1,7 @@
-package by.it.novik.jd01_08;
+package by.it.novik.jd01_08.Furniture;
+
+import by.it.novik.jd01_08.Entity.Book;
+import by.it.novik.jd01_08.Entity.Things;
 
 import java.util.Collections;
 import java.util.Comparator;

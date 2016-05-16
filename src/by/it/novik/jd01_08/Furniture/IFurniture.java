@@ -1,5 +1,7 @@
-package by.it.novik.jd01_08;
+package by.it.novik.jd01_08.Furniture;
 
+
+import by.it.novik.jd01_08.Entity.Things;
 
 /**
  * Created by Kate Novik.

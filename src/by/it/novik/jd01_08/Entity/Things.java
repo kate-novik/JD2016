@@ -1,4 +1,4 @@
-package by.it.novik.jd01_08;
+package by.it.novik.jd01_08.Entity;
 
 /**
  * Created by Kate Novik.
