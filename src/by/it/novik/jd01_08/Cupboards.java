@@ -1,7 +1,6 @@
 package by.it.novik.jd01_08;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +14,7 @@ public abstract class Cupboards implements IFurniture {
     // Укажем координаты положения шкафа
     private double stateX;
     private double stateY;
-    // Укажем список вещей в шкафу
+    // Укажем список вещей
     private List <Things> listOfThings;
 
     public Cupboards (){
@@ -40,8 +39,8 @@ public abstract class Cupboards implements IFurniture {
 
     @Override
     public boolean putThing (Things thing){
-        if (thing != null) { // Проверка на не пустое название вещи
-            listOfThings.add(thing);
+        if (thing != null) { // Проверка на не пустой объект
+          //  listOfThings.add(thing);
             return true;
         }
         return false;
@@ -50,12 +49,12 @@ public abstract class Cupboards implements IFurniture {
     @Override
     public Things takeThing (String nameThing){
         if (!nameThing.isEmpty()) { // Проверка на не пустое название вещи
-            for (Things thing : listOfThings) {
-                if (thing.getNameThing().equals(nameThing)) {
-                    listOfThings.remove(thing);
-                }
-                return thing;
-            }
+     //       for (Things thing : listOfThings) {
+      //          if (thing.getNameThing().equals(nameThing)) {
+       //             listOfThings.remove(thing);
+     //           }
+     //           return thing;
+     //       }
         }
         return null;
     }
@@ -83,12 +82,12 @@ public abstract class Cupboards implements IFurniture {
 
     @Override
     public boolean clean () {
-        listOfThings.removeAll(listOfThings);
+        listOfThings.clear();
         return true;
     }
 
     public abstract void showState ();
-    public abstract boolean sortThings (Things thing);
+    public abstract boolean sortThings ();
 
     public List <Things> getListOfThings (){ return listOfThings; }
     public boolean getStateOpen () { return stateOpen; }
