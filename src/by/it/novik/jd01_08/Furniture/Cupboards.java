@@ -15,7 +15,7 @@ public abstract class Cupboards implements IFurniture {
     private double stateX;
     private double stateY;
     // Укажем список вещей
-    private List <Things> listOfThings;
+    protected List <Things> listOfThings;
 
     public Cupboards (){
         this.listOfThings = new ArrayList<>();
@@ -38,34 +38,34 @@ public abstract class Cupboards implements IFurniture {
     }
 
     @Override
-    public boolean putThing (Things thing){
+    public boolean put(Things thing){
         if (thing != null) { // Проверка на не пустой объект
-          //  listOfThings.add(thing);
+            listOfThings.add(thing);
             return true;
         }
         return false;
     }
 
     @Override
-    public Things takeThing (String nameThing){
-        if (!nameThing.isEmpty()) { // Проверка на не пустое название вещи
-     //       for (Things thing : listOfThings) {
-      //          if (thing.getNameThing().equals(nameThing)) {
-       //             listOfThings.remove(thing);
-     //           }
-     //           return thing;
-     //       }
+    public Things getByName(String name){
+        if (!name.isEmpty()) { // Проверка на не пустое название вещи
+            for (Things thing : listOfThings) {
+                if (thing.getName().equals(name)) {
+                    listOfThings.remove(thing);
+                }
+                return thing;
+            }
         }
         return null;
     }
 
     @Override
-    public double[] move (double[] xyNext){
-        double stateX = this.stateX + xyNext[0]; // Перемещение по X шкафа
-        double stateY = this.stateY + xyNext[1]; // Перемещение по Y шкафа
-        return new double[] {stateX,stateY};
+    public void move (double xNext, double yNext){
+        this.stateX += xNext; // Перемещение по X шкафа
+        this.stateY += yNext; // Перемещение по Y шкафа
     }
 
+    @Override
     public boolean assemble (){
         stateAssemble = true;
         return stateAssemble;
@@ -73,9 +73,11 @@ public abstract class Cupboards implements IFurniture {
 
     @Override
     public boolean disassemble (){
-        if (clean()) {
+        if (listOfThings.isEmpty()) {
             stateOpen = true;
             stateAssemble = false;
+            stateX = 0;
+            stateY = 0;
         }
         return stateAssemble;
     }
@@ -86,7 +88,13 @@ public abstract class Cupboards implements IFurniture {
         return true;
     }
 
+    /**
+     * Абстрактный метод показать состояние мебели
+     */
     public abstract void showState ();
+    /**
+     * Абстрактный метод сортировки вещей
+     */
     public abstract boolean sortThings ();
 
     public List <Things> getListOfThings (){ return listOfThings; }
