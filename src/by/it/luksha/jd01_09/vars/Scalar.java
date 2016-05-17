@@ -1,34 +1,21 @@
 package by.it.luksha.jd01_09.vars;
 
-public class Scalar extends Var{
-    private Double var;
+public class Scalar extends Var {
+    /**
+     * Значение скаляра
+     */
+    private double value;
 
-    public Scalar(String var) {
-        this.var = Double.parseDouble(var);
-    }
-
-    public Scalar(Double var) {
-        this.var = var;
-    }
-
-    @Override
-    public Var add(Var var2) {
-        //Var result =
-        return null;
+    /**
+     * Конструктор преобразующий строку в объект типа Scalar
+     * @param scalar строка
+     */
+    public Scalar(String scalar) {
+        this.value = Double.valueOf(scalar);
     }
 
     @Override
-    public Var sub(Var var2) {
-        return null;
-    }
-
-    @Override
-    public Var mult(Var var2) {
-        return null;
-    }
-
-    @Override
-    public Var div(Var var2) {
-        return null;
+    public String toString() {
+        return String.valueOf(value);
     }
 }
