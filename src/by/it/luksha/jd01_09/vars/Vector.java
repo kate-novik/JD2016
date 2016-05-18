@@ -8,6 +8,21 @@ public class Vector extends Var {
      */
     private double[] value;
 
+    private int size;
+
+    public Vector(double[] value) {
+        this.value = value;
+        this.size = value.length;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public double[] getValue() {
+        return value;
+    }
+
     /**
      * Конструктор преобразующий строку в объект типа Vector
      * @param vector строка

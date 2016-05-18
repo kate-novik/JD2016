@@ -7,6 +7,26 @@ public class Matrix extends Var {
      * Двумерный массив значений матрицы
      */
     private double[][] value;
+    private int row;
+    private int col;
+
+    public double[][] getValue() {
+        return value;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public Matrix(double[][] value) {
+        this.value = value;
+        this.row = value.length;
+        this.col = value[0].length;
+    }
 
     /**
      * Конструктор преобразующий строку в объект типа Matrix

@@ -6,6 +6,14 @@ public class Scalar extends Var {
      */
     private double value;
 
+    public Scalar(double value) {
+        this.value = value;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
     /**
      * Конструктор преобразующий строку в объект типа Scalar
      * @param scalar строка

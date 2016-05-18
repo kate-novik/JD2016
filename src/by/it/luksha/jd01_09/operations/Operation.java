@@ -2,7 +2,7 @@ package by.it.luksha.jd01_09.operations;
 
 import by.it.luksha.jd01_09.vars.Var;
 
-public abstract class Operation implements IOperation{
+public abstract class Operation implements IOperationable {
     public Var add(Var var1, Var var2) {
         System.out.println("Операция невозможна!");
         return null;
