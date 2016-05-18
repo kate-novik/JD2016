@@ -17,10 +17,12 @@ public class Runner {
         String scalar = "-3.14";
         String vector = "{0.0,4.94,-7.03}";
         String matrix = "{{0.57,14.11},{-2.4,0.37}}";
+        String string = "-3.14-4.94";
 
         Var a = Parser.toVar(scalar);
         Var b = Parser.toVar(vector);
         Var c = Parser.toVar(matrix);
+        Var[] abc = Parser.toVars(string);
 
         System.out.println(a);
         System.out.println(b);

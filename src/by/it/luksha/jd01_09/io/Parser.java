@@ -52,4 +52,9 @@ public class Parser {
 
         return operand;
     }
+
+    public static Var[] toVars(String string) {
+        String[] vars = string.split("\\*|\\+|/|[^0-9]-[^0-9]");
+        return null;
+    }
 }
