@@ -31,6 +31,10 @@ public class MathLabVector extends MathLabVariable {
         System.arraycopy(vector.value, 0, value, 0, vector.value.length);
     }
 
+    public int getSize() {
+        return value.length;
+    }
+
     public Double[] getValue() {
         return value.clone();
     }
