@@ -2,6 +2,7 @@ package by.it.luksha.jd01_09.operations;
 
 import by.it.luksha.jd01_09.vars.Matrix;
 import by.it.luksha.jd01_09.vars.Scalar;
+import by.it.luksha.jd01_09.vars.Var;
 import by.it.luksha.jd01_09.vars.Vector;
 
 public class Mult extends Operation {
@@ -78,6 +79,17 @@ public class Mult extends Operation {
         }
     }
 
+    /**
+     * Умножение вектор-столбца на матрицу (невозможно, можно реализовать для вектор-строки)
+     * @param var1 вектор
+     * @param var2 матрица
+     * @return произведение
+     */
+    public static Var mult(Vector var1, Matrix var2) {
+        System.out.println("Операция невозможна!");
+        return null;
+
+    }
 
     /**
      * Умножает матрицу на скаляр

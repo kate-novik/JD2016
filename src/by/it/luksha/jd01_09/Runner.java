@@ -1,6 +1,7 @@
 package by.it.luksha.jd01_09;
 
 import by.it.luksha.jd01_09.io.Parser;
+import by.it.luksha.jd01_09.operations.Operation;
 import by.it.luksha.jd01_09.vars.Matrix;
 import by.it.luksha.jd01_09.vars.Scalar;
 import by.it.luksha.jd01_09.vars.Var;
