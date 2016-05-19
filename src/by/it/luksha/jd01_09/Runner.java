@@ -24,6 +24,7 @@ public class Runner {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String str = reader.readLine();
         */
+        /*
         String scalar = "-3.14";
         String vector = "{0.0,4.94,-7.03}";
         String matrix = "{{0.57,14.11},{-2.4,0.37}}";
@@ -37,50 +38,112 @@ public class Runner {
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
-
+        */
 
         //скаляры
-        Scalar sc1 = new Scalar(4.3);
-        Scalar sc2 = new Scalar(-3.4);
+        Scalar sc1 = new Scalar(2);
+        Scalar sc2 = new Scalar(-2);
 
         //вектора
-        double[] array1 = {2, 5, 7, 8, 3, 0};
-        double[] array2 = {0, 3, 8, 7, 8, 2};
-        double[] array3 = {0, 3, 8};
+        double[] array1 = {1, 2, 3, 4, 5, 6};
+        double[] array2 = {1, 2, 3, 4, 5, 6};
+        double[] array3 = {1, 2, 3};
         Vector vc1 = new Vector(array1);
         Vector vc2 = new Vector(array2);
         Vector vc3 = new Vector(array3);
 
         //матрицы
-        double[][] array4 = {{2, 5, 7},
-                             {5, 7, 8},
-                             {8, 3, 0}};
-        double[][] array5 = {{3, 2, 4},
-                             {5, 2, 3},
-                             {8, 1, 3}};
-        double[][] array6 = {{2, 5, 7},
-                             {5, 7, 8}};
+        double[][] array4 = {{1, 2, 3},
+                             {4, 5, 6},
+                             {7, 8, 9}};
+        double[][] array5 = {{1, 2, 3},
+                             {4, 5, 6},
+                             {7, 8, 9}};
+        double[][] array6 = {{1, 2, 3},
+                             {4, 5, 6}};
         Matrix mx1 = new Matrix(array4);
         Matrix mx2 = new Matrix(array5);
         Matrix mx3 = new Matrix(array6);
 
-        //сложение скаляра с Var
+        /*
+        System.out.println("Сложение скаляра с Var");
+        System.out.println("Скаляр+скаляр:");
         System.out.println(add(sc1, sc2));
+        System.out.println("Скаляр+вектор:");
         System.out.println(add(sc1, vc1));
+        System.out.println("Скаляр+матрица:");
         System.out.println(add(sc2, mx1));
 
-        //сложение вектора с Var
+        System.out.println("Сложение вектора с Var");
+        System.out.println("Вектор+скаляр:");
         System.out.println(add(vc1, sc1));
+        System.out.println("Вектор+вектор:");
         System.out.println(add(vc1, vc2));
+        System.out.println("Вектор+вектор:");
         System.out.println(add(vc1, vc3));
+        System.out.println("Вектор+матрица:");
         System.out.println(add(vc3, mx2));
+        System.out.println("Вектор+матрица:");
         System.out.println(add(vc3, mx3));
 
-        //сложение матрицы с Var
+        System.out.println("Сложение матрицы с Var");
+        System.out.println("Матрица+скаляр:");
         System.out.println(add(mx1, sc1));
+        System.out.println("Матрица+вектор:");
         System.out.println(add(mx2, vc3));
+        System.out.println("Матрица+вектор:");
         System.out.println(add(mx3, vc3));
+        System.out.println("Матрица+матрица:");
         System.out.println(add(mx1, mx2));
+        System.out.println("Матрица+матрица:");
         System.out.println(add(mx1, mx3));
+
+
+        System.out.println("Умножение скаляра с Var");
+        System.out.println("Скаляр*скаляр:");
+        System.out.println(mult(sc1, sc2));
+        System.out.println("Скаляр*вектор:");
+        System.out.println(mult(sc1, vc1));
+        System.out.println("Скаляр*матрица:");
+        System.out.println(mult(sc2, mx1));
+
+        System.out.println("Умножение вектора с Var");
+        System.out.println("Вектор*скаляр:");
+        System.out.println(mult(vc1, sc1));
+        System.out.println("Вектор*вектор:");
+        System.out.println(mult(vc1, vc2));
+        System.out.println("Вектор*вектор:");
+        System.out.println(mult(vc1, vc3));
+        System.out.println("Вектор*матрица:");
+        System.out.println(mult(vc3, mx2));
+        System.out.println("Вектор*матрица:");
+        System.out.println(mult(vc3, mx3));
+
+        System.out.println("Умножение матрицы с Var");
+        System.out.println("Матрица*скаляр:");
+        System.out.println(mult(mx1, sc1));
+        System.out.println("Матрица*вектор:");
+        System.out.println(mult(mx2, vc3));
+        System.out.println("Матрица*вектор:");
+        System.out.println(mult(mx3, vc3));
+        System.out.println("Матрица*матрица:");
+        System.out.println(mult(mx1, mx2));
+        System.out.println("Матрица*матрица:");
+        System.out.println(mult(mx1, mx3));
+        */
+
+
+        //умножение матрицы и матрицы
+        double[][] arrayMatrix3x3 = {{1, 2, 3},
+                                     {4, 5, 6},
+                                     {7, 8, 9}};
+        double[][] arrayMatrix3x2 = {{1, 2},
+                                     {3, 4},
+                                     {5, 6}};
+
+        Matrix matrix3x3 = new Matrix(arrayMatrix3x3);
+        Matrix matrix3x2 = new Matrix(arrayMatrix3x2);
+
+        System.out.println(mult(matrix3x3, matrix3x2));
     }
 }
