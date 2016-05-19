@@ -1,9 +1,7 @@
 package by.it.sinkevich.jd01_09;
 
-import by.it.sinkevich.jd01_09.manipulator.Manipulator;
+import by.it.sinkevich.jd01_09.manipulators.Manipulator;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
-import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
-import by.it.sinkevich.jd01_09.variables.MathLabVariable;
 import by.it.sinkevich.jd01_09.variables.MathLabVector;
 
 /**
@@ -12,17 +10,19 @@ import by.it.sinkevich.jd01_09.variables.MathLabVector;
 public class ConsoleRunner {
 
     public static void main(String[] args) {
-        MathLabVariable floatVar1 = new MathLabFloat(3.34);
-        MathLabVariable floatVar2 = new MathLabFloat(6.66);
-        MathLabVariable matrix = new MathLabMatrix();
-        MathLabVariable vector = new MathLabVector();
-        MathLabVariable result;
         Manipulator manipulator = new Manipulator();
-        result = manipulator.addition(floatVar1, floatVar2);
-        System.out.println(result);
-        result = manipulator.addition(floatVar1, matrix);
-        System.out.println(result);
-        System.out.println(manipulator.addition(matrix, floatVar2));
-        System.out.println(manipulator.addition(vector, floatVar2));
+        System.out.println("Проверка операций со скалярами: ");
+        System.out.println(manipulator.addition(new MathLabFloat("1"), new MathLabFloat("2")));
+        System.out.println(manipulator.substraction(new MathLabFloat("9"), new MathLabFloat("7")));
+        System.out.println(manipulator.multiplication(new MathLabFloat("1.5"), new MathLabFloat("2")));
+        System.out.println(manipulator.division(new MathLabFloat("-4"), new MathLabFloat("-1")));
+
+        System.out.println("Проверка операций с вектором слева и скаляром справа: ");
+        Double[] vector = {1., 2., 3.};
+        System.out.println(manipulator.addition(new MathLabVector(vector), new MathLabFloat("2")));
+        System.out.println(manipulator.substraction(new MathLabVector(vector), new MathLabFloat("1")));
+        System.out.println(manipulator.multiplication(new MathLabVector(vector), new MathLabFloat("2")));
+        System.out.println(manipulator.division(new MathLabVector(vector), new MathLabFloat("1")));
+
     }
 }
