@@ -10,6 +10,15 @@ public class Matrix extends Var {
     private int row;
     private int col;
 
+    public Matrix(double[][] value) {
+        this.value = new double[value.length][value[0].length];
+        this.row = value.length;
+        this.col = value[0].length;
+        for (int i = 0; i < value.length; i++) {
+            System.arraycopy(value[i], 0, this.value[i], 0, value[i].length);
+        }
+    }
+
     public double[][] getValue() {
         return value;
     }
@@ -20,12 +29,6 @@ public class Matrix extends Var {
 
     public int getCol() {
         return col;
-    }
-
-    public Matrix(double[][] value) {
-        this.value = value;
-        this.row = value.length;
-        this.col = value[0].length;
     }
 
     /**
@@ -62,6 +65,7 @@ public class Matrix extends Var {
 
     @Override
     public String toString() {
+
         for (int i = 0; i < this.value.length; i++) {
             for (int j = 0; j < this.value[0].length; j++) {
                 System.out.printf("[%1d,%1d]=%-6.2f",i+1, j+1, this.value[i][j]);

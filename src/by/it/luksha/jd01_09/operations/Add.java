@@ -4,7 +4,7 @@ import by.it.luksha.jd01_09.vars.Matrix;
 import by.it.luksha.jd01_09.vars.Scalar;
 import by.it.luksha.jd01_09.vars.Vector;
 
-public class Add extends Operation {
+public final class Add {
 
     /**
      * Метод выполняет операцию сложения для двух скаляров
@@ -142,5 +142,4 @@ public class Add extends Operation {
             return null;
         }
     }
-
 }

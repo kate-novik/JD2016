@@ -11,8 +11,9 @@ public class Vector extends Var {
     private int size;
 
     public Vector(double[] value) {
-        this.value = value;
+        this.value = new double[value.length];
         this.size = value.length;
+        System.arraycopy(value, 0, this.value, 0, value.length);
     }
 
     public int getSize() {

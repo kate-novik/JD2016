@@ -4,7 +4,7 @@ import by.it.luksha.jd01_09.vars.Matrix;
 import by.it.luksha.jd01_09.vars.Scalar;
 import by.it.luksha.jd01_09.vars.Vector;
 
-public class Div extends Operation{
+public class Div {
     //для скаляров
     public static Scalar div(Scalar var1, Scalar var2) {
         return null;

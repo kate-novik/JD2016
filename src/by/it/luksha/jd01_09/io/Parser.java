@@ -8,7 +8,23 @@ import by.it.luksha.jd01_09.vars.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser {
+public class Parser  {
+
+    //RegEx
+    //числа
+    static public String exScalar ="-?[0-9]+\\.[0-9]{1,}";
+    //вектора
+    static public String exVector ="[{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}";
+    //матрицы
+    static public String exMatrix ="[{]{1}([{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}){1}(,[{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}){1,}[}]{1}";
+    //одно из...
+    static public String exAny="("+ exMatrix +")|("+ exVector +")|("+ exScalar +")";
+    //операция
+    static public String exOper="[-+*/]{1}";
+    //выражение целиком
+    static public String exFull= "("+exAny+")"+
+            "(" +exOper+")"+
+            "(" +exAny +")";
 
     /**
      * Метод парсит строку в объект типа Var
@@ -20,17 +36,15 @@ public class Parser {
         Var operand = null;
 
         //паттерн для скаляра
-        String floatDigitWithMinus = "-?[0-9]+\\.[0-9]{1,}";
-        Pattern patternScalar = Pattern.compile(floatDigitWithMinus);
+        Pattern patternScalar = Pattern.compile(exScalar);
         Matcher matcherScalar = patternScalar.matcher(var);
 
         //паттерн для вектора
-        String vector = "[{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}";
-        Pattern patternVector = Pattern.compile(vector);
+        Pattern patternVector = Pattern.compile(exVector);
         Matcher matcherVector = patternVector.matcher(var);
 
         //паттерн для матрицы
-        Pattern patternMatrix = Pattern.compile("[{]{1}([{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}){1}(,[{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}){1,}[}]{1}");
+        Pattern patternMatrix = Pattern.compile(exMatrix);
         Matcher matcherMatrix = patternMatrix.matcher(var);
 
         //определение типа переменной
@@ -54,7 +68,60 @@ public class Parser {
     }
 
     public static Var[] toVars(String string) {
-        String[] vars = string.split("\\*|\\+|/|[^0-9]-[^0-9]");
-        return null;
+        String[] varsString = string.split(checkOperation(string));
+        Var[] vars = new Var[varsString.length];
+        for (int i = 0; i < varsString.length; i++) {
+            //TODO: Преобразование из строки в определенный тип Var (Scalar|Vector|Matrix).
+        }
+        return vars;
     }
+
+    /**
+     * Определяет знак операции выражения
+     * @param string строка-выражение
+     * @return строка-знак
+     */
+    public static String checkOperation(String string) {
+        //StringBuilder для преобразований
+        StringBuilder text = new StringBuilder(string);
+
+        //удаление матриц из строки
+        Pattern patternMatrix = Pattern.compile(exMatrix);
+        Matcher matcherMatrix = patternMatrix.matcher(text);
+        while (matcherMatrix.find())
+        {
+            int start = matcherMatrix.start();
+            int end = matcherMatrix.end();
+            text.delete(start, end);
+            matcherMatrix.reset();
+        }
+
+        //удаление векторов из строки
+        Pattern patternVector = Pattern.compile(exVector);
+        Matcher matcherVector = patternVector.matcher(text);
+        while (matcherVector.find())
+        {
+            int start = matcherVector.start();
+            int end = matcherVector.end();
+            text.delete(start, end);
+            matcherVector.reset();
+        }
+
+        //удаление скаляров из строки
+        Pattern patternScalar = Pattern.compile(exScalar);
+        Matcher matcherScalar = patternScalar.matcher(text);
+        while (matcherScalar.find())
+        {
+            int start = matcherScalar.start();
+            int end = matcherScalar.end();
+            text.delete(start, end);
+            matcherScalar.reset();
+        }
+
+        String sign = text.toString();
+        System.out.println(sign);
+
+        return sign;
+    }
+
 }

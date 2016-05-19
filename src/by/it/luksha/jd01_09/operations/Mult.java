@@ -5,7 +5,7 @@ import by.it.luksha.jd01_09.vars.Scalar;
 import by.it.luksha.jd01_09.vars.Var;
 import by.it.luksha.jd01_09.vars.Vector;
 
-public class Mult extends Operation {
+public final class Mult {
 
     /**
      * Умножает скаляр на скаляр
@@ -88,7 +88,6 @@ public class Mult extends Operation {
     public static Var mult(Vector var1, Matrix var2) {
         System.out.println("Операция невозможна!");
         return null;
-
     }
 
     /**

@@ -4,7 +4,7 @@ import by.it.luksha.jd01_09.vars.Matrix;
 import by.it.luksha.jd01_09.vars.Scalar;
 import by.it.luksha.jd01_09.vars.Vector;
 
-public class Sub extends Operation {
+public class Sub {
     //для скаляров
     public static Scalar sub(Scalar var1, Scalar var2) {
         return null;
