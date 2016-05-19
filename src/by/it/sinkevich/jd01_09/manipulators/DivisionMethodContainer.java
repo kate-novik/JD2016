@@ -7,6 +7,7 @@ import by.it.sinkevich.jd01_09.variables.MathLabVector;
 
 /**
  * Created by Computer on 19.05.2016.
+ *
  * @author Sinkevich Denis
  */
 class DivisionMethodContainer {
@@ -22,9 +23,9 @@ class DivisionMethodContainer {
         return null;
     }
 
-    private static MathLabMatrix division(MathLabFloat aFloat, MathLabMatrix matrix) {
-        System.out.println("Сложение числа и матрицы");
-        return new MathLabMatrix();
+    private static MathLabVariable division(MathLabFloat aFloat, MathLabMatrix matrix) {
+        System.out.println("Деление числа на матрицу невозможно!");
+        return null;
     }
 
     private static MathLabVector division(MathLabVector vector, MathLabFloat aFloat) {
@@ -41,23 +42,28 @@ class DivisionMethodContainer {
     }
 
     private static MathLabFloat division(MathLabVector vector, MathLabMatrix matrix) {
-        System.out.println("Сложение вектора и матрицы??? Шта???");
+        System.out.println("Деление вектора на матрицу невозможно!");
         return null;
     }
 
     private static MathLabMatrix division(MathLabMatrix matrix, MathLabFloat aFloat) {
-        System.out.println("Сложение матрицы и числа");
-        return new MathLabMatrix();
+        Double[][] result = matrix.getValue();
+        for (int row = 0; row < result.length; row++) {
+            for (int col = 0; col < result[row].length; col++) {
+                result[row][col] /= aFloat.getValue();
+            }
+        }
+        return new MathLabMatrix(result);
     }
 
-    private static MathLabFloat division(MathLabMatrix matrix, MathLabVector vector) {
-        System.out.println("Сложение матрицы и вектора??? Шта???");
+    private static MathLabVariable division(MathLabMatrix matrix, MathLabVector vector) {
+        System.out.println("Деление матрицы на вектор невозможно!");
         return null;
     }
 
-    private static MathLabMatrix division(MathLabMatrix matrix1, MathLabMatrix matrix2) {
-        System.out.println("Сложение матриц");
-        return new MathLabMatrix();
+    private static MathLabVariable division(MathLabMatrix matrix1, MathLabMatrix matrix2) {
+        System.out.println("Деление матрицы на матрицу невозможно!");
+        return null;
     }
 
     static MathLabVariable division(MathLabVariable first, MathLabVariable second) {
