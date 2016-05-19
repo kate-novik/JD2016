@@ -18,8 +18,7 @@ class MultiplicationMethodContainer {
     }
 
     private static MathLabVector multiplication(MathLabFloat aFloat, MathLabVector vector) {
-        System.out.println("Сложение числа и вектора");
-        return new MathLabVector();
+        return multiplication(vector, aFloat);
     }
 
     private static MathLabMatrix multiplication(MathLabFloat aFloat, MathLabMatrix matrix) {
@@ -27,14 +26,27 @@ class MultiplicationMethodContainer {
         return new MathLabMatrix();
     }
 
-    private static MathLabVector multiplication(MathLabVector vector1, MathLabFloat aFloat) {
-        System.out.println("Сложение вектор и числа");
-        return new MathLabVector();
+    static MathLabVector multiplication(MathLabVector vector, MathLabFloat aFloat) {
+        Double[] result = vector.getValue();
+        for (int i = 0; i < result.length; i++) {
+            result[i] = result[i] * aFloat.getValue();
+        }
+        return new MathLabVector(result);
     }
 
-    private static MathLabVector multiplication(MathLabVector vector1, MathLabVector vector2) {
-        System.out.println("Сложение векторов");
-        return new MathLabVector();
+    private static MathLabFloat multiplication(MathLabVector vector1, MathLabVector vector2) {
+        Double[] array1 = vector1.getValue();
+        Double[] array2 = vector2.getValue();
+        if (array1.length == array2.length) {
+            Double result = 0d;
+            for (int i = 0; i < array1.length; i++) {
+                result += array1[i] * array2[i];
+            }
+            return new MathLabFloat(result);
+        } else {
+            System.out.println("Умножение векторов невозможно, так как они разного размера!");
+        }
+        return null;
     }
 
     private static MathLabFloat multiplication(MathLabVector vector, MathLabMatrix matrix) {

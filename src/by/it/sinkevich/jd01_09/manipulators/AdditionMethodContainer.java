@@ -17,8 +17,7 @@ class AdditionMethodContainer {
     }
 
     private static MathLabVector addition(MathLabFloat aFloat, MathLabVector vector) {
-        System.out.println("Сложение числа и вектора");
-        return new MathLabVector();
+        return addition(vector, aFloat);
     }
 
     private static MathLabMatrix addition(MathLabFloat aFloat, MathLabMatrix matrix) {
@@ -26,14 +25,27 @@ class AdditionMethodContainer {
         return new MathLabMatrix();
     }
 
-    private static MathLabVector addition(MathLabVector vector1, MathLabFloat aFloat) {
-        System.out.println("Сложение вектор и числа");
-        return new MathLabVector();
+    private static MathLabVector addition(MathLabVector vector, MathLabFloat aFloat) {
+        Double[] result = vector.getValue();
+        for (int i = 0; i < result.length; i++) {
+            result[i] = result[i] + aFloat.getValue();
+        }
+        return new MathLabVector(result);
     }
 
     private static MathLabVector addition(MathLabVector vector1, MathLabVector vector2) {
-        System.out.println("Сложение векторов");
-        return new MathLabVector();
+        Double[] array1 = vector1.getValue();
+        Double[] array2 = vector2.getValue();
+        if (array1.length == array2.length) {
+            Double[] result = new Double[array1.length];
+            for (int i = 0; i < result.length; i++) {
+                result[i] = array1[i] + array2[i];
+            }
+            return new MathLabVector(result);
+        } else {
+            System.out.println("Сложение векторов невозможно, так как они разного размера!");
+        }
+        return null;
     }
 
     private static MathLabFloat addition(MathLabVector vector, MathLabMatrix matrix) {
@@ -77,7 +89,7 @@ class AdditionMethodContainer {
             if (second instanceof MathLabFloat) {
                 return addition((MathLabMatrix) first, (MathLabFloat) second);
             } else if (second instanceof MathLabVector) {
-                return addition( (MathLabMatrix) first, (MathLabVector) second); //УЗНАТЬ ЕСТЬ ЛИ ТАКАЯ ОПЕРАЦИЯ
+                return addition((MathLabMatrix) first, (MathLabVector) second); //УЗНАТЬ ЕСТЬ ЛИ ТАКАЯ ОПЕРАЦИЯ
             } else {
                 return addition((MathLabMatrix) first, (MathLabMatrix) second);
             }
