@@ -19,6 +19,11 @@ public class SLAU {
         this.Y=Y;
     }
 
+    public SLAU (double[][] arrayM){
+        this.arrayM=arrayM;
+        this.Y=new double [arrayM.length];
+    }
+
     /**
      * Создание и инициализация массива из коэффициентов свободных членов и правых частей СЛАУ
      * @return Массив СЛАУ
