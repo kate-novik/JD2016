@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package by.it.makevich.jd01_06;
 
 import java.util.Arrays;
@@ -37,3 +38,12 @@ public class B3 {
 	}
 
 }
+=======
+package by.it.makevich.jd01_06;
+
+public class B3 {
+	public static void main(String[] args) {
+
+	}
+}
+>>>>>>> Stashed changes
