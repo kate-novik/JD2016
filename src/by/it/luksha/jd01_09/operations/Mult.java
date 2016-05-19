@@ -78,27 +78,6 @@ public class Mult extends Operation {
         }
     }
 
-    /**
-     * Умножает вектор-столбец на матрицу
-     * @param var1 вектор-столбец
-     * @param var2 матрица
-     * @return вектор-столбец
-     */
-    public static Vector mult(Vector var1, Matrix var2) {
-        if (var1.getSize() == var2.getCol()) {
-            double[] result = new double[var2.getRow()];
-            for (int i = 0; i < var2.getRow(); i++) {
-                //скалярное произведение i-той строки на вектор-столбец
-                result[i] = mult(new Vector(var1.getValue()), new Vector(var2.getValue()[i])).getValue();
-            }
-            return new Vector(result);
-        }
-        else {
-            System.out.println("Операция невозможна! Вектор-столбец и матрица несоразмерны.");
-            return null;
-        }
-    }
-
 
     /**
      * Умножает матрицу на скаляр
@@ -116,8 +95,19 @@ public class Mult extends Operation {
      * @param var2 вектор-столбец
      * @return произведение-вектор
      */
-    public static Vector mult(Matrix var1, Vector var2) {
-        return mult(var2, var1);
+    public static Vector mult(Matrix var2, Vector var1) {
+        if (var1.getSize() == var2.getCol()) {
+            double[] result = new double[var2.getRow()];
+            for (int i = 0; i < var2.getRow(); i++) {
+                //скалярное произведение i-той строки на вектор-столбец
+                result[i] = mult(new Vector(var1.getValue()), new Vector(var2.getValue()[i])).getValue();
+            }
+            return new Vector(result);
+        }
+        else {
+            System.out.println("Операция невозможна! Вектор-столбец и матрица несоразмерны.");
+            return null;
+        }
     }
 
     /**
