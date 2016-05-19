@@ -5,13 +5,36 @@ package by.it.sergeev.jd01_08;
  */
 public class Comedy extends DomesticFilm{
     @Override
-    public String showState() {
-        String state="Плеер остановлен";
-        if (this.isStatePlay()) {
-            state = "Воспроизведение видео";
-            if (this.isStatePause())
-                state = "Плеер на паузе";
-        }
-        return state;
+    public void distribution() {
+        super.distribution();
+    }
+
+    public Comedy(String name) {
+        super(name);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public void development() {
+        super.development();
+    }
+
+    @Override
+    public void preproduction() {
+        super.preproduction();
+    }
+
+    @Override
+    public void production() {
+        super.production();
+    }
+
+    @Override
+    public void postproduction() {
+        super.postproduction();
     }
 }

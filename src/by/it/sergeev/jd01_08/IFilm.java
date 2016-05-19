@@ -4,11 +4,13 @@ package by.it.sergeev.jd01_08;
  * Created by user_2 on 13.05.2016.
  */
 public interface IFilm {
+    String getName(); //Название фильма
     /**
-     * Здесь описываются возможные действия с техникой
-     * Задание 12 interface Техника <-- abstract class Плеер <-- class Видеоплеер.
+     * Этапы создания фильма.
      */
-    boolean play();
-    boolean stop();
-    void pause();
+    void development();//   Разработка
+    void preproduction();// Предварительное производство
+    void production();//    Производство
+    void postproduction();//Пост-продакшн
+    void distribution();//  Распределение
 }

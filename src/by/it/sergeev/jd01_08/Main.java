@@ -2,22 +2,14 @@ package by.it.sergeev.jd01_08;
 
 public class Main {
     public static void main(String[ ] args) {
-        //создадим видеоплеер, запустим, два раза нажмем на паузу, остановим
-        DomesticFilm df=new DomesticFilm() {
-            @Override
-            public String showState() {
-                return null;
-            }
-        };
-        System.out.println(df.showState());
-        df.play();  // нажали воспроизведение
-        System.out.println(df.showState());
-        df.pause(); //поставили на паузу
-        System.out.println(df.showState());
-        df.pause(); //сняли с паузы
-        System.out.println(df.showState());
-        df.stop();  //остановили
-        System.out.println(df.showState());
-    }
-}
 
+            IFilm film = new Comedy("Весёлые ребята");
+            System.out.println(film.getName());
+            IFilm filmmaking = new Comedy("");
+            filmmaking.development();
+            filmmaking.preproduction();
+            filmmaking.production();
+            filmmaking.postproduction();
+            filmmaking.distribution();
+        }
+    }
