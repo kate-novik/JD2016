@@ -17,9 +17,9 @@ class DivisionMethodContainer {
         return result;
     }
 
-    private static MathLabVector division(MathLabFloat aFloat, MathLabVector vector) {
-        System.out.println("Сложение числа и вектора");
-        return new MathLabVector();
+    private static MathLabVariable division(MathLabFloat aFloat, MathLabVector vector) {
+        System.out.println("Деление числа на вектор невозможно!");
+        return null;
     }
 
     private static MathLabMatrix division(MathLabFloat aFloat, MathLabMatrix matrix) {
@@ -27,14 +27,17 @@ class DivisionMethodContainer {
         return new MathLabMatrix();
     }
 
-    private static MathLabVector division(MathLabVector vector1, MathLabFloat aFloat) {
-        System.out.println("Сложение вектор и числа");
-        return new MathLabVector();
+    private static MathLabVector division(MathLabVector vector, MathLabFloat aFloat) {
+        Double[] result = vector.getValue();
+        for (int i = 0; i < result.length; i++) {
+            result[i] = result[i] / aFloat.getValue();
+        }
+        return new MathLabVector(result);
     }
 
-    private static MathLabVector division(MathLabVector vector1, MathLabVector vector2) {
-        System.out.println("Сложение векторов");
-        return new MathLabVector();
+    private static MathLabVariable division(MathLabVector vector1, MathLabVector vector2) {
+        System.out.println("Деление вектора на вектор невозможно!");
+        return null;
     }
 
     private static MathLabFloat division(MathLabVector vector, MathLabMatrix matrix) {

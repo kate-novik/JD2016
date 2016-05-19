@@ -10,7 +10,7 @@ import by.it.sinkevich.jd01_09.variables.MathLabVector;
  *
  * @author Sinkevich Denis
  */
-class SubstractionMethodContainer {
+class SubstractionMethodContainer{
 
     private static MathLabFloat substraction(MathLabFloat aFloat1, MathLabFloat aFloat2) {
         MathLabFloat result = new MathLabFloat();
@@ -19,8 +19,9 @@ class SubstractionMethodContainer {
     }
 
     private static MathLabVector substraction(MathLabFloat aFloat, MathLabVector vector) {
-        System.out.println("Сложение числа и вектора");
-        return new MathLabVector();
+        MathLabVector result = substraction(vector, aFloat);
+        result = MultiplicationMethodContainer.multiplication(result, new MathLabFloat("-1"));
+        return result;
     }
 
     private static MathLabMatrix substraction(MathLabFloat aFloat, MathLabMatrix matrix) {
@@ -28,14 +29,27 @@ class SubstractionMethodContainer {
         return new MathLabMatrix();
     }
 
-    private static MathLabVector substraction(MathLabVector vector1, MathLabFloat aFloat) {
-        System.out.println("Сложение вектор и числа");
-        return new MathLabVector();
+    private static MathLabVector substraction(MathLabVector vector, MathLabFloat aFloat) {
+        Double[] result = vector.getValue();
+        for (int i = 0; i < result.length; i++) {
+            result[i] = result[i] - aFloat.getValue();
+        }
+        return new MathLabVector(result);
     }
 
     private static MathLabVector substraction(MathLabVector vector1, MathLabVector vector2) {
-        System.out.println("Сложение векторов");
-        return new MathLabVector();
+        Double[] array1 = vector1.getValue();
+        Double[] array2 = vector2.getValue();
+        if (array1.length == array2.length) {
+            Double[] result = new Double[array1.length];
+            for (int i = 0; i < result.length; i++) {
+                result[i] = array1[i] - array2[i];
+            }
+            return new MathLabVector(result);
+        } else {
+            System.out.println("Вычитание векторов невозможно, так как они разного размера!");
+        }
+        return null;
     }
 
     private static MathLabFloat substraction(MathLabVector vector, MathLabMatrix matrix) {
