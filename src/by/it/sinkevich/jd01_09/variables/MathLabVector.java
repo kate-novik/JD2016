@@ -22,7 +22,25 @@ public class MathLabVector extends MathLabVariable {
     }
 
     public MathLabVector(Double[] value) {
-        this.value = value;
+        this.value = new Double[value.length];
+        System.arraycopy(value, 0, this.value, 0, value.length);
+    }
+
+    public MathLabVector(MathLabVector vector) {
+        value = new Double[vector.value.length];
+        System.arraycopy(vector.value, 0, value, 0, vector.value.length);
+    }
+
+    public int getSize() {
+        return value.length;
+    }
+
+    public Double[] getValue() {
+        return value.clone();
+    }
+
+    public void setValue(Double[] value) {
+        System.arraycopy(value, 0, this.value, 0, value.length);
     }
 
     @Override
