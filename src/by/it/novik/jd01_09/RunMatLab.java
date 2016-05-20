@@ -15,9 +15,10 @@ public class RunMatLab {
         MultiOperations operMulti = new MultiOperations();
         DivOperations operDiv = new DivOperations();
 
-        double[] vec = {1,2,3};
-        double[][] m = {{1,2,3},{4,5,6},{7,8,9}};
-        
+        //double[] vec = {1,2,3};
+        //double[][] m = {{1,2,3},{4,5,6},{7,8,9}};
+        String vec = "{1,2,3}";
+        String m = "{{1,2,3},{4,5,6},{7,8,9}}";
         // Операции со скалярными величинами
         System.out.println("Операции со скаларной величиной");
         System.out.println(operAdd.addition(new DoubleValue(26.2),new DoubleValue(26.2)));

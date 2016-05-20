@@ -20,7 +20,7 @@ public class DoubleValue extends Variable {
 
     public DoubleValue(String valueD) {
 
-        this.valueD = Double.valueOf(valueD);
+        setValueFromString (valueD);
     }
 
     @Override
@@ -39,5 +39,10 @@ public class DoubleValue extends Variable {
     @Override
     public String toString() {
         return ((Double)valueD).toString();
+    }
+
+    @Override
+    public void setValueFromString(String value) {
+        this.valueD = Double.valueOf(value);
     }
 }

@@ -9,6 +9,7 @@ public interface IVariable {
      */
 
     void setValue (Object value);
+    void setValueFromString (String value);
     Object getValue ();
     String toString();
 }
