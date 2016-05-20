@@ -1,5 +1,6 @@
 package by.it.novik.jd01_08.Furniture;
 
+import by.it.novik.jd01_08.Cupboards;
 import by.it.novik.jd01_08.Entity.Book;
 import by.it.novik.jd01_08.Entity.Things;
 
@@ -139,3 +140,4 @@ public class Bookcase extends Cupboards {
 
 
 }
+

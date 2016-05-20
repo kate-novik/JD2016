@@ -6,6 +6,7 @@ import by.it.novik.jd01_09.entity.DoubleValue;
 import by.it.novik.jd01_09.entity.MatrixValue;
 import by.it.novik.jd01_09.entity.Variable;
 import by.it.novik.jd01_09.entity.VectorValue;
+import by.it.novik.jd01_09.utils.InverseMatrix;
 
 /**
  * Created by Kate Novik.
@@ -30,8 +31,7 @@ public class DivOperations implements IDivision{
     }
 
     public MatrixValue division(MatrixValue valueOne, MatrixValue valueTwo) {
-        SLAU slau = new SLAU(valueTwo.getValue());
-        return new MultiOperations().multiplication(valueOne, new MatrixValue(slau.inverseMatrix()));
+        return new MultiOperations().multiplication(valueOne, new MatrixValue(InverseMatrix.inverseMatrix(valueTwo.getValue())));
     }
 
 

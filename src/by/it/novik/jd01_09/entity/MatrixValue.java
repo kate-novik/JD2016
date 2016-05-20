@@ -1,6 +1,10 @@
 package by.it.novik.jd01_09.entity;
 
 
+import by.it.novik.jd01_09.patterns.PatternsVar;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Kate Novik.
@@ -19,6 +23,11 @@ public class MatrixValue extends Variable {
     public MatrixValue(int length) {
 
         this.valueM = new double [length] [length];
+    }
+
+    public MatrixValue(String valueM) {
+
+        setValueFromString(valueM);
     }
 
 
@@ -54,5 +63,19 @@ public class MatrixValue extends Variable {
             }
         }
         return s.toString();
+    }
+
+    @Override
+    public void setValueFromString(String value) {
+        String[] elem=value.split(PatternsVar.regxSc);
+        valueM=new double[elem.length][elem.length];
+        for (int i=0; i<elem.length; i++) {
+            Matcher mat = Pattern.compile(PatternsVar.regxD).matcher(elem[i]);
+            int j = 0;
+            while (mat.find()) {
+                valueM[i][j] = Double.parseDouble(mat.group());
+                j++;
+            }
+        }
     }
 }

@@ -31,4 +31,7 @@ public abstract class Variable implements IVariable {
     public String toString() {
         return value.toString();
     }
+
+    @Override
+    public void setValueFromString(String value) {  }
 }
