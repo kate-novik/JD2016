@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * Created by Diomn on 14.05.2016.
  */
 public class TaskB3 {
-    // don't work
+
     public static void main(String[] arg) {
         char symbol='у';
         Pattern pat;

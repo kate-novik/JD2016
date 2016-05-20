@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public class Runner {
     public  static void main(String[] arg) throws IOException {
-       /* System.out.println("Task 1");
+        System.out.println("Task 1");
         System.out.println("option A. Y= " + Task1.optionA(234.1));
         System.out.println("option B. Y= "+ Task1.optionB(234.1));
         System.out.println();
@@ -19,7 +19,7 @@ public class Runner {
         System.out.println();
         System.out.println("InputStreamReader");
         System.out.println("Y= "+Task2.coordinator());
-        System.out.println(); */
+        System.out.println();
         System.out.println("Task 3");
         Task3.printTable();
         System.out.println();
