@@ -48,10 +48,10 @@ public class MathLabVector extends MathLabVariable {
         String result = "{";
         for (int i = 0; i < value.length; i++) {
             if (i != value.length - 1) {
-                String formatStr = String.format("% 5.2f,", value[i]);
+                String formatStr = String.format("% 7.2f,", value[i]);
                 result = result.concat(formatStr);
             } else {
-                String formatStr = String.format("% 5.2f}", value[i]);
+                String formatStr = String.format("% 7.2f}", value[i]);
                 result = result.concat(formatStr);
             }
         }

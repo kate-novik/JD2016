@@ -53,10 +53,10 @@ public class MathLabMatrix extends MathLabVariable {
         for (int rows = 0; rows < value.length; rows++) {
             for (int cols = 0; cols < value[rows].length; cols++) {
                 if (cols != value[rows].length - 1) {
-                    String formatStr = String.format("% 5.2f,", value[rows][cols]);
+                    String formatStr = String.format("% 7.2f,", value[rows][cols]);
                     stringBuilder.append(formatStr);
                 } else {
-                    String formatStr = String.format("% 5.2f}", value[rows][cols]);
+                    String formatStr = String.format("% 7.2f}", value[rows][cols]);
                     stringBuilder.append(formatStr);
                 }
             }
