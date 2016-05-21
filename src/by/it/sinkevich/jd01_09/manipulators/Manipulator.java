@@ -1,6 +1,6 @@
 package by.it.sinkevich.jd01_09.manipulators;
 
-import by.it.sinkevich.jd01_09.operations.IAriphmeticOperation;
+import by.it.sinkevich.jd01_09.operations.IArithmeticOperation;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
 import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
 import by.it.sinkevich.jd01_09.variables.MathLabVariable;
@@ -11,7 +11,7 @@ import by.it.sinkevich.jd01_09.variables.MathLabVector;
  *
  * @author Sinkevich Denis
  */
-public class Manipulator implements IAriphmeticOperation {
+public class Manipulator implements IArithmeticOperation {
 
     @Override
     public MathLabVariable addition(MathLabVariable first, MathLabVariable second) {
@@ -19,7 +19,7 @@ public class Manipulator implements IAriphmeticOperation {
     }
 
     @Override
-    public MathLabVariable substraction(MathLabVariable first, MathLabVariable second) {
+    public MathLabVariable subtraction(MathLabVariable first, MathLabVariable second) {
         return castArgumentsAndChooseTypeOfOperation(first, second, "sub");
     }
 
@@ -78,7 +78,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -91,7 +91,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -104,7 +104,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -117,7 +117,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -130,7 +130,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -143,7 +143,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -156,7 +156,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -169,7 +169,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -182,7 +182,7 @@ public class Manipulator implements IAriphmeticOperation {
             case "add":
                 return AdditionMethodContainer.addition(first, second);
             case "sub":
-                return SubstractionMethodContainer.substraction(first, second);
+                return SubtractionMethodContainer.subtraction(first, second);
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:

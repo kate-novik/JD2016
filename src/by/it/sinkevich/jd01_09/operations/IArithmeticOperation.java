@@ -7,11 +7,11 @@ import by.it.sinkevich.jd01_09.variables.MathLabVariable;
  *
  * @author Sinkevich Denis
  */
-public interface IAriphmeticOperation {
+public interface IArithmeticOperation {
 
     MathLabVariable addition(MathLabVariable first, MathLabVariable second);
 
-    MathLabVariable substraction(MathLabVariable first, MathLabVariable second);
+    MathLabVariable subtraction(MathLabVariable first, MathLabVariable second);
 
     MathLabVariable multiplication(MathLabVariable first, MathLabVariable second);
 
