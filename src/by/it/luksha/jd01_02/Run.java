@@ -3,6 +3,7 @@ package by.it.luksha.jd01_02;
 import java.io.IOException;
 
 public class Run {
+    //Спасибо Анне Кушаль за правки и поломаный код!
     public static void main(String[] args) throws IOException {
 
         //TaskA1
