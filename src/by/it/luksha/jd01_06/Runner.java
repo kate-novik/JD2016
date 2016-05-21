@@ -1,6 +1,7 @@
 package by.it.luksha.jd01_06;
 
 public class Runner {
+    //Спасибо Дмитриеву Сергею за правки и поломанный код!
     public static void main(String[] args) {
         //TaskA
         TaskA.task1();
