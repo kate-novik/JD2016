@@ -12,17 +12,17 @@ import by.it.sinkevich.jd01_09.variables.MathLabVector;
  */
 class MultiplicationMethodContainer {
 
-    private static MathLabFloat multiplication(MathLabFloat aFloat1, MathLabFloat aFloat2) {
+    static MathLabFloat multiplication(MathLabFloat aFloat1, MathLabFloat aFloat2) {
         MathLabFloat result = new MathLabFloat();
         result.setValue(aFloat1.getValue() * aFloat2.getValue());
         return result;
     }
 
-    private static MathLabVector multiplication(MathLabFloat aFloat, MathLabVector vector) {
+    static MathLabVector multiplication(MathLabFloat aFloat, MathLabVector vector) {
         return multiplication(vector, aFloat);
     }
 
-    private static MathLabMatrix multiplication(MathLabFloat aFloat, MathLabMatrix matrix) {
+    static MathLabMatrix multiplication(MathLabFloat aFloat, MathLabMatrix matrix) {
         return multiplication(matrix, aFloat);
     }
 
@@ -34,7 +34,7 @@ class MultiplicationMethodContainer {
         return new MathLabVector(result);
     }
 
-    private static MathLabFloat multiplication(MathLabVector vector1, MathLabVector vector2) {
+    static MathLabFloat multiplication(MathLabVector vector1, MathLabVector vector2) {
         if (vector1.getSize() != vector2.getSize()) {
             System.out.println("Умножение векторов невозможно, так как они разного размера!");
             return null;
@@ -48,7 +48,7 @@ class MultiplicationMethodContainer {
         return new MathLabFloat(result);
     }
 
-    private static MathLabVariable multiplication(MathLabVector vector, MathLabMatrix matrix) {
+    static MathLabVariable multiplication(MathLabVector vector, MathLabMatrix matrix) {
         System.out.println("Умножение слева вектора-стобца на матрицу невозможно!");
         return null;
     }
@@ -63,7 +63,7 @@ class MultiplicationMethodContainer {
         return new MathLabMatrix(result);
     }
 
-    private static MathLabVector multiplication(MathLabMatrix matrix, MathLabVector vector) {
+    static MathLabVector multiplication(MathLabMatrix matrix, MathLabVector vector) {
         if (matrix.getColumns() != vector.getSize()) {
             System.out.println("Умножение матрицы на вектор невозможно, из-за неподходящих размеров!");
             return null;
@@ -80,7 +80,7 @@ class MultiplicationMethodContainer {
         return new MathLabVector(result);
     }
 
-    private static MathLabMatrix multiplication(MathLabMatrix matrix1, MathLabMatrix matrix2) {
+    static MathLabMatrix multiplication(MathLabMatrix matrix1, MathLabMatrix matrix2) {
         if (matrix1.getColumns() != matrix2.getRows()) {
             System.out.println("Умножение матриц невозможно, так как они разного размера!");
             return null;
@@ -97,34 +97,5 @@ class MultiplicationMethodContainer {
             }
         }
         return new MathLabMatrix(result);
-    }
-
-    static MathLabVariable multiplication(MathLabVariable first, MathLabVariable second) {
-        if (first instanceof MathLabFloat) {
-            if (second instanceof MathLabFloat) {
-                return multiplication((MathLabFloat) first, (MathLabFloat) second);
-            } else if (second instanceof MathLabVector) {
-                return multiplication((MathLabFloat) first, (MathLabVector) second);
-            } else {
-                return multiplication((MathLabFloat) first, (MathLabMatrix) second);
-            }
-        } else if (first instanceof MathLabVector) {
-            if (second instanceof MathLabFloat) {
-                return multiplication((MathLabVector) first, (MathLabFloat) second);
-            } else if (second instanceof MathLabVector) {
-                return multiplication((MathLabVector) first, (MathLabVector) second);
-            } else {
-                return multiplication((MathLabVector) first, (MathLabMatrix) second); //УЗНАТЬ ЕСТЬ ЛИ ТАКАЯ ОПЕРАЦИЯ
-            }
-        } else if (first instanceof MathLabMatrix) {
-            if (second instanceof MathLabFloat) {
-                return multiplication((MathLabMatrix) first, (MathLabFloat) second);
-            } else if (second instanceof MathLabVector) {
-                return multiplication((MathLabMatrix) first, (MathLabVector) second); //УЗНАТЬ ЕСТЬ ЛИ ТАКАЯ ОПЕРАЦИЯ
-            } else if (second instanceof MathLabMatrix) {
-                return multiplication((MathLabMatrix) first, (MathLabMatrix) second);
-            }
-        }
-        return null;
     }
 }
