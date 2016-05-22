@@ -1,11 +1,9 @@
 package by.it.luksha.jd01_09;
 
+import by.it.luksha.jd01_09.operations.Operation;
 import by.it.luksha.jd01_09.vars.Matrix;
 import by.it.luksha.jd01_09.vars.Scalar;
 import by.it.luksha.jd01_09.vars.Vector;
-
-import static by.it.luksha.jd01_09.operations.Add.add;
-import static by.it.luksha.jd01_09.operations.Mult.mult;
 
 public class Test {
 
@@ -40,68 +38,68 @@ public class Test {
         //Операции с Var
         System.out.println("Сложение скаляра с Var");
         System.out.println("Скаляр+скаляр:");
-        System.out.println(add(scalar1, scalar2));
+        System.out.println(Operation.add(scalar1, scalar2));
         System.out.println("Скаляр+вектор:");
-        System.out.println(add(scalar1, vector1));
+        System.out.println(Operation.add(scalar1, vector1));
         System.out.println("Скаляр+матрица:");
-        System.out.println(add(scalar2, matrix3x3));
+        System.out.println(Operation.add(scalar2, matrix3x3));
 
         System.out.println("Сложение вектора с Var");
         System.out.println("Вектор+скаляр:");
-        System.out.println(add(vector1, scalar1));
+        System.out.println(Operation.add(vector1, scalar1));
         System.out.println("Вектор+вектор:");
-        System.out.println(add(vector1, vector2));
+        System.out.println(Operation.add(vector1, vector2));
         System.out.println("Вектор+вектор:");
-        System.out.println(add(vector1, vector3));
+        System.out.println(Operation.add(vector1, vector3));
         System.out.println("Вектор+матрица:");
-        System.out.println(add(vector3, matrix3x2));
+        System.out.println(Operation.add(vector3, matrix3x2));
         System.out.println("Вектор+матрица:");
-        System.out.println(add(vector3, matrix4x5));
+        System.out.println(Operation.add(vector3, matrix4x5));
 
         System.out.println("Сложение матрицы с Var");
         System.out.println("Матрица+скаляр:");
-        System.out.println(add(matrix3x3, scalar1));
+        System.out.println(Operation.add(matrix3x3, scalar1));
         System.out.println("Матрица+вектор:");
-        System.out.println(add(matrix3x2, vector3));
+        System.out.println(Operation.add(matrix3x2, vector3));
         System.out.println("Матрица+вектор:");
-        System.out.println(add(matrix4x5, vector3));
+        System.out.println(Operation.add(matrix4x5, vector3));
         System.out.println("Матрица+матрица:");
-        System.out.println(add(matrix3x3, matrix3x2));
+        System.out.println(Operation.add(matrix3x3, matrix3x2));
         System.out.println("Матрица+матрица:");
-        System.out.println(add(matrix3x3, matrix4x5));
+        System.out.println(Operation.add(matrix3x3, matrix4x5));
 
 
         System.out.println("Умножение скаляра с Var");
         System.out.println("Скаляр*скаляр:");
-        System.out.println(mult(scalar1, scalar2));
+        System.out.println(Operation.mult(scalar1, scalar2));
         System.out.println("Скаляр*вектор:");
-        System.out.println(mult(scalar1, vector1));
+        System.out.println(Operation.mult(scalar1, vector1));
         System.out.println("Скаляр*матрица:");
-        System.out.println(mult(scalar3, matrix3x3));
+        System.out.println(Operation.mult(scalar3, matrix3x3));
 
         System.out.println("Умножение вектора с Var");
         System.out.println("Вектор*скаляр:");
-        System.out.println(mult(vector1, scalar1));
+        System.out.println(Operation.mult(vector1, scalar1));
         System.out.println("Вектор*вектор:");
-        System.out.println(mult(vector1, vector2));
+        System.out.println(Operation.mult(vector1, vector2));
         System.out.println("Вектор*вектор:");
-        System.out.println(mult(vector1, vector3));
+        System.out.println(Operation.mult(vector1, vector3));
         System.out.println("Вектор*матрица:");
-        System.out.println(mult(vector3, matrix3x2));
+        System.out.println(Operation.mult(vector3, matrix3x2));
         System.out.println("Вектор*матрица:");
-        System.out.println(mult(vector3, matrix4x5));
+        System.out.println(Operation.mult(vector3, matrix4x5));
 
         System.out.println("Умножение матрицы с Var");
         System.out.println("Матрица*скаляр:");
-        System.out.println(mult(matrix3x3, scalar1));
+        System.out.println(Operation.mult(matrix3x3, scalar1));
         System.out.println("Матрица*вектор:");
-        System.out.println(mult(matrix3x2, vector3));
+        System.out.println(Operation.mult(matrix3x2, vector3));
         System.out.println("Матрица*вектор:");
-        System.out.println(mult(matrix4x5, vector3));
+        System.out.println(Operation.mult(matrix4x5, vector3));
         System.out.println("Матрица*матрица:");
-        System.out.println(mult(matrix3x3, matrix3x2));
+        System.out.println(Operation.mult(matrix3x3, matrix3x2));
         System.out.println("Матрица*матрица:");
-        System.out.println(mult(matrix3x3, matrix4x5));
+        System.out.println(Operation.mult(matrix3x3, matrix4x5));
 
     }
 }
