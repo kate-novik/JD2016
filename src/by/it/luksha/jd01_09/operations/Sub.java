@@ -6,6 +6,10 @@ import by.it.luksha.jd01_09.vars.Var;
 import by.it.luksha.jd01_09.vars.Vector;
 
 public final class Sub {
+
+    private Sub() {
+    }
+
     public static Var sub(Var var1, Var var2) {
         System.out.println("Операция невозможна.");
         return null;

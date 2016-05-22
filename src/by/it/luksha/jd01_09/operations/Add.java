@@ -7,6 +7,9 @@ import by.it.luksha.jd01_09.vars.Vector;
 
 public final class Add {
 
+    private Add() {
+    }
+
     public static Var add(Var var1, Var var2) {
         System.out.println("Операция невозможна.");
         return null;

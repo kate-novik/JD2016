@@ -1,6 +1,6 @@
 package by.it.luksha.jd01_09.vars;
 
-import java.util.ArrayList;
+import by.it.luksha.jd01_09.io.Parser;
 
 public class Vector extends Var {
     /**
@@ -16,32 +16,21 @@ public class Vector extends Var {
         System.arraycopy(value, 0, this.value, 0, value.length);
     }
 
+    /**
+     * Конструктор преобразующий строку в объект типа Vector
+     * @param vector строка
+     */
+    public Vector(String vector) {
+        this.value = Parser.findVector(vector);
+        this.size = value.length;
+    }
+
     public int getSize() {
         return size;
     }
 
     public double[] getValue() {
         return value;
-    }
-
-    /**
-     * Конструктор преобразующий строку в объект типа Vector
-     * @param vector строка
-     */
-    public Vector(String vector) {
-        String[] strArray = vector.split("\\{|,|\\}");
-        //костыль
-        ArrayList<String> array = new ArrayList<>();
-        for (int i = 0; i < strArray.length; i++) {
-            if (!strArray[i].isEmpty())
-                array.add(strArray[i]);
-        }
-        //
-
-        this.value = new double[array.size()];
-        for (int i = 0; i < this.value.length; i++) {
-            this.value[i] = Double.parseDouble(array.get(i));
-        }
     }
 
     @Override
