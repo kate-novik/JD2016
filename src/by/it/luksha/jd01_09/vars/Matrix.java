@@ -39,13 +39,15 @@ public class Matrix extends Var {
         int row = 0;
         int col = 0;
         String[] rows = matrix.split("\\{\\{|\\},\\{|\\}\\}");
-        //костыль
+
+        //костыль убирает пустые строки!
         ArrayList<String> array = new ArrayList<>();
         for (int i = 0; i < rows.length; i++) {
             if (!rows[i].isEmpty())
                 array.add(rows[i]);
         }
-        //
+
+        //определение числа строк и столбцов матрицы
         row = array.size();
         for (int i = 0; i < array.size(); i++) {
             String[] arrCol = array.get(i).split(",");
@@ -59,8 +61,9 @@ public class Matrix extends Var {
                 result[i][j] = Double.valueOf(tmp[j]);
             }
         }
-
         this.value = result;
+        this.row = value.length;
+        this.col = value[0].length;
     }
 
     @Override
@@ -75,4 +78,5 @@ public class Matrix extends Var {
 
         return "";
     }
+
 }

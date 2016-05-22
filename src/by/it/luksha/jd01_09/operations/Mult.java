@@ -7,6 +7,9 @@ import by.it.luksha.jd01_09.vars.Vector;
 
 public final class Mult {
 
+    private Mult() {
+    }
+
     public static Var mult(Var var1, Var var2) {
         System.out.println("Операция невозможна.");
         return null;

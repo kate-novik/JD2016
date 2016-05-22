@@ -6,6 +6,10 @@ import by.it.luksha.jd01_09.vars.Var;
 import by.it.luksha.jd01_09.vars.Vector;
 
 public final class Div {
+
+    private Div() {
+    }
+
     public static Var div(Var var1, Var var2) {
         System.out.println("Операция невозможна.");
         return  null;

@@ -20,58 +20,73 @@ public class Parser  {
     //одно из...
     static public String exAny="("+ exMatrix +")|("+ exVector +")|("+ exScalar +")";
     //операция
-    static public String exOper="[-+*/]{1}";
+    static public String exOper="((\\s-\\s){1})|((\\s\\+\\s){1})|((\\s\\*\\s){1})|((\\s/\\s){1})|((\\s=\\s){1})";
     //выражение целиком
     static public String exFull= "("+exAny+")"+
             "(" +exOper+")"+
             "(" +exAny +")";
 
     /**
-     * Метод парсит строку в объект типа Var
-     * @param var строка, которую необходимо преобразовать
-     * @return ссылка на объект типа Var
+     * Ищет в строке вектор и преобразует в массив double
+     * @param line строка
+     * @return массив double
      */
-    public static Var toVar(String var) {
-        //возвращаемое значение пока не определено
-        Var operand = null;
-
-        //паттерн для скаляра
-        Pattern patternScalar = Pattern.compile(exScalar);
-        Matcher matcherScalar = patternScalar.matcher(var);
-
-        //паттерн для вектора
-        Pattern patternVector = Pattern.compile(exVector);
-        Matcher matcherVector = patternVector.matcher(var);
-
-        //паттерн для матрицы
-        Pattern patternMatrix = Pattern.compile(exMatrix);
-        Matcher matcherMatrix = patternMatrix.matcher(var);
-
-        //определение типа переменной
-        if (matcherMatrix.find()) {
-            System.out.println("Это матрица!");
-            operand = new Matrix(var);
-        }
-        else if (matcherVector.find()) {
-            System.out.println("Это вектор!");
-            operand = new Vector(var);
-        }
-        else if (matcherScalar.find()) {
-            System.out.println("Это скаляр!");
-            operand = new Scalar(var);
-        }
-        else {
-            System.out.println("Данный формат ввода не поддерживается!");
+    public static double[] findVector(String line) {
+        double[] arrayForVector = new double[line.split(",").length];
+        Matcher matcherVector = Pattern.compile(exScalar).matcher(line);
+        int i = 0;
+        while (matcherVector.find()) {
+            arrayForVector[i] = Double.parseDouble(matcherVector.group());
+            i++;
         }
 
-        return operand;
+        return arrayForVector;
     }
 
+    /**
+     * Парсит строку на массив с элементами типа Var
+     * @param string строка
+     * @return массив
+     */
     public static Var[] toVars(String string) {
-        String[] varsString = string.split(checkOperation(string));
+        String[] varsString = string.split(exOper);
         Var[] vars = new Var[varsString.length];
         for (int i = 0; i < varsString.length; i++) {
-            //TODO: Преобразование из строки в определенный тип Var (Scalar|Vector|Matrix).
+            //матрица
+            Pattern patternMatrix = Pattern.compile(exMatrix);
+            Matcher matcherMatrix = patternMatrix.matcher(varsString[i]);
+            //вектор
+            Pattern patternVector = Pattern.compile(exVector);
+            Matcher matcherVector = patternVector.matcher(varsString[i]);
+            //скаляр
+            Pattern patternScalar = Pattern.compile(exScalar);
+            Matcher matcherScalar = patternScalar.matcher(varsString[i]);
+
+            if (matcherMatrix.find()) {
+                int start = matcherMatrix.start();
+                int end = matcherMatrix.end();
+                String matrix = varsString[i].substring(start, end).trim();
+                Matrix mx = new Matrix(matrix);
+                vars[i] = mx;
+                matcherMatrix.reset();
+            }
+            else if (matcherVector.find()) {
+                int start = matcherVector.start();
+                int end = matcherVector.end();
+                String vector = varsString[i].substring(start, end).trim();
+                Vector vc = new Vector(vector);
+                vars[i] = vc;
+                matcherVector.reset();
+            }
+            else if (matcherScalar.find()) {
+                int start = matcherScalar.start();
+                int end = matcherScalar.end();
+                String scalar = varsString[i].substring(start, end).trim();
+                Scalar sc = new Scalar(scalar);
+                vars[i] = sc;
+                matcherScalar.reset();
+            }
+            else {System.out.println("Переменные не найдены");}
         }
         return vars;
     }
@@ -82,44 +97,18 @@ public class Parser  {
      * @return строка-знак
      */
     public static String checkOperation(String string) {
-        //StringBuilder для преобразований
-        StringBuilder text = new StringBuilder(string);
-
-        //удаление матриц из строки
-        Pattern patternMatrix = Pattern.compile(exMatrix);
-        Matcher matcherMatrix = patternMatrix.matcher(text);
-        while (matcherMatrix.find())
-        {
-            int start = matcherMatrix.start();
-            int end = matcherMatrix.end();
-            text.delete(start, end);
-            matcherMatrix.reset();
+        String sign = "";
+        Pattern patternOperation = Pattern.compile(exOper);
+        Matcher matcherOperation = patternOperation.matcher(string);
+        if (matcherOperation.find()) {
+            int start = matcherOperation.start();
+            int end = matcherOperation.end();
+            sign = string.substring(start, end).trim();
         }
-
-        //удаление векторов из строки
-        Pattern patternVector = Pattern.compile(exVector);
-        Matcher matcherVector = patternVector.matcher(text);
-        while (matcherVector.find())
+        else
         {
-            int start = matcherVector.start();
-            int end = matcherVector.end();
-            text.delete(start, end);
-            matcherVector.reset();
+            System.out.println("Невозможно определить знак операции");
         }
-
-        //удаление скаляров из строки
-        Pattern patternScalar = Pattern.compile(exScalar);
-        Matcher matcherScalar = patternScalar.matcher(text);
-        while (matcherScalar.find())
-        {
-            int start = matcherScalar.start();
-            int end = matcherScalar.end();
-            text.delete(start, end);
-            matcherScalar.reset();
-        }
-
-        String sign = text.toString();
-        System.out.println(sign);
 
         return sign;
     }

@@ -9,6 +9,9 @@ import by.it.luksha.jd01_09.vars.Vector;
 
 public class Operation {
 
+    private Operation() {
+    }
+
     /**
      * Суммирует две переменные
      * @param var1
@@ -131,6 +134,16 @@ public class Operation {
             return Sub.sub((Matrix) var1, (Matrix) var2);
         else
             return Sub.sub(var1, var2);
+    }
+
+    /**
+     * Присваивает переменной значение
+     * @param key переменная
+     * @param var значение
+     */
+    public static void bind(String key, Var var) {
+        Bind.bind(key, var);
+        Bind.calc();
     }
 
 
