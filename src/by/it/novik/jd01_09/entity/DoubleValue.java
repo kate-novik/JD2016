@@ -53,5 +53,6 @@ public class DoubleValue extends Variable {
     @Override
     public void setValue(String value) {
         this.valueD = Double.valueOf(value);
+
     }
 }
