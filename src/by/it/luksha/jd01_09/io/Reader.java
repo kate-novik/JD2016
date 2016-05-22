@@ -11,9 +11,13 @@ public class Reader {
         String line = reader.readLine();
         while(!line.isEmpty())
         {
-            //TODO: Распарсить строку
+            analysisLine(line);
             line = reader.readLine();
         }
+    }
+
+    private static void analysisLine(String line) {
+        //TODO: в зависимости от того какая строка приходит (команда или выражение) вызывать метод для обработки.
     }
 
 }

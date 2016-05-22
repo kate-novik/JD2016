@@ -7,6 +7,11 @@ import by.it.luksha.jd01_09.vars.Vector;
 
 public final class Mult {
 
+    public static Var mult(Var var1, Var var2) {
+        System.out.println("Операция невозможна.");
+        return null;
+    }
+
     /**
      * Умножает скаляр на скаляр
      * @param var1 множитель-скаляр

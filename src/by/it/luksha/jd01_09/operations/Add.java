@@ -2,9 +2,15 @@ package by.it.luksha.jd01_09.operations;
 
 import by.it.luksha.jd01_09.vars.Matrix;
 import by.it.luksha.jd01_09.vars.Scalar;
+import by.it.luksha.jd01_09.vars.Var;
 import by.it.luksha.jd01_09.vars.Vector;
 
 public final class Add {
+
+    public static Var add(Var var1, Var var2) {
+        System.out.println("Операция невозможна.");
+        return null;
+    }
 
     /**
      * Метод выполняет операцию сложения для двух скаляров
