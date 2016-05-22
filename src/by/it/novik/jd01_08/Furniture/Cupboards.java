@@ -1,6 +1,7 @@
-package by.it.novik.jd01_08.Furniture;
+package by.it.novik.jd01_08;
 
 import by.it.novik.jd01_08.Entity.Things;
+import by.it.novik.jd01_08.Furniture.IFurniture;
 
 import java.util.ArrayList;
 import java.util.List;
