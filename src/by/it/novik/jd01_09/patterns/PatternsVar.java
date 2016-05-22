@@ -6,9 +6,9 @@ package by.it.novik.jd01_09.patterns;
 public class PatternsVar {
     static public String regxMat = "\\{((\\{(-?[0-9\\.,])+\\}),?)+\\}";
     static public String regxVec = "\\{(-?[0-9\\.,])+\\}";
-    static public String regxD = "-?[0-9\\.]+";
+    static public String regxD = "-?[0-9]+(\\.[0-9]+)?";
     static public String regxSc = "\\},\\{";
-    static public String regxOper = "[+-/*]";
+    static public String regxOper = "[+\\-/*]";
     static public String regxOr = "("+regxMat+")|("+regxVec+")|("+regxD+")";
 
     static public String regxDandD = "("+regxD+")"+"("+regxOper+")"+"("+regxD+")";

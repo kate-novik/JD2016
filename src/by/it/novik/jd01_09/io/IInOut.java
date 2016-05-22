@@ -2,21 +2,21 @@ package by.it.novik.jd01_09.io;
 
 import by.it.novik.jd01_09.entity.Variable;
 
+import java.io.IOException;
+
 /**
  * Created by Kate Novik.
  */
 public interface IInOut {
 
     /**
-     *
-     * @param value1
-     * @param value2
+     * Метод получения строки ввода с консоли
      */
-    void input(Variable value1, Variable value2);
+    String input () throws IOException;
 
     /**
-     *
-     * @param value
+     * Метод вывода значения переменной в консоль
+     * @param value Строка вывода
      */
-    void output(Variable value);
+    void output(String value);
 }

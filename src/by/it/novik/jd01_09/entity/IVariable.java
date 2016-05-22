@@ -8,8 +8,21 @@ public interface IVariable {
      * Интерфейс действий с переменной
      */
 
+    /**
+     * Установить значение переменной
+     * @param value Значение переменной типа Object
+     */
     void setValue (Object value);
-    void setValueFromString (String value);
+
+    /**
+     * Получить значение переменной
+     * @return Значение переменной типа Object
+     */
     Object getValue ();
+
+    /**
+     * Преобразование значение переменной в строку
+     * @return Значение переменной в виде строки
+     */
     String toString();
 }

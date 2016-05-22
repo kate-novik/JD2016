@@ -10,27 +10,26 @@ import java.util.regex.Pattern;
  * Created by Kate Novik.
  */
 public class MatrixValue extends Variable {
-    // Значение поля
+    // Поле значение переменной
     private double[][] valueM;
 
-
-    public MatrixValue(double [][] valueV) {
-
-        this.valueM = new double [valueV.length] [valueV.length];
-        this.valueM = valueV.clone();
+    public MatrixValue(double [][] valueM) {
+        this.valueM = new double [valueM.length] [valueM.length];
+        this.valueM = valueM.clone();
     }
 
     public MatrixValue(int length) {
-
         this.valueM = new double [length] [length];
     }
 
     public MatrixValue(String valueM) {
-
-        setValueFromString(valueM);
+        setValue (valueM);
     }
 
-
+    /**
+     * Override метода получить значение переменной
+     * @return Значение переменной
+     */
     @Override
     public double[][] getValue() {
         return this.valueM;
@@ -38,13 +37,17 @@ public class MatrixValue extends Variable {
 
     /**
      * Перегрузка метода setValue - установить значение поля valueV
-     * @param valueM Массив double[]
+     * @param valueM Массив double[][]
      */
     public void setValue(double[][] valueM) {
         this.valueM = new double [valueM.length][valueM.length];
         this.valueM = valueM.clone();
     }
 
+    /**
+     * Override метода toString
+     * @return Значение переменной в виде строки
+     */
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder("{{");
@@ -65,8 +68,12 @@ public class MatrixValue extends Variable {
         return s.toString();
     }
 
+    /**
+     * Override метода преобразование значение переменной строки в массив [][]
+     * @param value Переданная строка
+     */
     @Override
-    public void setValueFromString(String value) {
+    public void setValue (String value) {
         String[] elem=value.split(PatternsVar.regxSc);
         valueM=new double[elem.length][elem.length];
         for (int i=0; i<elem.length; i++) {

@@ -1,11 +1,10 @@
 package by.it.novik.jd01_09.operations;
 
-
-import by.it.novik.jd01_04.SLAU;
 import by.it.novik.jd01_09.entity.DoubleValue;
 import by.it.novik.jd01_09.entity.MatrixValue;
 import by.it.novik.jd01_09.entity.Variable;
 import by.it.novik.jd01_09.entity.VectorValue;
+import by.it.novik.jd01_09.errors.ErrorOperations;
 import by.it.novik.jd01_09.utils.InverseMatrix;
 
 /**
@@ -14,14 +13,24 @@ import by.it.novik.jd01_09.utils.InverseMatrix;
 public class DivOperations implements IDivision{
 
     /**
-     * Перегружаем метод division
+     * Override метода Деление переменных
+     * @param value1 Переменная 1
+     * @param value2 Переменная 1
+     * @return Результат вычисления
      */
+    public Variable division(Variable value1, Variable value2) {
+        new ErrorOperations().error("Деление невозможно");
+        return null;
+    }
+
+    //Перегрузки метода division при различных входных переменных
+
     public DoubleValue division(DoubleValue valueOne, DoubleValue valueTwo) {
         DoubleValue div = new DoubleValue();
         try {
             div.setValue(valueOne.getValue() / valueTwo.getValue());
         } catch (Exception ex) {
-            System.out.println("Division on null");
+            new ErrorOperations().error("Division on null!");
         }
         return div;
     }
@@ -34,7 +43,6 @@ public class DivOperations implements IDivision{
         return new MultiOperations().multiplication(valueOne, new MatrixValue(InverseMatrix.inverseMatrix(valueTwo.getValue())));
     }
 
-
     public VectorValue division(VectorValue value1, DoubleValue value2) {
         VectorValue div = new VectorValue(value1.getValue().length);
         for (int i = 0; i < value1.getValue().length; i++) {
@@ -42,11 +50,4 @@ public class DivOperations implements IDivision{
         }
         return div;
     }
-
-    public Variable division(Variable value1, Variable value2) {
-        System.out.print("Деление невозможно!");
-        return null;
-    }
-
-
 }

@@ -1,19 +1,27 @@
 package by.it.novik.jd01_09.io;
 
-import by.it.novik.jd01_09.entity.Variable;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
- * Created by Катя.
+ * Created by Kate Novik.
  */
 public class InOutImpl implements IInOut {
 
     @Override
-    public void input(Variable value1, Variable value2) {
-        Double d = new Double(-6);
+    public String input() throws IOException {
+        BufferedReader line= new BufferedReader(new InputStreamReader(System.in));
+        String out=line.readLine();
+        //line.close();
+        return out;
     }
 
     @Override
-    public void output(Variable value) {
-
+    public void output(String value) {
+        if (!value.isEmpty()) {
+            System.out.println(value);
+        }
     }
 }

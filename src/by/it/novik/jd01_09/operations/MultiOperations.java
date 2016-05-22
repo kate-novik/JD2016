@@ -4,11 +4,25 @@ import by.it.novik.jd01_09.entity.DoubleValue;
 import by.it.novik.jd01_09.entity.MatrixValue;
 import by.it.novik.jd01_09.entity.Variable;
 import by.it.novik.jd01_09.entity.VectorValue;
+import by.it.novik.jd01_09.errors.ErrorOperations;
 
 /**
  * Created by Kate Novik.
  */
 public class MultiOperations implements IMultiplication{
+
+    /**
+     * Override метода Умножение переменных
+     * @param value1 Переменная 1
+     * @param value2 Переменная 1
+     * @return Результат вычисления
+     */
+    public Variable multiplication(Variable value1, Variable value2) {
+        new ErrorOperations().error("Умножение невозможно");
+        return null;
+    }
+
+    // Перегрузки метода multiplication при различных входных переменных
 
     public DoubleValue multiplication(DoubleValue value1, DoubleValue value2) {
         return new DoubleValue(value1.getValue() * value2.getValue());
@@ -23,6 +37,7 @@ public class MultiOperations implements IMultiplication{
         }
         return multi;
     }
+
     public MatrixValue multiplication(MatrixValue value1, DoubleValue value2) {
         return multiplication(value2, value1);
     }
@@ -34,6 +49,7 @@ public class MultiOperations implements IMultiplication{
         }
         return multi;
     }
+
     public VectorValue multiplication(VectorValue value1, DoubleValue value2) {
         return multiplication(value2, value1);
     }
@@ -70,8 +86,4 @@ public class MultiOperations implements IMultiplication{
         return multi;
     }
 
-    public Variable multiplication(Variable value1, Variable value2) {
-        System.out.print("Умножение невозможно!");
-        return null;
-    }
 }
