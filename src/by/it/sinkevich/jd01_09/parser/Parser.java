@@ -2,6 +2,7 @@ package by.it.sinkevich.jd01_09.parser;
 
 import by.it.sinkevich.jd01_09.manipulators.Manipulator;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
+import by.it.sinkevich.jd01_09.variables.MathLabVariable;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,23 +17,8 @@ import java.util.regex.Pattern;
 public class Parser {
 
     public static List<String> parseLine(String line) {
-        Pattern pattern = Pattern.compile(Patterns.newRegexFloat);
+        Pattern pattern = Pattern.compile(Patterns.regexAnyMathLabVariable);
         Matcher matcher = pattern.matcher(line);
-        /*
-        List<String> variables = new ArrayList<>();
-        List<String> operators = new ArrayList<>();
-        while (matcher.find()) {
-            variables.add(matcher.group());
-        }
-        String[] operatorsArray = line.split(Patterns.newRegexFloat);
-        for (String operator : operatorsArray) {
-            if (operator.isEmpty()) {
-                operators.add("+");
-            } else {
-                operators.add(operator.trim());
-            }
-        }
-        */
         List<String> result = new LinkedList<>();
         int start;
         int end = 0;
@@ -55,9 +41,17 @@ public class Parser {
     }
 
     public static void main(String[] args) {
+        String testLine = "28.5+5.3 - 17 + 100.2/123* 2 - 2 + 5345.3/5*3*66 - 1";
+        String testVector = "{1, -321,.2,-64., +12, -1.976}*{1.5, 21,.2, -64., +42, -1.976} - {1, 1.456,.2, -4., +122, -1.96}";
+        String testMatrix = "{{2.2, 5.8}, {1.5, 6.2}, {-2.5, 7.4}, {4.2, -2.3}} * {{5.2, 3.2, 3.8}, {6.8, -7.5, -1.9}}/" +
+                "{ {1.2, -3.5, 1.8, -2.2, -5.3},  {10, -2.8, 3.2, -2.8, 1.5},{2.3, -6.5, -9.2, 6.5, -1.2}}";
+        String mixedLine = testLine.concat("*").concat(testVector).concat("-").concat(testMatrix);
+        System.out.println(mixedLine.matches(Patterns.regexValidateLine));
         Manipulator man = new Manipulator();
-        List<String> result = parseLine("-5 + 3 * 2 / 2 --10+5");
-        System.out.println(result);
+        List<String> result = parseLine(testLine);
+        for (String x : result) {
+            System.out.println(x);
+        }
         if (result.get(0).equals("+")) {
             result.remove(0);
         } else {
@@ -71,7 +65,7 @@ public class Parser {
                 int index = result.indexOf("*");
                 Double arg1 = Double.parseDouble(result.get(index - 1));
                 Double arg2 = Double.parseDouble(result.get(index + 1));
-                MathLabFloat res = (MathLabFloat) man.multiplication(new MathLabFloat(arg1), new MathLabFloat(arg2));
+                MathLabVariable res = man.multiplication(new MathLabFloat(arg1), new MathLabFloat(arg2));
                 result.set(index, res.getValue().toString());
                 result.remove(index - 1);
                 result.remove(index);
@@ -79,7 +73,7 @@ public class Parser {
                 int index = result.indexOf("/");
                 Double arg1 = Double.parseDouble(result.get(index - 1));
                 Double arg2 = Double.parseDouble(result.get(index + 1));
-                MathLabFloat res = (MathLabFloat) man.division(new MathLabFloat(arg1), new MathLabFloat(arg2));
+                MathLabVariable res = man.division(new MathLabFloat(arg1), new MathLabFloat(arg2));
                 result.set(index, res.getValue().toString());
                 result.remove(index - 1);
                 result.remove(index);
@@ -87,11 +81,11 @@ public class Parser {
                 int index = 1;
                 Double arg1 = Double.parseDouble(result.get(index - 1));
                 Double arg2 = Double.parseDouble(result.get(index + 1));
-                MathLabFloat res ;
+                MathLabVariable res ;
                 if (result.get(index).equals("+")){
-                    res = (MathLabFloat) man.addition(new MathLabFloat(arg1), new MathLabFloat(arg2));
+                    res = man.addition(new MathLabFloat(arg1), new MathLabFloat(arg2));
                 } else {
-                    res = (MathLabFloat) man.subtraction(new MathLabFloat(arg1), new MathLabFloat(arg2));
+                    res = man.subtraction(new MathLabFloat(arg1), new MathLabFloat(arg2));
                 }
                 result.set(index, res.getValue().toString());
                 result.remove(index - 1);
@@ -100,4 +94,6 @@ public class Parser {
         }
         System.out.println(result);
     }
+
+
 }

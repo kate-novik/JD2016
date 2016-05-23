@@ -1,5 +1,7 @@
 package by.it.sinkevich.jd01_09.variables;
 
+import by.it.sinkevich.jd01_09.parser.Patterns;
+
 /**
  * Created by Computer on 16.05.2016.
  *
@@ -26,6 +28,10 @@ public class MathLabVector extends MathLabVariable {
         System.arraycopy(value, 0, this.value, 0, value.length);
     }
 
+    public MathLabVector(String vector) {
+        setValue(vector);
+    }
+
     public MathLabVector(MathLabVector vector) {
         value = new Double[vector.value.length];
         System.arraycopy(vector.value, 0, value, 0, vector.value.length);
@@ -35,25 +41,46 @@ public class MathLabVector extends MathLabVariable {
         return value.length;
     }
 
+    @Override
     public Double[] getValue() {
         return value.clone();
     }
 
-    public void setValue(Double[] value) {
-        System.arraycopy(value, 0, this.value, 0, value.length);
+    @Override
+    public void setValue(Object value) {
+        if (value instanceof Double[]) {
+            Double[] temp = (Double[]) value;
+            System.arraycopy(temp, 0, this.value, 0, temp.length);
+        } else {
+            System.out.println("Запись значения невозможна!");
+        }
+    }
+
+    @Override
+    public void setValue(String strFrom) {
+        if (!strFrom.trim().matches(Patterns.regexVector)) {
+            System.out.println("Запись значения невозможна");
+            return;
+        }
+        String replaced = strFrom.replaceAll("[\\}\\{,]", " ");
+        String[] valuesStr = replaced.trim().split(" +");
+        value = new Double[valuesStr.length];
+        for (int i = 0; i < valuesStr.length; i++) {
+            value[i] = Double.parseDouble(valuesStr[i]);
+        }
     }
 
     @Override
     public String toString() {
         String result = "{";
         for (int i = 0; i < value.length; i++) {
+            String formatStr;
             if (i != value.length - 1) {
-                String formatStr = String.format("% 7.2f,", value[i]);
-                result = result.concat(formatStr);
+                formatStr = String.format("% 7.2f,", value[i]);
             } else {
-                String formatStr = String.format("% 7.2f}", value[i]);
-                result = result.concat(formatStr);
+                formatStr = String.format("% 7.2f}", value[i]);
             }
+            result = result.concat(formatStr);
         }
         return result;
     }
