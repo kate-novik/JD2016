@@ -1,13 +1,14 @@
-package by.it.sergeev.jd01_09;
+package by.it.sergeev.jd01_09.interfaces;
 
-/**
- * Created by Spec on 18.05.16.
- */
+import by.it.sergeev.jd01_09.vars.Variable;
+
 public interface IVariable {
     Variable add(Variable varAdd);
     Variable sub(Variable varSub);
     Variable mul(Variable varMul);
     Variable div(Variable varDiv);
+    String toString();
+    void setFromString(String str);
 }
 
 
