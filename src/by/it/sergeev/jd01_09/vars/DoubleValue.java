@@ -20,32 +20,32 @@ public class DoubleValue extends Variable implements IVariable {
     }
 
     @Override
-    public Variable add(Variable var) {
-        if (var instanceof DoubleValue) //проверка (аргумент - скаляр?)
-            return new DoubleValue(this.value + ((DoubleValue) var).value); //результат
-        return var.add(this);//если арнумент не скаляр, то меняем местами.
+    public Variable add(Variable varAdd) {
+        if (varAdd instanceof DoubleValue) //проверка (аргумент - скаляр?)
+            return new DoubleValue(this.value + ((DoubleValue) varAdd).value); //результат
+        return varAdd.add(this);//если арнумент не скаляр, то меняем местами.
     }
 
     @Override
-    public Variable sub(Variable var) {
-        if (var instanceof DoubleValue)
-            return new DoubleValue(this.value - ((DoubleValue) var).value);
+    public Variable sub(Variable varSub) {
+        if (varSub instanceof DoubleValue)
+            return new DoubleValue(this.value - ((DoubleValue) varSub).value);
         DoubleValue minus = new DoubleValue(-1);
-        return minus.mul(var.sub(this));
+        return minus.mul(varSub.sub(this));
     }
 
     @Override
-    public Variable mul(Variable var) {
-        if (var instanceof DoubleValue)
-            return new DoubleValue(this.value * ((DoubleValue) var).value);
-        return var.mul(this);
+    public Variable mul(Variable varMul) {
+        if (varMul instanceof DoubleValue)
+            return new DoubleValue(this.value * ((DoubleValue) varMul).value);
+        return varMul.mul(this);
     }
 
     @Override
-    public Variable div(Variable var) {
-        if (var instanceof DoubleValue)
-            return new DoubleValue(this.value / ((DoubleValue) var).value);
-        return super.div(var);//если аргемент не скаляр - деление невозможно.
+    public Variable div(Variable varDiv) {
+        if (varDiv instanceof DoubleValue)
+            return new DoubleValue(this.value / ((DoubleValue) varDiv).value);
+        return super.div(varDiv);//если аргемент не скаляр - деление невозможно.
     }
 
     @Override

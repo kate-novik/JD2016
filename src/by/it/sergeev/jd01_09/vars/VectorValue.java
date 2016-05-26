@@ -20,89 +20,89 @@ public class VectorValue extends Variable implements IVariable{
     }
 
     @Override
-    public Variable add(Variable var) {
-        if (var instanceof VectorValue) //проверка (аргумент - вектор?)
+    public Variable add(Variable varAdd) {
+        if (varAdd instanceof VectorValue) //проверка (аргумент - вектор?)
         {
             VectorValue v1 = new VectorValue(this.vector);             //первый операнд
-            VectorValue v2 = (VectorValue)var;                  //второй
+            VectorValue v2 = (VectorValue)varAdd;                  //второй
             for (int i = 0; i < v1.vector.length; i++) {    //считаем
                 v1.vector[i] = v1.vector[i] + v2.vector[i]; //основная операция
             }
             return v1;
         }
-        if (var instanceof DoubleValue) //проверка (аргумент - скаляр?)
+        if (varAdd instanceof DoubleValue) //проверка (аргумент - скаляр?)
         {
             VectorValue v1 = new VectorValue(this.vector);
-            double v2 = ((DoubleValue) var).getValue();
+            double v2 = ((DoubleValue) varAdd).getValue();
             for (int i = 0; i < v1.vector.length; i++) {
                 v1.vector[i] = v1.vector[i] + v2;
             }
             return v1;
         }
-        return super.add(var);
+        return super.add(varAdd);
     }
 
 
     @Override
-    public Variable sub(Variable var) {
-        if (var instanceof VectorValue)
+    public Variable sub(Variable varSub) {
+        if (varSub instanceof VectorValue)
         {
             VectorValue v1 = new VectorValue(this.vector);
-            VectorValue v2 = (VectorValue)var;
+            VectorValue v2 = (VectorValue)varSub;
             for (int i = 0; i < v1.vector.length; i++) {
                 v1.vector[i] = v1.vector[i] - v2.vector[i];
             }
             return v1;
         }
-        if (var instanceof DoubleValue)
+        if (varSub instanceof DoubleValue)
         {
             VectorValue v1 = new VectorValue(this.vector);
-            double v2 = ((DoubleValue) var).getValue();
+            double v2 = ((DoubleValue) varSub).getValue();
             for (int i = 0; i < v1.vector.length; i++) {
                 v1.vector[i] = v1.vector[i] - v2;
             }
             return v1;
         }
-        return super.sub(var);
+        return super.sub(varSub);
     }
 
 
     @Override
-    public Variable mul(Variable var) {
-        if (var instanceof VectorValue)
+    public Variable mul(Variable varMul) {
+        if (varMul instanceof VectorValue)
         {
             double f=0;
             VectorValue v1 = new VectorValue(this.vector);
-            VectorValue v2 = (VectorValue)var;
+            VectorValue v2 = (VectorValue)varMul;
             for (int i = 0; i < v1.vector.length; i++) {
                 f = f +(v1.vector[i] * v2.vector[i]);
             }
             return new DoubleValue(f);
         }
-        if (var instanceof DoubleValue)
+        if (varMul instanceof DoubleValue)
         {
             VectorValue v1 = new VectorValue(this.vector);
-            double v2 = ((DoubleValue) var).getValue();
+            double v2 = ((DoubleValue) varMul).getValue();
             for (int i = 0; i < v1.vector.length; i++) {
                 v1.vector[i] = v1.vector[i] * v2;
             }
             return v1;
         }
-        return super.sub(var);
+        return super.sub(varMul);
     }
 
     @Override
-    public Variable div(Variable var) {
-        if (var instanceof DoubleValue)
+    public Variable div(Variable varDiv) {
+        if (varDiv instanceof DoubleValue)
         {
             VectorValue v1 = new VectorValue(this.vector);
-            double v2 = ((DoubleValue) var).getValue();
+            double v2 = ((DoubleValue) varDiv).getValue();
             for (int i = 0; i < v1.vector.length; i++) {
                 v1.vector[i] = v1.vector[i] / v2;
             }
             return v1;
         }
-        return super.div(var);
+        return super.div(varDiv);
     }
 
     @Override
