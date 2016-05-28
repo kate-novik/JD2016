@@ -3,7 +3,9 @@ package by.it.sinkevich.jd01_09.variables;
 import by.it.sinkevich.jd01_09.parser.Patterns;
 
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,15 +95,14 @@ public class MathLabMatrix extends MathLabVariable {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{{");
+        Formatter formatter = new Formatter(stringBuilder, Locale.ENGLISH);
         for (int rows = 0; rows < value.length; rows++) {
             for (int cols = 0; cols < value[rows].length; cols++) {
-                String formatStr;
                 if (cols != value[rows].length - 1) {
-                    formatStr = String.format("% 7.2f,", value[rows][cols]);
+                    formatter.format("% 9.2f,", value[rows][cols]);
                 } else {
-                    formatStr = String.format("% 7.2f}", value[rows][cols]);
+                    formatter.format("% 9.2f}", value[rows][cols]);
                 }
-                stringBuilder.append(formatStr);
             }
             if (rows != value.length - 1) {
                 stringBuilder.append(",\n {");

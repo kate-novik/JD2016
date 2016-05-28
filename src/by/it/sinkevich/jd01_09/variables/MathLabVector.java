@@ -2,6 +2,9 @@ package by.it.sinkevich.jd01_09.variables;
 
 import by.it.sinkevich.jd01_09.parser.Patterns;
 
+import java.util.Formatter;
+import java.util.Locale;
+
 /**
  * Created by Computer on 16.05.2016.
  *
@@ -72,17 +75,16 @@ public class MathLabVector extends MathLabVariable {
 
     @Override
     public String toString() {
-        String result = "{";
+        StringBuilder stringBuilder = new StringBuilder("{");
+        Formatter formatter = new Formatter(stringBuilder, Locale.ENGLISH);
         for (int i = 0; i < value.length; i++) {
-            String formatStr;
             if (i != value.length - 1) {
-                formatStr = String.format("% 7.2f,", value[i]);
+                formatter.format("% 9.2f,", value[i]);
             } else {
-                formatStr = String.format("% 7.2f}", value[i]);
+                formatter.format("% 9.2f}", value[i]);
             }
-            result = result.concat(formatStr);
         }
-        return result;
+        return stringBuilder.toString();
     }
 
 }
