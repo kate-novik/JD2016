@@ -28,5 +28,11 @@ class Main {
         System.out.println("Множество В: " + setB);
         System.out.println("Пероесечение множеств: " + MyCollect.getCross(setA, setB));
         System.out.println("Объединение множеств: " + MyCollect.getUnion(setA, setB));
+
+        System.out.println("\nЗадание №3: ");
+        TaskA3 taskA3 = new TaskA3();
+        System.out.println("Первоначальный список: " + taskA3.getNumbers());
+        taskA3.descendingSort();
+        System.out.println("Список после сортировки: " + taskA3.getNumbers());
     }
 }
