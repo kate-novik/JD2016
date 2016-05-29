@@ -12,4 +12,12 @@ public class Util {
     static int generateRandom(int n) {
         return Math.abs(random.nextInt()) % n;
     }
+
+    private static Random randomPosNeg = new Random();
+
+    static int generateRandomPositiveNegative(int m) {
+    int a = randomPosNeg.nextInt(2 * m + 1) - m;
+    return a;
+
+    }
 }

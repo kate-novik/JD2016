@@ -35,8 +35,27 @@ public class TaskA {
         System.out.println("---------------------------------------------------------------------------------------------------------");
         MyCollect.getCross(A,B);
         MyCollect.getUnion(A,B);
-        System.out.println();
         return A;
+    }
+
+    public static ArrayList<Integer> createArrayList3()
+    {
+        System.out.println("Рандомный список чисел :");
+        ArrayList<Integer> sortRating = new ArrayList<Integer>();
+        for (int i = 0; i < 20; i++) {
+            int random = Util.generateRandomPositiveNegative(22);
+            {
+                if (random >= 0)
+                    sortRating.add(0, random);
+                else if (random < 0)
+                    sortRating.add(random);
+            }
+        }
+        for (Integer a : sortRating)
+        {
+            System.out.print(a + " ");
+        }
+        return sortRating;
     }
 }
 
