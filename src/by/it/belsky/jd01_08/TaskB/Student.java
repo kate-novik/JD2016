@@ -21,7 +21,7 @@ public  class Student implements enrolle {
     }
     public  int Groupnumber(int b) {
         return b;
-    }
+    }//
 
 
 }
