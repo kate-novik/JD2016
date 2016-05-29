@@ -1,5 +1,7 @@
 package by.it.sinkevich.jd01_12.TaskA;
 
+import java.util.Set;
+
 /**
  * Main class for testing tasks N1, N2, N3.
  *
@@ -12,8 +14,19 @@ class Main {
         System.out.println("Задание №1: ");
         TaskA1 taskA1 = new TaskA1();
         taskA1.initListWithRandomMarks(0, 10);
+        System.out.print("Первоначальный список: ");
         taskA1.printList();
         taskA1.deleteUnsatisfactoryMarks();
+        System.out.print("Список после удаления неудовлетворительных оценок: ");
         taskA1.printList();
+
+        System.out.println("\nЗадание №2: ");
+        TaskA2 taskA2 = new TaskA2();
+        Set<Integer> setA = taskA2.getSetA();
+        Set<Integer> setB = taskA2.getSetB();
+        System.out.println("Множество А: " + setA);
+        System.out.println("Множество В: " + setB);
+        System.out.println("Пероесечение множеств: " + MyCollect.getCross(setA, setB));
+        System.out.println("Объединение множеств: " + MyCollect.getUnion(setA, setB));
     }
 }

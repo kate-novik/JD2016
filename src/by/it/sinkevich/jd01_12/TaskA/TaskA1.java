@@ -18,7 +18,7 @@ class TaskA1 {
         numberOfStudents = 10;
         marks = new ArrayList<>();
     }
-    
+
     TaskA1(int numberOfStudents) {
         this.numberOfStudents = numberOfStudents;
         marks = new ArrayList<>(numberOfStudents);
