@@ -38,5 +38,9 @@ class Main {
         System.out.println("Множество В: " + setStrB);
         System.out.println("Пересечение множеств: " + typeStr.getCross(setStrA, setStrB));
         System.out.println("Объединение множеств: " + typeStr.getUnion(setStrA, setStrB));
+
+        System.out.println("\nЗадание №3: ");
+        TaskC3 taskC3 = new TaskC3("({[()(({{[()]}}))]})");
+        System.out.println(taskC3.checkLine());
     }
 }
