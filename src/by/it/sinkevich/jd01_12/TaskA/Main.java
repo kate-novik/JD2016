@@ -26,7 +26,7 @@ class Main {
         Set<Integer> setB = taskA2.getSetB();
         System.out.println("Множество А: " + setA);
         System.out.println("Множество В: " + setB);
-        System.out.println("Пероесечение множеств: " + MyCollect.getCross(setA, setB));
+        System.out.println("Пересечение множеств: " + MyCollect.getCross(setA, setB));
         System.out.println("Объединение множеств: " + MyCollect.getUnion(setA, setB));
 
         System.out.println("\nЗадание №3: ");
