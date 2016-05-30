@@ -9,11 +9,13 @@ import by.it.luksha.jd01_12.tasks.taskA.taskA2.TaskA2;
 import by.it.luksha.jd01_12.tasks.taskB.Data;
 import by.it.luksha.jd01_12.tasks.taskB.TaskB1;
 import by.it.luksha.jd01_12.tasks.taskB.TaskB2;
+import by.it.luksha.jd01_12.tasks.taskC.TaskC1;
 import by.it.luksha.jd01_12.tasks.taskC.TaskC2.TaskC2;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.TreeMap;
 
 public class Runner {
     public static void main(String[] args) {
@@ -40,7 +42,6 @@ public class Runner {
         Collections.reverse(list);
         TaskA3.printArrayList(list);
 
-
         //TaskB1
         System.out.println(Data.TEXT);
         TaskB1.printDictionary(Data.TEXT);
@@ -49,6 +50,10 @@ public class Runner {
         TaskB2.processArray(100000);
         TaskB2.processLinked(100000);
 
+        //TaskC1
+        String text = "пегас Сова сова сова сова сова сова филин воробей соловей орел сокол ястреб Ястреб ворона коршун";
+        TreeMap<Integer, HashSet<String>> cypher = TaskC1.createCypher(text);
+        TaskC1.printTreeMap(cypher);
 
         //TaskC2
         HashSet<String> setStringA = TaskC2.createSet();
@@ -61,8 +66,7 @@ public class Runner {
         TaskC2.printSet(by.it.luksha.jd01_12.tasks.taskC.TaskC2.MyCollect.getUnion(setIntegerA, setIntegerB));
         */
 
-        //TaskC1
-
+        //TaskC3
 
     }
 }
