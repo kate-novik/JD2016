@@ -3,6 +3,7 @@ package by.it.sergeev.jd01_12;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.lang.Integer;
 
 public class TaskB2 {
 
@@ -12,40 +13,33 @@ public class TaskB2 {
         Timer t = new Timer();
         ArrayList<Integer> arraylist = new ArrayList<>();
         LinkedList<Integer> linkedlist = new LinkedList<>();
+
         for (int i = 1; i <= N; i++) {
             arraylist.add(i);
             linkedlist.add(i);
         }
         int arraycount = 0; //круг
+        boolean del = false;
         while (arraylist.size() != 1) {
-            for (int i = 0; i < arraylist.size(); ) {
-                if (arraylist.size() % 2 == 0) {
-                    int al = arraylist.get(arraylist.size() - 1);//переменной присваивается значение последней строки
-                    arraylist.remove(arraylist.size() - 1);//удаление значения из последняя строки
-                    arraylist.add(0, al); // присваивание в нулевой ячейке(первой строке)
-                    arraylist.remove(i);
-                    i += 2;
-                } else if (arraylist.size() % 2 != 0) {
-                    arraylist.remove(i);
-                    i += 2;
+            Iterator<Integer> iterator = arraylist.iterator();
+            while (iterator.hasNext()) {
+                iterator.next();
+                if (del) {
+                    iterator.remove();
                 }
-            }
-            arraycount++;
+                del = !del;
+            }arraycount++;
             System.out.println(arraycount + " круг метода ArrayList" + arraylist);
         }
         int linkedcount = 0;//круг
         while (linkedlist.size() != 1) {
-            for (int i = 0; i < linkedlist.size(); ) {
-                if (linkedlist.size() % 2 == 0) {
-                    int al = linkedlist.get(linkedlist.size() - 1);//переменной присваивается значение последней строки
-                    linkedlist.remove(linkedlist.size() - 1);//удаление значения из последняя строки
-                    linkedlist.add(0, al); // присваивание в нулевой ячейке(первой строке)
-                    linkedlist.remove(i);
-                    i += 2;
-                } else if (linkedlist.size() % 2 != 0) {
-                    linkedlist.remove(i);
-                    i += 2;
+            Iterator<Integer> iterator = linkedlist.iterator();
+            while (iterator.hasNext()) {
+                iterator.next();
+                if (del) {
+                    iterator.remove();
                 }
+                del = !del;
             }
             linkedcount++;
             System.out.println(linkedcount + " круг метода LinkedList" +linkedlist);
@@ -53,8 +47,6 @@ public class TaskB2 {
         System.out.println("Метод ArrayList. " + t + arraylist);
         System.out.println("Метод LinkedList. " + t + linkedlist);
     }
-
-
     public static class Timer{
         private  long iniTime;
         private  Double Delta;
