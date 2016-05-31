@@ -2,6 +2,7 @@ package by.it.luksha.jd01_12.tasks.taskB;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class TaskB2 {
@@ -20,11 +21,8 @@ public class TaskB2 {
         long start = System.currentTimeMillis();
         //Удаление каждого второго элемента, пока не останется 1
         while(list.size() > 1) {
-            int k = list.size();
-            for (int i = 0; i < k/2; i++) {
-                list.remove(1+i);
-            }
-
+            list.remove(1);
+            Collections.rotate(list, -1);
         }
         //конец процесса удаления
         long finish = System.currentTimeMillis();
@@ -49,11 +47,8 @@ public class TaskB2 {
         long start = System.currentTimeMillis();
         //Удаление каждого второго элемента, пока не останется 1
         while(list.size() > 1) {
-            int k = list.size();
-            for (int i = 0; i < k/2; i++) {
-                list.remove(1+i);
-            }
-
+            list.remove(1);
+            Collections.rotate(list, -1);
         }
         //конец процесса удаления
         long finish = System.currentTimeMillis();
