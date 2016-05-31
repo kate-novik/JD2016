@@ -17,18 +17,44 @@ public class MultiOperations implements IMultiplication{
      * @param value2 Переменная 1
      * @return Результат вычисления
      */
-    public Variable multiplication(Variable value1, Variable value2) {
-        new ErrorOperations().error("Умножение невозможно");
+    public Variable multiplication(Variable operand1, Variable operand2) {
+        if (operand1 instanceof DoubleValue) {
+            if (operand2 instanceof DoubleValue) {
+                return multiplication((DoubleValue) operand1, (DoubleValue) operand2);
+            } else if (operand2 instanceof VectorValue) {
+                return multiplication((DoubleValue) operand1, (VectorValue) operand2);
+            } else if (operand2 instanceof MatrixValue) {
+                return multiplication((DoubleValue) operand1, (MatrixValue) operand2);
+            }
+        } else if (operand1 instanceof VectorValue) {
+            if (operand2 instanceof DoubleValue) {
+                return multiplication((VectorValue) operand1, (DoubleValue) operand2);
+            } else if (operand2 instanceof VectorValue) {
+                return multiplication((VectorValue) operand1, (VectorValue) operand2);
+            } else if (operand2 instanceof MatrixValue) {
+                new ErrorOperations().error("Умножение невозможно");
+            }
+        } else if (operand1 instanceof MatrixValue) {
+            if (operand2 instanceof DoubleValue) {
+                return multiplication((MatrixValue) operand1, (DoubleValue) operand2);
+            } else if (operand2 instanceof VectorValue) {
+                return multiplication((MatrixValue) operand1, (VectorValue) operand2);
+            } else if (operand2 instanceof MatrixValue) {
+                return multiplication((MatrixValue) operand1, (MatrixValue) operand2);
+            }
+        } else {
+            new ErrorOperations().error("Умножение невозможно");
+        }
         return null;
     }
 
     // Перегрузки метода multiplication при различных входных переменных
 
-    public DoubleValue multiplication(DoubleValue value1, DoubleValue value2) {
+    private DoubleValue multiplication(DoubleValue value1, DoubleValue value2) {
         return new DoubleValue(value1.getValue() * value2.getValue());
     }
 
-    public MatrixValue multiplication(DoubleValue value1, MatrixValue value2) {
+    private MatrixValue multiplication(DoubleValue value1, MatrixValue value2) {
         MatrixValue multi = new MatrixValue(value2.getValue().length);
         for (int i = 0; i < value2.getValue().length; i++) {
             for (int j = 0; j < value2.getValue().length; j++) {
@@ -38,11 +64,11 @@ public class MultiOperations implements IMultiplication{
         return multi;
     }
 
-    public MatrixValue multiplication(MatrixValue value1, DoubleValue value2) {
+    private MatrixValue multiplication(MatrixValue value1, DoubleValue value2) {
         return multiplication(value2, value1);
     }
 
-    public VectorValue multiplication(DoubleValue value1, VectorValue value2) {
+    private VectorValue multiplication(DoubleValue value1, VectorValue value2) {
         VectorValue multi = new VectorValue(value2.getValue().length);
         for (int i = 0; i < value2.getValue().length; i++) {
             multi.getValue()[i] = value1.getValue() * value2.getValue()[i];
@@ -50,11 +76,11 @@ public class MultiOperations implements IMultiplication{
         return multi;
     }
 
-    public VectorValue multiplication(VectorValue value1, DoubleValue value2) {
+    private VectorValue multiplication(VectorValue value1, DoubleValue value2) {
         return multiplication(value2, value1);
     }
 
-    public DoubleValue multiplication(VectorValue value1, VectorValue value2) {
+    private DoubleValue multiplication(VectorValue value1, VectorValue value2) {
         DoubleValue multi = new DoubleValue();
         double m = 0;
         for (int i = 0; i < value1.getValue().length; i++) {
@@ -64,7 +90,7 @@ public class MultiOperations implements IMultiplication{
         return multi;
     }
 
-    public MatrixValue multiplication(MatrixValue value1, MatrixValue value2) {
+    private MatrixValue multiplication(MatrixValue value1, MatrixValue value2) {
         MatrixValue multi = new MatrixValue(value1.getValue().length);
         for (int i = 0; i < value1.getValue().length; i++) {
             for (int j = 0; j < value2.getValue() [0].length; j++) {
@@ -76,7 +102,7 @@ public class MultiOperations implements IMultiplication{
         return multi;
     }
 
-    public VectorValue multiplication(MatrixValue value1, VectorValue value2) {
+    private VectorValue multiplication(MatrixValue value1, VectorValue value2) {
         VectorValue multi = new VectorValue(value1.getValue().length);
         for (int i = 0; i < value1.getValue().length; i++) {
             for (int j = 0; j < value2.getValue().length; j++) {
