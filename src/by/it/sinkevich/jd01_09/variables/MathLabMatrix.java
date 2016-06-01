@@ -1,5 +1,14 @@
 package by.it.sinkevich.jd01_09.variables;
 
+import by.it.sinkevich.jd01_09.parser.Patterns;
+
+import java.util.ArrayList;
+import java.util.Formatter;
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Computer on 16.05.2016.
  *
@@ -28,6 +37,17 @@ public class MathLabMatrix extends MathLabVariable {
         }
     }
 
+    public MathLabMatrix(String matrix) {
+        setValue(matrix);
+    }
+
+    public MathLabMatrix(MathLabMatrix matrix) {
+        value = new Double[matrix.value.length][matrix.value[0].length];
+        for (int i = 0; i < matrix.value.length; i++) {
+            System.arraycopy(matrix.value[i], 0, value[i], 0, matrix.value[0].length);
+        }
+    }
+
     public int getRows() {
         return value.length;
     }
@@ -36,6 +56,7 @@ public class MathLabMatrix extends MathLabVariable {
         return value[0].length;
     }
 
+    @Override
     public Double[][] getValue() {
         return value.clone();
     }
@@ -48,16 +69,39 @@ public class MathLabMatrix extends MathLabVariable {
     }
 
     @Override
+    public void setValue(String strFrom) {
+        if (!strFrom.trim().matches(Patterns.regexMatrix)) {
+            System.out.println("Запись матрицы невозможна!");
+        }
+        Pattern pattern = Pattern.compile(Patterns.regexVector);
+        Matcher matcher = pattern.matcher(strFrom);
+        List<Double[]> vectors = new ArrayList<>();
+        while (matcher.find()) {
+            String vector = matcher.group();
+            String replaced = vector.replaceAll("[\\}\\{,]", " ");
+            String[] valuesStr = replaced.trim().split(" +");
+            Double[] tempVector = new Double[valuesStr.length];
+            for (int i = 0; i < valuesStr.length; i++) {
+                tempVector[i] = Double.parseDouble(valuesStr[i]);
+            }
+            vectors.add(tempVector);
+        }
+        value = new Double[vectors.size()][vectors.get(0).length];
+        for (int i = 0; i < vectors.size(); i++) {
+            value[i] = vectors.get(i);
+        }
+    }
+
+    @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{{");
+        Formatter formatter = new Formatter(stringBuilder, Locale.ENGLISH);
         for (int rows = 0; rows < value.length; rows++) {
             for (int cols = 0; cols < value[rows].length; cols++) {
                 if (cols != value[rows].length - 1) {
-                    String formatStr = String.format("% 7.2f,", value[rows][cols]);
-                    stringBuilder.append(formatStr);
+                    formatter.format("% 9.2f,", value[rows][cols]);
                 } else {
-                    String formatStr = String.format("% 7.2f}", value[rows][cols]);
-                    stringBuilder.append(formatStr);
+                    formatter.format("% 9.2f}", value[rows][cols]);
                 }
             }
             if (rows != value.length - 1) {

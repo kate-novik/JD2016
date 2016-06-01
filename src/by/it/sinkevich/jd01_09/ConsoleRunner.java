@@ -3,6 +3,7 @@ package by.it.sinkevich.jd01_09;
 import by.it.sinkevich.jd01_09.manipulators.Manipulator;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
 import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
+import by.it.sinkevich.jd01_09.variables.MathLabVariable;
 import by.it.sinkevich.jd01_09.variables.MathLabVector;
 
 /**
@@ -49,5 +50,9 @@ public class ConsoleRunner {
         Double[][] matrix1 = {{2.2, 5.8}, {1.5, 6.2}, {-2.5, 7.4}, {4.2, -2.3}};
         Double[][] matrix2 = {{5.2, 3.2, 3.8}, {6.8, -7.5, -1.9}};
         System.out.println(manipulator.multiplication(new MathLabMatrix(matrix1), new MathLabMatrix(matrix2)));
+
+        String testForSetValue = "{{2.2, 5.8}, {1.5, 6.2}, {-2.5, 7.4}, {4.2, -2.3}}";
+        MathLabVariable x = new MathLabMatrix(testForSetValue);
+        System.out.println(x);
     }
 }
