@@ -19,24 +19,32 @@ import static by.it.novik.jd01_09.patterns.PatternsVar.*;
 public class ParsingInput {
 
     /**
-     * Парсинг входной строки для выделения массива переменных
+     * Парсинг введенной строки для выделения массива переменных
      * @param line Строка ввода
      * @return Массив переменных
      */
     public static List<Variable> parsingVariables (String line) {
-        line=line.trim(); //удаление пробелов в начале и в конце строки
-        String[] elemString=line.split(regxOper); //преобразование строки в массив
-        int count=elemString.length; //найдем длину массива
         List<Variable> vars = new ArrayList<>();
-        for (int i=0; i<elemString.length; i++) {
-            if (Pattern.compile(regxD).matcher(elemString[i]).matches()){
-                vars.add(new DoubleValue(elemString[i]));
-            } else if (Pattern.compile(regxVec).matcher(elemString[i]).matches()) {
-                vars.add(new VectorValue(elemString[i]));
-            } else if (Pattern.compile(regxMat).matcher(elemString[i]).matches()) {
-                vars.add(new MatrixValue(elemString[i]));
-            }
+        String[] elemString = new String [2];
+        if (line.contains("(") && line.contains("(")) {
+            line = line.substring(1,line.length()-1);
         }
+        if (!Pattern.compile(regxOr).matcher(line).matches()) {
+            elemString = line.split(regxOper); //преобразование строки в массив
+        }
+        else {
+            elemString [0] = line;
+        }
+            for (int i = 0; i < elemString.length; i++) {
+                if (Pattern.compile(regxD).matcher(elemString[i]).matches()) {
+                    vars.add(new DoubleValue(elemString[i]));
+                } else if (Pattern.compile(regxVec).matcher(elemString[i]).matches()) {
+                    vars.add(new VectorValue(elemString[i]));
+                } else if (Pattern.compile(regxMat).matcher(elemString[i]).matches()) {
+                    vars.add(new MatrixValue(elemString[i]));
+                }
+            }
+
         return vars;
     }
 
@@ -52,5 +60,26 @@ public class ParsingInput {
             operation = m.group();
         }
         return operation;
+    }
+
+
+    public static String checkPriorityParsing (String line) {
+        Matcher m = Pattern.compile(regxPriorityFull).matcher(line);
+        String priorityExp = null;
+        if (m.find()) {
+            priorityExp = m.group();
+           // priorityExp = priorityExp.substring(1,priorityExp.length()-1);
+        }
+        return priorityExp;
+    }
+
+    public static List<String> parsingExp (String lineExp) {
+        String[] elemString=lineExp.split(regxOper); //преобразование строки в массив
+        List<String> exp = new ArrayList<>();
+        for (int i=0; i<elemString.length; i++) {
+
+            exp.add (elemString[i]);
+        }
+        return exp;
     }
 }
