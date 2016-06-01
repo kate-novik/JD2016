@@ -11,6 +11,7 @@ import by.it.luksha.jd01_12.tasks.taskB.TaskB1;
 import by.it.luksha.jd01_12.tasks.taskB.TaskB2;
 import by.it.luksha.jd01_12.tasks.taskC.TaskC1;
 import by.it.luksha.jd01_12.tasks.taskC.TaskC2.TaskC2;
+import by.it.luksha.jd01_12.tasks.taskC.TaskC3;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +21,7 @@ import java.util.TreeMap;
 public class Runner {
     public static void main(String[] args) {
 
-
+        /*
         //TaskA1
         ArrayList<Integer> table = TaskA1.createTableMarks();
         ArrayList<Integer> tableGoodsMark = TaskA1.deleteBadMarks(table);
@@ -64,9 +65,10 @@ public class Runner {
         TaskC2.printSet(by.it.luksha.jd01_12.tasks.taskC.TaskC2.MyCollect.getCross(setIntegerA, setIntegerB));
         TaskC2.printSet(by.it.luksha.jd01_12.tasks.taskC.TaskC2.MyCollect.getUnion(setStringA, setStringB));
         TaskC2.printSet(by.it.luksha.jd01_12.tasks.taskC.TaskC2.MyCollect.getUnion(setIntegerA, setIntegerB));
-
+        */
 
         //TaskC3
-
+        String text = "2131231";
+        TaskC3.checkBrackets(text);
     }
 }
