@@ -1,17 +1,20 @@
 package by.it.sinkevich.jd01_09;
 
-import by.it.sinkevich.jd01_09.manipulators.Manipulator;
-import by.it.sinkevich.jd01_09.variables.MathLabFloat;
-import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
-import by.it.sinkevich.jd01_09.variables.MathLabVariable;
-import by.it.sinkevich.jd01_09.variables.MathLabVector;
+import by.it.sinkevich.jd01_09.manipulators.ExpressionSolver;
+import by.it.sinkevich.jd01_09.parser.Parser;
+import by.it.sinkevich.jd01_09.variables.VariablesStorage;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * @author Sinkevich Denis
  */
 public class ConsoleRunner {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        /*
         Manipulator manipulator = new Manipulator();
         System.out.println("Проверка операций со скалярами: ");
         Double number = 2d;
@@ -54,5 +57,22 @@ public class ConsoleRunner {
         String testForSetValue = "{{2.2, 5.8}, {1.5, 6.2}, {-2.5, 7.4}, {4.2, -2.3}}";
         MathLabVariable x = new MathLabMatrix(testForSetValue);
         System.out.println(x);
+        */
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String line = reader.readLine();
+        while (!(line.equals("-exit") || line.equals(""))) {
+            if (line.equals("printvar")) {
+                VariablesStorage.printVariables();
+                line = reader.readLine();
+                continue;
+            }
+            if (line.equals("sortvar")) {
+                VariablesStorage.printSortedvariables();
+                line = reader.readLine();
+                continue;
+            }
+            new ExpressionSolver().solveExpression(Parser.parseLine(line));
+            line = reader.readLine();
+        }
     }
 }
