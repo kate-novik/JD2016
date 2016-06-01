@@ -10,6 +10,10 @@ public class Matrix extends Var {
     private int row;
     private int col;
 
+    /**
+     * Конструктор из массива массивов в матрицу
+     * @param value массив массивов
+     */
     public Matrix(double[][] value) {
         this.value = new double[value.length][value[0].length];
         this.row = value.length;
@@ -19,21 +23,9 @@ public class Matrix extends Var {
         }
     }
 
-    public double[][] getValue() {
-        return value;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
     /**
      * Конструктор преобразующий строку в объект типа Matrix
-     * @param matrix
+     * @param matrix строка
      */
     public Matrix(String matrix) {
         int row = 0;
@@ -64,6 +56,18 @@ public class Matrix extends Var {
         this.value = result;
         this.row = value.length;
         this.col = value[0].length;
+    }
+
+    public double[][] getValue() {
+        return value;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
     }
 
     @Override

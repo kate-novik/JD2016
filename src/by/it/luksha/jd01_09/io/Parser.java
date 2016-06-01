@@ -5,6 +5,7 @@ import by.it.luksha.jd01_09.vars.Scalar;
 import by.it.luksha.jd01_09.vars.Var;
 import by.it.luksha.jd01_09.vars.Vector;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,15 +13,18 @@ public class Parser  {
 
     //RegEx
     //числа
-    static public String exScalar ="-?[0-9]+\\.[0-9]{1,}";
+    static public String exScalar = "-?[0-9]+(\\.[0-9]+)?";
     //вектора
-    static public String exVector ="[{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}";
+    static public String exVector = "[{]{1}(-?[0-9]+(\\.[0-9]+)?){1}(,-?[0-9]+(\\.[0-9]+)?){1,}[}]{1}";
     //матрицы
-    static public String exMatrix ="[{]{1}([{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}){1}(,[{]{1}(-?[0-9]+\\.[0-9]{1,}){1}(,-?[0-9]+\\.[0-9]{1,}){1,}[}]{1}){1,}[}]{1}";
+    static public String exMatrix = "[{]{1}([{]{1}(-?[0-9]+(\\.[0-9]+)?){1}(,-?[0-9]+(\\.[0-9]+)?){1,}[}]{1}){1}(,[{]{1}(-?[0-9]+(\\.[0-9]+)?){1}(,-?[0-9]+(\\.[0-9]+)?){1,}[}]{1}){1,}[}]{1}";
     //одно из...
-    static public String exAny="("+ exMatrix +")|("+ exVector +")|("+ exScalar +")";
+    static public String exAny = "("+ exMatrix +")|("+ exVector +")|("+ exScalar +")";
     //операция
-    static public String exOper="((\\s-\\s){1})|((\\s\\+\\s){1})|((\\s\\*\\s){1})|((\\s/\\s){1})|((\\s=\\s){1})";
+    static public String exOper = "((\\s-\\s){1})|((\\s\\+\\s){1})|((\\s\\*\\s){1})|((\\s/\\s){1})|((\\s=\\s){1})";
+    //скобки
+    static public String exBrackets = "\\(.+\\)";
+
     //выражение целиком
     static public String exFull= "("+exAny+")"+
             "(" +exOper+")"+
@@ -111,6 +115,69 @@ public class Parser  {
         }
 
         return sign;
+    }
+
+    /**
+     * Ищет в строке выражение между скобками
+     * @param string строка
+     * @return выражение
+     */
+    public static String findBrackets(String string) {
+        String result = "";
+        Pattern patternBrackets = Pattern.compile(exBrackets);
+        Matcher matcherBrackets = patternBrackets.matcher(string);
+        if (matcherBrackets.find()) {
+            int start = matcherBrackets.start();
+            int end = matcherBrackets.end();
+            result = string.substring(start + 1, end - 1).trim();
+        }
+        return result;
+    }
+
+    /**
+     * Формирует список операций из строки
+     * @param string строка
+     * @return список операций
+     */
+    public static ArrayList<String> toArrayOpp(String string) {
+        ArrayList<String> result = new ArrayList<>();
+
+        Pattern patternOperation = Pattern.compile(exOper);
+        Matcher matcherOperation = patternOperation.matcher(string);
+        while (matcherOperation.find()) {
+            int start = matcherOperation.start();
+            int end = matcherOperation.end();
+            result.add(string.substring(start, end).trim());
+        }
+
+        return result;
+    }
+
+    /**
+     * Формирует список переменных из строки
+     * @param string строка
+     * @return список переменных
+     */
+    public static ArrayList<Var> toArrayVars(String string) {
+        ArrayList<Var> result = new ArrayList<>();
+        StringBuilder stringBuilder = new StringBuilder(string);
+
+        Pattern patternVars = Pattern.compile(exAny);
+        Matcher matcherVars = patternVars.matcher(stringBuilder);
+        while (matcherVars.find()) {
+            int start = matcherVars.start();
+            int end = matcherVars.end();
+            String var = stringBuilder.substring(start, end).trim();
+            if (Scalar.isScalar(var)) {
+                result.add(new Scalar(var));
+                stringBuilder.delete(start, end);
+                matcherVars.reset();
+            }
+            // сделать тоже самое через else-if для векторов и матриц
+
+        }
+
+        return result;
     }
 
 }
