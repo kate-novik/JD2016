@@ -14,8 +14,8 @@ public class Operation {
 
     /**
      * Суммирует две переменные
-     * @param var1
-     * @param var2
+     * @param var1 1я переменная
+     * @param var2 2я переменная
      * @return сумма
      */
     public static Var add(Var var1, Var var2) {
@@ -45,8 +45,8 @@ public class Operation {
 
     /**
      * Умножает две переменные
-     * @param var1
-     * @param var2
+     * @param var1 1
+     * @param var2 2
      * @return произведение
      */
     public static Var mult(Var var1, Var var2) {
@@ -76,8 +76,8 @@ public class Operation {
 
     /**
      * Находит частное двух переменнх
-     * @param var1
-     * @param var2
+     * @param var1 1
+     * @param var2 2
      * @return частное
      */
     public static Var div(Var var1, Var var2) {
@@ -107,8 +107,8 @@ public class Operation {
 
     /**
      * Вычитает переменные
-     * @param var1
-     * @param var2
+     * @param var1 1
+     * @param var2 2
      * @return разница
      */
     public static Var sub(Var var1, Var var2) {
@@ -143,7 +143,6 @@ public class Operation {
      */
     public static void bind(String key, Var var) {
         Bind.bind(key, var);
-        Bind.calc();
     }
 
 

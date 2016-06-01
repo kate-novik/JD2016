@@ -6,7 +6,7 @@ import by.it.luksha.jd01_09.vars.Var;
 import java.util.HashMap;
 
 public final class Bind {
-    private static HashMap<String, Var> variables = new HashMap<String, Var>();
+    private static HashMap<String, Var> variables = new HashMap<>();
 
     private Bind() {
     }
@@ -22,13 +22,6 @@ public final class Bind {
 
     public static HashMap<String, Var> getVariables() {
         return variables;
-    }
-
-    /**
-     * Считает значения переменных
-     */
-    public static void calc() {
-        //TODO: считает все выражения var
     }
 
     /**
