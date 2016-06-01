@@ -11,8 +11,8 @@ public class Patterns {
     public static String regexVector = "\\{( *" + regexFloat + ",)( *" + regexFloat + ",?)+\\}";
     public static String regexMatrix = "\\{( *" + regexVector + ",)( *" + regexVector + ",?)+\\}";
     public static String regexAnyMathLabVariable = "(" + regexFloat + ")|(" + regexVector + ")|(" + regexMatrix + ")";
-    public static String regexOperators = "[*/+-]";
-    public static String regexOperatorsAndSpaces = "[ */+-]";
-    public static String regexValidateLine = regexOperatorsAndSpaces + "*" + regexAnyMathLabVariable + "(" + regexOperatorsAndSpaces + "*" + regexAnyMathLabVariable + ")+";
+    public static String regexBrackets = "[\\(\\)]";
+    public static String regexForParser = "(" + regexAnyMathLabVariable + ")|(" + regexBrackets +")";
+    public static String regexOperators = "[+-/*]";
 
 }
