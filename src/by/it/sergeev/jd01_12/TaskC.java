@@ -50,21 +50,40 @@ public class TaskC {
         return A;
     }
 
-    //C3. (в процессе)
-    public static ArrayDeque<Character> createDeque() {
+    //C3.
+    public static boolean brackets(String text){
         ArrayDeque<Character> adq = new ArrayDeque<>();
-        String text = "(dfdfdfd[fdf{sds22}df]f)";
-        for (char a : text.toCharArray()) {
-            if ('(' == a || '[' == a || '{' == a) {
+        for (char a : text.toCharArray())
+        {
+            if ('(' == a || '[' == a || '{' == a)
+            {
                 adq.push(a);
                 continue;
             }
-            if (')' == a || ']' == a || '}' == a) {
-                adq.push(a);
-                continue;
+            if (')' == a || ']' == a || '}' == a)
+            {
+                if (!adq.isEmpty())
+                {
+                    char b = adq.pop();
+                    if ((b == '(' && a == ')') || (b == '[' && a == ']') || (b == '{' && a == '}'))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                    {
+                    return false;
+                    }
             }
         }
-        return adq;
+        if (!adq.isEmpty())
+        {
+            return false;
+        }
+        return true;
     }
 }
-
