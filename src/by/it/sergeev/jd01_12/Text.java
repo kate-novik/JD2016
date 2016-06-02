@@ -7,4 +7,8 @@ public class Text {
                 "When we return home, they proceed to work and I go to my grandparents’ place. They live in a quiet countryside near the lake. At least I can swim and ride a bike there. I also have some good friends in their area, so I don’t get bored at all. We play volleyball or badminton, run a race, listen to music, go for a walk together. Sometimes, after the rain we go to the forest to pick mushrooms. My grandmother then cooks delicious meals with them. My grandfather often goes fishing and I can accompany him whenever I want. In conclusion, I’d like to say that summer can never be boring. There are plenty of interesting and pleasant things to do at this time of the year.";
         return a;
     }
+    static String getString2() {
+        String b = "(((a+4)[(b)({})]()))";
+        return b;
+    }
 }

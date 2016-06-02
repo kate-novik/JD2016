@@ -37,5 +37,9 @@ public class Run {
         System.out.println("C2.");
         System.out.println("---------------------------------------------------------------------------------------------------------");
         TaskC.createArrayListC2();
+        System.out.println("\nC3.");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
+        System.out.println("({e}((({ab}+c)[df])))\t"+ TaskC.brackets("({e}((({ab}+c)[df])))"));
+        System.out.println("({e}((({ab}+c[)df])))\t" + TaskC.brackets("({e}((({ab}+c[)df])))"));
     }
 }
