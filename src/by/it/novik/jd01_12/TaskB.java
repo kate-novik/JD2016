@@ -37,7 +37,7 @@ private String text =
 
     /**
      * Частота встречания слов в тексте
-     * @return Map с указанием слова и его частоты встречания
+     * @return MapValues с указанием слова и его частоты встречания
      */
     public Map<String,Integer> frequencyOfWords () {
         Map<String,Integer> map = new HashMap<>();

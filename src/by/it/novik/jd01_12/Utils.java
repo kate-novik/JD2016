@@ -24,8 +24,8 @@ public class Utils {
     }
 
     /**
-     * Печать Map
-     * @param map Map типа <String,Integer>
+     * Печать MapValues
+     * @param map MapValues типа <String,Integer>
      */
     public static <K,V> void printMap (Map<K,V> map) {
         int k = 1;
@@ -44,7 +44,7 @@ public class Utils {
      * @return стартовое время операции
      */
     public static long startTimeProcess () {
-        long start = System.nanoTime(); // Вычисляем стартовое время операции
+        long start = System.currentTimeMillis(); // Вычисляем стартовое время операции
         return start;
     }
 
@@ -54,8 +54,8 @@ public class Utils {
      * @return время, потраченное на операцию
      */
     public static String deltaTimeProcess (long start) {
-        long end = System.nanoTime(); // Вычисляем конечное время операции
-        Double delta = (double) (end - start)/1000; // Вычисляем время, потраченное на операцию
+        long end = System.currentTimeMillis(); // Вычисляем конечное время операции
+        Double delta = (double) (end - start); // Вычисляем время, потраченное на операцию
         return delta.toString();
     }
 }
