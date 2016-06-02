@@ -10,7 +10,7 @@ public class VectorVariable implements IVariable {
     public VectorVariable() {
 
     }
-    public VectorVariable(Double[] var1, Double[] var2) {
+    public VectorVariable(Double[] value) {
 
         this.value = value;
 
@@ -28,7 +28,13 @@ public class VectorVariable implements IVariable {
         return value;
     }
 
-
-
-
+    public String toString(){
+        String str1 ="";
+        for(int i =0; i<value.length; i++){
+        //str1 =str1+Math.rint(100*value[i]/100) + ", ";
+            str1 =str1+value[i] + ", ";
+        }
+ str1="["+str1.substring(0,str1.length()-2)+"]";
+        return str1;
+    }
 }

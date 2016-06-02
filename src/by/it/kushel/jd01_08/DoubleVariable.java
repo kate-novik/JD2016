@@ -6,7 +6,10 @@ package by.it.kushel.jd01_08;
 public class DoubleVariable implements IVariable{
     Double value;
 
-
+DoubleVariable(Double value){
+    this.value=value;
+}
+    DoubleVariable(){};
    /*DoubleVariable(String var){
         this.var=Double.valueOf(var);
 
@@ -14,6 +17,7 @@ public class DoubleVariable implements IVariable{
 
     @Override
     public void setValue(Object value) {
+
         this.value = (double)value;
     }
     @Override
@@ -23,7 +27,7 @@ public class DoubleVariable implements IVariable{
     }
 
 public String toString(){
-    return Double.toString(value);
+    return Double.toString(Math.rint(100*value)/100);
 }
 
 
