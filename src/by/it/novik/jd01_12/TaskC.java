@@ -50,9 +50,9 @@ public class TaskC  {
     }
 
     /**
-     * Сжатие Map (удаление повторяющихся значений)
-     * @param c1 текущий Map
-     * @return сжатый Map
+     * Сжатие MapValues (удаление повторяющихся значений)
+     * @param c1 текущий MapValues
+     * @return сжатый MapValues
      */
     public Map<Integer,Set<String>> compressionMap (Map<Integer,Set<String>> c1) {
         //Создадим map для хранения повторяющихся значений
@@ -75,7 +75,7 @@ public class TaskC  {
                 k++;
             }
         }
-        // Распечатаем Map result, содержащий значения для удаления
+        // Распечатаем MapValues result, содержащий значения для удаления
         System.out.println(result);
         // Создаем итератор для удаления повторяющихся значений в c1
         Iterator<Map.Entry<Integer,Set<String>>> it = c1.entrySet().iterator();
@@ -86,7 +86,7 @@ public class TaskC  {
                 Map.Entry<Integer,Set<String>> map = it.next();
                 Integer key2 = map.getKey();
                 Set<String> set = map.getValue();
-                //Удаляем повторяющиеся значения из Map c1
+                //Удаляем повторяющиеся значения из MapValues c1
                 if (key.equals(key2) && set.size()>1) {
                    set.removeAll(s);
                     break;
@@ -134,25 +134,34 @@ public class TaskC  {
         boolean check = false;
         //Создаем LinkedList для хранения найденных открывающихся скобок
         LinkedList<String> list = new LinkedList<>();
-        Matcher m = Pattern.compile("[\\{\\[\\(]").matcher(line);
-        while (m.find()) {
-            list.addFirst(m.group());
+        int i = 0;
+    while (i<line.length()) {
+    if (line.charAt(i) == '{' || line.charAt(i) == '[' || line.charAt(i) == '(') {
+        list.addFirst(Character.toString(line.charAt(i)));
+    }
+    if (line.charAt(i) == '}' || line.charAt(i) == ']' || line.charAt(i) == ')' && !list.isEmpty()) {
+        if (list.getFirst().equals("{") && line.charAt(i) == '}') {
+            list.removeFirst();
         }
-        Matcher k = Pattern.compile("[\\}\\]\\)]").matcher(line);
-        while (k.find()) {
-            if (list.isEmpty()) { return "Расстановка не корректная"; }
-            String last = k.group();
-            // Забираем элементы в начале LinkedList
-            String first = list.getFirst();
-            if (first.equals("{") && last.equals("}") || first.equals("[") && last.equals("]") ||
-                    first.equals("(") && last.equals(")")) {
-                list.removeFirst();
-            }
+        else if (list.getFirst().equals("[") && line.charAt(i) == ']') {
+            list.removeFirst();
         }
+        else if (list.getFirst().equals("(") && line.charAt(i) == ')') {
+            list.removeFirst();
+        }
+        else {
+            return "Расстановка не корректная";
+        }
+    }
+    else if (line.charAt(i) == '}' || line.charAt(i) == ']' || line.charAt(i) == ')' && list.isEmpty()) {
+
+        return "Расстановка не корректная";
+    }
+    i++;
+}
         if (!list.isEmpty()) {
             return "Расстановка не корректная";
         }
-
         return "Расстановка корректная";
     }
 

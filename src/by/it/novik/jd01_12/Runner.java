@@ -63,8 +63,8 @@ public class Runner {
          * двух методов работает быстрее? Почему? Докажите.
          */
         System.out.println("TaskB.2");
-        System.out.println("Затраченное время на удаление с помощью ArrayList " + taskB.processArray(taskB.createArray(25)) + "mks");
-        System.out.println("Затраченное время на удаление с помощью LinkedList " + taskB.processLinked(taskB.createArray(25)) + "mks");
+        System.out.println("Затраченное время на удаление с помощью ArrayList " + taskB.processArray(taskB.createArray(100000)) + " ms");
+        System.out.println("Затраченное время на удаление с помощью LinkedList " + taskB.processLinked(taskB.createArray(100000)) + " ms");
 
         //Создадим объект класса TaskC - задачи C
         TaskC taskC = new TaskC();
@@ -110,7 +110,7 @@ public class Runner {
          * Проверить корректность расстановки скобок с помощью коллекций.
          */
         System.out.println("TaskC.3");
-        System.out.println(taskC.checkExp("a+(2-5)+8}"));
+        System.out.println(taskC.checkExp("a+(2-5)+8+{{1,2},{2,3}}"));
 
     }
 

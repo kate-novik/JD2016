@@ -2,6 +2,7 @@ package by.it.novik.jd01_09.entity;
 
 
 import by.it.novik.jd01_09.patterns.PatternsVar;
+import by.it.novik.jd01_09.utils.MapValues;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -52,7 +53,7 @@ public class MatrixValue extends Variable {
      */
     @Override
     public boolean saveByName(String nameVar) {
-        Map<String,Variable> nameVariables = by.it.novik.jd01_09.utils.Map.getInstance();
+        Map<String,Variable> nameVariables = MapValues.getInstance();
         if (!nameVariables.containsKey(nameVar)) {
             nameVariables.put(nameVar, new MatrixValue(this.valueM));
             return true;
@@ -67,7 +68,7 @@ public class MatrixValue extends Variable {
      */
     @Override
     public double[][] readByName(String nameVar) {
-        Map <String,Variable> nameVariables = by.it.novik.jd01_09.utils.Map.getInstance();
+        Map <String,Variable> nameVariables = MapValues.getInstance();
         if (!nameVariables.containsKey(nameVar)) {
             return ((MatrixValue) nameVariables.get(nameVar)).getValue();
         }

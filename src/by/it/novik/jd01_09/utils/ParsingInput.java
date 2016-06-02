@@ -7,6 +7,7 @@ import by.it.novik.jd01_09.entity.VectorValue;
 import by.it.novik.jd01_09.operations.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +27,7 @@ public class ParsingInput {
     public static List<Variable> parsingVariables (String line) {
         List<Variable> vars = new ArrayList<>();
         String[] elemString = new String [2];
-        if (line.contains("(") && line.contains("(")) {
+        if (line.contains("(") && line.contains(")")) {
             line = line.substring(1,line.length()-1);
         }
         if (!Pattern.compile(regxOr).matcher(line).matches()) {
@@ -34,6 +35,7 @@ public class ParsingInput {
         }
         else {
             elemString [0] = line;
+            elemString [1] = line;
         }
             for (int i = 0; i < elemString.length; i++) {
                 if (Pattern.compile(regxD).matcher(elemString[i]).matches()) {
@@ -42,7 +44,7 @@ public class ParsingInput {
                     vars.add(new VectorValue(elemString[i]));
                 } else if (Pattern.compile(regxMat).matcher(elemString[i]).matches()) {
                     vars.add(new MatrixValue(elemString[i]));
-                }
+                } else  vars.add(null);
             }
 
         return vars;
@@ -62,22 +64,62 @@ public class ParsingInput {
         return operation;
     }
 
-
+    /**
+     * Парсинг выражения по приоритету и выделения первой приоритетной операции
+     * @param line Строка ввода
+     * @return Часть выражения с первой приоритетной операцией
+     */
     public static String checkPriorityParsing (String line) {
         Matcher m = Pattern.compile(regxPriorityFull).matcher(line);
         String priorityExp = null;
         if (m.find()) {
-            priorityExp = m.group();
-           // priorityExp = priorityExp.substring(1,priorityExp.length()-1);
+            String find = m.group();
+            if (find.charAt(0) == '(') {
+                LinkedList<String> list = new LinkedList<>();
+                int i = 1;
+                list.addFirst(Character.toString(find.charAt(0)));
+                while (!list.isEmpty()) {
+                    if (find.charAt(i) == '(') {
+                        list.addFirst(Character.toString(find.charAt(i)));
+                    }
+                    if (find.charAt(i) == ')') {
+                        list.removeFirst();
+                    }
+                    i++;
+                }
+                priorityExp = find.substring(0,i);
+            }
+            else {
+                priorityExp = find;
+            }
         }
         return priorityExp;
     }
 
+    /**
+     * Парсинг выражения по операциям
+     * @param lineExp Выражения для парсинга
+     * @return List переменных в выражении типа <String>
+     */
     public static List<String> parsingExp (String lineExp) {
         String[] elemString=lineExp.split(regxOper); //преобразование строки в массив
         List<String> exp = new ArrayList<>();
         for (int i=0; i<elemString.length; i++) {
 
+            exp.add (elemString[i]);
+        }
+        return exp;
+    }
+
+    /**
+     * Парсинг выражения по равенству
+     * @param line Строка ввода
+     * @return List с переменной слева от равенства и выражения справа от равенства
+     */
+    public static List<String> parsingEq (String line) {
+        String[] elemString=line.split(regxEq); //преобразование строки в массив
+        List<String> exp = new ArrayList<>();
+        for (int i=0; i<elemString.length; i++) {
             exp.add (elemString[i]);
         }
         return exp;

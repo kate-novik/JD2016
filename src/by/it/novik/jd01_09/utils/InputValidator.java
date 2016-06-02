@@ -1,0 +1,104 @@
+package by.it.novik.jd01_09.utils;
+
+import by.it.novik.jd01_09.entity.Variable;
+import by.it.novik.jd01_09.io.InOutImpl;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+import static by.it.novik.jd01_09.patterns.PatternsVar.*;
+
+/**
+ * Created by Kate Novik.
+ */
+public class InputValidator  {
+    /**
+     * Проверка выражения на корректность расстановки скобок
+     * @param line строка
+     * @return true - скобки расставлены правильно и количество открывающихся равно количеству закрывающихся
+     */
+    private static boolean checkBracketsInExp (String line) {
+        //Создаем LinkedList для хранения найденных открывающихся скобок
+        LinkedList<String> list = new LinkedList<>();
+        int i = 0;
+        while (i<line.length()) {
+            if (line.charAt(i) == '{' || line.charAt(i) == '[' || line.charAt(i) == '(') {
+                list.addFirst(Character.toString(line.charAt(i)));
+            }
+            if (line.charAt(i) == '}' || line.charAt(i) == ']' || line.charAt(i) == ')' && !list.isEmpty()) {
+                if (list.getFirst().equals("{") && line.charAt(i) == '}') {
+                    list.removeFirst();
+                }
+                else if (list.getFirst().equals("[") && line.charAt(i) == ']') {
+                    list.removeFirst();
+                }
+                else if (list.getFirst().equals("(") && line.charAt(i) == ')') {
+                    list.removeFirst();
+                }
+                else {
+                    return false;
+                }
+            }
+            else if (line.charAt(i) == '}' || line.charAt(i) == ']' || line.charAt(i) == ')' && list.isEmpty()) {
+
+                return false;
+            }
+            i++;
+        }
+        if (!list.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Проверка строки ввода на соответствие выражению
+     * @param line Строка ввода
+     * @return true - соответствует выражению
+     */
+    private static boolean checkExp (String line) {
+        if (!Pattern.compile(regxFullEq).matcher(line).matches()) {
+            return false;
+        }
+    return true;
+    }
+
+    /**
+     * Проверка названия переменной на повтор
+     * @param line Строка ввода
+     * @return true - повтор есть
+     */
+    private static boolean checkExpName (String line) {
+        Map<String,Variable> map = MapValues.getInstance();
+        if (line.contains("=")) {
+            String name = ParsingInput.parsingEq(line).get(0);
+            if (map.containsKey(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Проверка на валидацию введенных данных
+     * @return Проверенную строку ввода
+     * @throws IOException
+     */
+    public static String checkValidation  () throws IOException {
+        InOutImpl inout = new InOutImpl();
+        System.out.println("Введите выражение через пробел:");
+        //Ввод с консоли
+        String line = inout.input();
+        if (!checkExp(line) || !checkBracketsInExp(line)) {
+            System.out.println("Выражение введено неправильно! Повторите ввод.");
+            line = checkValidation(); // Рекурсивный вызов функции проверки на валидацию
+        }
+        if (!checkExpName(line)) {
+            System.out.println("Введенное название переменной уже существует! Повторите ввод.");
+            line = checkValidation(); // Рекурсивный вызов функции проверки на валидацию
+        }
+        return line;
+    }
+}
