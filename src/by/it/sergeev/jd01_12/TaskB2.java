@@ -19,27 +19,28 @@ public class TaskB2 {
             linkedlist.add(i);
         }
         int arraycount = 0; //круг
-        boolean del = false;
+        boolean arraydel = false;
         while (arraylist.size() != 1) {
             Iterator<Integer> iterator = arraylist.iterator();
             while (iterator.hasNext()) {
                 iterator.next();
-                if (del) {
+                if (arraydel) {
                     iterator.remove();
                 }
-                del = !del;
+                arraydel = !arraydel;
             }arraycount++;
             System.out.println(arraycount + " круг метода ArrayList" + arraylist);
         }
-        int linkedcount = 0;//круг
+        int linkedcount = 0;
+        boolean linkeddel = false;//круг
         while (linkedlist.size() != 1) {
             Iterator<Integer> iterator = linkedlist.iterator();
             while (iterator.hasNext()) {
                 iterator.next();
-                if (del) {
+                if (linkeddel) {
                     iterator.remove();
                 }
-                del = !del;
+                linkeddel = !linkeddel;
             }
             linkedcount++;
             System.out.println(linkedcount + " круг метода LinkedList" +linkedlist);
