@@ -10,9 +10,10 @@ public class PatternsVar {
     public static String regxSc = "[\\}\\]],[\\{\\[]";
     public static String regxOper = "\\s[\\+\\-/\\*]\\s";
     public static String regxEq = "\\s=\\s";
-    public static String regxOr = "("+regxMat+")|("+regxVec+")|("+regxD+")";
-    public static String regxPriorityMul = "(("+regxMat+")|("+regxVec+")|("+regxD+"))\\s\\*\\s(("+regxMat+")|("+regxVec+")|("+regxD+"))";
-    public static String regxPriorityDiv = "(("+regxMat+")|("+regxVec+")|("+regxD+"))\\s/\\s(("+regxMat+")|("+regxVec+")|("+regxD+"))";
+    public static String regxName = "[a-zA-Z]";
+    public static String regxOr = "("+regxMat+")|("+regxVec+")|("+regxD+")|("+regxName+")";
+    public static String regxPriorityMul = "("+regxOr+")\\s\\*\\s("+regxOr+")";
+    public static String regxPriorityDiv = "("+regxOr+")\\s/\\s("+regxOr+")";
     public static String regxPriorityBrackets= "\\(\\(*("+regxOr+")(("+regxOper+")\\(?("+regxOr+")\\)?)+\\)";
     public static String regxPriorityFull = "("+regxPriorityMul+")|("+regxPriorityDiv+")|("+regxPriorityBrackets+")";
     public static String regxFull = "\\(?("+regxOr+")("+regxOper+")("+regxOr+")\\)?";

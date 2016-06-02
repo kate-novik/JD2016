@@ -9,6 +9,7 @@ import by.it.novik.jd01_09.operations.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,6 +37,12 @@ public class ParsingInput {
         else {
             elemString [0] = line;
             elemString [1] = line;
+        }
+        Map<String,Variable> map = MapValues.getInstance();
+        for (int i = 0; i < elemString.length; i++) {
+            if (Pattern.compile(regxName).matcher(elemString[i]).matches()) {
+                elemString[i] = map.get(elemString[i]).toString();
+            }
         }
             for (int i = 0; i < elemString.length; i++) {
                 if (Pattern.compile(regxD).matcher(elemString[i]).matches()) {

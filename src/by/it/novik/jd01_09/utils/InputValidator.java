@@ -2,10 +2,12 @@ package by.it.novik.jd01_09.utils;
 
 import by.it.novik.jd01_09.entity.Variable;
 import by.it.novik.jd01_09.io.InOutImpl;
+import by.it.novik.jd01_09.patterns.PatternsVar;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static by.it.novik.jd01_09.patterns.PatternsVar.*;
@@ -82,6 +84,27 @@ public class InputValidator  {
     }
 
     /**
+     * Проверка наличия переменных в Map
+     * @param line Строка ввода
+     * @return true - переменные есть
+     */
+    private static boolean checkExpNameVariables (String line) {
+        Map<String,Variable> map = MapValues.getInstance();
+        if (line.contains("=")) {
+            line = line.substring(line.indexOf("="));
+        }
+        Matcher m = Pattern.compile(PatternsVar.regxName).matcher(line);
+        while (m.find()) {
+            String s = m.group();
+                if (!map.containsKey(s)) {
+                    return false;
+            }
+
+        }
+        return true;
+    }
+
+    /**
      * Проверка на валидацию введенных данных
      * @return Проверенную строку ввода
      * @throws IOException
@@ -97,6 +120,10 @@ public class InputValidator  {
         }
         if (!checkExpName(line)) {
             System.out.println("Введенное название переменной уже существует! Повторите ввод.");
+            line = checkValidation(); // Рекурсивный вызов функции проверки на валидацию
+        }
+        if (!checkExpNameVariables(line)) {
+            System.out.println("Введенные переменные в выражении не существуют! Повторите ввод.");
             line = checkValidation(); // Рекурсивный вызов функции проверки на валидацию
         }
         return line;
