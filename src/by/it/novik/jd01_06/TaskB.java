@@ -17,7 +17,7 @@ public class TaskB {
         Data data = new Data(); //Создаем объект с полем для хранения стихотворения
         StringBuilder poem = new StringBuilder (data.getPoem()); //Вызываем метод для получения поля lukomor
         String regx="[а-яА-ЯёЁ]+";
-        PatternFloat p =PatternFloat.compile(regx);
+        Pattern p =Pattern.compile(regx);
         Matcher m=p.matcher(poem);
         String consonants="абвгджзклмнпрстфхцчшщ";
         consonants=consonants+consonants.toUpperCase();

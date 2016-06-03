@@ -75,7 +75,9 @@ public class RunMatLab {
         System.out.println("/nОперации присваивания");
         inout.output(calculate.calculateExp("A = ((5 + 6) * (7 + 8)) + {1,2,3,4,5}"));
         inout.output(calculate.calculateExp("S = {1,2,3,4,5}"));
-        inout.output(calculate.calculateExp("R = 75"));
+        inout.output(calculate.calculateExp("R = 2"));
+        inout.output(calculate.calculateExp("N = R + 5"));
+        inout.output(calculate.calculateExp("K = ((5 + R) * (7 + 8)) + {1,2,3,4,5}"));
         inout.output(calculate.calculateExp("O = [[1,2],[3,4]] * [[1,2],[3,4]]"));
         inout.output(calculate.calculateExp("D = ((5 - 2) / 6) * 5 + {{1,2},{3,4}}"));
         inout.output(calculate.calculateExp("B = ({1,2,3,4,5} + {1,2,3,4,5} - 5) * 2 + (3 - 5 * (3 + 7))"));
@@ -111,6 +113,7 @@ public class RunMatLab {
         PrintValues.printVars();
         //Выводим названия переменных и их значения с сортировкой по названию
         PrintValues.sortVars();
+
 
     }
 
