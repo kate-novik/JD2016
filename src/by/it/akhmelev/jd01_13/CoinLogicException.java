@@ -1,4 +1,4 @@
-package by.it.akhmelev.JD01_13;
+package by.it.akhmelev.jd01_13;
 
 public class CoinLogicException  extends Exception {
     //нужно 4 конструктора для своего исключения

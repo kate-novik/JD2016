@@ -1,4 +1,4 @@
-package by.it.akhmelev.JD01_13;
+package by.it.akhmelev.jd01_13;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
