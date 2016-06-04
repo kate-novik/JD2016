@@ -3,14 +3,22 @@ package by.it.sinkevich.jd01_09.variables;
 import by.it.sinkevich.jd01_09.parser.Patterns;
 
 /**
- * Created by Computer on 16.05.2016.
+ * Этот класс описывает переменную Матлаб типа скаляр. Представляется в виде числа с дробной частью,
+ * целые числа переводятся в дробные. Содердит основные методы для создания этой переменной,
+ * перевода в строку и обратно, получения её значения
  *
  * @author Sinkevich Denis
  */
 public class MathLabFloat extends MathLabVariable {
 
+    /**
+     * Поле, в котором хранится текущее значение переменной
+     */
     private Double value;
 
+    /**
+     * Конструкторы
+     */
     public MathLabFloat() {
         value = 0.0;
     }
@@ -27,11 +35,22 @@ public class MathLabFloat extends MathLabVariable {
         this.value = value.getValue();
     }
 
+    /**
+     * Возвращает текущее значение переменной
+     *
+     * @return значение переменной типа {@code Double}
+     */
     @Override
     public Double getValue() {
         return value;
     }
 
+    /**
+     * Устанавливает значение переменной равным по модулю числу, приходящему в качестве аргумента метода,
+     * но приводит тип к {@code Double}
+     *
+     * @param value новое значение переменной, тип {@code Number}
+     */
     @Override
     public void setValue(Object value) {
         if (value instanceof Double) {
@@ -41,6 +60,11 @@ public class MathLabFloat extends MathLabVariable {
         }
     }
 
+    /**
+     * Устанавливает новое значение переменной, переводя её из текстового представления
+     *
+     * @param strFrom Текстовое представление переменной
+     */
     @Override
     public void setValue(String strFrom) {
         if (strFrom.trim().matches(Patterns.regexFloat)) {
@@ -50,6 +74,11 @@ public class MathLabFloat extends MathLabVariable {
         }
     }
 
+    /**
+     * Метод возвращает текстовое представление переменной типа {@code String}
+     *
+     * @return текстовое представление переменной
+     */
     @Override
     public String toString() {
         return value.toString();

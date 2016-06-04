@@ -6,14 +6,21 @@ import java.util.Formatter;
 import java.util.Locale;
 
 /**
- * Created by Computer on 16.05.2016.
+ * Этот класс описывает переменную Матлаб типа вектор. Представляется в виде чисел с дробной частью,
+ * разделённых запятой. Соответсвует математически вектору-столбцуу. Содердит основные методы для создания этой переменной,
+ * перевода в строку и обратно, получения её значения
  *
  * @author Sinkevich Denis
  */
 public class MathLabVector extends MathLabVariable {
-
+    /**
+     * Поле, в котором хранится текущее значение переменной, вектор-столбец представлен одномерным массивом чисел
+     */
     private Double[] value;
 
+    /**
+     * Конструкторы
+     */
     public MathLabVector() {
         value = new Double[5];
     }
@@ -40,15 +47,30 @@ public class MathLabVector extends MathLabVariable {
         System.arraycopy(vector.value, 0, value, 0, vector.value.length);
     }
 
+    /**
+     * Возвращает текущую длину вектора
+     *
+     * @return длина вектора типа {@code int}
+     */
     public int getSize() {
         return value.length;
     }
 
+    /**
+     * Возвращает текущее значение вектора
+     *
+     * @return значение веткора типа {@code Double}
+     */
     @Override
     public Double[] getValue() {
         return value.clone();
     }
 
+    /**
+     * Устанавливает значение вектора в заданную аргументом величину
+     *
+     * @param value значение типа {@code Object}, которое можно привести к типу {@code Double}
+     */
     @Override
     public void setValue(Object value) {
         if (value instanceof Double[]) {
@@ -59,6 +81,11 @@ public class MathLabVector extends MathLabVariable {
         }
     }
 
+    /**
+     * Устанавливает новое значение переменной, переводя её из текстового представления
+     *
+     * @param strFrom Текстовое представление переменной
+     */
     @Override
     public void setValue(String strFrom) {
         if (!strFrom.trim().matches(Patterns.regexVector)) {
@@ -73,6 +100,11 @@ public class MathLabVector extends MathLabVariable {
         }
     }
 
+    /**
+     * Метод возвращает текстовое представление вектора
+     *
+     * @return текстовое представление переменной типа {@code String}
+     */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{");

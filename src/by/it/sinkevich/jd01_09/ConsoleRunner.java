@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ * Основной класс, из которого стартует прорамма, используется для тестирования
+ *
  * @author Sinkevich Denis
  */
 public class ConsoleRunner {
