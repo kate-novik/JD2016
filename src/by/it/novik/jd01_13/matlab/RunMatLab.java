@@ -1,10 +1,10 @@
-package by.it.novik.jd01_09;
+package by.it.novik.jd01_13.matlab;
 
-import by.it.novik.jd01_09.exceptions.ErrorOperationsException;
-import by.it.novik.jd01_09.io.InOutImpl;
-import by.it.novik.jd01_09.utils.Calculate;
-import by.it.novik.jd01_09.utils.InputValidator;
-import by.it.novik.jd01_09.utils.PrintValues;
+import by.it.novik.jd01_13.matlab.exceptions.ErrorOperationsException;
+import by.it.novik.jd01_13.matlab.io.InOutImpl;
+import by.it.novik.jd01_13.matlab.utils.Calculate;
+import by.it.novik.jd01_13.matlab.utils.InputValidator;
+import by.it.novik.jd01_13.matlab.utils.PrintValues;
 
 import java.io.IOException;
 

@@ -1,8 +1,8 @@
-package by.it.novik.jd01_09.entity;
+package by.it.novik.jd01_13.matlab.entity;
 
 
-import by.it.novik.jd01_09.patterns.PatternsVar;
-import by.it.novik.jd01_09.utils.MapValues;
+import by.it.novik.jd01_13.matlab.patterns.PatternsVar;
+import by.it.novik.jd01_13.matlab.utils.MapValues;
 
 import java.util.Map;
 import java.util.regex.Matcher;

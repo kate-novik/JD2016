@@ -1,13 +1,13 @@
-package by.it.novik.jd01_09.utils;
+package by.it.novik.jd01_13.matlab.utils;
 
-import by.it.novik.jd01_09.entity.Variable;
-import by.it.novik.jd01_09.exceptions.ErrorOperationsException;
-import by.it.novik.jd01_09.operations.AddOperations;
-import by.it.novik.jd01_09.operations.DivOperations;
-import by.it.novik.jd01_09.operations.MultiOperations;
-import by.it.novik.jd01_09.operations.SubOperations;
-import by.it.novik.jd01_09.patterns.PatternsVar;
 
+import by.it.novik.jd01_13.matlab.entity.Variable;
+import by.it.novik.jd01_13.matlab.exceptions.ErrorOperationsException;
+import by.it.novik.jd01_13.matlab.operations.AddOperations;
+import by.it.novik.jd01_13.matlab.operations.DivOperations;
+import by.it.novik.jd01_13.matlab.operations.MultiOperations;
+import by.it.novik.jd01_13.matlab.operations.SubOperations;
+import by.it.novik.jd01_13.matlab.patterns.PatternsVar;
 
 import java.util.List;
 import java.util.regex.Matcher;
