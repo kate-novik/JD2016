@@ -19,7 +19,7 @@ public class VariablesStorage {
     /**
      * Добавляет переменную в список, если переменная существует, то перезаписывает её значение
      *
-     * @param variableName имя переменной тип {@code String}
+     * @param variableName  имя переменной тип {@code String}
      * @param variableValue Значение переменной тип {@code MathLabVariable}
      */
     public static void add(String variableName, MathLabVariable variableValue) {
