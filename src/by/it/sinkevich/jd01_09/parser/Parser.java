@@ -77,7 +77,7 @@ public class Parser {
         String simpleMatrix = "{{2.2, 5.8}, {1.5, 6.2}, {-2.5, 7.4}, {4.2, -2.3}} * {{5.2, 3.2, 3.8}, {6.8, -7.5, -1.9}}";
         String simmplLine = "2 * (35 - 5) * (-1/30)";
         String mixedLine = testLine.concat("*").concat(testVector).concat("-").concat(testMatrix);
-        List<String> result = parseLine(simmplLine);
+        List<String> result = parseLine(testLine);
 
         for (String x : result) {
             System.out.println(x);
