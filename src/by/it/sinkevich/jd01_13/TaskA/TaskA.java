@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
  *
  * @author Sinkevich Denis
  */
-public class TaskA {
+class TaskA {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
