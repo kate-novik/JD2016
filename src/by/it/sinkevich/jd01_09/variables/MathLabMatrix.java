@@ -10,14 +10,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by Computer on 16.05.2016.
+ * Этот класс описывает переменную Матлаб типа Матрица, представляется в виде списка векторов, разделённых запятой.
+ * Соответствует математически матрице. Содержит поле для хранения матрицы, конструкторы,
+ * методы для доступа к текущему значению и для перевода из текстового значение и обратно.
  *
  * @author Sinkevich Denis
  */
 public class MathLabMatrix extends MathLabVariable {
-
+    /**
+     * Поле, в котором хранится текущее значение переменной, матрица представлена двумерным массивом типа {@code Double[][]}
+     */
     private Double[][] value;
 
+    /**
+     * Конструкторы
+     */
     public MathLabMatrix() {
         value = new Double[5][5];
     }
@@ -37,6 +44,11 @@ public class MathLabMatrix extends MathLabVariable {
         }
     }
 
+    /**
+     * Конструктор вызывает метод {@code setValue}, так как перевод строки в матрицу достаточно трудоёмкий
+     *
+     * @param matrix текстовое представление матрицы
+     */
     public MathLabMatrix(String matrix) {
         setValue(matrix);
     }
@@ -48,19 +60,39 @@ public class MathLabMatrix extends MathLabVariable {
         }
     }
 
+    /**
+     * Возвращает количество строк в текущей матрице
+     *
+     * @return количестов строк типа {@code int}
+     */
     public int getRows() {
         return value.length;
     }
 
+    /**
+     * Возвращает количество столбцов в текущей матрице
+     *
+     * @return количество столбцов типа {@code int}
+     */
     public int getColumns() {
         return value[0].length;
     }
 
+    /**
+     * Возвращает текущее значение матрицы
+     *
+     * @return значение матрица типа {@code Double[][]}
+     */
     @Override
     public Double[][] getValue() {
         return value.clone();
     }
 
+    /**
+     * Устанавливает значение матрицы в заданную аргументом влеичину
+     *
+     * @param value значение типа{@code Object}, которое можно привести к типу {@code Double[][]}
+     */
     public void setValue(Double[][] value) {
         this.value = new Double[value.length][value[0].length];
         for (int rows = 0; rows < value.length; rows++) {
@@ -68,6 +100,11 @@ public class MathLabMatrix extends MathLabVariable {
         }
     }
 
+    /**
+     * Устанавливает новое значение переменной, переводя её из текстового представления
+     *
+     * @param strFrom Текстовое представление переменной
+     */
     @Override
     public void setValue(String strFrom) {
         if (!strFrom.trim().matches(Patterns.regexMatrix)) {
@@ -92,6 +129,11 @@ public class MathLabMatrix extends MathLabVariable {
         }
     }
 
+    /**
+     * Метод возвращает текстовое представление вектора
+     *
+     * @return текстовое представление переменной типа {@code String}
+     */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{{");

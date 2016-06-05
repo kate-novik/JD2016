@@ -44,10 +44,9 @@ class TaskB2 {
         //position используется для правильного перехода итератора после прохода цикла
         int position = 1;
         //Цикл выполняем до тех пор, пока не останется один элемент в списке
+        ListIterator<Integer> iterator;
         while (list.size() != 1) {
-            ListIterator<Integer> iterator = list.listIterator(position);
-            iterator.next();
-            iterator.remove();
+            iterator = list.listIterator(position);
             while (iterator.hasNext()) {
                 //пропускаем один элемент
                 iterator.next();
