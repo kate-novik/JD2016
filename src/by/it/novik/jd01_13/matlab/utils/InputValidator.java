@@ -1,8 +1,8 @@
-package by.it.novik.jd01_09.utils;
+package by.it.novik.jd01_13.matlab.utils;
 
-import by.it.novik.jd01_09.entity.Variable;
-import by.it.novik.jd01_09.io.InOutImpl;
-import by.it.novik.jd01_09.patterns.PatternsVar;
+import by.it.novik.jd01_13.matlab.entity.Variable;
+import by.it.novik.jd01_13.matlab.io.InOutImpl;
+import by.it.novik.jd01_13.matlab.patterns.PatternsVar;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static by.it.novik.jd01_09.patterns.PatternsVar.*;
+import static by.it.novik.jd01_09.patterns.PatternsVar.regxFullEq;
 
 /**
  * Created by Kate Novik.

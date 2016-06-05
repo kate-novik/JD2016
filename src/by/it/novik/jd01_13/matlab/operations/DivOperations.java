@@ -1,11 +1,11 @@
-package by.it.novik.jd01_09.operations;
+package by.it.novik.jd01_13.matlab.operations;
 
-import by.it.novik.jd01_09.entity.DoubleValue;
-import by.it.novik.jd01_09.entity.MatrixValue;
-import by.it.novik.jd01_09.entity.Variable;
-import by.it.novik.jd01_09.entity.VectorValue;
-import by.it.novik.jd01_09.exceptions.ErrorOperationsException;
-import by.it.novik.jd01_09.utils.InverseMatrix;
+import by.it.novik.jd01_13.matlab.entity.DoubleValue;
+import by.it.novik.jd01_13.matlab.entity.MatrixValue;
+import by.it.novik.jd01_13.matlab.entity.Variable;
+import by.it.novik.jd01_13.matlab.entity.VectorValue;
+import by.it.novik.jd01_13.matlab.exceptions.ErrorOperationsException;
+import by.it.novik.jd01_13.matlab.utils.InverseMatrix;
 
 /**
  * Created by Kate Novik.
@@ -18,7 +18,7 @@ public class DivOperations implements IDivision{
      * @param operand2 Переменная 2
      * @return Результат вычисления
      */
-    public Variable division(Variable operand1, Variable operand2) throws ErrorOperationsException{
+    public Variable division(Variable operand1, Variable operand2) throws ErrorOperationsException {
 
         if (operand1 instanceof DoubleValue) {
             if (operand2 instanceof DoubleValue) {

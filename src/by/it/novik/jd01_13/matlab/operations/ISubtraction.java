@@ -1,7 +1,7 @@
-package by.it.novik.jd01_09.operations;
+package by.it.novik.jd01_13.matlab.operations;
 
-import by.it.novik.jd01_09.entity.Variable;
-import by.it.novik.jd01_09.exceptions.ErrorOperationsException;
+import by.it.novik.jd01_13.matlab.entity.Variable;
+import by.it.novik.jd01_13.matlab.exceptions.ErrorOperationsException;
 
 /**
  * Created by Kate Novik.

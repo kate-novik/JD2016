@@ -1,15 +1,15 @@
-package by.it.novik.jd01_09.operations;
+package by.it.novik.jd01_13.matlab.operations;
 
-import by.it.novik.jd01_09.entity.DoubleValue;
-import by.it.novik.jd01_09.entity.MatrixValue;
-import by.it.novik.jd01_09.entity.Variable;
-import by.it.novik.jd01_09.entity.VectorValue;
-import by.it.novik.jd01_09.exceptions.ErrorOperationsException;
+import by.it.novik.jd01_13.matlab.entity.DoubleValue;
+import by.it.novik.jd01_13.matlab.entity.MatrixValue;
+import by.it.novik.jd01_13.matlab.entity.Variable;
+import by.it.novik.jd01_13.matlab.entity.VectorValue;
+import by.it.novik.jd01_13.matlab.exceptions.ErrorOperationsException;
 
 /**
  * Created by Kate Novik.
  */
-public class SubOperations implements ISubtraction{
+public class SubOperations implements ISubtraction {
 
     /**
      * Override метода Вычитание переменных
