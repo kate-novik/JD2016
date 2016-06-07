@@ -2,6 +2,7 @@ package by.it.novik.jd01_13.matlab;
 
 import by.it.novik.jd01_13.matlab.exceptions.ErrorOperationsException;
 import by.it.novik.jd01_13.matlab.io.InOutImpl;
+import by.it.novik.jd01_13.matlab.io.WorkWithFile;
 import by.it.novik.jd01_13.matlab.utils.Calculate;
 import by.it.novik.jd01_13.matlab.utils.InputValidator;
 import by.it.novik.jd01_13.matlab.utils.PrintValues;
@@ -19,6 +20,13 @@ public class RunMatLab {
         String vec = "{1,2,3}";
         String m = "{{1,2,3},{4,5,6},{7,8,9}}";
         String d = "26.2";
+
+        //Читаем переменные с файла
+        WorkWithFile.readVarsFromFile();
+        //Выводим названия переменных и их значения в неотсортированном виде
+        PrintValues.printVars();
+        //Выводим названия переменных и их значения с сортировкой по названию
+        PrintValues.sortVars();
 
         // Операции со скалярными величинами
         System.out.println("Операции со скаларной величиной");
@@ -89,37 +97,34 @@ public class RunMatLab {
 
 //-----------------------------------------------------------------------------------------------
         //Ввод в консоль с валидацией
-        boolean in = false;
+        boolean in;
         String line;
-        do {
-            line = InputValidator.checkValidation();
-            //Создаем объект калькулятор
-            Calculate calc = new Calculate();
-            try {
-                //Вычисляем выражение, введенное с консоли
-                inout.output(calc.calculateExp(line));
-            }
-            catch (ErrorOperationsException e) {
-                System.out.println(e.getMessage());
-            }
-            while (!line.equals("yes") || !line.equals("no")) {
-                System.out.println("Повторить ввод (yes/no)?");
-                line = inout.input();
-                if (line.equals("yes")) {
-                    in = true; break;
-                } else if (line.equals("no")) {
-                    in = false; break;
-                } else {
-                    System.out.println("Введите yes или no");
-                }
-            }
-        }
-        while (in);
-        //Выводим названия переменных и их значения в неотсортированном виде
-        PrintValues.printVars();
-        //Выводим названия переменных и их значения с сортировкой по названию
-        PrintValues.sortVars();
+        try {
+            do {
+                    line = InputValidator.checkValidation();
+                    //Создаем объект калькулятор
+                    Calculate calc = new Calculate();
+                    try {
+                        //Вычисляем выражение, введенное с консоли
+                        inout.output(calc.calculateExp(line));
+                    }
+                    catch (ErrorOperationsException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    in = InputValidator.checkRepeatInput(line);
 
+                }
+            while (in);
+            //Записываем переменные в файл
+            WorkWithFile.writeVarsInFile();
+            //Выводим названия переменных и их значения в неотсортированном виде
+            PrintValues.printVars();
+            //Выводим названия переменных и их значения с сортировкой по названию
+            PrintValues.sortVars();
+        }
+        catch (IOException ex) {
+            System.err.println("Ошибка ввода-вывода" + ex);
+        }
 
     }
 
