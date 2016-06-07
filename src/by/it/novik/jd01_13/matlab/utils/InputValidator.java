@@ -134,4 +134,27 @@ public class InputValidator  {
         }
         return line;
     }
+
+    /**
+     * Проверка на повтор ввода выражения
+     * @param line Строка ввода
+     * @return true - вводить, false - не вводить
+     * @throws IOException
+     */
+    public static boolean checkRepeatInput (String line) throws IOException {
+        InOutImpl inout = new InOutImpl();
+        boolean in = false;
+        while (!line.equals("yes") || !line.equals("no")) {
+            System.out.println("Повторить ввод (yes/no)?");
+            line = inout.input();
+            if (line.equals("yes")) {
+                in = true; break;
+            } else if (line.equals("no")) {
+                in = false; break;
+            } else {
+                System.out.println("Введите yes или no");
+            }
+        }
+        return in;
+    }
 }

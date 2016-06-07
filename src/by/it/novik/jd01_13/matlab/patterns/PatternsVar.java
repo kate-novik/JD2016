@@ -9,7 +9,7 @@ public class PatternsVar {
     public static String regxD = "-?[0-9]+(\\.[0-9]+)?";
     public static String regxSc = "[\\}\\]],[\\{\\[]";
     public static String regxOper = "\\s[\\+\\-/\\*]\\s";
-    public static String regxEq = "\\s=\\s";
+    public static String regxEq = "\\s?=\\s?";
     public static String regxName = "[a-zA-Z]";
     public static String regxOr = "("+regxMat+")|("+regxVec+")|("+regxD+")|("+regxName+")";
     public static String regxPriorityMul = "("+regxOr+")\\s\\*\\s("+regxOr+")";
