@@ -8,7 +8,8 @@ import java.io.IOException;
  * Created by user_2 on 08.06.2016.
  */
 public class TaskB {
-    private static final String OUT_CR = "OutCr" ;
+
+    static final String OUT_CR = "OutCr";
 
     public static void main(String[] args) throws IOException {
         String src=System.getProperty("user.dir")+"/src/";

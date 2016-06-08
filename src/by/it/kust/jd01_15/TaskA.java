@@ -19,7 +19,7 @@ public class TaskA {
     }
 
     public static void main(String[] args) {
-        String src=System.getProperty("user.dir")+"/src/by/it/kust";
+        String src=System.getProperty("user.dir")+"/src/by/it/kust/";
         String filename =  src+"jd01_15/matrix.txt";
 
         int[][] m=new int[4][4];
@@ -30,10 +30,12 @@ public class TaskA {
             }
             System.out.println();
         }
-       printMatrix(m,System.out);
+        System.out.println();
+        printMatrix(m,System.out);
 
         try {
             PrintStream out = new PrintStream(filename);
+            printMatrix(m,out);
         }catch (FileNotFoundException e){
             System.err.println("ошибка вывода " + filename);
         }
