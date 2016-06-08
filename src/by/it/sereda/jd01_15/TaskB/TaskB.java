@@ -1,4 +1,4 @@
-package by.it.sereda.jd01_15.Tasks;
+package by.it.sereda.jd01_15.TaskB;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
