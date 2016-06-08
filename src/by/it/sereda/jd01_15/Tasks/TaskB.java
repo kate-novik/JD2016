@@ -20,7 +20,7 @@ public class TaskB {
             while ((line = in.readLine()) != null) {
                 //комментарий 1
                 /* комментарий */
-                code.append(line.replaceAll("//.*", "").concat(OUT_CR));
+                code.append(line.replaceAll("(//.*)|(//*.+)", "").concat(OUT_CR));
             }
             System.out.println(code.toString().replaceAll(OUT_CR, "\n"));
         } catch (java.io.IOException e) {

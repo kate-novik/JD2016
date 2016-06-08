@@ -5,8 +5,8 @@ import java.io.PrintStream;
 
 public class TaskA {
     public static void main(String[] arg) {
-        String src = System.getProperty("user.dir") + "src";
-        String filename = src + "jd01_15/matrix.txt";
+        String src = System.getProperty("user.dir") + "/src/by/it/sereda/";
+        String filename = src + "jd01_15/Tasks/matrix.txt";
         int[][] m = new int[4][4];
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -24,7 +24,7 @@ public class TaskA {
     static void printMatrix(int[][] matrix, PrintStream ourOut) {
         for (int[] row : matrix) {
             for (int value : row) {
-                ourOut.printf("$3d", value);
+                ourOut.printf("%3d", value);
             }
             ourOut.println();
         }
