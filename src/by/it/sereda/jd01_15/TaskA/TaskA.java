@@ -21,6 +21,7 @@ public class TaskA {
             System.err.println("Ошибка вывода " + filename);
         }
     }
+
     static void printMatrix(int[][] matrix, PrintStream ourOut) {
         for (int[] row : matrix) {
             for (int value : row) {
