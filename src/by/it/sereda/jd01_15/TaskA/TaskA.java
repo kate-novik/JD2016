@@ -1,4 +1,4 @@
-package by.it.sereda.jd01_15.Tasks;
+package by.it.sereda.jd01_15.TaskA;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -6,7 +6,7 @@ import java.io.PrintStream;
 public class TaskA {
     public static void main(String[] arg) {
         String src = System.getProperty("user.dir") + "/src/by/it/sereda/";
-        String filename = src + "jd01_15/Tasks/matrix.txt";
+        String filename = src + "jd01_15/TaskA/matrix.txt";
         int[][] m = new int[4][4];
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
