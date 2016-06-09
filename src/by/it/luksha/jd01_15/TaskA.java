@@ -7,6 +7,7 @@ public class TaskA {
 
     /**
      * Создает матрицу 4х4 и заполняет пслучайными числами от -15 до 15
+     *
      * @return матрица
      */
     protected static int[][] createMatrix4x4() {
@@ -21,6 +22,7 @@ public class TaskA {
 
     /**
      * Выводит матрицу в консоль
+     *
      * @param matrix матрица
      */
     protected static void printToConsole(int[][] matrix) {
@@ -34,7 +36,8 @@ public class TaskA {
 
     /**
      * Выводит матрицу в файл
-     * @param matrix матрица
+     *
+     * @param matrix   матрица
      * @param fileName имя файла
      * @throws IOException
      */
