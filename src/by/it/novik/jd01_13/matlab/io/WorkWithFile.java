@@ -23,11 +23,11 @@ public class WorkWithFile {
     private static File createFile () {
         //Задаем путь к файлу с переменными
         String src = System.getProperty("user.dir") + "/src/by/it/novik/jd01_13/matlab/";
-        return new File(src + "files/baseOfVars.txt");
+        return new File(src + "files/vars.txt");
     }
 
     /**
-     * Запись переменных в файл baseOfVars.txt
+     * Запись переменных в файл vars.txt
      */
     public static void writeVarsInFile () {
         //Получаем объект File
@@ -56,6 +56,9 @@ public class WorkWithFile {
         }
     }
 
+    /**
+     * Чтение переменных из файла vars.txt
+     */
     public static void readVarsFromFile () {
         //Получаем объект File
         File baseOfVars = createFile();

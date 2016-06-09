@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static by.it.novik.jd01_09.patterns.PatternsVar.*;
+import static by.it.novik.jd01_13.matlab.patterns.PatternsVar.*;
 
 /**
  * Created by Kate Novik.
