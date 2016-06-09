@@ -1,6 +1,7 @@
 package by.it.luksha.jd01_13.taskC.staff;
 
 import by.it.luksha.jd01_13.taskC.exeption.PatientException;
+import by.it.luksha.jd01_13.taskC.exeption.SurgeonException;
 import by.it.luksha.jd01_13.taskC.patient.Patient;
 
 import java.util.Random;
@@ -14,7 +15,7 @@ public class Neurosurgeon extends Surgeon {
      * @param name           имя хирурга
      * @param skill          навык хирурга
      */
-    public Neurosurgeon(String name, int skill) {
+    public Neurosurgeon(String name, int skill) throws SurgeonException {
         super(name, skill);
         this.specialization = "нейрохирург";
     }

@@ -1,5 +1,6 @@
 package by.it.luksha.jd01_13.taskC;
 
+import by.it.luksha.jd01_13.taskC.exeption.SurgeonException;
 import by.it.luksha.jd01_13.taskC.patient.Patient;
 import by.it.luksha.jd01_13.taskC.staff.Neurosurgeon;
 import by.it.luksha.jd01_13.taskC.staff.Surgeon;
@@ -33,7 +34,7 @@ public class Hospital {
         listPatient.add(patient);
     }
 
-    public static void setup() {
+    public static void setup() throws SurgeonException {
         //создание больницы
         Hospital hospitalOfMinsk = new Hospital();
         //получение списка больных
