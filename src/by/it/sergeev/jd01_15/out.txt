@@ -1,4 +1,4 @@
-package by.it.sergeev.jd01_15.TaskB;
+package by.it.sergeev.jd01_15;
 
 import java.io.*;
 
@@ -26,11 +26,10 @@ public class TaskB {
             String liner = code.toString().replaceAll(OUT_CR, "\n");
             try (PrintWriter printer =
                          new PrintWriter(
-                                 new FileWriter(fileOutTxt, false))) {
-                printer.println(liner);  
-                
-                System.out.print(liner); 
-                
+                                 new FileWriter(fileOutTxt, false)))
+            {
+                printer.println(liner);
+                System.out.print(liner);
             }
         } catch (java.io.IOException e) {
             System.out.println("Ошибка работы с " + path);
