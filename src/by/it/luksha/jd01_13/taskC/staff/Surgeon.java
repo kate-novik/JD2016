@@ -1,5 +1,6 @@
 package by.it.luksha.jd01_13.taskC.staff;
 
+import by.it.luksha.jd01_13.taskC.exeption.SurgeonException;
 import by.it.luksha.jd01_13.taskC.patient.Patient;
 
 import java.util.Random;
@@ -25,7 +26,8 @@ public abstract class Surgeon implements IDoctor {
      * @param name имя хирурга
      * @param skill навык хирурга
      */
-    public Surgeon(String name, int skill) {
+    public Surgeon(String name, int skill) throws SurgeonException {
+        if (name.matches("[0-9]]")) {throw new SurgeonException("Неведомое имя");}
         this.name = name;
         this.skill = skill;
     }
@@ -49,7 +51,7 @@ public abstract class Surgeon implements IDoctor {
     /**
      * Метод диагностирует заболевание пациента
      * @param patient
-     * @return
+     * @return true/false
      */
     @Override
     public boolean diagnose(Patient patient) {
@@ -109,7 +111,6 @@ public abstract class Surgeon implements IDoctor {
 
     /**
      * Метод изменяет навык хирурга на случайную величину
-     * @return
      */
     @Override
     public void pray() {
