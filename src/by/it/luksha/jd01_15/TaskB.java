@@ -18,9 +18,9 @@ public class TaskB {
             bufferedReader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                //комментарий 1
-                String redLine = line.replaceAll("//.*\\n", "");
-                stringBuilder.append(String.format("%2d", countLine++) + ": " + redLine + "\n");
+                //регулярное выражение для комментариев
+                line = line.replaceAll("(/\\*{1,2}.*)|(\\*{1}.*)|//.*", "");
+                stringBuilder.append(String.format("%2d", countLine++) + ": " + line + "\n");
             }
         } catch (FileNotFoundException e) {
             System.err.printf("Ошибка cоздания файла %s", e);
@@ -30,6 +30,7 @@ public class TaskB {
 
         //вывод в консоль
         System.out.println(stringBuilder.toString());
+
         //вывод в файл
         File fileOut = new File(src + "data/TaskB.txt");
         PrintWriter printWriter = null;
