@@ -1,4 +1,4 @@
-package by.it.sergeev.jd01_15.TaskA;
+package by.it.sergeev.jd01_15;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -12,7 +12,6 @@ public class TaskA {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 m[i][j] = (int) (Math.random() * 32 - 16);
-                //System.out.println("%3d", m[i][j]);
             }
         }
         printMatrix(m, System.out);
@@ -27,8 +26,6 @@ public class TaskA {
         }
         System.out.println();
     }
-
-
         static void printMatrix (int[][]matrix,PrintStream ourOut){
             for (int[]row:matrix)
             {

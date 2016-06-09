@@ -1,4 +1,4 @@
-package by.it.sergeev.jd01_15.TaskB;
+package by.it.sergeev.jd01_15;
 
 import java.io.*;
 
@@ -28,10 +28,8 @@ public class TaskB {
                          new PrintWriter(
                                  new FileWriter(fileOutTxt, false)))//false перезаписывает файл. true добавляет инфо в файл.
             {
-                printer.println(liner);  //тут что-то печатаем, для примера - все ту же коллекцию
-                //обратите внимание как она выводится.
-                System.out.print(liner); //для этого продублируем на консоль
-                //так работает наш анонимный класс.
+                printer.println(liner);
+                System.out.print(liner);
             }
         } catch (java.io.IOException e) {
             System.out.println("Ошибка работы с " + path);
