@@ -10,15 +10,18 @@ package by.it.kust.jd01_13.TaskB;
  § Один тип ошибки – деление на ноль обрабатывать в процедуре, остальные ошибки
  пробрасывать и обрабатывать в main.
  */
-public class Main {
+public class ExceptionsRun {
     public static void main(String[] args) {
+        System.out.println("Начало Main.");
+        Methods run = new Methods();
         try {
-            new Methods().firstMethod();
-        } catch (Exception e){
-            System.out.println("Исключение метода main с проброшенным " +
-                    "исключением из третьего метода: " + e.getMessage());
+            run.firstMethod();
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Исключение метода main перехватило проброшенное " +
+                    "исключение второго метода с сообщением " + e);
+        } finally {
+            System.out.println("Блок finally в main.");
         }
-
-
+        System.out.println("Конец Main.");
     }
 }
