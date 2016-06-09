@@ -9,7 +9,7 @@ import java.util.Random;
  *
  * @author Sinkevich Denis
  */
-public class TaskA {
+class TaskA {
 
     public static void main(String[] args) {
         String src = System.getProperty("user.dir") + "/src/by/it/sinkevich/";

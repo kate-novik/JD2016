@@ -3,13 +3,13 @@ package by.it.sinkevich.jd01_13.TaskC;
 /**
  * Класс исключений для задания jd01_13 TaskC
  */
-public class PlayerException extends Exception {
+class PlayerException extends Exception {
 
     public PlayerException() {
         super();
     }
 
-    public PlayerException(String message) {
+    PlayerException(String message) {
         super(message);
     }
 
