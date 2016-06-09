@@ -3,7 +3,7 @@
  3: import java.io.
  4: 
  5: public class TaskB {
- 6:     private static String src = System.getProperty("user.currentDirectory") + "/src/by/it/luksha/jd01_15/";
+ 6:     private static String src = System.getProperty("user.dir") + "/src/by/it/luksha/jd01_15/";
  7: 
  8:     
  9:      
@@ -19,31 +19,30 @@
 19:             String line;
 20:             while ((line = bufferedReader.readLine()) != null) {
 21:                 
-22:                 
-23:                 line = line.replaceAll("(/\\
-24:                 stringBuilder.append(String.format("%2d", countLine++) + ": " + line + "\n");
-25:             }
-26:         } catch (FileNotFoundException e) {
-27:             System.err.printf("Ошибка cоздания файла %s", e);
-28:         } catch (IOException e) {
-29:             System.err.printf("Ошибка %s", e);
-30:         }
-31: 
-32:         
-33:         System.out.println(stringBuilder.toString());
-34: 
-35:         
-36:         File fileOut = new File(src + "data/TaskB.txt");
-37:         PrintWriter printWriter = null;
-38:         try {
-39:             printWriter = new PrintWriter(new FileWriter(fileOut));
-40:             printWriter.print(stringBuilder.toString());
-41:         } catch (IOException e) {
-42:             System.err.printf("Ошибка cоздания файла %s", e);
-43:         } finally {
-44:             if (printWriter != null) {
-45:                 printWriter.close();
-46:             }
-47:         }
-48:     }
-49: }
+22:                 line = line.replaceAll("(/\\
+23:                 stringBuilder.append(String.format("%2d", countLine++) + ": " + line + "\n");
+24:             }
+25:         } catch (FileNotFoundException e) {
+26:             System.err.printf("Ошибка cоздания файла %s", e);
+27:         } catch (IOException e) {
+28:             System.err.printf("Ошибка %s", e);
+29:         }
+30: 
+31:         
+32:         System.out.println(stringBuilder.toString());
+33: 
+34:         
+35:         File fileOut = new File(src + "data/TaskB.txt");
+36:         PrintWriter printWriter = null;
+37:         try {
+38:             printWriter = new PrintWriter(new FileWriter(fileOut));
+39:             printWriter.print(stringBuilder.toString());
+40:         } catch (IOException e) {
+41:             System.err.printf("Ошибка cоздания файла %s", e);
+42:         } finally {
+43:             if (printWriter != null) {
+44:                 printWriter.close();
+45:             }
+46:         }
+47:     }
+48: }
