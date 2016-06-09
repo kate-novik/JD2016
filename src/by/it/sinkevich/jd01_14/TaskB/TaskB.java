@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  *
  * @author Sinkevich Denis
  */
-public class TaskB {
+class TaskB {
 
     public static void main(String[] args) {
         String src = System.getProperty("user.dir") + "\\src\\by\\it\\sinkevich\\";

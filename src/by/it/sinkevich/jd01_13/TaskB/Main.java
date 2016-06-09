@@ -5,7 +5,7 @@ package by.it.sinkevich.jd01_13.TaskB;
  *
  * @author Sinkevich Denis
  */
-public class Main {
+class Main {
 
     public static void main(String[] args) {
         try {
