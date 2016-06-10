@@ -2,9 +2,15 @@ package by.it.sereda.jd02_01;
 
 public class Buyer implements IBuyer, Runnable {
 
+    private int number = 0;
+
+    public Buyer(int number) {
+        this.number = number;
+    }
+
     @Override
-    public void enteToMarket() {
-        System.out.println("Buyer in shop");
+    public void enterToMarket() {
+        System.out.println(this + " in shop");
     }
 
     @Override
@@ -12,21 +18,27 @@ public class Buyer implements IBuyer, Runnable {
         try {
             int timeout = Utils.getTimeOut(500, 2000);
             Thread.sleep(timeout);
-            System.out.println("Buyer choose goods");
+            System.out.println(this + " choose goods");
         } catch (InterruptedException e) {
-            System.out.println("Buyer crash");
+            System.out.println(this + " crash");
         }
     }
 
     @Override
     public void goToOut() {
-        System.out.println("Buyer out from shop");
+        System.out.println(this + " out from shop");
     }
 
     @Override
     public void run() {
-        enteToMarket();
+        enterToMarket();
         choosegoods();
         goToOut();
     }
+
+    @Override
+    public String toString() {
+        return "Buyer N=" + number;
+    }
+
 }
