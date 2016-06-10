@@ -14,7 +14,7 @@ public class Runner {
             }
             int countBuyer = Utils.getTimeOut(0, 2);
             for (int j = 0; j < countBuyer; j++) {
-                Buyer buyer = new Buyer();
+                Buyer buyer = new Buyer(++Utils.countBuyers);
                 Thread thBuyer = new Thread(buyer);
                 thBuyer.start();
             }
