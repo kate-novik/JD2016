@@ -79,20 +79,28 @@ public class SubOperations implements ISubtraction {
         return (VectorValue)new AddOperations().addition(value1, new MultiOperations().multiplication(new DoubleValue(-1), value2));
     }
 
-    private VectorValue subtraction(VectorValue value1, VectorValue value2) {
+    private VectorValue subtraction(VectorValue value1, VectorValue value2) throws ErrorOperationsException {
         VectorValue sub = new VectorValue(value1.getValue().length);
-        for (int i = 0; i < value1.getValue().length; i++) {
-            sub.getValue()[i] = value1.getValue()[i] - value2.getValue()[i];
+        if (value1.getValue().length == value2.getValue().length) {
+            for (int i = 0; i < value1.getValue().length; i++) {
+                sub.getValue()[i] = value1.getValue()[i] - value2.getValue()[i];
+            }
         }
+        else throw new ErrorOperationsException ("Вычитание невозможно! Разные размеры векторов!");
         return sub;
     }
 
-    private MatrixValue subtraction(MatrixValue value1, MatrixValue value2) {
+    private MatrixValue subtraction(MatrixValue value1, MatrixValue value2) throws ErrorOperationsException {
         MatrixValue sub = new MatrixValue(value1.getValue().length);
-        for (int i = 0; i < value1.getValue().length; i++) {
-            for (int j = 0; j < value1.getValue().length; j++) {
-                sub.getValue()[i][j] = value1.getValue()[i][j] - value2.getValue()[i][j];
+        if (value1.getValue().length == value2.getValue().length && value1.getValue()[0].length == value2.getValue()[0].length) {
+            for (int i = 0; i < value1.getValue().length; i++) {
+                for (int j = 0; j < value1.getValue().length; j++) {
+                    sub.getValue()[i][j] = value1.getValue()[i][j] - value2.getValue()[i][j];
+                }
             }
+        }
+        else {
+            throw new ErrorOperationsException("Вычитание невозможно. Размеры матриц не совпадают.");
         }
         return sub;
     }

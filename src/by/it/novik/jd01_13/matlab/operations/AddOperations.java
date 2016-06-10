@@ -4,6 +4,7 @@ import by.it.novik.jd01_13.matlab.entity.DoubleValue;
 import by.it.novik.jd01_13.matlab.entity.MatrixValue;
 import by.it.novik.jd01_13.matlab.entity.Variable;
 import by.it.novik.jd01_13.matlab.entity.VectorValue;
+import by.it.novik.jd01_13.matlab.exceptions.ErrorOperationsException;
 
 /**
  * Created by Kate Novik.
@@ -18,7 +19,7 @@ public class AddOperations implements IAddition {
      * @return Результат вычисления
      */
     @Override
-    public Variable addition(Variable operand1, Variable operand2) {
+    public Variable addition(Variable operand1, Variable operand2) throws ErrorOperationsException {
 
         if (operand1 instanceof DoubleValue) {
             if (operand2 instanceof DoubleValue) {
@@ -90,12 +91,17 @@ public class AddOperations implements IAddition {
         return add;
     }
 
-    private MatrixValue addition(MatrixValue value1, MatrixValue value2) {
+    private MatrixValue addition(MatrixValue value1, MatrixValue value2) throws ErrorOperationsException {
         MatrixValue add = new MatrixValue(value1.getValue().length);
-        for (int i = 0; i < value1.getValue().length; i++) {
-            for (int j = 0; j < value1.getValue().length; j++) {
-                add.getValue()[i][j] = value1.getValue()[i][j] + value2.getValue()[i][j];
+        if (value1.getValue().length == value2.getValue().length && value1.getValue()[0].length == value2.getValue()[0].length) {
+            for (int i = 0; i < value1.getValue().length; i++) {
+                for (int j = 0; j < value1.getValue().length; j++) {
+                    add.getValue()[i][j] = value1.getValue()[i][j] + value2.getValue()[i][j];
+                }
             }
+        }
+        else {
+            throw new ErrorOperationsException("Сложение невозможно. Размеры матриц не совпадают.");
         }
         return add;
     }
