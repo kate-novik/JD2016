@@ -13,7 +13,7 @@ import java.io.IOException;
 public class Main {
     public static void main (String [] args) throws IOException {
         System.out.println("Задание 1");
-        double x = 12.6453;
+        double x = 1.2;
         System.out.println(Task1.optionA(x));
         System.out.println(Task1.optionB(x));
         System.out.println();
