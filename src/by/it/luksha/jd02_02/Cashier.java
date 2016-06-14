@@ -22,8 +22,13 @@ public class Cashier extends Thread {
             if (market.getQueue().size() > 5) {
                 System.out.println("Человек в очереди:" + market.getQueue().size());
                 Buyer buyer = market.getQueue().remove();
-                System.out.printf("%s осблужен на %s сумма чека: %.2f\n", buyer.toString(), this.name, printCheck(buyer));
+                System.out.printf("%s обслужен на %s сумма чека: %.2f\n", buyer.toString(), this.name, printCheck(buyer));
                 buyer.interrupt();
+                try {
+                    Thread.sleep(Utils.randInt(2000, 5000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } else if (market.getQueue().size() < 5 && market.getCountWorksCashier() == 0) {
                 try {
                     Thread.sleep(5000);
