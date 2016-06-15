@@ -23,7 +23,10 @@ public class Cashier extends Thread {
                 System.out.println("Человек в очереди:" + market.getQueue().size());
                 Buyer buyer = market.getQueue().remove();
                 System.out.printf("%s обслужен на %s сумма чека: %.2f\n", buyer.toString(), this.name, printCheck(buyer));
-                buyer.interrupt();
+                //buyer.interrupt();
+                synchronized (buyer) {
+                    buyer.notify();
+                }
                 try {
                     Thread.sleep(Utils.randInt(2000, 5000));
                 } catch (InterruptedException e) {

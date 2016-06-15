@@ -100,9 +100,10 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
             try {
                 this.wait();
             } catch (InterruptedException e) {
-                goToOut();
+                System.out.println(this + " некорректное завершение ожидания");
             }
         }
+        goToOut();
     }
 
     @Override
