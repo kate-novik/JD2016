@@ -171,6 +171,11 @@ public class Buyer implements IBuyer, Runnable  {
         System.out.println(this + "вышел из магазина");
         sm.setCountBaskets(sm.getCountBaskets()+1);
         sm.decrementCountOfBuyers(this);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.err.println("count " + sm.getCountBuyers());
     }
 

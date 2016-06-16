@@ -17,4 +17,9 @@ public interface IManager {
      * Метод открытия новой кассы
      */
     void openCashier ();
+
+    /**
+     * Метод акрытия всех касс
+     */
+    void closeCashiers();
 }

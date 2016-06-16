@@ -1,6 +1,7 @@
 package by.it.novik.jd02_03.entities;
 
 import by.it.novik.jd02_03.interfaces.ICashier;
+import by.it.novik.jd02_03.utils.PrintCheck;
 import by.it.novik.jd02_03.utils.RandomCounter;
 
 import java.util.Map;
@@ -62,6 +63,8 @@ public class Cashier implements ICashier, Runnable {
                         }
                         System.out.println(this + " обслуживает покупателя - " + buyer);
                         Thread.sleep(pause);
+
+
                         int sum = 0;
                         System.out.println(buyer.getBasket().getGoodsInBasket().size());
                         while (buyer.getBasket().getGoodsInBasket().size() != 0) {
@@ -71,6 +74,10 @@ public class Cashier implements ICashier, Runnable {
                         }
                         System.out.println("Общая сумма чека " + sum);
                         sm.setRevenueMarket(sm.getRevenueMarket() + sum); //Добавим сумму в выручку магазина
+                        synchronized (PrintCheck.class) {
+                            PrintCheck.getCheck(this,sm,sum);
+                        }
+                        System.out.println("");
                         System.out.println(this + " обслужила покупателя - "+ buyer);
                         synchronized (buyer) {
                             buyer.iWait = false;
@@ -89,6 +96,8 @@ public class Cashier implements ICashier, Runnable {
 
 //            synchronized (this) {
 //                cashWait = true;
+//                sm.waitingCashiers.add(this);
+//                sm.workingCashiers.remove(this);
 //                while (cashWait) {
 //                    try { //ожидаем notify и iWait==false от менеджера.
 //                        this.wait();
@@ -99,7 +108,7 @@ public class Cashier implements ICashier, Runnable {
 //            }
 
 
-            if (sm.getManager().closeCashiers()) {
+            if (sm.getManager().closeCashiers) {
                 break;
             }
 
