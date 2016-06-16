@@ -20,6 +20,8 @@ public class Buyer implements IBuyer, Runnable  {
     private final Supermarket sm;
     //Поле потока
     private Thread thread;
+    //Флаг того, что покупатель в ожидании
+    public boolean iWait=false; //флаг того, что покупатель в ожидании
 
     public Buyer (int id, Supermarket sm, boolean pensioner) {
         this.id = id;
@@ -88,9 +90,9 @@ public class Buyer implements IBuyer, Runnable  {
                     Thread.sleep(pause1/2);
                 }
                 //Выбирем случайный товар в магазине
-                int i = 0;
+                int i = 1;
                 Map.Entry<Good,Integer> goodTake = null; //Выбранный товар по соответствующей цене
-                int randomGood = RandomCounter.countRandom(i,sm.getAllGoods().size()-1);
+                int randomGood = RandomCounter.countRandom(i,sm.getAllGoods().size());
                 for (Map.Entry<Good,Integer> set : sm.getAllGoods().entrySet()) {
                     if (i == randomGood) {
                         goodTake = set;
@@ -124,12 +126,20 @@ public class Buyer implements IBuyer, Runnable  {
         sm.addBuyerInQueueCashRegister(this); //Добавление в очередь
         System.out.println("Покупатель " + this + " стал в очередь");
         synchronized (this) {
-            try {
-                this.wait(); //Ожидание в очереди, пока кассир не освободится
+            iWait=true;
+            while (iWait) {
+                try { //ожидаем notify и iWait==false от кассира.
+                    this.wait();
+                } catch (InterruptedException e) {
+                    System.out.println(this + " : некорректное завершение ожидания в очереди!");
+                }
             }
-            catch (InterruptedException e) {
-                System.out.println(this + " : некорректное завершение ожидания в очереди!");
-            }
+//            try {
+//                this.wait(); //Ожидание в очереди, пока кассир не освободится
+//            }
+//            catch (InterruptedException e) {
+//                System.out.println(this + " : некорректное завершение ожидания в очереди!");
+//            }
         }
 
     }
@@ -138,12 +148,20 @@ public class Buyer implements IBuyer, Runnable  {
     public void payGoods() {
         System.out.println(this + " на кассе");
         synchronized (this) {
-            try {
-                this.wait(); //Ожидание в кассе, пока кассир рассчитывает
+            iWait=true;
+            while (iWait) {
+                try { //ожидаем notify и iWait==false от кассира.
+                    this.wait();
+                } catch (InterruptedException e) {
+                    System.out.println(this + " : некорректное завершение ожидания в очереди!");
+                }
             }
-            catch (InterruptedException e) {
-                System.out.println(this + " : некорректное завершение ожидания в кассе!");
-            }
+//            try {
+//                this.wait(); //Ожидание в кассе, пока кассир рассчитывает
+//            }
+//            catch (InterruptedException e) {
+//                System.out.println(this + " : некорректное завершение ожидания в кассе!");
+//            }
         }
         System.out.println(this + "оплатил товары в кассе");
     }
@@ -151,8 +169,9 @@ public class Buyer implements IBuyer, Runnable  {
     @Override
     public void exitOutMarket() {
         System.out.println(this + "вышел из магазина");
-        sm.setCountBaskets(sm.getCountBuyers()+1);
+        sm.setCountBaskets(sm.getCountBaskets()+1);
         sm.decrementCountOfBuyers(this);
+        System.err.println("count " + sm.getCountBuyers());
     }
 
     @Override

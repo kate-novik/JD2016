@@ -3,7 +3,6 @@ package by.it.novik.jd02_02;
 import by.it.novik.jd02_02.entities.Supermarket;
 import by.it.novik.jd02_02.utils.InOut;
 import by.it.novik.jd02_02.entities.Buyer;
-import by.it.novik.jd02_02.entities.Manager;
 import by.it.novik.jd02_02.utils.RandomCounter;
 
 
@@ -15,19 +14,19 @@ public class Runner {
         //Создаем супермаркет
         Supermarket sm = new Supermarket();
         //Добавляем корзинки в супермаркет
-        sm.setCountBaskets(600);
+        sm.setCountBaskets(100);
         //Создаем кассы
        sm.getManager().createCashiers(5);
         //Чтение товаров из файла в HashMap
         InOut.inputRead(sm);
 
-while (sm.getCountBuyers() <=8) {
+while (sm.getCountBuyers() < 30) {
     try {
         Thread.sleep(1000);
     } catch (InterruptedException e) {
         e.printStackTrace();
     }
-    int count = RandomCounter.countRandom(1, 5);
+    int count = RandomCounter.countRandom(4, 6);
 
     for (int i = 0; i < count; i++) {
         Buyer buyer;
@@ -39,8 +38,7 @@ while (sm.getCountBuyers() <=8) {
         sm.incrementCountOfBuyers(buyer);
     }
 }
-        Thread.sleep(15000);
-        sm.getManager().closeCashiers();
+
 
 
 //        try {

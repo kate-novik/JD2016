@@ -15,9 +15,9 @@ public class Cashier implements ICashier, Runnable {
     //Поле объекта супермаркет
     private Supermarket sm;
     //Поле потока кассиров
-    Thread thCash;
+    private Thread thCash;
     //Поле для синхронизации кассиров
-    private final static Integer lockCashier = 0;
+    public boolean cashWait = false;
 
 
     public Cashier(int idCashier, Supermarket sm) {
@@ -36,6 +36,10 @@ public class Cashier implements ICashier, Runnable {
         this.idCashier = idCashier;
     }
 
+    public Thread getThCash() {
+        return thCash;
+    }
+
     @Override
     public String toString() {
         return this.thCash.getName();
@@ -52,45 +56,53 @@ public class Cashier implements ICashier, Runnable {
                     //Вызываем метод с генератором случайных чисел для генерации числа в промежутке от 200 до 500 мс
                     int pause = RandomCounter.countRandom(200, 500);
                     final Buyer buyer = sm.removeBuyerFromQueueCashRegister();
-                    synchronized (buyer) {
-                        buyer.notify();
-                    }
-                    System.out.println(this + " обслуживает покупателя");
-                    Thread.sleep(pause);
-                    int sum = 0;
-                    System.out.println(buyer.getBasket().getGoodsInBasket().size());
-                    while (buyer.getBasket().getGoodsInBasket().size() != 0) {
-                        Map.Entry<Good, Integer> set = buyer.getBasket().takeGoodFromBasket();
-                        sum += set.getValue();
-                        System.out.println(set.getKey() + " = " + set.getValue());
-                    }
-                    System.out.println("Общая сумма чека " + sum);
-                    sm.setRevenueMarket(sm.getRevenueMarket() + sum); //Добавим сумму в выручку магазина
-                    System.out.println(this + " обслужила покупателя");
-                    synchronized (buyer) {
-                        buyer.notify();
+                    if (buyer != null) {
+                        synchronized (buyer) {
+                            buyer.iWait = false;
+                            buyer.notify();
+                        }
+                        System.out.println(this + " обслуживает покупателя - " + buyer);
+                        Thread.sleep(pause);
+                        int sum = 0;
+                        System.out.println(buyer.getBasket().getGoodsInBasket().size());
+                        while (buyer.getBasket().getGoodsInBasket().size() != 0) {
+                            Map.Entry<Good, Integer> set = buyer.getBasket().takeGoodFromBasket();
+                            sum += set.getValue();
+                            System.out.println(set.getKey() + " = " + set.getValue());
+                        }
+                        System.out.println("Общая сумма чека " + sum);
+                        sm.setRevenueMarket(sm.getRevenueMarket() + sum); //Добавим сумму в выручку магазина
+                        System.out.println(this + " обслужила покупателя - "+ buyer);
+                        synchronized (buyer) {
+                            buyer.iWait = false;
+                            buyer.notify();
+                        }
                     }
                 }
             } catch (InterruptedException e) {
                 System.out.println(this + " : некорректное завершение ожидания!");
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+//            synchronized (this) {
+//                cashWait = true;
+//                while (cashWait) {
+//                    try { //ожидаем notify и iWait==false от менеджера.
+//                        this.wait();
+//                    } catch (InterruptedException e) {
+//                        System.out.println(this + " : некорректное завершение ожидания открытия кассы!");
+//                    }
+//                }
+//            }
+
+
             if (sm.getManager().closeCashiers()) {
                 break;
             }
-
-//                synchronized (lockCashier) {
-//                    try {
-//                        lockCashier.wait();
-//                    } catch (InterruptedException e) {
-//                        break;
-//                    }
-//
-//            }
 
         }
         while (true);
