@@ -20,7 +20,7 @@ public class Runner {
         //Чтение товаров из файла в HashMap
         InOut.inputRead(sm);
 
-while (sm.getCountBuyers() < 30) {
+while (sm.getCountBuyers() < 31) {
     try {
         Thread.sleep(1000);
     } catch (InterruptedException e) {
