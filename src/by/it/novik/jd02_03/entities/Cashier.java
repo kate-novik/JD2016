@@ -25,7 +25,6 @@ public class Cashier implements ICashier, Runnable {
         this.sm = sm;
         thCash = new Thread(this);
         thCash.setName("Касса № " + idCashier);
-        thCash.start();
     }
 
     public int getIdCashier() {

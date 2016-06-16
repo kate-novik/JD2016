@@ -2,7 +2,8 @@ package by.it.novik.jd02_03.entities;
 
 import by.it.novik.jd02_03.interfaces.IManager;
 
-import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -11,6 +12,8 @@ import java.util.List;
 public class Manager implements IManager {
     //Поле id мэнеджера
     private int idMan;
+    //Поле Executor для запуска касс
+    private ExecutorService executor;
     //Поле объекта супермаркет
     private Supermarket sm;
 
@@ -27,8 +30,13 @@ public class Manager implements IManager {
      */
     @Override
     public void createCashiers(int count) {
+        //Запускаем пул потоков касс
+        executor = Executors.newFixedThreadPool(count);
         for (int i=1; i<=count; i++) {
-            sm.getListCashiers().add(new Cashier(i,sm));
+            Cashier cashier = new Cashier(i,sm);
+            //Запускаем поток кассира
+            executor.execute(cashier);
+            sm.getListCashiers().add(cashier);
         }
     }
 
@@ -63,6 +71,7 @@ public class Manager implements IManager {
                     cashier.notify();
                 }
             }
+           executor.shutdown(); //Остановка потоков после завершения работы касс
             return true;
         }
 return false;

@@ -4,6 +4,8 @@ import by.it.novik.jd02_03.interfaces.ISupermarket;
 import by.it.novik.jd02_03.utils.RandomCounter;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Kate Novik.
@@ -15,43 +17,43 @@ public class Supermarket implements ISupermarket {
     //Поле товары в магазине
     private HashMap<Good, Integer> allGoods;
     //Поле очередь в магазине
-    private LinkedList<Buyer> queueInCashRegister;
+    private final ConcurrentLinkedQueue queueInCashRegister;
     //Поле список кассиров
     private List<Cashier> listCashiers;
     //Поле менеджер
     private Manager manager;
     //Поле выручка магазина
-    private volatile int revenueMarket;
+    private AtomicInteger revenueMarket;
     //Поле количество покупателей
-    private volatile int countBuyers;
+    private AtomicInteger countBuyers;
     //Поле количество корзинок
-    private int countBaskets;
+    private AtomicInteger countBaskets;
 
     public Supermarket() {
         this.allGoods = new HashMap<>();
-        this.queueInCashRegister = new LinkedList<>();
+        this.queueInCashRegister = new ConcurrentLinkedQueue();
         this.listCashiers = new ArrayList<>();
         this.manager = new Manager(1,this);
-        this.countBuyers = 0;
-        this.countBaskets = 0;
-        this.revenueMarket = 0;
+        this.countBuyers = new AtomicInteger(0);
+        this.countBaskets = new AtomicInteger(0);
+        this.revenueMarket = new AtomicInteger(0);
     }
 
     public Supermarket(HashMap<Good, Integer> allGoods, Manager manager, int countBaskets) {
         this.allGoods = allGoods;
-        this.countBuyers = 0;
-        this.countBaskets = countBaskets;
+        this.countBuyers = new AtomicInteger(0);
+        this.countBaskets = new AtomicInteger(0);
         this.manager = manager;
-        this.queueInCashRegister = new LinkedList<>();
+        this.queueInCashRegister = new ConcurrentLinkedQueue();
         this.listCashiers = new ArrayList<>();
     }
 
     public int getRevenueMarket() {
-        return revenueMarket;
+        return revenueMarket.get();
     }
 
-    public synchronized void setRevenueMarket(int revenueMarket) {
-        this.revenueMarket = revenueMarket;
+    public void setRevenueMarket(int revenueMarket) {
+        this.revenueMarket.set(revenueMarket);
     }
 
     public Manager getManager() {
@@ -65,18 +67,22 @@ public class Supermarket implements ISupermarket {
 
     @Override
     public int getCountBuyers() {
-        return this.countBuyers;
+        return countBuyers.get();
     }
 
     public int getCountBaskets() {
-        return this.countBaskets;
+        return countBaskets.get();
     }
 
     public void setCountBaskets(int countBaskets) {
-        this.countBaskets = countBaskets;
+        this.countBaskets.set(countBaskets);
     }
 
-    public synchronized LinkedList<Buyer> getQueueInCashRegister() {
+    /**
+     * Получение очереди покупателей
+     * @return Очередь покупателей
+     */
+    public ConcurrentLinkedQueue getQueueInCashRegister() {
         return queueInCashRegister;
     }
 
@@ -85,9 +91,7 @@ public class Supermarket implements ISupermarket {
      * @param buyer Объект покупатель типа Buyer
      */
     public void addBuyerInQueueCashRegister(Buyer buyer) {
-        synchronized (this) {
             queueInCashRegister.add(buyer);
-        }
         //Вызываем manager с проверкой на открытие касс
         manager.openCashier();
     }
@@ -96,7 +100,7 @@ public class Supermarket implements ISupermarket {
      * Удаление покупателя из очереди при освобождении кассы
      * @return Объект Buyer
      */
-    public synchronized Buyer removeBuyerFromQueueCashRegister () {
+    public Buyer removeBuyerFromQueueCashRegister () {
         Buyer b = null;
 
             Iterator<Buyer> it = queueInCashRegister.iterator();
@@ -108,7 +112,7 @@ public class Supermarket implements ISupermarket {
                 }
             }
         if (!queueInCashRegister.isEmpty()) {
-            b = queueInCashRegister.removeFirst();
+            b = (Buyer) queueInCashRegister.poll();
         }
         return b;
     }
@@ -117,28 +121,23 @@ public class Supermarket implements ISupermarket {
         return listCashiers;
     }
 
-    public void setListCashiers(List<Cashier> listCashiers) {
-        this.listCashiers = listCashiers;
-    }
-
     @Override
-    public synchronized void incrementCountOfBuyers(Buyer buyer) {
+    public void incrementCountOfBuyers(Buyer buyer) {
         if (buyer != null) {
-            this.countBuyers++;
+            countBuyers.incrementAndGet();
         }
 
     }
 
     @Override
-    public synchronized void decrementCountOfBuyers(Buyer buyer) {
+    public void decrementCountOfBuyers(Buyer buyer) {
 
         if (buyer != null) {
-                this.countBuyers--;
+                countBuyers.decrementAndGet();
         }
         System.err.println(countBuyers);
-        if (this.countBuyers == 0) {
-            boolean b = this.manager.closeCashiers();
-            System.err.println(b);
+        if (countBuyers.get() == 0) {
+           this.manager.closeCashiers();
         }
 
 
@@ -167,8 +166,8 @@ public class Supermarket implements ISupermarket {
 
     @Override
     public Basket decrementBaskets() {
-        if (countBaskets > 0) {
-            countBaskets--;
+        if (countBaskets.get() > 0) {
+            countBaskets.decrementAndGet();
             return new Basket();
         }
         return null;
@@ -187,7 +186,7 @@ public class Supermarket implements ISupermarket {
                 } else { //В случае, если каждый четвертый, то пенсионер - флаг true
                     new Buyer(getCountBuyers() + 1, this, true);//Создаем покупателя
                 }
-                countBuyers++;
+                countBuyers.incrementAndGet();
 
             }
         } else if (time > 30 && time <= 60) {
@@ -204,7 +203,7 @@ public class Supermarket implements ISupermarket {
                 } else { //В случае, если каждый четвертый, то пенсионер - флаг true
                     new Buyer(getCountBuyers() + 1, this, true);//Создаем покупателя
                 }
-                countBuyers++;
+                countBuyers.incrementAndGet();
             }
         }
     }
