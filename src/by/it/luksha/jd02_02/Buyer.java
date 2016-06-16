@@ -1,25 +1,33 @@
 package by.it.luksha.jd02_02;
 
 import java.util.HashMap;
+import java.util.Set;
+
+import static by.it.luksha.jd02_02.Utils.randInt;
+import static by.it.luksha.jd02_02.Utils.sleepIn;
 
 /**
  * Created by MMauz on 14.06.2016.
  */
-public class Buyer extends Thread implements IBuyer, IUseBasket {
+public class Buyer implements Runnable, IBuyer, IUseBasket {
     private String name;
     private HashMap<Goods, Integer> basket; //basket<товар, кол-во>
     private boolean pensioner = false;
     private Market market;
+    private boolean iWait = false;
 
     public Buyer(String name, boolean pensioner, Market market) {
         this.name = "Покупатель " + name;
         this.pensioner = pensioner;
         this.market = market;
-        start();
     }
 
     public HashMap<Goods, Integer> getBasket() {
         return basket;
+    }
+
+    public void setiWait(boolean iWait) {
+        this.iWait = iWait;
     }
 
     /**
@@ -35,14 +43,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
      */
     @Override
     public void chooseGoods() {
-        int pause = Utils.randInt(500, 2000);
+        int pause = randInt(500, 2000);
         if (this.pensioner) {pause = (int) (1.5 * pause);}
-        try {
-            Thread.sleep(pause);
-        } catch (InterruptedException e) {
-            System.out.println(this + " некорректное завершение ожидания");
+        sleepIn(pause);
+
+        int countGoods = randInt(1, 4);
+        for (int i = 0; i < countGoods; i++) {
+            putGoodsToBasket();
         }
-        putGoodsToBasket(new Goods("Молоко", 10.0), Utils.randInt(1, 4));
         System.out.println(this + " выбрал товар");
     }
 
@@ -59,35 +67,24 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
      */
     @Override
     public void takeBasket() {
-        int pause = Utils.randInt(100, 200);
+        int pause = randInt(100, 200);
         if (this.pensioner) {pause = (int) (1.5 * pause);}
-        try {
-            Thread.sleep(pause);
-        } catch (InterruptedException e) {
-            System.out.println(this + " некорректное завершение ожидания");
-        }
+        sleepIn(pause);
         this.basket = new HashMap<>();
     }
 
     /**
-     * Кладет выбранный товар в корзину покупателя
-     * @param goods товар
-     * @param count кол-во
+     * Кладет случайный товар в корзину покупателя
      */
     @Override
-    public void putGoodsToBasket(Goods goods, int count) {
-        int pause = Utils.randInt(100, 200);
+    public void putGoodsToBasket() {
+        int pause = randInt(100, 200);
         if (this.pensioner) {pause = (int) (1.5 * pause);}
-        try {
-            Thread.sleep(pause);
-        } catch (InterruptedException e) {
-            System.out.println(this + " некорректное завершение ожидания");
-        }
-        if (this.basket != null) {
-            this.basket.put(goods, count);
-        } else {
-            System.out.println(this + " возьмите корзинку");
-        }
+        sleepIn(pause);
+
+        Set setGoods = market.getSetGoods();
+        Object[] goods = setGoods.toArray(new Goods[setGoods.size()]);
+        basket.put((Goods) goods[randInt(0, goods.length-1)], randInt(1, 4));
     }
 
     /**
@@ -97,13 +94,15 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         this.market.getQueue().add(this);
         synchronized (this) {
             System.out.println(this + " встал в очередь на кассе");
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                System.out.println(this + " некорректное завершение ожидания");
+            iWait = true;
+            while (iWait) {
+                try {
+                    this.wait();
+                } catch (InterruptedException e) {
+                    System.out.println(this + " некорректное завершение ожидания");
+                }
             }
         }
-        goToOut();
     }
 
     @Override
@@ -112,6 +111,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         takeBasket();
         chooseGoods();
         goToCashier();
+        goToOut();
     }
 
     @Override

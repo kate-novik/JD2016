@@ -7,14 +7,15 @@ import java.util.*;
  */
 public class Market {
     private String name;
-    private static int counterBuyers = 0;
+    private volatile int counterBuyers = 0;
     private long deltaTime;
-    private static volatile Queue<Buyer> queue; //будет изменяться разными потоками, поэтому volatile
-    private Set<Cashier> setCashiers; //множество касс
+    private volatile Queue<Buyer> queue; //будет изменяться разными потоками, поэтому volatile
+    private ArrayList<Cashier> cashierArrayList; //множество касс
     private volatile int countWorksCashier = 0; //сколько касс работает в данный момент
-    private static Set<Goods> setGoods; //множество товаров
+    private Set<Goods> setGoods; //множество товаров
+    private volatile double bill = 0; //общая выручка магазина
 
-    public static Queue<Buyer> getQueue() {
+    public Queue<Buyer> getQueue() {
         return queue;
     }
 
@@ -22,12 +23,24 @@ public class Market {
         return countWorksCashier;
     }
 
-    public static Set<Goods> getSetGoods() {
+    public Set<Goods> getSetGoods() {
         return setGoods;
     }
 
     public Market(String name) {
         this.name = name;
+    }
+
+    public ArrayList<Cashier> getCashierArrayList() {
+        return cashierArrayList;
+    }
+
+    public void setBill(double bill) {
+        this.bill += bill;
+    }
+
+    public double getBill() {
+        return bill;
     }
 
     /**
@@ -41,8 +54,9 @@ public class Market {
             if (queue.size() < 30) {
                 int buyers = Utils.randInt(0, 2);
                 for (int i = 0; i < buyers; i++) {
-                    new Buyer(String.valueOf(counterBuyers), (Utils.randInt(1, 4) != 4) ? false : true, this);
                     counterBuyers++;
+                    Thread thread = new Thread(new Buyer(String.valueOf(counterBuyers), (Utils.randInt(1, 4) != 4) ? false : true, this));
+                    thread.start();
                 }
             } else {
                 Thread.sleep(1000); //когда достигнут предел очереди, ждем 1 секунду
@@ -61,14 +75,22 @@ public class Market {
         //создание общей очереди для покупателей маркета
         this.queue = new ArrayDeque<>();
 
-        //создание 5 касс и добавление в список касс маркета
-        setCashiers = new HashSet<>();
+        //создание 5 касс, запуск и добавление в список касс маркета
+        cashierArrayList = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
-            setCashiers.add(new Cashier(this, "Касса " + i));
+            Cashier cashier = new Cashier(this, i);
+            Thread thread = new Thread(cashier);
+            thread.start();
+            cashierArrayList.add(cashier);
         }
 
         //добавление товаров
         setGoods = new HashSet<>();
-        setGoods.add(new Goods("Молоко", 10.0));
+        setGoods.add(new Goods("Бакалея", 2.0));
+        setGoods.add(new Goods("Канцтовары", 1.2));
+        setGoods.add(new Goods("Виноводка", 3.4));
+        setGoods.add(new Goods("Галантерея", 5.6));
+        setGoods.add(new Goods("Хозтовары", 2.3));
+        setGoods.add(new Goods("Мясо", 3.2));
     }
 }

@@ -24,4 +24,27 @@ public class Utils {
 
         return randomNum;
     }
+
+    /**
+     * Засыпает поток на ms миллисекунд
+     * @param ms
+     */
+    public static void sleepIn(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            System.out.println("Ошибка ожидания");
+        }
+    }
+
+    /**
+     * Синхронизирует вывод строки в консоль
+     * @param string строка
+     */
+    public static void print(String string) {
+        synchronized (System.out) {
+            System.out.println(string);
+            System.out.flush();
+        }
+    }
 }

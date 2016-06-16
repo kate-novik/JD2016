@@ -19,4 +19,9 @@ public class Goods {
     public Double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return name + " (" + price + "р)";
+    }
 }
