@@ -35,6 +35,7 @@ public class Basket implements IBasket {
         while (it.hasNext()) {
             goodTake = it.next();
             it.remove();
+            break;
         }
     return goodTake;
     }

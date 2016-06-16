@@ -13,8 +13,7 @@ public class Manager implements IManager {
     private int idMan;
     //Поле объекта супермаркет
     private Supermarket sm;
-    //Поле для синхронизации кассиров
-    private final static Integer lockCashier = 0;
+
 
     public Manager(int idMan, Supermarket sm) {
         this.idMan = idMan;
@@ -38,32 +37,32 @@ public class Manager implements IManager {
      */
     @Override
     public void openCashier() {
-        //При появлении одного покупателя открываем кассу
-        if(sm.getQueueInCashRegister().size() == 1) {
-//            Cashier cashier = new Cashier(sm.getListCashiers().size()+1,sm);
-//            sm.getListCashiers().add(cashier);
-//            System.out.println("Менеджер открыл" + cashier.toString());
-            synchronized (lockCashier) {
-                    lockCashier.notify();
+        //При появлении одного покупателя открываем кассу или через каждые 5 появившихся покупателей в очереди открываем новую кассу
+        if(sm.getQueueInCashRegister().size() == 1 || sm.getQueueInCashRegister().size() % 5 == 0) {
+            for (Cashier cashier : sm.getListCashiers()) {
+                if (cashier.getThCash().getState() == Thread.State.WAITING) {
+                    synchronized (cashier) {
+                        cashier.cashWait = false;
+                        cashier.notify();
+                    }
+                    break;
                 }
-        } //Через каждые 5 появившихся покупателей в очереди открываем новую кассу
-            else if (sm.getQueueInCashRegister().size()>5 && (sm.getQueueInCashRegister().size() % 5 == 0)) {
-//            Cashier cashier = new Cashier(sm.getListCashiers().size()+1,sm);
-//            sm.getListCashiers().add(cashier);
-//            System.out.println("Менеджер открыл" + cashier.toString());
-            synchronized (lockCashier) {
-                lockCashier.notify();
             }
         }
-
     }
 
     /**
      * Закрытие касс в конце дня
      */
     public boolean closeCashiers() {
-        if (sm.getCountBuyers() == 0)
-        {
+        if (sm.getCountBuyers() == 0) {
+            for (Cashier cashier : sm.getListCashiers()) {
+
+                synchronized (cashier) {
+                    cashier.cashWait = false;
+                    cashier.notify();
+                }
+            }
             return true;
         }
 return false;

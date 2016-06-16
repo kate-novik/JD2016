@@ -84,8 +84,10 @@ public class Supermarket implements ISupermarket {
      * Добавление покупателя в очередь на кассу
      * @param buyer Объект покупатель типа Buyer
      */
-    public synchronized void addBuyerInQueueCashRegister(Buyer buyer) {
-        queueInCashRegister.add(buyer);
+    public void addBuyerInQueueCashRegister(Buyer buyer) {
+        synchronized (this) {
+            queueInCashRegister.add(buyer);
+        }
         //Вызываем manager с проверкой на открытие касс
         manager.openCashier();
     }
@@ -95,15 +97,20 @@ public class Supermarket implements ISupermarket {
      * @return Объект Buyer
      */
     public synchronized Buyer removeBuyerFromQueueCashRegister () {
-        Iterator<Buyer> it = queueInCashRegister.iterator();
-        while (it.hasNext()){
-            Buyer buyerP = it.next();
-            if (buyerP.isPensioner()) {
-                it.remove();
-                return buyerP;
+        Buyer b = null;
+
+            Iterator<Buyer> it = queueInCashRegister.iterator();
+            while (it.hasNext()) {
+                Buyer buyerP = it.next();
+                if (buyerP.isPensioner()) {
+                    it.remove();
+                    return buyerP;
+                }
             }
+        if (!queueInCashRegister.isEmpty()) {
+            b = queueInCashRegister.removeFirst();
         }
-        return queueInCashRegister.removeFirst();
+        return b;
     }
 
     public List<Cashier> getListCashiers() {
@@ -123,10 +130,17 @@ public class Supermarket implements ISupermarket {
     }
 
     @Override
-    public void decrementCountOfBuyers(Buyer buyer) {
+    public synchronized void decrementCountOfBuyers(Buyer buyer) {
+
         if (buyer != null) {
-            this.countBuyers--;
+                this.countBuyers--;
         }
+        System.err.println(countBuyers);
+        if (this.countBuyers == 0) {
+            boolean b = this.manager.closeCashiers();
+            System.err.println(b);
+        }
+
 
     }
 
