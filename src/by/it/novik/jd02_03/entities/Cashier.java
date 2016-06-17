@@ -93,7 +93,7 @@ public class Cashier implements ICashier, Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+//
 //            synchronized (this) {
 //                cashWait = true;
 //                sm.waitingCashiers.add(this);

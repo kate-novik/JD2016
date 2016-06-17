@@ -92,6 +92,7 @@ public class Manager implements IManager {
                 }
             }
             closeCashiers = true;
+
            executor.shutdown(); //Остановка потоков после завершения работы касс
         }
     }
