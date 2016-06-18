@@ -69,16 +69,14 @@ public class SuperMarket implements Runnable {
     }
 
     public static boolean goToQueue(Buyer buyer) {
-        return customers.add(buyer);
+        boolean succes = customers.add(buyer);
+        Utility.synchroPrintln("Размер очереди: " + customers.size());
+        return succes;
     }
 
     public static Buyer serveBuyer() {
-        if (customers.isEmpty()) {
-            return null;
-        } else {
-            Utility.synchroPrintln("Размер очереди: " + customers.size());
-            return customers.poll();
-        }
+        if (customers.isEmpty()) return null;
+        else return customers.poll();
     }
 
     private int clarifyNumberOfEntrants(int timerState, int enteringBuyers) {

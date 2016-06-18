@@ -30,7 +30,7 @@ public class Basket {
             stringBuilder.append(good.getName()).append(" = ").append(good.getPrice()).append("\n");
             summaryPrice += good.getPrice();
         }
-        stringBuilder.append("Сумма чека: ").append(summaryPrice).append("\n");
+        stringBuilder.append("Сумма чека: ").append(summaryPrice);
         return stringBuilder.toString();
     }
 }

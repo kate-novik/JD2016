@@ -36,7 +36,8 @@ public class Cashier implements Runnable {
                     Manager.servedCustomersLock.lock();
                     Manager.servedCustomers++;
                     Manager.servedCustomersLock.unlock();
-                    System.out.println(this + " закончила обсдуживание " + customer);
+                    Utility.synchroPrintln(this + " закончила обсдуживание " + customer +
+                            "\nЧек:\n" + customer.getBasket().toString());
                     customer.setWaiting(false);
                     customer.notify();
                 }

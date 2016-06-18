@@ -45,15 +45,13 @@ public class Buyer implements IBuyer, IUseBasket, Runnable {
             k = 1.5;
         }
         sleep(getTimeOut((int) (5000 * k), (int) (7000 * k)));
-        Good good = Goods.chooseOneRandomGood();
-        System.out.println(this + " выбирает " + good);
-        return good;
+        return Goods.chooseOneRandomGood();
     }
 
     @Override
     public void exitFromMarket() {
         int buyersQuantity = SuperMarket.customersQuantity.decrementAndGet();
-        synchroPrintln(this + " выходит из магазина, он купил " + showAllGoods() + "всего покупателей " + buyersQuantity + ".");
+        synchroPrintln(this + " выходит из магазина. Всего покупателей в магазине: " + buyersQuantity + ".");
     }
 
     @Override
@@ -80,7 +78,6 @@ public class Buyer implements IBuyer, IUseBasket, Runnable {
                 System.out.println("Поток был прерван во время ожидания в очереди!");
             }
         }
-        System.out.println(this + " оплатил товары в кассе.");
     }
 
     @Override
@@ -107,12 +104,12 @@ public class Buyer implements IBuyer, IUseBasket, Runnable {
         exitFromMarket();
     }
 
-    private Basket showAllGoods() {
-        return basket;
-    }
-
     public void setWaiting(boolean waiting) {
         isWaiting = waiting;
+    }
+
+    public Basket getBasket() {
+        return basket;
     }
 
     @Override
