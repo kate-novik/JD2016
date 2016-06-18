@@ -140,7 +140,7 @@ public class Supermarket implements ISupermarket {
         if (buyer != null) {
                 countBuyers.decrementAndGet();
         }
-        System.err.println(countBuyers);
+       // System.err.println(countBuyers);
         if (countBuyers.get() == 0) {
            this.manager.closeCashiers();
         }

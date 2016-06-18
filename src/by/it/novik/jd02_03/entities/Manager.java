@@ -48,7 +48,7 @@ public class Manager implements IManager {
      */
     @Override
     public void openCashier() {
-        if ((sm.getQueueInCashRegister().size() == 1 && sm.workingCashiers.size() == 0) ||
+        if ((sm.getQueueInCashRegister().size() >= 1 && sm.getQueueInCashRegister().size() < 5 && sm.workingCashiers.size() == 0) ||
                 (sm.getQueueInCashRegister().size() % 5 == 0 && sm.workingCashiers.size() < sm.getQueueInCashRegister().size() / 5 ))
         {
             for (Cashier cashier : sm.waitingCashiers) {
@@ -62,20 +62,6 @@ public class Manager implements IManager {
 
             }
         }
-
-
-        //При появлении одного покупателя открываем кассу или через каждые 5 появившихся покупателей в очереди открываем новую кассу
-//        if(sm.getQueueInCashRegister().size() == 1 || sm.getQueueInCashRegister().size() % 5 == 0) {
-//            for (Cashier cashier : sm.getListCashiers()) {
-//                if (cashier.getThCash().getState() == Thread.State.WAITING) {
-//                    synchronized (cashier) {
-//                        cashier.cashWait = false;
-//                        cashier.notify();
-//                    }
-//                    break;
-//                }
-//            }
-//        }
     }
 
     /**
@@ -87,7 +73,7 @@ public class Manager implements IManager {
             for (Cashier cashier : sm.getListCashiers()) {
 
                 synchronized (cashier) {
-                    cashier.cashWait = false;
+                    cashier.cashWait = false; //Переводим флаг ожидания кассира в false и выводим всех с ожидания
                     cashier.notifyAll();
                 }
             }

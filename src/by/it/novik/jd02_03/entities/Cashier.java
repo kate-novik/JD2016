@@ -57,6 +57,7 @@ public class Cashier implements ICashier, Runnable {
                     int pause = RandomCounter.countRandom(200, 500);
                     final Buyer buyer = sm.removeBuyerFromQueueCashRegister();
                     if (buyer != null) {
+                        //Выводим покупателя с ожидания
                         synchronized (buyer) {
                             buyer.iWait = false;
                             buyer.notify();
@@ -66,7 +67,7 @@ public class Cashier implements ICashier, Runnable {
 
 
                         int sum = 0;
-                        System.out.println(buyer.getBasket().getGoodsInBasket().size());
+                        //System.out.println(buyer.getBasket().getGoodsInBasket().size());
                         while (buyer.getBasket().getGoodsInBasket().size() != 0) {
                             Map.Entry<Good, Integer> set = buyer.getBasket().takeGoodFromBasket();
                             sum += set.getValue();
@@ -79,6 +80,7 @@ public class Cashier implements ICashier, Runnable {
                         }
                         System.out.println("");
                         System.out.println(this + " обслужила покупателя - "+ buyer);
+                        //Выводим покупателя с ожидания
                         synchronized (buyer) {
                             buyer.iWait = false;
                             buyer.notify();
@@ -93,7 +95,14 @@ public class Cashier implements ICashier, Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-//
+            //Проверка на закрытие касс
+            if (sm.getCountBuyers() == 0) {
+                if (sm.getManager().closeCashiers) {
+                    break;
+                }
+            }
+            //Ожидания команды открытия кассы от менеджера в случае появления покупателя в очереди
+            // или в случае подготовки к закрытию всех касс и завершению потоков
 //            synchronized (this) {
 //                cashWait = true;
 //                sm.waitingCashiers.add(this);
@@ -106,15 +115,14 @@ public class Cashier implements ICashier, Runnable {
 //                    }
 //                }
 //            }
-
-
+            //Проверка на закрытие касс
             if (sm.getManager().closeCashiers) {
                 break;
             }
 
         }
         while (true);
-System.out.println(this + " закрылась");
+        System.out.println(this + " закрылась");
         }
 
 
