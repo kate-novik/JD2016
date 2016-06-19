@@ -1,4 +1,4 @@
-package by.it.luksha.jd01_09;
+package by.it.luksha.jd01_09mathlab;
 
 import java.io.IOException;
 

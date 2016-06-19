@@ -1,7 +1,7 @@
-package by.it.luksha.jd01_09;
+package by.it.luksha.jd01_09mathlab;
 
 
-import by.it.luksha.jd01_09.io.Reader;
+import by.it.luksha.jd01_09mathlab.io.Reader;
 
 import java.io.IOException;
 

@@ -1,9 +1,9 @@
-package by.it.luksha.jd01_09;
+package by.it.luksha.jd01_09mathlab;
 
-import by.it.luksha.jd01_09.operations.Operation;
-import by.it.luksha.jd01_09.vars.Matrix;
-import by.it.luksha.jd01_09.vars.Scalar;
-import by.it.luksha.jd01_09.vars.Vector;
+import by.it.luksha.jd01_09mathlab.operations.Operation;
+import by.it.luksha.jd01_09mathlab.vars.Matrix;
+import by.it.luksha.jd01_09mathlab.vars.Scalar;
+import by.it.luksha.jd01_09mathlab.vars.Vector;
 
 public class Test {
 

@@ -1,9 +1,9 @@
-package by.it.luksha.jd01_09.io;
+package by.it.luksha.jd01_09mathlab.io;
 
-import by.it.luksha.jd01_09.vars.Matrix;
-import by.it.luksha.jd01_09.vars.Scalar;
-import by.it.luksha.jd01_09.vars.Var;
-import by.it.luksha.jd01_09.vars.Vector;
+import by.it.luksha.jd01_09mathlab.vars.Matrix;
+import by.it.luksha.jd01_09mathlab.vars.Scalar;
+import by.it.luksha.jd01_09mathlab.vars.Var;
+import by.it.luksha.jd01_09mathlab.vars.Vector;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

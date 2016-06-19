@@ -31,14 +31,12 @@ public class Cashier implements Runnable {
     public void run() {
         this.market.incCountWorksCashier();
         System.out.printf("%s открыта\n", this.getName());
+        boolean isWork = true;
         do {
-            if (market.getQueue().size() > 5 || this.market.getCountWorksCashier().get() < 1) {
-                //System.out.println("Человек в очереди:" + market.getQueue().size());
-                print("Человек в очереди:" + market.getQueue().size());
+            if (!market.getQueue().isEmpty()) {
                 Buyer buyer = market.getQueue().remove();
                 sleepIn(randInt(2000, 5000));
                 String check = printCheck(buyer);
-                //System.out.printf("[%s]: %s\n%s", this.name, buyer.toString(), check);
                 print(String.format("[%s]: %s\n%s", this.name, buyer.toString(), check));
                 double checkBuyer = check(buyer); //сумма чека покупателя
                 this.bill += checkBuyer; //увеличиваем сумму кассы
@@ -50,21 +48,19 @@ public class Cashier implements Runnable {
                 }
 
             } else if (market.getQueue().size() < 5) {
-                //System.out.printf("%s закрыта на перерыв\n", this.getName());
                 print(String.format("%s закрыта на перерыв", this.getName()));
                 this.market.decCountWorksCashier();
-                sleepIn(5000);
-                //System.out.printf("%s открыта после перерыва\n", this.getName());
+                sleepIn(7000);
                 print(String.format("%s открыта после перерыва", this.getName()));
                 this.market.incCountWorksCashier();
             }
-        } while (this.market.getBill() < 500);
-        this.market.closeMarket();
-
+        } while (!market.getQueue().isEmpty());
+        print(String.format("%s закрыта", this.getName()));
     }
 
     /**
      * Печатает чек покупателя
+     *
      * @param buyer покупатель
      */
     private String printCheck(Buyer buyer) {
@@ -72,7 +68,7 @@ public class Cashier implements Runnable {
         StringBuilder check = new StringBuilder();
         check.append("===========================\n");
         HashMap<Goods, Integer> basket = buyer.getBasket();
-        for (Map.Entry<Goods, Integer> pair: basket.entrySet()) {
+        for (Map.Entry<Goods, Integer> pair : basket.entrySet()) {
             Goods goods = pair.getKey();
             int count = pair.getValue();
             sumCheck += goods.getPrice() * count;
@@ -86,13 +82,14 @@ public class Cashier implements Runnable {
 
     /**
      * Считает сумму чека покупателя
+     *
      * @param buyer покупатель
      * @return сумма чека
      */
     private double check(Buyer buyer) {
         double sumCheck = 0;
         HashMap<Goods, Integer> basket = buyer.getBasket();
-        for (Map.Entry<Goods, Integer> pair: basket.entrySet()) {
+        for (Map.Entry<Goods, Integer> pair : basket.entrySet()) {
             Goods goods = pair.getKey();
             int count = pair.getValue();
             sumCheck += goods.getPrice() * count;
@@ -102,6 +99,7 @@ public class Cashier implements Runnable {
 
     /**
      * Печатает сводную информацию по кассам и маркету
+     *
      * @return строка с информацией
      */
     private String printAllCashier() {
@@ -115,16 +113,15 @@ public class Cashier implements Runnable {
         string.append("Очередь | Выручка\n"); // добавление столбцов
         int firstPosition = string.length(); // размер строки с заголовками столбцов и первая позиция для вставки значений
         //добавление пробелов в строку для вставки значений - костыль
-        for (int i = 0; i < firstPosition*2; i++) {
+        for (int i = 0; i < firstPosition * 2; i++) {
             string.insert(firstPosition, " ");
         }
 
         //вставка значений
-        string.insert(firstPosition + (number-1)*size, String.format("%.2f", this.bill)); //добавление баланса текущей кассы
-        string.insert(firstPosition + list.size()*size, String.valueOf(market.getQueue().size())); //добавление размера очереди
-        string.insert(firstPosition + list.size()*size + size, String.format("%.2f", market.getBill())); //добавление выручки маркета
+        string.insert(firstPosition + (number - 1) * size, String.format("%.2f", this.bill)); //добавление баланса текущей кассы
+        string.insert(firstPosition + list.size() * size, String.valueOf(market.getQueue().size())); //добавление размера очереди
+        string.insert(firstPosition + list.size() * size + size, String.format("%.2f", market.getBill())); //добавление выручки маркета
 
-        //System.out.println(string); //вывод строки в консоль
         return String.valueOf(string);
     }
 }

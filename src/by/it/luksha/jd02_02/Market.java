@@ -48,7 +48,7 @@ public class Market {
      */
     public void openMarket() throws InterruptedException {
         //запускаем покупателей каждую секунду, пока их кол-во < 1000
-        while (counterBuyers < 1000) {
+        while (counterBuyers < 10) {
             Thread.sleep(1000);
             //размер очереди 30, когда достигнут, ждем уменьшения очереди и запускаем новых покупателей
             if (queue.size() < 30) {

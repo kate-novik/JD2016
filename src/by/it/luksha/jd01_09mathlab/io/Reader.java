@@ -1,27 +1,26 @@
-package by.it.luksha.jd01_09.io;
+package by.it.luksha.jd01_09mathlab.io;
 
-import by.it.luksha.jd01_09.operations.Operation;
-import by.it.luksha.jd01_09.vars.Scalar;
-import by.it.luksha.jd01_09.vars.Var;
+import by.it.luksha.jd01_09mathlab.operations.Operation;
+import by.it.luksha.jd01_09mathlab.vars.Var;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static by.it.luksha.jd01_09.vars.Scalar.isScalar;
+import static by.it.luksha.jd01_09mathlab.vars.Scalar.isScalar;
 
 public class Reader {
 
     /**
      * Запускает чтение из строки
+     *
      * @throws IOException
      */
     public static void startReadConsole() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String line = reader.readLine();
-        while(!line.isEmpty())
-        {
+        while (!line.isEmpty()) {
             analysisLine(line);
             line = reader.readLine();
         }
@@ -29,21 +28,22 @@ public class Reader {
 
     /**
      * Определяет что делать с вводимой строкой
+     *
      * @param line строка
      */
-    private static void analysisLine(String line) {
+    public static void analysisLine(String line) {
         if (line.contains("(") || line.contains(")")) {
             analysisLine(calcBrackets(line));
-        }
-        else if (!isScalar(line)) {
+        } else if (!isScalar(line)) {
             analysisLine(calc(line));
-        }
-        else
+        } else {
             System.out.println(line);
+        }
     }
 
     /**
      * Считает выражение в скобках
+     *
      * @param line выражение с скобками
      * @return результат
      */
@@ -67,10 +67,11 @@ public class Reader {
 
     /**
      * Считает выражение-строку без скобок с любым кол-вом переменных
+     *
      * @param line выражение-строка
      * @return результат строка
      */
-    private static String calc(String line) {
+    public static String calc(String line) {
         //выполняет операции по приоритету *, /, +, -
         ArrayList<String> opp = Parser.toArrayOpp(line); //список всех операций в строке
         ArrayList<Var> vars = Parser.toArrayVars(line); //список всех переменнх в строке
