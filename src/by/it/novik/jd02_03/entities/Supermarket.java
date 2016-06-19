@@ -5,6 +5,7 @@ import by.it.novik.jd02_03.utils.RandomCounter;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -28,6 +29,8 @@ public class Supermarket implements ISupermarket {
     private AtomicInteger countBuyers;
     //Поле количество корзинок
     private AtomicInteger countBaskets;
+    public CopyOnWriteArrayList<Cashier> workingCashiers = new CopyOnWriteArrayList<>();
+    public CopyOnWriteArrayList<Cashier> waitingCashiers = new CopyOnWriteArrayList<>();
 
     public Supermarket() {
         this.allGoods = new HashMap<>();
@@ -93,7 +96,9 @@ public class Supermarket implements ISupermarket {
     public void addBuyerInQueueCashRegister(Buyer buyer) {
             queueInCashRegister.add(buyer);
         //Вызываем manager с проверкой на открытие касс
-        manager.openCashier();
+        synchronized (this) {
+            manager.openCashier();
+        }
     }
 
     /**
@@ -135,7 +140,7 @@ public class Supermarket implements ISupermarket {
         if (buyer != null) {
                 countBuyers.decrementAndGet();
         }
-        System.err.println(countBuyers);
+       // System.err.println(countBuyers);
         if (countBuyers.get() == 0) {
            this.manager.closeCashiers();
         }

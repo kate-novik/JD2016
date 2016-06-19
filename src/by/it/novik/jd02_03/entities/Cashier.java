@@ -1,6 +1,7 @@
 package by.it.novik.jd02_03.entities;
 
 import by.it.novik.jd02_03.interfaces.ICashier;
+import by.it.novik.jd02_03.utils.PrintCheck;
 import by.it.novik.jd02_03.utils.RandomCounter;
 
 import java.util.Map;
@@ -56,14 +57,17 @@ public class Cashier implements ICashier, Runnable {
                     int pause = RandomCounter.countRandom(200, 500);
                     final Buyer buyer = sm.removeBuyerFromQueueCashRegister();
                     if (buyer != null) {
+                        //Выводим покупателя с ожидания
                         synchronized (buyer) {
                             buyer.iWait = false;
                             buyer.notify();
                         }
                         System.out.println(this + " обслуживает покупателя - " + buyer);
                         Thread.sleep(pause);
+
+
                         int sum = 0;
-                        System.out.println(buyer.getBasket().getGoodsInBasket().size());
+                        //System.out.println(buyer.getBasket().getGoodsInBasket().size());
                         while (buyer.getBasket().getGoodsInBasket().size() != 0) {
                             Map.Entry<Good, Integer> set = buyer.getBasket().takeGoodFromBasket();
                             sum += set.getValue();
@@ -71,7 +75,12 @@ public class Cashier implements ICashier, Runnable {
                         }
                         System.out.println("Общая сумма чека " + sum);
                         sm.setRevenueMarket(sm.getRevenueMarket() + sum); //Добавим сумму в выручку магазина
+                        synchronized (PrintCheck.class) {
+                            PrintCheck.getCheck(this,sm,sum);
+                        }
+                        System.out.println("");
                         System.out.println(this + " обслужила покупателя - "+ buyer);
+                        //Выводим покупателя с ожидания
                         synchronized (buyer) {
                             buyer.iWait = false;
                             buyer.notify();
@@ -86,9 +95,18 @@ public class Cashier implements ICashier, Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            //Проверка на закрытие касс
+            if (sm.getCountBuyers() == 0) {
+                if (sm.getManager().closeCashiers) {
+                    break;
+                }
+            }
+            //Ожидания команды открытия кассы от менеджера в случае появления покупателя в очереди
+            // или в случае подготовки к закрытию всех касс и завершению потоков
 //            synchronized (this) {
 //                cashWait = true;
+//                sm.waitingCashiers.add(this);
+//                sm.workingCashiers.remove(this);
 //                while (cashWait) {
 //                    try { //ожидаем notify и iWait==false от менеджера.
 //                        this.wait();
@@ -97,15 +115,14 @@ public class Cashier implements ICashier, Runnable {
 //                    }
 //                }
 //            }
-
-
-            if (sm.getManager().closeCashiers()) {
+            //Проверка на закрытие касс
+            if (sm.getManager().closeCashiers) {
                 break;
             }
 
         }
         while (true);
-System.out.println(this + " закрылась");
+        System.out.println(this + " закрылась");
         }
 
 

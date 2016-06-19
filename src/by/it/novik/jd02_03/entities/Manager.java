@@ -16,6 +16,7 @@ public class Manager implements IManager {
     private ExecutorService executor;
     //Поле объекта супермаркет
     private Supermarket sm;
+    public boolean closeCashiers = false;
 
 
     public Manager(int idMan, Supermarket sm) {
@@ -36,7 +37,9 @@ public class Manager implements IManager {
             Cashier cashier = new Cashier(i,sm);
             //Запускаем поток кассира
             executor.execute(cashier);
+            //cashier.getThCash().start();
             sm.getListCashiers().add(cashier);
+            sm.workingCashiers.add(cashier);
         }
     }
 
@@ -45,16 +48,18 @@ public class Manager implements IManager {
      */
     @Override
     public void openCashier() {
-        //При появлении одного покупателя открываем кассу или через каждые 5 появившихся покупателей в очереди открываем новую кассу
-        if(sm.getQueueInCashRegister().size() == 1 || sm.getQueueInCashRegister().size() % 5 == 0) {
-            for (Cashier cashier : sm.getListCashiers()) {
-                if (cashier.getThCash().getState() == Thread.State.WAITING) {
+        if ((sm.getQueueInCashRegister().size() >= 1 && sm.getQueueInCashRegister().size() < 5 && sm.workingCashiers.size() == 0) ||
+                (sm.getQueueInCashRegister().size() % 5 == 0 && sm.workingCashiers.size() < sm.getQueueInCashRegister().size() / 5 ))
+        {
+            for (Cashier cashier : sm.waitingCashiers) {
                     synchronized (cashier) {
                         cashier.cashWait = false;
                         cashier.notify();
                     }
+                sm.workingCashiers.add(cashier);
+                sm.waitingCashiers.remove(cashier);
                     break;
-                }
+
             }
         }
     }
@@ -62,20 +67,23 @@ public class Manager implements IManager {
     /**
      * Закрытие касс в конце дня
      */
-    public boolean closeCashiers() {
+    @Override
+    public void closeCashiers() {
         if (sm.getCountBuyers() == 0) {
             for (Cashier cashier : sm.getListCashiers()) {
 
                 synchronized (cashier) {
-                    cashier.cashWait = false;
-                    cashier.notify();
+                    cashier.cashWait = false; //Переводим флаг ожидания кассира в false и выводим всех с ожидания
+                    cashier.notifyAll();
                 }
             }
+            closeCashiers = true;
+
            executor.shutdown(); //Остановка потоков после завершения работы касс
-            return true;
         }
-return false;
     }
+
+
 
 
 }

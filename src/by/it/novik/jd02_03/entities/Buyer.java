@@ -134,12 +134,6 @@ public class Buyer implements IBuyer, Runnable  {
                     System.out.println(this + " : некорректное завершение ожидания в очереди!");
                 }
             }
-//            try {
-//                this.wait(); //Ожидание в очереди, пока кассир не освободится
-//            }
-//            catch (InterruptedException e) {
-//                System.out.println(this + " : некорректное завершение ожидания в очереди!");
-//            }
         }
 
     }
@@ -156,12 +150,6 @@ public class Buyer implements IBuyer, Runnable  {
                     System.out.println(this + " : некорректное завершение ожидания в очереди!");
                 }
             }
-//            try {
-//                this.wait(); //Ожидание в кассе, пока кассир рассчитывает
-//            }
-//            catch (InterruptedException e) {
-//                System.out.println(this + " : некорректное завершение ожидания в кассе!");
-//            }
         }
         System.out.println(this + "оплатил товары в кассе");
     }
@@ -169,9 +157,15 @@ public class Buyer implements IBuyer, Runnable  {
     @Override
     public void exitOutMarket() {
         System.out.println(this + "вышел из магазина");
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         sm.setCountBaskets(sm.getCountBaskets()+1);
         sm.decrementCountOfBuyers(this);
-        System.err.println("count " + sm.getCountBuyers());
+        //System.err.println("count " + sm.getCountBuyers());
     }
 
     @Override
