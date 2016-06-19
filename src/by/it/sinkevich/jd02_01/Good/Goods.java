@@ -12,9 +12,10 @@ import java.util.Map;
  */
 public class Goods {
 
-    private static Map<String, Integer> goodsAndPrices = new HashMap<>();
+    private static Map<String, Integer> goodsAndPrices;
 
     static {
+        goodsAndPrices = new HashMap<>();
         goodsAndPrices.put("бухло", 1000);
         goodsAndPrices.put("закусь", 100);
         goodsAndPrices.put("запивон", 10);
