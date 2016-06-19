@@ -6,7 +6,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 import static by.it.luksha.jd02_03.Utils.randInt;
+
 
 /**
  * Created by MMauz on 14.06.2016.
@@ -46,7 +48,7 @@ public class Market {
     }
 
     public void incCountWorksCashier() {
-        this.countWorksCashier.incrementAndGet();
+        countWorksCashier.incrementAndGet();
     }
 
     public void decCountWorksCashier() {
@@ -61,30 +63,28 @@ public class Market {
      * Открывает маркет
      */
     public void openMarket() throws InterruptedException {
-        //запускаем покупателей каждую секунду, пока их кол-во < 1000
-        while (counterBuyers.get() < 1000) {
+        //запускаем покупателей каждую секунду, пока их кол-во < sizeQ
+        int sizeQ = 10;
+        while (counterBuyers.get() < sizeQ) {
             Thread.sleep(1000);
             //размер очереди 30, когда достигнут, ждем уменьшения очереди и запускаем новых покупателей
             if (queue.size() < 30) {
                 int buyers = randInt(0, 2);
                 for (int i = 0; i < buyers; i++) {
-                    //counterBuyers++;
-                    counterBuyers.incrementAndGet();
+                    //созадние нового потока-покупателя, запуск этого потока, инкрементирование счетчика покупателей
                     Thread thread = new Thread(new Buyer(String.valueOf(counterBuyers), (randInt(1, 4) == 4) ? true : false, this));
                     thread.start();
+                    counterBuyers.incrementAndGet();
                 }
             } else {
                 Thread.sleep(1000); //когда достигнут предел очереди, ждем 1 секунду
             }
         }
-    }
-
-    public void closeMarket() {
-        this.executor.shutdown();
+        //все покупатели созданы и запущены
     }
 
     public void setup() {
-        counterBuyers = new AtomicInteger(0);
+        counterBuyers = new AtomicInteger(1);
         countWorksCashier = new AtomicInteger(0);
         //создание общей очереди для покупателей маркета
         this.queue = new ConcurrentLinkedQueue<>();

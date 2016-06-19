@@ -36,7 +36,6 @@ public class Buyer implements Runnable, IBuyer, IUseBasket {
      */
     @Override
     public void enterToMarket() {
-        //System.out.println();
         print(this + " вошел в магазин");
     }
 
@@ -62,7 +61,6 @@ public class Buyer implements Runnable, IBuyer, IUseBasket {
      */
     @Override
     public void goToOut() {
-        //System.out.println(this + " вышел из магазина");
         print(this + " вышел из магазина");
     }
 
@@ -97,7 +95,6 @@ public class Buyer implements Runnable, IBuyer, IUseBasket {
     public void goToCashier() {
         this.market.getQueue().add(this);
         synchronized (this) {
-            //System.out.println(this + " встал в очередь на кассе");
             print(this + " встал в очередь на кассе");
             iWait = true;
             while (iWait) {
@@ -108,6 +105,7 @@ public class Buyer implements Runnable, IBuyer, IUseBasket {
                 }
             }
         }
+        print(this + " вышел из очереди на кассе");
     }
 
     @Override
