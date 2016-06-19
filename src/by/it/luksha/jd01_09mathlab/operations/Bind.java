@@ -1,7 +1,7 @@
-package by.it.luksha.jd01_09.operations;
+package by.it.luksha.jd01_09mathlab.operations;
 
 
-import by.it.luksha.jd01_09.vars.Var;
+import by.it.luksha.jd01_09mathlab.vars.Var;
 
 import java.util.HashMap;
 

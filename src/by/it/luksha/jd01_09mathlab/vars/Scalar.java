@@ -1,4 +1,6 @@
-package by.it.luksha.jd01_09.vars;
+package by.it.luksha.jd01_09mathlab.vars;
+
+import java.util.Locale;
 
 public class Scalar extends Var {
     /**
@@ -40,6 +42,6 @@ public class Scalar extends Var {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return String.format(Locale.ENGLISH, "%.1f", value);
     }
 }

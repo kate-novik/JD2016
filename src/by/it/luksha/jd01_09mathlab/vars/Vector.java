@@ -1,6 +1,6 @@
-package by.it.luksha.jd01_09.vars;
+package by.it.luksha.jd01_09mathlab.vars;
 
-import by.it.luksha.jd01_09.io.Parser;
+import by.it.luksha.jd01_09mathlab.io.Parser;
 
 public class Vector extends Var {
     /**
