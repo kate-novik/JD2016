@@ -1,6 +1,6 @@
 package by.it.drachyova.jd02_03;
 
-import by.it.drachyova.jd02_01.Utils;
+import by.it.drachyova.jd02_03.Utils;
 
 import java.util.HashMap;
 
