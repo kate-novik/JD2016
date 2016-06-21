@@ -143,7 +143,12 @@ class Manipulator implements IArithmeticOperation {
                     return null;
                 }
             case "mul":
-                return MultiplicationMethodContainer.multiplication(first, second);
+                try {
+                    return MultiplicationMethodContainer.multiplication(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             default:
                 return DivisionMethodContainer.division(first, second);
         }
@@ -166,7 +171,12 @@ class Manipulator implements IArithmeticOperation {
                     return null;
                 }
             case "mul":
-                return MultiplicationMethodContainer.multiplication(first, second);
+                try {
+                    return MultiplicationMethodContainer.multiplication(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             default:
                 return DivisionMethodContainer.division(first, second);
         }
@@ -202,7 +212,12 @@ class Manipulator implements IArithmeticOperation {
                     return null;
                 }
             case "mul":
-                return MultiplicationMethodContainer.multiplication(first, second);
+                try {
+                    return MultiplicationMethodContainer.multiplication(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             default:
                 return DivisionMethodContainer.division(first, second);
         }
@@ -225,7 +240,12 @@ class Manipulator implements IArithmeticOperation {
                     return null;
                 }
             case "mul":
-                return MultiplicationMethodContainer.multiplication(first, second);
+                try {
+                    return MultiplicationMethodContainer.multiplication(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             default:
                 return DivisionMethodContainer.division(first, second);
         }
