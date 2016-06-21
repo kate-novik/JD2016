@@ -3,22 +3,33 @@ package by.it.kushel.jd02_5;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+
 public class Resouses {
-    private Resouses resouses=null;
+    public static void main(String[] args) {
+
+
+    //private Resouses resouses=null;
     Locale locale;
-    ResourceBundle resouceBundle= ResourceBundle.getBundle("by.it.kushel.jd02_05.Messages");
-    public Resouses getInstans(){
-        if (resouses==null)
+    Locale loc1 = new Locale("ru","RU");
+    ResourceBundle resouceBundle= ResourceBundle.getBundle("by.it.kushel.jd02_5.Messages", loc1);
+
+    String computerButtonLabel = resouceBundle.getString("helloMessage") ;
+    System.out.println( computerButtonLabel);
+
+   /* public Resouses getInstans(){
+        if (resouses!=null)
             resouses=new Resouses();
         return resouses;
     }
     private void   setLocale(Locale locale){
         this.locale=locale;
-    }
-    public Resouses getInstans(Locale locale){
+    }*/
+/*    public resourses getInstans(Locale locale){
         this.locale=locale;
-        return  resouses;
-        System.out.println(res.getString "helloMessage");
-    }
+        System.out.println(resouceBundle.getString("helloMessage"));
+        return resouses;
+    }*/
 
 }
+}
+
