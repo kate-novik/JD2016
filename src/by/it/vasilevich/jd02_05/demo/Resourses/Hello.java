@@ -1,7 +1,6 @@
 package by.it.vasilevich.jd02_05.demo.Resourses;
 
 
-import java.net.SocketPermission;
 import java.util.Locale;
 
 public class Hello {
