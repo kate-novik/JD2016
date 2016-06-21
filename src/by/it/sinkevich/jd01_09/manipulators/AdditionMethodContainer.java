@@ -34,7 +34,7 @@ class AdditionMethodContainer {
 
     static MathLabVector addition(MathLabVector vector1, MathLabVector vector2) throws MathLabException {
         if (vector1.getSize() != vector2.getSize()) {
-            throw new MathLabException("Недопустимый размер векторов! Перемножать можно только векторы одинаковой длины!");
+            throw new MathLabException("Недопустимый размер векторов! Складывать можно только векторы одинаковой длины!");
         }
         Double[] array1 = vector1.getValue();
         Double[] array2 = vector2.getValue();
