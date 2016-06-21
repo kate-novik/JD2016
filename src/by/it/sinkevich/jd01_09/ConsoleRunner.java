@@ -2,6 +2,7 @@ package by.it.sinkevich.jd01_09;
 
 import by.it.sinkevich.jd01_09.manipulators.ExpressionSolver;
 import by.it.sinkevich.jd01_09.parser.Parser;
+import by.it.sinkevich.jd01_09.variables.MathLabVariable;
 import by.it.sinkevich.jd01_09.variables.VariablesStorage;
 
 import java.io.BufferedReader;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Основной класс, из которого стартует прорамма, используется для тестирования
+ * Основной класс, из которого стартует прорамма
  *
  * @author Sinkevich Denis
  */
@@ -19,6 +20,7 @@ public class ConsoleRunner {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String line = reader.readLine();
+        ExpressionSolver solver = new ExpressionSolver();
         while (!(line.equals("-exit") || line.equals(""))) {
             if (line.equals("printvar")) {
                 VariablesStorage.printVariables();
@@ -30,7 +32,8 @@ public class ConsoleRunner {
                 line = reader.readLine();
                 continue;
             }
-            new ExpressionSolver().solveExpression(Parser.parseLine(line));
+            MathLabVariable variable = solver.solveExpression(Parser.parseLine(line));
+            System.out.println(variable);
             line = reader.readLine();
         }
     }

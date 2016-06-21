@@ -162,7 +162,20 @@ public class MathLabMatrix extends MathLabVariable {
 
         MathLabMatrix that = (MathLabMatrix) o;
 
-        return toString().equals(that.toString());
+        if (getRows() != that.getRows() || getColumns() != that.getColumns()) return false;
+
+        boolean isEqual = true;
+        Double[][] thatValue = that.getValue();
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[i].length; j++) {
+                isEqual = value[i][j] - thatValue[i][j] < 0.00001;
+                if (!isEqual) {
+                    break;
+                }
+            }
+        }
+
+        return isEqual;
     }
 
     @Override
