@@ -126,7 +126,17 @@ public class MathLabVector extends MathLabVariable {
 
         MathLabVector that = (MathLabVector) o;
 
-        return toString().equals(that.toString());
+        if (getSize() != that.getSize()) return false;
+
+        boolean isEqual = true;
+        Double[] thatValue = that.getValue();
+        for (int i = 0; i < value.length; i++) {
+            isEqual = value[i] - thatValue[i] < 0.00001;
+            if (!isEqual) {
+                break;
+            }
+        }
+        return isEqual;
     }
 
     @Override

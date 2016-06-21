@@ -93,7 +93,7 @@ public class MathLabFloat extends MathLabVariable {
 
         MathLabFloat that = (MathLabFloat) o;
 
-        return toString().equals(that.toString());
+        return value - that.getValue() < 0.00001;
     }
 
     @Override
