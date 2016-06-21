@@ -136,7 +136,12 @@ class Manipulator implements IArithmeticOperation {
                     return null;
                 }
             case "sub":
-                return SubtractionMethodContainer.subtraction(first, second);
+                try {
+                    return SubtractionMethodContainer.subtraction(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -154,7 +159,12 @@ class Manipulator implements IArithmeticOperation {
                     return null;
                 }
             case "sub":
-                return SubtractionMethodContainer.subtraction(first, second);
+                try {
+                    return SubtractionMethodContainer.subtraction(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -185,7 +195,12 @@ class Manipulator implements IArithmeticOperation {
                     return null;
                 }
             case "sub":
-                return SubtractionMethodContainer.subtraction(first, second);
+                try {
+                    return SubtractionMethodContainer.subtraction(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
@@ -203,7 +218,12 @@ class Manipulator implements IArithmeticOperation {
                     return null;
                 }
             case "sub":
-                return SubtractionMethodContainer.subtraction(first, second);
+                try {
+                    return SubtractionMethodContainer.subtraction(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "mul":
                 return MultiplicationMethodContainer.multiplication(first, second);
             default:
