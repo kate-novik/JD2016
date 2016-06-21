@@ -108,7 +108,7 @@ public class MathLabVector extends MathLabVariable {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{");
-        Formatter formatter = new Formatter(stringBuilder, Locale.ENGLISH);
+        Formatter formatter = new Formatter(stringBuilder, Locale.US);
         for (int i = 0; i < value.length; i++) {
             if (i != value.length - 1) {
                 formatter.format("% 9.2f,", value[i]);
@@ -119,4 +119,18 @@ public class MathLabVector extends MathLabVariable {
         return stringBuilder.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MathLabVector that = (MathLabVector) o;
+
+        return toString().equals(that.toString());
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
 }

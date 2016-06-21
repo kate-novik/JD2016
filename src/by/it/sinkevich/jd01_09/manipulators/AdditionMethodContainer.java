@@ -1,5 +1,6 @@
 package by.it.sinkevich.jd01_09.manipulators;
 
+import by.it.sinkevich.jd01_09.exceptions.MathLabException;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
 import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
 import by.it.sinkevich.jd01_09.variables.MathLabVariable;
@@ -31,10 +32,9 @@ class AdditionMethodContainer {
         return new MathLabVector(result);
     }
 
-    static MathLabVector addition(MathLabVector vector1, MathLabVector vector2) {
+    static MathLabVector addition(MathLabVector vector1, MathLabVector vector2) throws MathLabException {
         if (vector1.getSize() != vector2.getSize()) {
-            System.out.println("Сложение векторов невозможно, так как они разного размера!");
-            return null;
+            throw new MathLabException("Недопустимый размер векторов! Перемножать можно только векторы одинаковой длины!");
         }
         Double[] array1 = vector1.getValue();
         Double[] array2 = vector2.getValue();
@@ -45,9 +45,8 @@ class AdditionMethodContainer {
         return new MathLabVector(result);
     }
 
-    static MathLabVariable addition(MathLabVector vector, MathLabMatrix matrix) {
-        System.out.println("Сложение матрицы и вектора невозможно!");
-        return null;
+    static MathLabVariable addition(MathLabVector vector, MathLabMatrix matrix) throws MathLabException {
+        throw new MathLabException("Недопустимая операция! Сложение вектора и матрицы невозможно!");
     }
 
     static MathLabMatrix addition(MathLabMatrix matrix, MathLabFloat aFloat) {
@@ -60,21 +59,19 @@ class AdditionMethodContainer {
         return new MathLabMatrix(result);
     }
 
-    static MathLabVariable addition(MathLabMatrix matrix, MathLabVector vector) {
-        System.out.println("Сложение матрицы и вектора невозможно!");
-        return null;
+    static MathLabVariable addition(MathLabMatrix matrix, MathLabVector vector) throws MathLabException {
+        throw new MathLabException("Недопустимая операция! Сложение матрицы и вектора невозможно!");
     }
 
-    static MathLabMatrix addition(MathLabMatrix matrix1, MathLabMatrix matrix2) {
+    static MathLabMatrix addition(MathLabMatrix matrix1, MathLabMatrix matrix2) throws MathLabException {
         if (matrix1.getRows() != matrix2.getRows() || matrix1.getColumns() != matrix2.getColumns()) {
-            System.out.println("Сложение матриц невозможно, так как они разного размера!");
-            return null;
+            throw new MathLabException("Недопустимый размер матриц! Складывать можно только матрицы одинакового размера!");
         }
         Double[][] temp1 = matrix1.getValue();
         Double[][] temp2 = matrix2.getValue();
         Double[][] result = new Double[temp1.length][temp1[0].length];
         for (int row = 0; row < result.length; row++) {
-            for (int col = 0; col < result.length; col++) {
+            for (int col = 0; col < result[row].length; col++) {
                 result[row][col] = temp1[row][col] + temp2[row][col];
             }
         }
