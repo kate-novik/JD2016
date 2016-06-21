@@ -41,6 +41,6 @@ public class Runner {
             System.out.println("Некорректное завершение ожидания в main!");
         }
         //Запись товаров из HashMap в файл
-        //InOut.outputWrite(sm);
+        //Input.outputWrite(sm);
     }
 }
