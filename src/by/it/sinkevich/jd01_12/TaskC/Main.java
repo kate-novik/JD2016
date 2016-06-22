@@ -3,7 +3,7 @@ package by.it.sinkevich.jd01_12.TaskC;
 import java.util.Set;
 
 /**
- * Main class for testing tasks №1, №2, №3
+ * VariantB1 class for testing tasks №1, №2, №3
  *
  * @author Sinkevich Denis
  */

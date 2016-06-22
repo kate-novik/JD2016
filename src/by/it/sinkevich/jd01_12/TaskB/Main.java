@@ -1,7 +1,7 @@
 package by.it.sinkevich.jd01_12.TaskB;
 
 /**
- * Main class for testing tasks N1, N2.
+ * VariantB1 class for testing tasks N1, N2.
  *
  * @author Sinkevich Denis
  */

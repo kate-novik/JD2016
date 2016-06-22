@@ -12,7 +12,7 @@ package by.it.kust.jd01_13.TaskB;
  */
 public class ExceptionsRun {
     public static void main(String[] args) {
-        System.out.println("Начало Main.");
+        System.out.println("Начало VariantB1.");
         Methods run = new Methods();
         try {
             run.firstMethod();
@@ -22,6 +22,6 @@ public class ExceptionsRun {
         } finally {
             System.out.println("Блок finally в main.");
         }
-        System.out.println("Конец Main.");
+        System.out.println("Конец VariantB1.");
     }
 }
