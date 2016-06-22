@@ -22,5 +22,8 @@ public class i18n_02_num {
         // преобразование числа из германского во французский стандарт
         String sFr = nfFr.format(iGe);
         System.out.println("\nUs " + sUs + "\nFr " + sFr);
+
+
+
     }
 }
