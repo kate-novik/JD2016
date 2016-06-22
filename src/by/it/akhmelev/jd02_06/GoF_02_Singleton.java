@@ -19,7 +19,9 @@ public class GoF_02_Singleton {
         return localInstance; //возврат
     }
     public static void main(String[ ] args) {
-        System.out.print(new GoF_02_Singleton());
+        System.out.println(GoF_02_Singleton.getInstance());
+        System.out.println(GoF_02_Singleton.getInstance());
+        System.out.println(GoF_02_Singleton.getInstance());
     }
 
 }
