@@ -14,8 +14,11 @@ public class GoF_01_Singleton {
         }
         return instance;
     }
+
     public static void main(String[ ] args) {
-        System.out.print(new GoF_01_Singleton());
+        System.out.println(GoF_01_Singleton.getInstance());
+        System.out.println(GoF_01_Singleton.getInstance());
+        System.out.println(GoF_01_Singleton.getInstance());
     }
 
 }
