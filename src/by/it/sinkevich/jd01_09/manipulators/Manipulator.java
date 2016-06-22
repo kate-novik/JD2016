@@ -1,5 +1,6 @@
 package by.it.sinkevich.jd01_09.manipulators;
 
+import by.it.sinkevich.jd01_09.exceptions.MathLabException;
 import by.it.sinkevich.jd01_09.operations.IArithmeticOperation;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
 import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
@@ -11,7 +12,7 @@ import by.it.sinkevich.jd01_09.variables.MathLabVector;
  *
  * @author Sinkevich Denis
  */
-public class Manipulator implements IArithmeticOperation {
+class Manipulator implements IArithmeticOperation {
 
     @Override
     public MathLabVariable addition(MathLabVariable first, MathLabVariable second) {
@@ -128,11 +129,26 @@ public class Manipulator implements IArithmeticOperation {
     private MathLabVariable chooseOperation(MathLabVector first, MathLabVector second, String typeOfOperation) {
         switch (typeOfOperation) {
             case "add":
-                return AdditionMethodContainer.addition(first, second);
+                try {
+                    return AdditionMethodContainer.addition(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "sub":
-                return SubtractionMethodContainer.subtraction(first, second);
+                try {
+                    return SubtractionMethodContainer.subtraction(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "mul":
-                return MultiplicationMethodContainer.multiplication(first, second);
+                try {
+                    return MultiplicationMethodContainer.multiplication(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             default:
                 return DivisionMethodContainer.division(first, second);
         }
@@ -141,11 +157,26 @@ public class Manipulator implements IArithmeticOperation {
     private MathLabVariable chooseOperation(MathLabVector first, MathLabMatrix second, String typeOfOperation) {
         switch (typeOfOperation) {
             case "add":
-                return AdditionMethodContainer.addition(first, second);
+                try {
+                    return AdditionMethodContainer.addition(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "sub":
-                return SubtractionMethodContainer.subtraction(first, second);
+                try {
+                    return SubtractionMethodContainer.subtraction(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "mul":
-                return MultiplicationMethodContainer.multiplication(first, second);
+                try {
+                    return MultiplicationMethodContainer.multiplication(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             default:
                 return DivisionMethodContainer.division(first, second);
         }
@@ -167,11 +198,26 @@ public class Manipulator implements IArithmeticOperation {
     private MathLabVariable chooseOperation(MathLabMatrix first, MathLabVector second, String typeOfOperation) {
         switch (typeOfOperation) {
             case "add":
-                return AdditionMethodContainer.addition(first, second);
+                try {
+                    return AdditionMethodContainer.addition(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "sub":
-                return SubtractionMethodContainer.subtraction(first, second);
+                try {
+                    return SubtractionMethodContainer.subtraction(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "mul":
-                return MultiplicationMethodContainer.multiplication(first, second);
+                try {
+                    return MultiplicationMethodContainer.multiplication(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             default:
                 return DivisionMethodContainer.division(first, second);
         }
@@ -180,11 +226,26 @@ public class Manipulator implements IArithmeticOperation {
     private MathLabVariable chooseOperation(MathLabMatrix first, MathLabMatrix second, String typeOfOperation) {
         switch (typeOfOperation) {
             case "add":
-                return AdditionMethodContainer.addition(first, second);
+                try {
+                    return AdditionMethodContainer.addition(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "sub":
-                return SubtractionMethodContainer.subtraction(first, second);
+                try {
+                    return SubtractionMethodContainer.subtraction(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             case "mul":
-                return MultiplicationMethodContainer.multiplication(first, second);
+                try {
+                    return MultiplicationMethodContainer.multiplication(first, second);
+                } catch (MathLabException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
             default:
                 return DivisionMethodContainer.division(first, second);
         }

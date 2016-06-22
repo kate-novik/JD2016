@@ -137,7 +137,7 @@ public class MathLabMatrix extends MathLabVariable {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{{");
-        Formatter formatter = new Formatter(stringBuilder, Locale.ENGLISH);
+        Formatter formatter = new Formatter(stringBuilder, Locale.US);
         for (int rows = 0; rows < value.length; rows++) {
             for (int cols = 0; cols < value[rows].length; cols++) {
                 if (cols != value[rows].length - 1) {
@@ -153,5 +153,33 @@ public class MathLabMatrix extends MathLabVariable {
             }
         }
         return stringBuilder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MathLabMatrix that = (MathLabMatrix) o;
+
+        if (getRows() != that.getRows() || getColumns() != that.getColumns()) return false;
+
+        boolean isEqual = true;
+        Double[][] thatValue = that.getValue();
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[i].length; j++) {
+                isEqual = value[i][j] - thatValue[i][j] < 0.00001;
+                if (!isEqual) {
+                    break;
+                }
+            }
+        }
+
+        return isEqual;
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
     }
 }

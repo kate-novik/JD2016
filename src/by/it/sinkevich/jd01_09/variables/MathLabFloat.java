@@ -2,6 +2,8 @@ package by.it.sinkevich.jd01_09.variables;
 
 import by.it.sinkevich.jd01_09.parser.Patterns;
 
+import java.util.Locale;
+
 /**
  * Этот класс описывает переменную Матлаб типа скаляр. Представляется в виде числа с дробной частью,
  * целые числа переводятся в дробные. Содердит основные методы для создания этой переменной,
@@ -81,6 +83,22 @@ public class MathLabFloat extends MathLabVariable {
      */
     @Override
     public String toString() {
-        return value.toString();
+        return String.format(Locale.US, "% 9.2f", value);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MathLabFloat that = (MathLabFloat) o;
+
+        return value - that.getValue() < 0.00001;
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
+
 }

@@ -1,5 +1,6 @@
 package by.it.sinkevich.jd01_09.manipulators;
 
+import by.it.sinkevich.jd01_09.exceptions.MathLabException;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
 import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
 import by.it.sinkevich.jd01_09.variables.MathLabVariable;
@@ -38,10 +39,9 @@ class SubtractionMethodContainer {
         return new MathLabVector(result);
     }
 
-    static MathLabVector subtraction(MathLabVector vector1, MathLabVector vector2) {
+    static MathLabVector subtraction(MathLabVector vector1, MathLabVector vector2) throws MathLabException {
         if (vector1.getSize() != vector2.getSize()) {
-            System.out.println("Вычитание векторов невозможно, так как они разного размера!");
-            return null;
+            throw new MathLabException("Недопустимый размер векторов! Вычитать можно только векторы одинаковой длины!");
         }
         Double[] array1 = vector1.getValue();
         Double[] array2 = vector2.getValue();
@@ -52,9 +52,8 @@ class SubtractionMethodContainer {
         return new MathLabVector(result);
     }
 
-    static MathLabVariable subtraction(MathLabVector vector, MathLabMatrix matrix) {
-        System.out.println("Вычитание матрицы из вектора невозможно!");
-        return null;
+    static MathLabVariable subtraction(MathLabVector vector, MathLabMatrix matrix) throws MathLabException {
+        throw new MathLabException("Недопустимая операция! Вычитание матрицы из вектора невозможно!");
     }
 
     static MathLabMatrix subtraction(MathLabMatrix matrix, MathLabFloat aFloat) {
@@ -67,21 +66,19 @@ class SubtractionMethodContainer {
         return new MathLabMatrix(result);
     }
 
-    static MathLabVariable subtraction(MathLabMatrix matrix, MathLabVector vector) {
-        System.out.println("Вычитание вектора из матрицы невозможно!");
-        return null;
+    static MathLabVariable subtraction(MathLabMatrix matrix, MathLabVector vector) throws MathLabException {
+        throw new MathLabException("Недопустимая операция! Вычитание вектора из матрицы невозможно!");
     }
 
-    static MathLabMatrix subtraction(MathLabMatrix matrix1, MathLabMatrix matrix2) {
+    static MathLabMatrix subtraction(MathLabMatrix matrix1, MathLabMatrix matrix2) throws MathLabException {
         if (matrix1.getRows() != matrix2.getRows() || matrix1.getColumns() != matrix2.getColumns()) {
-            System.out.println("Вычитание матриц невозможно, так как они разного размера!");
-            return null;
+            throw new MathLabException("Недопустимый размер матриц! Вычитать можно только матрицы одинакового размера!");
         }
         Double[][] temp1 = matrix1.getValue();
         Double[][] temp2 = matrix2.getValue();
         Double[][] result = new Double[temp1.length][temp1[0].length];
         for (int row = 0; row < result.length; row++) {
-            for (int col = 0; col < result.length; col++) {
+            for (int col = 0; col < result[row].length; col++) {
                 result[row][col] = temp1[row][col] - temp2[row][col];
             }
         }
