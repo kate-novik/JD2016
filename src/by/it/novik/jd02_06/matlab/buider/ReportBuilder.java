@@ -1,13 +1,20 @@
 package by.it.novik.jd02_06.matlab.buider;
 
+import java.io.PrintWriter;
+
 /**
  * Created by Kate Novik.
  */
 public abstract class ReportBuilder {
-    ReportOperations reportOperations = new ReportOperations();
-    abstract void buildHeader(String header);
-    abstract void buildStartTime ();
-    abstract void BuildEndTime();
-    abstract void buildOperation(String operation);
+
+    protected PrintWriter printWriter = ReportOperations.getInstance();
+
+    public void buildHeader(String header){
+        printWriter.println(header);
+    }
+
+    void buildStartTime (){  }
+    void BuildEndTime(){ }
+    void buildOperation(String operation){  }
 
 }
