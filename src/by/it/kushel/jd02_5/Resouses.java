@@ -1,23 +1,39 @@
 package by.it.kushel.jd02_5;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 
 public class Resouses {
-    public static void main(String[] args) {
 
 
     //private Resouses resouses=null;
     Locale locale;
-    Locale loc1 = new Locale("ru","RU");
-    ResourceBundle resouceBundle= ResourceBundle.getBundle("by.it.kushel.jd02_5.Messages", loc1);
 
-    String computerButtonLabel = resouceBundle.getString("helloMessage") ;
-    System.out.println( computerButtonLabel);
+    public void greeting() {
+        Locale locale = new Locale("en", "US");
+        ResourceBundle resouceBundle = ResourceBundle.getBundle("by.it.kushel.jd02_5.Messages", locale);
+        String computerButtonLabel = resouceBundle.getString("helloMessage");
+        System.out.println(computerButtonLabel);
+        DateFormat fmt = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(fmt.format(date));
+    }
 
-   /* public Resouses getInstans(){
-        if (resouses!=null)
+    public void greeting(Locale locale) {
+        this.locale = locale;
+        ResourceBundle resouceBundle = ResourceBundle.getBundle("by.it.kushel.jd02_5.Messages", locale);
+        String computerButtonLabel = resouceBundle.getString("helloMessage");
+        System.out.println(computerButtonLabel);
+        DateFormat fmt = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(fmt.format(date));
+    }
+
+   /* public resourses Resouses getInstans(){
+        if (resouses==null)
             resouses=new Resouses();
         return resouses;
     }
@@ -31,5 +47,5 @@ public class Resouses {
     }*/
 
 }
-}
+
 
