@@ -18,7 +18,7 @@ public class RunMatLab {
 
         //Запускаем поток логирования ошибок
         Thread th = new Thread(Logger.getInstance());
-        th.setDaemon(true);
+        //th.setDaemon(true);
         th.start();
 
         InOutImpl inout = new InOutImpl();
@@ -27,7 +27,7 @@ public class RunMatLab {
         String vec = "{1,2,3}";
         String m = "{{1,2,3},{4,5,6},{7,8,9}}";
         String d = "26.2";
-        Logger.getInstance().setException("one");
+        //Logger.getInstance().setException("one");
 
         //Читаем переменные с файла
         WorkWithFile.readVarsFromFile();
@@ -36,7 +36,7 @@ public class RunMatLab {
         //Выводим названия переменных и их значения с сортировкой по названию
         PrintValues.sortVars();
 
-
+        //Logger.getInstance().setException("two");
 
         // Операции со скалярными величинами
         System.out.println("Операции со скаларной величиной");
@@ -138,6 +138,14 @@ public class RunMatLab {
             System.err.println("Общая ошибка" + e);
             Logger.getInstance().setException(e.getMessage());
         }
+
+//        Logger.getInstance().setException("three");
+//
+//        Logger.getInstance().setException("45");
+//
+//        Logger.getInstance().setException("50");
+
+        Logger.getInstance().isEnd = true;
 
     }
 
