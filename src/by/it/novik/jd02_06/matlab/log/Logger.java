@@ -10,9 +10,9 @@ public class Logger implements Runnable{
     //Поле объекта Logger Singleton
     private static Logger instance;
     //Поле ошибки для записи в файл
-    private static String exception = null;
+    private static volatile String exception = null;
     //Флаг окончания потока
-   // public static boolean isEnd = false;
+   public static boolean isEnd = false;
 
     private Logger() {}
 
@@ -31,7 +31,7 @@ public class Logger implements Runnable{
      * Установить значение поля ошибка
      * @param exception Значение ошибки в виде строки
      */
-    public static void setException(String exception) {
+    public static synchronized void setException(String exception) {
         Logger.exception = exception;
     }
 
@@ -45,21 +45,28 @@ public class Logger implements Runnable{
     public static void writeLogInFile () {
 
             BufferedWriter bf = null;
+        do {
             try {
-                do {
-                    if (exception != null) {
-                        bf = CreateWriter.createWriter();
-                        String line = DateTime.getDateTime().concat(" ").concat(exception).concat("\n");
-                        bf.append(line);
-                        bf.flush();
-                        exception = null;
+                    synchronized (Logger.class) {
+                        if (exception != null) {
+                            bf = CreateWriter.createWriter();
+                            String line = DateTime.getDateTime().concat(" ").concat(exception).concat("\n");
+                            bf.append(line);
+                            bf.flush();
+                            exception = null;
+                        }
                     }
-                }
-                while (true);
+                    if (isEnd && exception == null) {
+                        break;
+                    }
+
 
             } catch (IOException e) {
                 System.out.println("Ошибка записи!" + e);
-            } finally {
+            }
+        }
+        while (true);
+
                 if (bf != null) {
                     try {
                         bf.close();
@@ -67,7 +74,7 @@ public class Logger implements Runnable{
                         System.out.println("Ошибка закрытия!" + e);
                     }
                 }
-            }
+
 
 
     }
