@@ -1,5 +1,4 @@
 package by.it.kushel.jd01_08;
-import static java.lang.Math.*;
 /**
  * Created by Diomn on 21.05.2016.
  */
@@ -70,7 +69,7 @@ public class Calculator implements IOperations {
         return null;
     }
 
-    private class DoubleOperations implements IOperations{
+    public class DoubleOperations implements IOperations{
         @Override
         public  IVariable add(IVariable var1, IVariable var2) {
 
