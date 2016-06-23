@@ -1,24 +1,19 @@
 package by.it.novik.jd02_06.matlab.buider;
 
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
- * Created by Катя.
+ * Created by Kate Novik.
  */
 public class BuildThirt extends ReportBuilder {
-    @Override
-    void buildHeader(String header) {
-        super.reportOperations.setHeader(header);
-    }
 
-    @Override
-    void buildStartTime() {
-        super.reportOperations.setStartTime();
-    }
-
-    @Override
-    void buildOperation(String operation) {  }
 
     @Override
     void BuildEndTime() {
-        super.reportOperations.setEndTime();
+        DateFormat end = DateFormat.getTimeInstance(DateFormat.FULL,new Locale("be","BY"));
+        String endTime = end.format(new Date());
+        printWriter.println(endTime);
     }
 }
