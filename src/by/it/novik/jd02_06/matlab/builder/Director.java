@@ -1,4 +1,4 @@
-package by.it.novik.jd02_06.matlab.buider;
+package by.it.novik.jd02_06.matlab.builder;
 
 /**
  * Created by Kate Novik.

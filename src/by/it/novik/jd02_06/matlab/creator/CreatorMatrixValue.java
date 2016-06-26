@@ -11,4 +11,9 @@ public class CreatorMatrixValue extends CreatorVariables {
     public MatrixValue createVariable(String var) {
         return new MatrixValue(var);
     }
+
+    @Override
+    public MatrixValue createVariable() {
+        return new MatrixValue();
+    }
 }

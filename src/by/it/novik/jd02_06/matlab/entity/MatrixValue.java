@@ -16,6 +16,10 @@ public class MatrixValue extends Variable {
     // Поле значение переменной
     private double[][] valueM;
 
+    public MatrixValue() {
+        this.valueM = null;
+    }
+
     public MatrixValue(double [][] valueM) {
         this.valueM = new double [valueM.length] [valueM.length];
         this.valueM = valueM.clone();
@@ -39,12 +43,20 @@ public class MatrixValue extends Variable {
     }
 
     /**
-     * Перегрузка метода setValue - установить значение поля valueV
+     * Перегрузка метода setValue - установить значение поля valueM
      * @param valueM Массив double[][]
      */
     public void setValue(double[][] valueM) {
         this.valueM = new double [valueM.length][valueM.length];
         this.valueM = valueM.clone();
+    }
+
+    /**
+     * Создание матрицы определенной длины
+     * @param length длина матрицы
+     */
+    public void setValue (int length) {
+        this.valueM = new double [length] [length];
     }
 
     /**
