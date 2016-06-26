@@ -1,4 +1,4 @@
-package by.it.novik.jd02_06.matlab.buider;
+package by.it.novik.jd02_06.matlab.builder;
 
 import java.io.PrintWriter;
 
@@ -10,7 +10,8 @@ public abstract class ReportBuilder {
     protected PrintWriter printWriter = ReportOperations.getInstance();
 
     public void buildHeader(String header){
-        printWriter.println(header);
+            printWriter.println(header);
+
     }
 
     void buildStartTime (){  }

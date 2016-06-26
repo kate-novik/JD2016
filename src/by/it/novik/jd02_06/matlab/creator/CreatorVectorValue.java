@@ -11,4 +11,9 @@ public class CreatorVectorValue extends CreatorVariables {
     public VectorValue createVariable(String var) {
         return new VectorValue(var);
     }
+
+    @Override
+    public VectorValue createVariable() {
+        return new VectorValue();
+    }
 }

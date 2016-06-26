@@ -1,6 +1,8 @@
 package by.it.novik.jd02_06.matlab.utils;
 
 
+import by.it.novik.jd02_06.matlab.builder.BuilderSecond;
+import by.it.novik.jd02_06.matlab.builder.Director;
 import by.it.novik.jd02_06.matlab.entity.Variable;
 import by.it.novik.jd02_06.matlab.exceptions.ErrorOperationsException;
 import by.it.novik.jd02_06.matlab.operations.*;
@@ -122,6 +124,9 @@ public class Calculate {
      * @return Результат операции типа Variable
      */
     private Variable switchOperation (String operation, Variable var1, Variable var2) throws ErrorOperationsException {
+        Director director = new Director();
+        director.setReportBuilder(new BuilderSecond());
+        director.setReportBuilder(new BuilderSecond());
         AddOperations operAdd = new AddOperations();
         SubOperations operSub = new SubOperations();
         MultiOperations operMulti = new MultiOperations();
@@ -130,18 +135,42 @@ public class Calculate {
         switch (operation) {
             case " + ": {
                 result = operAdd.addition(var1, var2);
+                String lineOp = "Операция сложения " + var1.toString() + ", " + var2.toString();
+                if (result!=null) {
+                    lineOp = lineOp + ". Результат " + result.toString();
+                }
+                else {lineOp = lineOp  + ". Операция невозможна.";}
+                    director.build("Отчет об операциях", lineOp);
                 break;
             }
             case " - ": {
                 result = operSub.subtraction (var1, var2);
+                String lineOp = "Операция вычитания " + var1.toString() + ", " + var2.toString();
+                if (result!=null) {
+                    lineOp = lineOp + ". Результат " + result.toString();
+                }
+                else {lineOp = lineOp  + ". Операция невозможна.";}
+                director.build("Отчет об операциях", lineOp);
                 break;
             }
             case " * ": {
                 result = operMulti.multiplication(var1, var2);
+                String lineOp = "Операция умножения " + var1.toString() + ", " + var2.toString();
+                if (result!=null) {
+                    lineOp = lineOp + ". Результат " + result.toString();
+                }
+                else {lineOp = lineOp  + ". Операция невозможна.";}
+                director.build("Отчет об операциях", lineOp);
                 break;
             }
             case " / ": {
                 result = operDiv.division(var1, var2);
+                String lineOp = "Операция деления " + var1.toString() + ", " + var2.toString();
+                if (result!=null) {
+                    lineOp = lineOp + ". Результат " + result.toString();
+                }
+                else {lineOp = lineOp  + ". Операция невозможна.";}
+                    director.build("Отчет об операциях", lineOp);
                 break;
             }
         }
