@@ -1,5 +1,8 @@
 package by.it.novik.jd02_06.matlab;
 
+import by.it.novik.jd02_06.matlab.builder.BuildThirt;
+import by.it.novik.jd02_06.matlab.builder.BuilderFirst;
+import by.it.novik.jd02_06.matlab.builder.Director;
 import by.it.novik.jd02_06.matlab.exceptions.ErrorOperationsException;
 import by.it.novik.jd02_06.matlab.io.InOutImpl;
 import by.it.novik.jd02_06.matlab.io.WorkWithFile;
@@ -15,6 +18,9 @@ import java.io.IOException;
  */
 public class RunMatLab {
     public static void main(String[] args) throws IOException, ErrorOperationsException {
+        Director director = new Director();
+        director.setReportBuilder(new BuilderFirst());
+        director.build("Отчет об операциях", " ");
 
         //Запускаем поток логирования ошибок
         Thread th = new Thread(Logger.getInstance());
@@ -146,6 +152,8 @@ public class RunMatLab {
 //        Logger.getInstance().setException("50");
 
         Logger.getInstance().isEnd = true;
+        director.setReportBuilder(new BuildThirt());
+        director.build("Отчет об операциях", " ");
 
     }
 

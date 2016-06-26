@@ -1,5 +1,9 @@
 package by.it.novik.jd02_06.matlab.operations;
 
+import by.it.novik.jd02_06.matlab.creator.CreatorDoubleValue;
+import by.it.novik.jd02_06.matlab.creator.CreatorMatrixValue;
+import by.it.novik.jd02_06.matlab.creator.CreatorVariables;
+import by.it.novik.jd02_06.matlab.creator.CreatorVectorValue;
 import by.it.novik.jd02_06.matlab.entity.DoubleValue;
 import by.it.novik.jd02_06.matlab.entity.MatrixValue;
 import by.it.novik.jd02_06.matlab.entity.Variable;
@@ -12,6 +16,8 @@ import by.it.novik.jd02_06.matlab.utils.InverseMatrix;
  * Created by Kate Novik.
  */
 public class DivOperations implements IDivision {
+    //Создаем массив фабрик по созданию переменных
+    private CreatorVariables[] creatorVariables = {new CreatorDoubleValue(), new CreatorVectorValue(), new CreatorMatrixValue()};
 
     /**
      * Override метода Деление переменных
@@ -54,7 +60,7 @@ public class DivOperations implements IDivision {
     //Перегрузки метода division при различных входных переменных
 
     private DoubleValue division(DoubleValue valueOne, DoubleValue valueTwo) throws ErrorOperationsException {
-        DoubleValue div = new DoubleValue();
+        DoubleValue div = (DoubleValue) creatorVariables[0].createVariable();
             if (valueTwo.getValue() != 0) {
             div.setValue(valueOne.getValue() / valueTwo.getValue()); }
             else {
@@ -64,15 +70,20 @@ public class DivOperations implements IDivision {
     }
 
     private MatrixValue division(MatrixValue valueOne, DoubleValue valueTwo) throws ErrorOperationsException {
-        return (MatrixValue)new MultiOperations().multiplication(division(new DoubleValue(1), valueTwo), valueOne);
+        DoubleValue var = (DoubleValue) creatorVariables[0].createVariable();
+        var.setValue(1);
+        return (MatrixValue)new MultiOperations().multiplication(division(var, valueTwo), valueOne);
     }
 
     private MatrixValue division(MatrixValue valueOne, MatrixValue valueTwo) throws ErrorOperationsException {
-        return (MatrixValue)new MultiOperations().multiplication(valueOne, new MatrixValue(InverseMatrix.inverseMatrix(valueTwo.getValue())));
+        MatrixValue var = (MatrixValue)creatorVariables[2].createVariable();
+        var.setValue(InverseMatrix.inverseMatrix(valueTwo.getValue()));
+        return (MatrixValue)new MultiOperations().multiplication(valueOne, var);
     }
 
     private VectorValue division(VectorValue value1, DoubleValue value2) {
-        VectorValue div = new VectorValue(value1.getValue().length);
+        VectorValue div = (VectorValue) creatorVariables[1].createVariable();
+        div.setValue(value1.getValue().length);
         for (int i = 0; i < value1.getValue().length; i++) {
             div.getValue() [i] = value1.getValue()[i] / value2.getValue();
         }
