@@ -15,6 +15,10 @@ public class VectorValue extends Variable {
     // Поле значение переменной
     private double[] valueV;
 
+    public VectorValue() {
+        this.valueV = null;
+    }
+
     public VectorValue(double [] valueV) {
         this.valueV = new double [valueV.length];
         this.valueV = valueV.clone();
@@ -44,6 +48,14 @@ public class VectorValue extends Variable {
     public void setValue(double[] valueV) {
         this.valueV = new double [valueV.length];
         this.valueV = valueV.clone();
+    }
+
+    /**
+     * Создание вектора по ее длине
+     * @param length длина вектора
+     */
+    public void setValue(int length) {
+        this.valueV = new double [length];
     }
 
     /**

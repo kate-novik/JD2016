@@ -13,4 +13,6 @@ public abstract class CreatorVariables {
      * @return Переменная типа Variable
      */
     public abstract Variable createVariable (String var);
+
+    public abstract Variable createVariable ();
 }

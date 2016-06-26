@@ -1,11 +1,6 @@
-package by.it.novik.jd02_06.matlab.buider;
+package by.it.novik.jd02_06.matlab.builder;
 
-import by.it.novik.jd02_06.log.DateTime;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 
 /**
@@ -13,7 +8,7 @@ import java.io.PrintWriter;
  */
 public class ReportOperations {
 
-    private static PrintWriter instance;
+    private static PrintWriter instance = null;
 
     private ReportOperations() {}
     public static PrintWriter getInstance (){
@@ -21,7 +16,7 @@ public class ReportOperations {
             String src = System.getProperty("user.dir") + "/src/by/it/novik/";
             String path = src + "jd02_06/matlab/builder/builder.txt";
             try {
-                instance = new PrintWriter(new FileWriter(new File(path)));
+                instance = new PrintWriter(new FileWriter(new File(path),true));
             } catch (IOException e) {
                 e.printStackTrace();
             }
