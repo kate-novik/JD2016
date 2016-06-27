@@ -39,8 +39,5 @@ public class Ex03_DOM {
             printDom(prefix+node.getNodeName() + " > ", children.item(i));
         }
     }
-
-
-
 }
 
