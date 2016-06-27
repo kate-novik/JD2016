@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://luksha.it-academy.by/xml/CarRent"
+           xmlns="http://luksha.it-academy.by/xml/CarRent"
+           elementFormDefault="qualified">
+    <xs:element name="CarRent">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="Address">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Geoaddress">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Country" type="xs:string"/>
+                                        <xs:element name="City" type="xs:string"/>
+                                        <xs:element name="Street" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Webaddress">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Site" type="xs:anyURI"/>
+                                        <xs:element name="Email" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Phone" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ListCars" type="Car" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Car">
+        <xs:sequence>
+            <xs:element name="Price" type="xs:string">
+                <xs:complexType>
+                <xs:attribute name="currency" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Brand" type="xs:string"/>
+            <xs:element name="Model" type="xs:string">
+                <xs:complexType>
+                <xs:attribute name="category" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Gearbox" type="xs:string"/>
+            <xs:element name="Engine" type="xs:string">
+                <xs:complexType>
+                <xs:attribute name="value" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Places" type="xs:string"/>
+            <xs:element name="AirCool" type="xs:string"/>
+            <xs:element name="Isofix" type="xs:string"/>
+
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

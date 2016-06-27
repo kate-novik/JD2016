@@ -14,8 +14,8 @@ public class OperationTest {
 
     @Test
     public void testAdd() throws Exception {
-        Var res = add(new Scalar(7), new Scalar(3));
-        assertEquals(new Scalar(10), res);
+        Var res = add(new Scalar(1.1), new Scalar(2.2));
+        assertEquals(new Scalar(3.3), res);
     }
 
     @Test
