@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://novik.it-academy.by/xml/Users"
+        xmlns:kns="http://novik.it-academy.by/xml/Users"
+        elementFormDefault="qualified">
+<element name="Users">
+    <complexType>
+        <sequence>
+            <element name="User"
+                     type="kns:User"
+                     maxOccurs="unbounded" />
+        </sequence>
+    </complexType>
+</element>
+
+<complexType name="User">
+    <sequence>
+        <element name="ID" type="ID" />
+        <element name="First_Name" type="string"/>
+        <element name="Middle_Name" type="string"/>
+        <element name="Last_Name" type="string"/>
+        <element name="Passport" type="string"/>
+        <element name="Address" type="string"/>
+        <element name="Phone" type="string"/>
+        <element name="Email" type="string"/>
+        <element name="Nickname" type="string"/>
+        <element name="Password" type="string"/>
+        <element name="Role">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="Client"/>
+                    <enumeration value="Admin"/>
+                </restriction>
+            </simpleType>
+        </element>
+        <element name="Accounts" type="kns:Accounts" minOccurs="0"/>
+    </sequence>
+</complexType>
+
+<complexType name="Accounts">
+    <sequence>
+        <element name="account"
+                 type="kns:account"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
+        </element>
+    </sequence>
+</complexType>
+
+<complexType name="account">
+    <sequence>
+        <element name="Number" type="ID"/>
+        <element name="Amount" type="integer"/>
+        <element name="State">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="Working"/>
+                    <enumeration value="Locking"/>
+                </restriction>
+            </simpleType>
+        </element>
+        <element name="Payments" type="kns:Payments" minOccurs="0"/>
+    </sequence>
+</complexType>
+
+<complexType name="Payments">
+    <sequence>
+        <element name="payment"
+                 type="kns:payment"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
+        </element>
+    </sequence>
+</complexType>
+
+<complexType name="payment">
+    <sequence>
+        <element name="ID_p" type="ID"/>
+        <element name="Source" type="integer"/>
+        <element name="Description" type="string"/>
+        <element name="Destination" type="integer"/>
+        <element name="Date" type="date"/>
+        <element name="Amount_p" type="integer"/>
+    </sequence>
+</complexType>
+
+
+</schema>
