@@ -30,7 +30,5 @@ public class DOM {
         for (int i = 0; i < nodes.getLength(); i++) {
             printElement(prefix, "<"+node.getNodeName().trim()+">",nodes.item(i));
         }
-
     }
-
 }
