@@ -93,10 +93,15 @@ public class MathLabMatrix extends MathLabVariable {
      *
      * @param value значение типа{@code Object}, которое можно привести к типу {@code Double[][]}
      */
-    public void setValue(Double[][] value) {
-        this.value = new Double[value.length][value[0].length];
-        for (int rows = 0; rows < value.length; rows++) {
-            System.arraycopy(value[rows], 0, this.value[rows], 0, value[rows].length);
+    public void setValue(Object value) {
+        if (value instanceof Double[][]) {
+            Double[][] temp = (Double[][]) value;
+            this.value = new Double[temp.length][temp[0].length];
+            for (int rows = 0; rows < temp.length; rows++) {
+                System.arraycopy(temp[rows], 0, this.value[rows], 0, temp[rows].length);
+            }
+        } else {
+            System.out.println("Запись значения невозможна!");
         }
     }
 

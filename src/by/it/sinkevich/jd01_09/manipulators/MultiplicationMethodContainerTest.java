@@ -3,6 +3,7 @@ package by.it.sinkevich.jd01_09.manipulators;
 import by.it.sinkevich.jd01_09.exceptions.MathLabException;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
 import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
+import by.it.sinkevich.jd01_09.variables.MathLabVariable;
 import by.it.sinkevich.jd01_09.variables.MathLabVector;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 public class MultiplicationMethodContainerTest {
     @Test
     public void multiplicationFloatAndFloat() throws Exception {
-        MathLabFloat testResult = MultiplicationMethodContainer.multiplication(new MathLabFloat(1.), new MathLabFloat(2.));
+        MathLabVariable testResult = MultiplicationMethodContainer.multiplication(new MathLabFloat(1.), new MathLabFloat(2.));
         assertEquals(new MathLabFloat(2.), testResult);
 
         testResult = MultiplicationMethodContainer.multiplication(new MathLabFloat(-1.), new MathLabFloat(-2.));
@@ -32,7 +33,7 @@ public class MultiplicationMethodContainerTest {
     @Test
     public void multiplicationFloatAndVector() throws Exception {
         Double[] vector = {-1.1, 0., 1.1};
-        MathLabVector testResult = MultiplicationMethodContainer.multiplication(new MathLabFloat(3.), new MathLabVector(vector));
+        MathLabVariable testResult = MultiplicationMethodContainer.multiplication(new MathLabFloat(3.), new MathLabVector(vector));
         Double[] expectedResult = {-3.3, 0., 3.3};
         assertEquals(new MathLabVector(expectedResult), testResult);
 
@@ -48,7 +49,7 @@ public class MultiplicationMethodContainerTest {
     @Test
     public void multiplicationFloatAndMatrix() throws Exception {
         Double[][] matrix = {{-1.1, 0., 1.1}, {-2., 2., 100.}};
-        MathLabMatrix testResult = MultiplicationMethodContainer.multiplication(new MathLabFloat(3.), new MathLabMatrix(matrix));
+        MathLabVariable testResult = MultiplicationMethodContainer.multiplication(new MathLabFloat(3.), new MathLabMatrix(matrix));
         Double[][] expectedResult = {{-3.3, 0., 3.3}, {-6., 6., 300.}};
         assertEquals(new MathLabMatrix(expectedResult), testResult);
 
@@ -64,7 +65,7 @@ public class MultiplicationMethodContainerTest {
     @Test
     public void multiplicationVectorAndFloat() throws Exception {
         Double[] vector = {-1.1, 0., 1.1};
-        MathLabVector testResult = MultiplicationMethodContainer.multiplication(new MathLabVector(vector), new MathLabFloat(3.));
+        MathLabVariable testResult = MultiplicationMethodContainer.multiplication(new MathLabVector(vector), new MathLabFloat(3.));
         Double[] expectedResult = {-3.3, -0., 3.3};
         assertEquals(new MathLabVector(expectedResult), testResult);
 
@@ -81,7 +82,7 @@ public class MultiplicationMethodContainerTest {
     public void multiplicationVectorAndVector() throws Exception {
         Double[] vector1 = {-1.1, 0., 1.1};
         Double[] vector2 = {10., -10., 0.};
-        MathLabFloat testResult = MultiplicationMethodContainer.multiplication(new MathLabVector(vector1), new MathLabVector(vector2));
+        MathLabVariable testResult = MultiplicationMethodContainer.multiplication(new MathLabVector(vector1), new MathLabVector(vector2));
         assertEquals(new MathLabFloat(-11.), testResult);
 
         vector1 = new Double[]{1., 2., 3.};
@@ -107,7 +108,7 @@ public class MultiplicationMethodContainerTest {
     @Test
     public void multiplicationMatrixAndFloat() throws Exception {
         Double[][] matrix = {{-1.1, 0., 1.1}, {-2., 2., 100.}};
-        MathLabMatrix testResult = MultiplicationMethodContainer.multiplication(new MathLabMatrix(matrix), new MathLabFloat(2.));
+        MathLabVariable testResult = MultiplicationMethodContainer.multiplication(new MathLabMatrix(matrix), new MathLabFloat(2.));
         Double[][] expectedResult = {{-2.2, 0., 2.2}, {-4., 4., 200.}};
         assertEquals(new MathLabMatrix(expectedResult), testResult);
 
@@ -124,7 +125,7 @@ public class MultiplicationMethodContainerTest {
     public void multiplicationMatrixAndVector() throws Exception {
         Double[][] matrix = new Double[][]{{1., 2., 3.}, {1., 2., 3.}};
         Double[] vector = new Double[]{-1., 0., 2.};
-        MathLabVector testResult = MultiplicationMethodContainer.multiplication(new MathLabMatrix(matrix), new MathLabVector(vector));
+        MathLabVariable testResult = MultiplicationMethodContainer.multiplication(new MathLabMatrix(matrix), new MathLabVector(vector));
         Double[] expectedResult = new Double[]{5., 5.};
         assertEquals(new MathLabVector(expectedResult), testResult);
     }
@@ -140,7 +141,7 @@ public class MultiplicationMethodContainerTest {
     public void multiplicationMatrixAndMatrix() throws Exception {
         Double[][] matrix1 = new Double[][]{{1., 2., 3.}, {-1., -2., -3.}, {1., 0., -1.}};
         Double[][] matrix2 = new Double[][]{{3., 2., 1.}, {-1., 0., 1.}, {-3., 2., -1.}};
-        MathLabMatrix testResult = MultiplicationMethodContainer.multiplication(new MathLabMatrix(matrix1), new MathLabMatrix(matrix2));
+        MathLabVariable testResult = MultiplicationMethodContainer.multiplication(new MathLabMatrix(matrix1), new MathLabMatrix(matrix2));
         Double[][] expectedResult = new Double[][]{{-8., 8., 0.}, {8., -8., 0.}, {6., 0., 2.}};
         assertEquals(new MathLabMatrix(expectedResult), testResult);
 

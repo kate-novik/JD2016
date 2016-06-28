@@ -3,6 +3,7 @@ package by.it.sinkevich.jd01_09.manipulators;
 import by.it.sinkevich.jd01_09.exceptions.MathLabException;
 import by.it.sinkevich.jd01_09.variables.MathLabFloat;
 import by.it.sinkevich.jd01_09.variables.MathLabMatrix;
+import by.it.sinkevich.jd01_09.variables.MathLabVariable;
 import by.it.sinkevich.jd01_09.variables.MathLabVector;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 public class AdditionMethodContainerTest {
     @Test
     public void additionFloatAndFloat() throws Exception {
-        MathLabFloat testResult = AdditionMethodContainer.addition(new MathLabFloat(1.1), new MathLabFloat(2.2));
+        MathLabVariable testResult = AdditionMethodContainer.addition(new MathLabFloat(1.1), new MathLabFloat(2.2));
         assertEquals(new MathLabFloat(3.3), testResult);
 
         testResult = AdditionMethodContainer.addition(new MathLabFloat(-1.1), new MathLabFloat(-2.2));
@@ -29,7 +30,7 @@ public class AdditionMethodContainerTest {
     @Test
     public void additionFloatAndVector() throws Exception {
         Double[] vector = {-1.1, 0., 1.1};
-        MathLabVector testResult = AdditionMethodContainer.addition(new MathLabFloat(3.3), new MathLabVector(vector));
+        MathLabVariable testResult = AdditionMethodContainer.addition(new MathLabFloat(3.3), new MathLabVector(vector));
         Double[] expectedResult = {2.2, 3.3, 4.4};
         assertEquals(new MathLabVector(expectedResult), testResult);
 
@@ -45,7 +46,7 @@ public class AdditionMethodContainerTest {
     @Test
     public void additionFloatAndMatrix() throws Exception {
         Double[][] matrix = {{-1.1, 0., 1.1}, {-2., 2., 100.}};
-        MathLabMatrix testResult = AdditionMethodContainer.addition(new MathLabFloat(3.3), new MathLabMatrix(matrix));
+        MathLabVariable testResult = AdditionMethodContainer.addition(new MathLabFloat(3.3), new MathLabMatrix(matrix));
         Double[][] expectedResult = {{2.2, 3.3, 4.4}, {1.3, 5.3, 103.3}};
         assertEquals(new MathLabMatrix(expectedResult), testResult);
 
@@ -61,7 +62,7 @@ public class AdditionMethodContainerTest {
     @Test
     public void additionVectorAndFloat() throws Exception {
         Double[] vector = {-1.1, 0., 1.1};
-        MathLabVector testResult = AdditionMethodContainer.addition(new MathLabVector(vector), new MathLabFloat(3.3));
+        MathLabVariable testResult = AdditionMethodContainer.addition(new MathLabVector(vector), new MathLabFloat(3.3));
         Double[] expectedResult = {2.2, 3.3, 4.4};
         assertEquals(new MathLabVector(expectedResult), testResult);
 
@@ -78,7 +79,7 @@ public class AdditionMethodContainerTest {
     public void additionVectorAndVector() throws Exception {
         Double[] vector1 = {-1.1, 0., 1.1};
         Double[] vector2 = {10., -10., 0.};
-        MathLabVector testResult = AdditionMethodContainer.addition(new MathLabVector(vector1), new MathLabVector(vector2));
+        MathLabVariable testResult = AdditionMethodContainer.addition(new MathLabVector(vector1), new MathLabVector(vector2));
         Double[] expectedResult = {8.9, -10., 1.1};
         assertEquals(new MathLabVector(expectedResult), testResult);
     }
@@ -100,7 +101,7 @@ public class AdditionMethodContainerTest {
     @Test
     public void additionMatrixAndFloat() throws Exception {
         Double[][] matrix = {{-1.1, 0., 1.1}, {-2., 2., 100.}};
-        MathLabMatrix testResult = AdditionMethodContainer.addition(new MathLabMatrix(matrix), new MathLabFloat(1.1));
+        MathLabVariable testResult = AdditionMethodContainer.addition(new MathLabMatrix(matrix), new MathLabFloat(1.1));
         Double[][] expectedResult = {{0., 1.1, 2.2}, {-0.9, 3.1, 101.1}};
         assertEquals(new MathLabMatrix(expectedResult), testResult);
 
@@ -124,7 +125,7 @@ public class AdditionMethodContainerTest {
     public void additionMatrixAndMatrix() throws Exception {
         Double[][] matrix1 = {{-1.1, 0., 1.1}, {-2., 2., 100.}};
         Double[][] matrix2 = {{-1.1, 0., 1.1}, {-2., 2., 100.}};
-        MathLabMatrix testResult = AdditionMethodContainer.addition(new MathLabMatrix(matrix1), new MathLabMatrix(matrix2));
+        MathLabVariable testResult = AdditionMethodContainer.addition(new MathLabMatrix(matrix1), new MathLabMatrix(matrix2));
         Double[][] expectedResult = new Double[][]{{-2.2, 0., 2.2}, {-4., 4., 200.}};
         assertEquals(new MathLabMatrix(expectedResult), testResult);
     }
