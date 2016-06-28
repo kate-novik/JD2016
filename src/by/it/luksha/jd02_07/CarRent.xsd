@@ -31,35 +31,52 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="ListCars" type="Car" maxOccurs="unbounded"/>
+                <xs:element name="ListCars">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Car" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Price">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute type="xs:string" name="currency" use="optional"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="Brand" type="xs:string"/>
+                                        <xs:element name="Model">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute type="xs:string" name="category" use="optional"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="Gearbox" type="xs:string"/>
+                                        <xs:element name="Engine">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute type="xs:string" name="value" use="optional"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="Places" type="xs:string"/>
+                                        <xs:element name="AirCool" type="xs:string"/>
+                                        <xs:element name="Isofix" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
-    <xs:complexType name="Car">
-        <xs:sequence>
-            <xs:element name="Price" type="xs:string">
-                <xs:complexType>
-                <xs:attribute name="currency" type="xs:string" use="required"/>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="Brand" type="xs:string"/>
-            <xs:element name="Model" type="xs:string">
-                <xs:complexType>
-                <xs:attribute name="category" type="xs:string"/>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="Gearbox" type="xs:string"/>
-            <xs:element name="Engine" type="xs:string">
-                <xs:complexType>
-                <xs:attribute name="value" type="xs:string"/>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="Places" type="xs:string"/>
-            <xs:element name="AirCool" type="xs:string"/>
-            <xs:element name="Isofix" type="xs:string"/>
-
-        </xs:sequence>
-    </xs:complexType>
 
 </xs:schema>
