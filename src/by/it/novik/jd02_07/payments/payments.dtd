@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+        <!ELEMENT Rolls (Roll)+>
+        <!ELEMENT Roll (Users)+>
+        <!ATTLIST Roll
+                idRoll ID
+                name CDATA #REQUIRED>
         <!ELEMENT Users (User)+>
-        <!ELEMENT User (ID, First_Name, Middle_Name, Last_Name, Passport,
-                Address, Phone, Email, Nickname, Password, Role, Accounts*)>
-        <!ELEMENT ID (#PCDATA)>
+        <!ELEMENT User (First_Name, Middle_Name, Last_Name, Passport,
+                Address, Phone, Email, Nickname, Password, Accounts*)>
+        <!ATTLIST User idUser ID #REQUIRED>
         <!ELEMENT First_Name (#PCDATA)>
         <!ELEMENT Middle_Name (#PCDATA)>
         <!ELEMENT Last_Name (#PCDATA)>
@@ -12,15 +17,15 @@
         <!ELEMENT Email (#PCDATA)>
         <!ELEMENT Nickname (#PCDATA)>
         <!ELEMENT Password (#PCDATA)>
-        <!ELEMENT Role (#PCDATA)>
         <!ELEMENT Accounts (account)*>
-        <!ELEMENT account (Number,Amount,State,Payments*)>
-        <!ELEMENT Number (#PCDATA)>
+        <!ELEMENT account (Amount,State,Payments*)>
+        <!ATTLIST account idAccount ID #REQUIRED
+                          state CDATA #REQUIRED>
         <!ELEMENT Amount (#PCDATA)>
         <!ELEMENT State (#PCDATA)>
         <!ELEMENT Payments (payment)*>
-        <!ELEMENT payment (ID_p,Source,Description,Destination,Date,Amount_p)>
-        <!ELEMENT ID_p (#PCDATA)>
+        <!ELEMENT payment (Source,Description,Destination,Date,Amount_p)>
+        <!ATTLIST payment idPayment ID #REQUIRED>
         <!ELEMENT Source (#PCDATA)>
         <!ELEMENT Description (#PCDATA)>
         <!ELEMENT Destination (#PCDATA)>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Users SYSTEM "payments.dtd" >
-<Users>
-    <User>
-        <ID>
-            1
-        </ID>
+<!DOCTYPE Rolls SYSTEM "payments.dtd" >
+<Rolls>
+    <Roll idRoll="1" name="Clients">
+    <Users>
+    <User idUser="16">
         <First_Name>
             Иван
         </First_Name>
@@ -32,25 +31,13 @@
         <Password>
             zaq1@WSX
         </Password>
-        <Role>
-            Client
-        </Role>
         <Accounts>
-        <account>
-            <Number>
-                10123456
-            </Number>
+        <account idAccount="123456" state="Working">
             <Amount>
                 235
             </Amount>
-            <State>
-                не блокирован
-            </State>
             <Payments>
-            <payment>
-                <ID_p>
-                    2345
-                </ID_p>
+            <payment idPayment="67853">
                 <Source>
                     23456789
                 </Source>
@@ -71,10 +58,11 @@
         </account>
         </Accounts>
     </User>
-    <User>
-    <ID>
-        45
-    </ID>
+    </Users>
+    </Roll>
+    <Roll idRoll="2" name="Admin">
+    <Users>
+    <User idUser="34">
     <First_Name>
         Петр
     </First_Name>
@@ -102,8 +90,7 @@
     <Password>
         cde3$RRV
     </Password>
-    <Role>
-        Admin
-    </Role>
     </User>
-</Users>
+    </Users>
+    </Roll>
+</Rolls>
