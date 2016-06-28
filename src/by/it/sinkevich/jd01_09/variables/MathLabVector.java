@@ -75,6 +75,7 @@ public class MathLabVector extends MathLabVariable {
     public void setValue(Object value) {
         if (value instanceof Double[]) {
             Double[] temp = (Double[]) value;
+            this.value = new Double[temp.length];
             System.arraycopy(temp, 0, this.value, 0, temp.length);
         } else {
             System.out.println("Запись значения невозможна!");

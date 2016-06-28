@@ -16,6 +16,8 @@ import java.util.List;
 public class ExpressionSolver {
 
     private Manipulator manipulator = new Manipulator();
+    private VariableFactory[] factories = new VariableFactory[]
+            {new MathLabFloatFactory(), new MathLabVectorFactory(), new MathLabMatrixFactory()};
 
     public MathLabVariable solveExpression(List<String> parsedLine) {
         List<String> tempList = new ArrayList<>(parsedLine);
@@ -62,7 +64,7 @@ public class ExpressionSolver {
                 }
             }
         }
-        MathLabVariable result = new MathLabFloat(0.);
+        MathLabVariable result = factories[0].getVariable();
         for (int index = 0; index < tempList.size(); index++) {
             if (!tempList.get(index).matches(Patterns.regexOperators)) {
                 continue;
@@ -106,13 +108,13 @@ public class ExpressionSolver {
     private MathLabVariable getVariableFromString(String strValue) {
         MathLabVariable result;
         if (!strValue.contains("{")) {
-            result = new MathLabFloat(strValue);
+            result = factories[0].getVariable(strValue);
         } else {
             int index = strValue.indexOf("{");
             if (strValue.indexOf("{", index + 1) == -1) {
-                result = new MathLabVector(strValue);
+                result = factories[1].getVariable(strValue);
             } else {
-                result = new MathLabMatrix(strValue);
+                result = factories[2].getVariable(strValue);
             }
         }
         return result;
