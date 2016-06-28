@@ -1,4 +1,4 @@
-package by.it.novik.jd02_07.payments;
+package by.it.novik.jd02_07;
 
 import org.xml.sax.SAXException;
 

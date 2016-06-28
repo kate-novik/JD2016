@@ -20,7 +20,7 @@
         <!ELEMENT Accounts (account)*>
         <!ELEMENT account (Amount,State,Payments*)>
         <!ATTLIST account idAccount ID #REQUIRED
-                          state CDATA #REQUIRED>
+                state CDATA #REQUIRED>
         <!ELEMENT Amount (#PCDATA)>
         <!ELEMENT State (#PCDATA)>
         <!ELEMENT Payments (payment)*>

@@ -18,7 +18,9 @@ import java.io.IOException;
  */
 public class RunMatLab {
     public static void main(String[] args) throws IOException, ErrorOperationsException {
+        //Создаем директора на управление билдерами построения документа об операциях
         Director director = new Director();
+        //Устанавливаем первого билдера
         director.setReportBuilder(new BuilderFirst());
         director.build("Отчет об операциях", " ");
 
@@ -33,7 +35,6 @@ public class RunMatLab {
         String vec = "{1,2,3}";
         String m = "{{1,2,3},{4,5,6},{7,8,9}}";
         String d = "26.2";
-        //Logger.getInstance().setException("one");
 
         //Читаем переменные с файла
         WorkWithFile.readVarsFromFile();
@@ -41,8 +42,6 @@ public class RunMatLab {
         PrintValues.printVars();
         //Выводим названия переменных и их значения с сортировкой по названию
         PrintValues.sortVars();
-
-        //Logger.getInstance().setException("two");
 
         // Операции со скалярными величинами
         System.out.println("Операции со скаларной величиной");
@@ -144,14 +143,9 @@ public class RunMatLab {
             System.err.println("Общая ошибка" + e);
             Logger.getInstance().setException(e.getMessage());
         }
-
-//        Logger.getInstance().setException("three");
-//
-//        Logger.getInstance().setException("45");
-//
-//        Logger.getInstance().setException("50");
-
+        //Передача флага на завершение работы потока логгера ошибок
         Logger.getInstance().isEnd = true;
+        //Передача билдера на запись конца программы
         director.setReportBuilder(new BuildThirt());
         director.build("Отчет об операциях", " ");
 
