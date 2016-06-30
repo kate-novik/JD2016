@@ -18,7 +18,7 @@ public class DOM {
             DocumentBuilder documentBuilder = factory.newDocumentBuilder();
             Document document = documentBuilder.parse(filename);
             Element element = document.getDocumentElement();
-            printElement("","", element);
+            printElement("", "", element);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,11 +28,11 @@ public class DOM {
     static void printElement(String prefix, String name, Node node) {
         String txt = node.getNodeValue();
         if (txt != null)
-            System.out.println(prefix + name + "\n"+prefix+ txt.trim());
+            System.out.println(prefix + name + prefix + txt.trim());
         NodeList nodes = node.getChildNodes();
         prefix = prefix + "\t";
         for (int i = 0; i < nodes.getLength(); i++) {
-            printElement(prefix, "<"+node.getNodeName().trim() + ">", nodes.item(i));
+            printElement(prefix, "<" + node.getNodeName().trim() + ">", nodes.item(i));
         }
 
 
