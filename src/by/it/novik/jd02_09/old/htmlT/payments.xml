@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<Rolls xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://novik.it-academy.by/xml/Rolls"
-       xsi:schemaLocation="http://novik.it-academy.by/xml/Rolls">
+<Rolls>
     <Roll idRoll="1" name="Clients">
         <Users>
             <User idUser="16">
@@ -16,7 +13,7 @@
                     Иванов
                 </Last_Name>
                 <Passport>
-                    MC241234, 2015-02-23
+                    MC241234, 21.02.2015
                 </Passport>
                 <Address>
                     г.Минск, ул. Глебки, 5-15
@@ -50,7 +47,7 @@
                                     231456789
                                 </Destination>
                                 <Date>
-                                    2016-06-25
+                                    25.06.2016
                                 </Date>
                                 <Amount_p>
                                     20
