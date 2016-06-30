@@ -1,11 +1,9 @@
 package by.it.akhmelev.jd02_09.manual;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-
 public class JaxB_01_ToXML {
     public static void main(String[] args) {
         try {
@@ -22,16 +20,11 @@ public class JaxB_01_ToXML {
                     s = new Student("muvik", "Kurin", "Muvik","poit", 7654321, addr);
                     this.add(s);
                 }
-
-                ;
             };
             m.marshal(st, new FileOutputStream("src/by/it/akhmelev/jd02_09/manual/xml_01.xml"));
             System.out.println("XML-файл создан");
             m.marshal(st, System.out); // копия на консоль
-        } catch (FileNotFoundException e) {
-            System.out.println("XML-файл не может быть создан: " + e);
-        } catch (JAXBException e) {
-            System.out.println("JAXB-контекст ошибочен " + e);
-        }
+        } catch (FileNotFoundException e) {System.out.println("XML-файл не может быть создан: " + e);}
+          catch (JAXBException e) {        System.out.println("JAXB-контекст ошибочен " + e);        }
     }
 }
