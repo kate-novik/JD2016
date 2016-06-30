@@ -90,12 +90,12 @@ public class PaymentsDOMBuilder extends AbstractPaymentsBuilder {
                 System.out.println(">");
                 tab = tab + '\t'; //Прибавляем табуляцию
             } else if (childrenNode.item(i).getNodeType() == Node.TEXT_NODE) { //Проверка на соответствие тексту между элементами
-                System.out.println(tab + childrenNode.item(i).getTextContent().trim());
-                if (i != 0) {
-                    //Удаляем один табулятор из поля табуляции
-                    tab = tab.substring(1);
-                    //Вывод закрывающегося элемента
-                    System.out.println(tab + "</" + childrenNode.item(i - 1).getNodeName().trim() + ">");
+                    System.out.println(tab + childrenNode.item(i).getTextContent().trim());
+                    if (i != 0) {
+                        //Удаляем один табулятор из поля табуляции
+                        tab = tab.substring(1);
+                        //Вывод закрывающегося элемента
+                        System.out.println(tab + "</" + childrenNode.item(i - 1).getNodeName().trim() + ">");
                 }
             }
             //Рекурсивный вызов печати дочерних элементов и их атрибутов у данного элемента
