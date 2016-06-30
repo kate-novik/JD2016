@@ -1,5 +1,6 @@
 package by.it.sergeev.jd02_03;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class Buyer extends Thread implements Runnable,IBuyer, IUseBasket {
         return num;
     }
 
-    public  void setWaitInTheQueue(boolean wait) {
+    public void setWaitInTheQueue(boolean wait) {
         this.waitInTheQueue = wait;
     }
 
@@ -41,7 +42,7 @@ public class Buyer extends Thread implements Runnable,IBuyer, IUseBasket {
 
 
     @Override
-    public void run (){
+    public void run() {
         enterMarket();
         takeBasket();
         chooseGoods();
@@ -51,23 +52,23 @@ public class Buyer extends Thread implements Runnable,IBuyer, IUseBasket {
     }
 
     @Override
-    public String toString (){
+    public String toString() {
 
         return this.getName();
     }
 
     @Override
-    public void enterMarket(){
+    public void enterMarket() {
 
-        System.out.println(this+" зашёл в магазин.");
+        System.out.println(this + " зашёл в магазин.");
     }
 
     @Override
-    public void chooseGoods(){
+    public void chooseGoods() {
 
-        Map<String,Integer> buyerBacketMap = new HashMap<>();
+        Map<String, Integer> buyerBacketMap = new HashMap<>();
         int goodsQuantity = Rnd.fromTo(1, 4);
-        for (int i = 0; i < goodsQuantity; i++){
+        for (int i = 0; i < goodsQuantity; i++) {
 
             String randomGood = Goods.takeRandomGood();
             putGoodsIntoBasket(randomGood);
@@ -75,38 +76,38 @@ public class Buyer extends Thread implements Runnable,IBuyer, IUseBasket {
         }
         basket = new Basket(buyerBacketMap, this.num);
 
-        System.out.print(this+" выбрал товар "+(retired?",подумав некоторое время. ":"быстро. "));
+        System.out.print(this + " выбрал товар " + (retired ? ",подумав некоторое время. " : "быстро. "));
         System.out.println(basket);
     }
 
     @Override
-    public void exitMarket(){
+    public void exitMarket() {
 
-        System.out.println(this+" вышел с магазина.");
+        System.out.println(this + " вышел с магазина.");
     }
 
     @Override
     public void takeBasket() {
-        int pause = retired? Rnd.fromTo(200, 500): Rnd.fromTo(300, 700);
+        int pause = retired ? Rnd.fromTo(200, 500) : Rnd.fromTo(300, 700);
         Utils.sleep(pause);
-        System.out.println(this+" взял корзину.");
+        System.out.println(this + " взял корзину.");
     }
 
     @Override
     public void putGoodsIntoBasket(String good) {
-        int pause = retired? Rnd.fromTo(100, 200): Rnd.fromTo(150, 300);
+        int pause = retired ? Rnd.fromTo(100, 200) : Rnd.fromTo(150, 300);
         Utils.sleep(pause);
-        System.out.println(this+" положил товар \""+good+"\" в корзину.");
+        System.out.println(this + " положил товар \"" + good + "\" в корзину.");
 
     }
 
 
     @Override
-    public void goToQueue()  {
-        synchronized (this){
+    public void goToQueue() {
+        synchronized (this) {
             QueueToPay.putBuyer(this);
             System.out.println(this + " пошёл в очередь.");
-            while (waitInTheQueue){
+            while (waitInTheQueue) {
                 try {
                     this.wait();
                 } catch (InterruptedException e) {
@@ -117,5 +118,4 @@ public class Buyer extends Thread implements Runnable,IBuyer, IUseBasket {
         }
 
     }
-
 }
