@@ -41,8 +41,8 @@
         <element name="Email" type="string"/>
         <element name="Nickname" type="string"/>
         <element name="Password" type="string"/>
-        <element name="Roll" type="kns:Roll" minOccurs="1"/>
-        <element name="Account" type="kns:Account" minOccurs="0"/>
+        <element name="Roll" type="kns:Roll" minOccurs="1" maxOccurs="unbounded"/>
+        <element name="Account" type="kns:Account" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
     <attribute name="idUser" type="integer" use="required"/>
 
@@ -63,7 +63,7 @@
 <complexType name="Account">
     <sequence>
         <element name="Amount" type="integer"/>
-        <element name="Payment" type="kns:Payment" minOccurs="0"/>
+        <element name="Payment" type="kns:Payment" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
     <attribute name="idAccount" type="integer" use="required"/>
     <attribute name="state" use="required">
