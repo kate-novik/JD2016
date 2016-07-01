@@ -1,22 +1,24 @@
 package by.it.vasilevich.jd02_10;
 
 
-import by.it.akhmelev.jd02_09.generate.Students;
+public abstract class AbstractConverter<T> {
+    protected T bean;
 
-public abstract class AbstractConverter {
-    protected Students bean;
-    public AbstractConverter(){
+    public AbstractConverter() {
         bean = null;
     }
-    public AbstractConverter(Students bean){
-        this.bean=bean;
+
+    public AbstractConverter(T bean) {
+        this.bean = bean;
     }
-    public Students getBean(){
+
+    public T getBean() {
         return bean;
     }
-    abstract public void buildConverter(String filename);
-    abstract public void getConverterResult();
 
+    abstract public void buildConverter(String filename);
+
+    abstract public String getConverterResult();
 
 
 }

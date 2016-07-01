@@ -12,8 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class ConverterXmlToJson extends AbstractConverter {
-
-
     @Override
     public void buildConverter(String filename) {
         try {
@@ -21,7 +19,6 @@ public class ConverterXmlToJson extends AbstractConverter {
             JAXBContext jc = JAXBContext.newInstance(Students.class);
             Unmarshaller u = jc.createUnmarshaller();
             FileReader reader = new FileReader(filename);
-            System.out.println("Read file");
             bean = (Students) u.unmarshal(reader);
 
         } catch (JAXBException e) {
@@ -33,9 +30,8 @@ public class ConverterXmlToJson extends AbstractConverter {
     }
 
     @Override
-    public void getConverterResult() {
+    public String getConverterResult() {
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-
         return gson.toJson(bean);
     }
 }
