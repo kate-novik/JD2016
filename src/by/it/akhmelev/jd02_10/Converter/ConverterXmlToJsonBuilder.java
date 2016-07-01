@@ -1,35 +1,42 @@
 package by.it.akhmelev.jd02_10.Converter;
 
-import by.it.akhmelev.jd02_09.generate.Students;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 
 public class ConverterXmlToJsonBuilder extends AbstractConverter {
-    @Override
-    public void buildConverter(String filename) {
-        try {
 
-            JAXBContext jc = JAXBContext.newInstance(Students.class);
+    public ConverterXmlToJsonBuilder(Class beanClass) {
+        super(beanClass);
+    }
+
+    public ConverterXmlToJsonBuilder(Object bean) {
+        super(bean);
+    }
+
+    //построение по данным из строки
+    @Override
+    public void buildConverter(String txtData) {
+        try {
+            StringReader stringReader = new StringReader(txtData);
+            JAXBContext jc = JAXBContext.newInstance(getBeanClass());
             Unmarshaller u = jc.createUnmarshaller();
-            FileReader reader = new FileReader(filename);
-            bean = (Students) u.unmarshal(reader);
+            bean = u.unmarshal(stringReader);
 
         } catch (JAXBException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    //запись результата в строку
     @Override
     public String getConverterResult() {
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-        return gson.toJson(bean);
+        return gson.toJson(getBean());
     }
+
 }
