@@ -29,5 +29,13 @@ public class Runner {
         String xml=converter.getConverterResult();
         System.out.println("\nиз JSON-файла в XML-текст\n");
         System.out.println(xml);
+
+        //из JSON-текста в XML-текст
+        converter = converterFactory.createConverterBuilder("json_to_xml",Students.class);
+        converter.buildConverter(json); //берем из предыдущего вызова конвертера
+        xml=converter.getConverterResult();
+        System.out.println("\nиз JSON-текста в XML-текст\n");
+        System.out.println(xml);
+
     }
 }
