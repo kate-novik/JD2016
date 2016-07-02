@@ -1,9 +1,9 @@
-package by.it.luksha.jd01_09mathlab.io;
+package by.it.luksha.jd02_04.io;
 
 import org.junit.Test;
 
-import static by.it.luksha.jd01_09mathlab.io.Reader.calc;
-import static org.junit.Assert.*;
+import static by.it.luksha.jd02_04.io.Reader.calc;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by MMauz on 19.06.2016.
