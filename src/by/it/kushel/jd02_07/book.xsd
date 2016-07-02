@@ -16,7 +16,7 @@
     <complexType name="book">
         <sequence>
             <element name="name" type="string" />
-            <element name="autor" type="string" />
+            <element name="author" type="string" />
             <element name="genre" type="string" />
             <element name="numberOfPages" type="positiveInteger" />
             <element name="publicationDate" type="positiveInteger" />

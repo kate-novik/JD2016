@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://kushel.it-academy.by/xml/books book.xsd">
     <book number="0001">
         <name>Java 8</name>
-        <autor>Schildt</autor>
+        <author>Schildt</author>
         <genre>technical publications</genre>
         <numberOfPages>999</numberOfPages>
         <publicationDate>2015</publicationDate>
@@ -17,7 +17,7 @@
 
     <book number="0002">
         <name>Java 2</name>
-        <autor>Horstmann</autor>
+        <author>Horstmann</author>
         <genre>technical publications</genre>
         <numberOfPages>600</numberOfPages>
         <publicationDate>2010</publicationDate>
@@ -29,7 +29,7 @@
     </book>
     <book number="0003">
         <name>Java 2</name>
-        <autor>Horstmann</autor>
+        <author>Horstmann</author>
         <genre>technical publications</genre>
         <numberOfPages>590</numberOfPages>
         <publicationDate>2010</publicationDate>
