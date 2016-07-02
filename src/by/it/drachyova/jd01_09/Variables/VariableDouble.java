@@ -31,7 +31,7 @@ public class VariableDouble extends AbstractVariable implements IVariable, IOper
     }
 
     @Override
-    public AbstractVariable substraction(AbstractVariable var) {
+    public AbstractVariable subtraction(AbstractVariable var) {
         if (var instanceof VariableDouble)
             return new VariableDouble(this.value - ((VariableDouble)var).value);
         VariableDouble minus=new VariableDouble(-1);
@@ -51,5 +51,4 @@ public class VariableDouble extends AbstractVariable implements IVariable, IOper
             return new VariableDouble(this.value / ((VariableDouble)var).value);
         return super.division(var);
     }
-
-  }
+}

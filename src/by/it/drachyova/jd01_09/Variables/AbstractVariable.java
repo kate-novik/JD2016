@@ -23,7 +23,7 @@ public abstract class AbstractVariable implements IVariable, IOperation{
         return null;
     }
     @Override
-    public AbstractVariable substraction(AbstractVariable var){ //вычитание
+    public AbstractVariable subtraction(AbstractVariable var) { //вычитание
         System.out.println("Вычитание невозможно");
         return null;
     }
