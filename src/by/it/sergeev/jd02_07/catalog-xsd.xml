@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Catalog SYSTEM "Catalog.dtd" >
 <!-- Все данные по каталогу взяты с сайта onliner.by 1 июля 2016 года -->
-<Catalog>
+<Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://sergeev.it-academy.by/xml/Catalog"
+         xsi:schemaLocation="http://sergeev.it-academy.by/xml/Catalog Catalog.xsd">
     <section name="notebooks">
         <product manufacturer="Apple" name="Macbook Pro 15" model="MJLT2" price="4799.00">
             <description>15.4" 2880 x 1800 глянцевый, Intel Core i7 2500 МГц, 16 ГБ, 512 Гб (SSD), AMD Radeon R9 M370X, OS X, цвет корпуса серебристый</description>

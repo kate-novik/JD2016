@@ -1,7 +1,6 @@
 package by.it.sergeev.jd02_07;
 
 import org.xml.sax.SAXException;
-
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -15,8 +14,8 @@ public class Valid {
 
     public static void main(String[] args) {
 
-        String catalogSchema = "src/by/it/seregeev/jd02_07/catalog.xsd";
-        String catalogXML = "src/by/it/seregeev/jd02_07/catalog.xml";
+        String catalogSchema = "src/by/it/sergeev/jd02_07/Catalog.xsd";
+        String catalogXML = "src/by/it/sergeev/jd02_07/Catalog.xml";
 
         validate(catalogXML, catalogSchema);
     }
