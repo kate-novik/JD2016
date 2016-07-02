@@ -23,25 +23,37 @@ public class Runner {
     static {
         Horse horse1 = new Horse("Favorit", 2.2);
         Horse horse2 = new Horse("Outsider", 11.5);
+        Horse horse3 = new Horse("Arrow", 5.5);
+        Horse horse4 = new Horse("Flash", 3.0);
         List<Horse> horseList = new ArrayList<>();
         horseList.add(horse1);
         horseList.add(horse2);
+        horseList.add(horse3);
+        horseList.add(horse4);
         XMLGregorianCalendar time = null;
         try {
-            time = DatatypeFactory.newInstance().newXMLGregorianCalendar(1986, 11, 8, 12, 30, 0, 0, 1);
+            time = DatatypeFactory.newInstance().newXMLGregorianCalendar(1986, 11, 8, 12, 30, 0, 0, 0);
         } catch (DatatypeConfigurationException e) {
             e.printStackTrace();
         }
-        Race race = new Race(time, horseList, horse1.getName());
+        List<Horse> raceList = new ArrayList<>(horseList);
+        raceList.remove(1);
+        Race race = new Race(time, raceList, horse1.getName());
         List<Race> races = new ArrayList<>();
         races.add(race);
-        Bet bet = new Bet(time, race, horse1, 10., 22.);
+        Bet bet1 = new Bet(time, race, horse1, 10., 22.);
+        Bet bet2 = new Bet(time, race, horse3, 100., 550.);
         List<Bet> bets = new ArrayList<>();
-        bets.add(bet);
+        bets.add(bet1);
+        bets.add(bet2);
         Bookmaker bookmaker = new Bookmaker("Sinkevich Denis", bets, 0.);
-        Client client = new Client("Gambler", 21, bets);
+        List<Bet> client1Bets = new ArrayList<>(bets);
+        Client client1 = new Client("Gambler", 21, client1Bets);
+        List<Bet> client2Bets = new ArrayList<>();
+        Client client2 = new Client("Observer", 91, client2Bets);
         List<Client> clients = new ArrayList<>();
-        clients.add(client);
+        clients.add(client1);
+        clients.add(client2);
         HorseRace horseRace = new HorseRace(time, bookmaker, horseList, races, clients);
         List<HorseRace> list = new ArrayList<>();
         list.add(horseRace);
