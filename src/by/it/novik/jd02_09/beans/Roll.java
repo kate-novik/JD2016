@@ -2,7 +2,6 @@ package by.it.novik.jd02_09.beans;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
-import java.math.BigInteger;
 
 /**
  * Created by Kate Novik.
@@ -11,7 +10,7 @@ import java.math.BigInteger;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Roll implements Serializable {
     @XmlAttribute(name="idRoll",required = true)
-    private BigInteger idRoll;
+    private int idRoll;
     @XmlAttribute(name="name",required = true)
     private String name;
 
@@ -19,11 +18,16 @@ public class Roll implements Serializable {
         super();
     }
 
-    public BigInteger getIdRoll() {
+    public Roll(int idRoll, String name) {
+        this.idRoll = idRoll;
+        this.name = name;
+    }
+
+    public int getIdRoll() {
         return idRoll;
     }
 
-    public void setIdRoll(BigInteger idRoll) {
+    public void setIdRoll(int idRoll) {
         this.idRoll = idRoll;
     }
 
@@ -42,14 +46,14 @@ public class Roll implements Serializable {
 
         Roll roll = (Roll) o;
 
-        if (idRoll != null ? !idRoll.equals(roll.idRoll) : roll.idRoll != null) return false;
+        if (idRoll != roll.idRoll) return false;
         return name != null ? name.equals(roll.name) : roll.name == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = idRoll != null ? idRoll.hashCode() : 0;
+        int result = idRoll;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

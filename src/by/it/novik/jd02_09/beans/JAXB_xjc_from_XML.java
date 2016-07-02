@@ -1,5 +1,5 @@
-package by.it.novik.jd02_09.old;
-//тут нужно указать путь к сгенерированным классам
+package by.it.novik.jd02_09.beans;
+
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -7,17 +7,17 @@ import javax.xml.bind.Unmarshaller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class JaxB_xjc {
+public class JAXB_xjc_from_XML {
         public static void main(String[ ] args) {
-            String sourceXML = "src/by/it/novik/jd02_09/payments-xsd.xml";
+            String sourceXML = "src/by/it/novik/jd02_09/beans/payments-test.xml";
             try {
 
-                JAXBContext jc = JAXBContext.newInstance(Rolls.class);
+                JAXBContext jc = JAXBContext.newInstance(Users.class);
                 Unmarshaller u = jc.createUnmarshaller();
                 FileReader reader = new FileReader(sourceXML);
                 System.out.println("XML-файл прочитан:");
-                Rolls rolls = (Rolls) u.unmarshal(reader);
-                System.out.println(rolls);
+                Users users = (Users) u.unmarshal(reader);
+                System.out.println(users);
 
             } catch (JAXBException e) {
                 System.out.println("Error JAXB" + e);

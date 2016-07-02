@@ -4,11 +4,11 @@
         xmlns:kns="http://beans.jd02_09.novik.it.by/"
         elementFormDefault="qualified">
 
-<element name="Rolls">
+<element name="Users">
     <complexType>
         <sequence>
-            <element name="Roll"
-                     type="kns:Roll"
+            <element name="User"
+                     type="kns:User"
                      maxOccurs="unbounded" />
         </sequence>
     </complexType>
@@ -21,38 +21,14 @@
         <field xpath="@idUser"/>
     </key>
     <key name="KeyAccount">
-        <selector xpath="account"/>
+        <selector xpath="Account"/>
         <field xpath="@idAccount"/>
     </key>
     <key name="KeyPayment">
-        <selector xpath="payment"/>
+        <selector xpath="Payment"/>
         <field xpath="@idPayment"/>
     </key>
 </element>
-    <complexType name="Roll">
-    <sequence>
-        <element name="Users"
-                 type="kns:Users"
-                 maxOccurs="unbounded" />
-    </sequence>
-        <attribute name="idRoll" type="integer" use="required"/>
-        <attribute name="name" use="required" >
-            <simpleType>
-                <restriction base="string">
-                    <enumeration value="Clients"/>
-                    <enumeration value="Admin"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-    </complexType>
-
-    <complexType name="Users">
-        <sequence>
-            <element name="User"
-                     type="kns:User"
-                     maxOccurs="unbounded" />
-        </sequence>
-    </complexType>
 
 <complexType name="User">
     <sequence>
@@ -65,27 +41,29 @@
         <element name="Email" type="string"/>
         <element name="Nickname" type="string"/>
         <element name="Password" type="string"/>
-        <element name="Accounts" type="kns:Accounts" minOccurs="0"/>
+        <element name="Roll" type="kns:Roll" minOccurs="1" maxOccurs="unbounded"/>
+        <element name="Account" type="kns:Account" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
     <attribute name="idUser" type="integer" use="required"/>
 
 </complexType>
 
+    <complexType name="Roll">
+        <attribute name="idRoll" type="integer" use="required"/>
+        <attribute name="name" use="required" >
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="Clients"/>
+                    <enumeration value="Admin"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
 
-<complexType name="Accounts">
-    <sequence>
-        <element name="account"
-                 type="kns:account"
-                 minOccurs="0"
-                 maxOccurs="unbounded">
-        </element>
-    </sequence>
-</complexType>
-
-<complexType name="account">
+<complexType name="Account">
     <sequence>
         <element name="Amount" type="integer"/>
-        <element name="Payments" type="kns:Payments" minOccurs="0"/>
+        <element name="Payment" type="kns:Payment" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
     <attribute name="idAccount" type="integer" use="required"/>
     <attribute name="state" use="required">
@@ -98,19 +76,7 @@
     </attribute>
 </complexType>
 
-
-
-<complexType name="Payments">
-    <sequence>
-        <element name="payment"
-                 type="kns:payment"
-                 minOccurs="0"
-                 maxOccurs="unbounded">
-        </element>
-    </sequence>
-</complexType>
-
-<complexType name="payment">
+<complexType name="Payment">
     <sequence>
         <element name="Source" type="integer"/>
         <element name="Description" type="string"/>

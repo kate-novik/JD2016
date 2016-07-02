@@ -15,7 +15,6 @@ public class XSLRunner {
         String sourceXSL = "src/by/it/novik/jd02_09/html/payments.xsl";
         String sourceXML = "src/by/it/novik/jd02_09/html/payments.xml";
         String result = "src/by/it/novik/jd02_09/html/payments.html";
-        //File fSource
         //Создаем фабрику трансформеров
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         //Создаем объект трансформер

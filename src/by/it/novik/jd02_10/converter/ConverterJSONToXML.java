@@ -1,6 +1,5 @@
 package by.it.novik.jd02_10.converter;
 
-import by.it.akhmelev.jd02_09.generate.Students;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -13,12 +12,43 @@ import java.io.*;
  * Created by Kate Novik.
  */
 public class ConverterJSONToXML extends AbstractConverter {
+
+    public ConverterJSONToXML(Class beanClass) {
+        super(beanClass);
+    }
+
+    public ConverterJSONToXML(Object bean) {
+        super(bean);
+    }
+
+    @Override
+    public void buildConverter(String filename) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(filename));
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found" + e);
+        }
+        //Получение бина с json
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        if (reader != null){
+        bean = gson.fromJson(reader,getBeanClass());
+            try {
+                reader.close();
+            } catch (IOException e) {
+                System.out.println("Error input-output" + e);
+            }
+        }
+
+    }
+
     @Override
     public String getConverterResult() {
         StringWriter stringWriter = null;
+        String xml = "";
         try {
-        JAXBContext jc = JAXBContext.newInstance(Students.class);
-
+            //Получение xml файла из бина
+            JAXBContext jc = JAXBContext.newInstance(getBeanClass());
             Marshaller marshaller = jc.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);//Перенос строк
             stringWriter = new StringWriter();
@@ -27,28 +57,14 @@ public class ConverterJSONToXML extends AbstractConverter {
             e.printStackTrace();
         }
         if (stringWriter!= null){
-        return stringWriter.toString();}
-        return null;
-    }
-
-    @Override
-    public void buildConverter(String filename) {
-        String json="";
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
-            String line;
-
-            while((line=reader.readLine())!=null){
-                json=json.concat(line);
+            xml = stringWriter.toString();
+            try {
+                stringWriter.close();
+            } catch (IOException e) {
+                System.out.println("Error input-output" + e);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-        bean = gson.fromJson(json,Students.class);
 
-
+        return xml;
     }
 }

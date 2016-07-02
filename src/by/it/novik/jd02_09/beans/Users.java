@@ -9,29 +9,29 @@ import java.util.ArrayList;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Users", propOrder = {
-        "User"
+        "user"
 })
 public class Users {
     @XmlElement(name="User")
-    private ArrayList<User> listUser = new ArrayList<>();
+    private ArrayList<User> user = new ArrayList<>();
 
     public Users() {
         super();
     }
 
     public ArrayList<User> getListUser() {
-        return listUser;
+        return user;
     }
 
     public void setListUser(ArrayList<User> listUser) {
-        this.listUser = listUser;
+        this.user = listUser;
     }
 
     /**
      * Добавить User в список listUser
      * @param user Объект User
      */
-    public void addUser (User user) {listUser.add(user);}
+    public void addUser (User user) {this.user.add(user);}
 
     @Override
     public boolean equals(Object o) {
@@ -40,19 +40,19 @@ public class Users {
 
         Users users = (Users) o;
 
-        return listUser != null ? listUser.equals(users.listUser) : users.listUser == null;
+        return user != null ? user.equals(users.user) : users.user == null;
 
     }
 
     @Override
     public int hashCode() {
-        return listUser != null ? listUser.hashCode() : 0;
+        return user != null ? user.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "Users{" +
-                "listUser=" + listUser +
+                "listUser=" + user +
                 '}';
     }
 }

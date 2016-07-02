@@ -13,21 +13,21 @@ import java.util.ArrayList;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "User", propOrder = {
-        "First_Name",
-        "Middle_Name",
-        "Last_Name",
-        "Passport",
-        "Address",
-        "Phone",
-        "Email",
-        "Nickname",
-        "Password",
-        "Accounts"
+        "firstName",
+        "middleName",
+        "lastName",
+        "passport",
+        "address",
+        "phone",
+        "email",
+        "nickname",
+        "password",
+        "roll",
+        "account"
 })
 public class User implements Serializable {
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlAttribute(name = "idUser", required = true)
-    private BigInteger idUser;
+    private int idUser;
     @XmlElement(name = "First_Name", required = true)
     private String firstName;
     @XmlElement(name = "Middle_Name", required = true)
@@ -47,19 +47,36 @@ public class User implements Serializable {
     @XmlElement(name = "Password", required = true)
     private String password;
     @XmlElement(name = "Roll", required = true)
-    private ArrayList<Roll> listRolls;
+    private ArrayList<Roll> roll;
     @XmlElement(name = "Account", required = true)
-    private ArrayList<Account> listAccounts;
+    private ArrayList<Account> account;
 
     public User() {
         super();
     }
 
-    public BigInteger getIdUser() {
+    public User(int idUser, String firstName, String middleName, String lastName, String passport,
+                String phone, String address, String email, String nickname, String password,
+                ArrayList<Roll> listRolls, ArrayList<Account> listAccounts) {
+        this.idUser = idUser;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.passport = passport;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+        this.roll = listRolls;
+        this.account = listAccounts;
+    }
+
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(BigInteger idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
@@ -136,27 +153,27 @@ public class User implements Serializable {
     }
 
     public ArrayList<Roll> getListRolls() {
-        return listRolls;
+        return roll;
     }
 
     public void setListRolls(ArrayList<Roll> listRolls) {
-        this.listRolls = listRolls;
+        this.roll = listRolls;
     }
 
     public void addRoll(Roll roll) {
-        listRolls.add(roll);
+        this.roll.add(roll);
     }
 
     public ArrayList<Account> getListAccounts() {
-        return listAccounts;
+        return account;
     }
 
     public void setListAccounts(ArrayList<Account> listAccounts) {
-        this.listAccounts = listAccounts;
+        this.account = listAccounts;
     }
 
     public void addAccount(Account account) {
-        listAccounts.add(account);
+        this.account.add(account);
     }
 
     @Override
@@ -166,7 +183,7 @@ public class User implements Serializable {
 
         User user = (User) o;
 
-        if (idUser != null ? !idUser.equals(user.idUser) : user.idUser != null) return false;
+        if (idUser != user.idUser) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
         if (middleName != null ? !middleName.equals(user.middleName) : user.middleName != null) return false;
         if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
@@ -176,14 +193,14 @@ public class User implements Serializable {
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (nickname != null ? !nickname.equals(user.nickname) : user.nickname != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (listRolls != null ? !listRolls.equals(user.listRolls) : user.listRolls != null) return false;
-        return listAccounts != null ? listAccounts.equals(user.listAccounts) : user.listAccounts == null;
+        if (roll != null ? !roll.equals(user.roll) : user.roll != null) return false;
+        return account != null ? account.equals(user.account) : user.account == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = idUser != null ? idUser.hashCode() : 0;
+        int result = idUser;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
@@ -193,8 +210,8 @@ public class User implements Serializable {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (listRolls != null ? listRolls.hashCode() : 0);
-        result = 31 * result + (listAccounts != null ? listAccounts.hashCode() : 0);
+        result = 31 * result + (roll != null ? roll.hashCode() : 0);
+        result = 31 * result + (account != null ? account.hashCode() : 0);
         return result;
     }
 
@@ -211,64 +228,10 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
-                ", listRolls=" + listRolls +
-                ", listAccounts=" + listAccounts +
+                ", listRolls=" + roll +
+                ", listAccounts=" + account +
                 '}' + '\n';
     }
 
-    @XmlRootElement
-    @XmlAccessorType(XmlAccessType.FIELD)
-    public static class Roll implements Serializable {
-        @XmlAttribute(name="idRoll",required = true)
-        private BigInteger idRoll;
-        @XmlAttribute(name="name",required = true)
-        private String name;
 
-        public Roll() {
-            super();
-        }
-
-        public BigInteger getIdRoll() {
-            return idRoll;
-        }
-
-        public void setIdRoll(BigInteger idRoll) {
-            this.idRoll = idRoll;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            Roll roll = (Roll) o;
-
-            if (idRoll != null ? !idRoll.equals(roll.idRoll) : roll.idRoll != null) return false;
-            return name != null ? name.equals(roll.name) : roll.name == null;
-
-        }
-
-        @Override
-        public int hashCode() {
-            int result = idRoll != null ? idRoll.hashCode() : 0;
-            result = 31 * result + (name != null ? name.hashCode() : 0);
-            return result;
-        }
-
-        @Override
-        public String toString() {
-            return "Roll{" +
-                    "idRoll=" + idRoll +
-                    ", name='" + name + '\'' +
-                    '}' + '\n';
-        }
-    }
 }
