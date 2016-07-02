@@ -6,7 +6,7 @@
 //
 
 
-package by.it.sinkevich.jd02_09.TaskC;
+package by.it.sinkevich.jd02_09.taskC;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;

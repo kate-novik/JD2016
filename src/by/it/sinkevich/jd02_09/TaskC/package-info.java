@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://jd02_09.sinkevich.it.by", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package by.it.sinkevich.jd02_09.TaskC;
+package by.it.sinkevich.jd02_09.taskC;
