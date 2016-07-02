@@ -20,7 +20,7 @@ public class Horse {
     public Horse() {
     }
 
-    public Horse(String name, Double odds) {
+    public Horse(String name, float odds) {
         this.name = name;
         this.odds = odds;
     }
@@ -28,7 +28,7 @@ public class Horse {
     @XmlElement(name = "Name", required = true)
     protected String name;
     @XmlElement(name = "Odds", required = true)
-    protected Double odds;
+    protected float odds;
 
     public String getName() {
         return name;
@@ -38,11 +38,11 @@ public class Horse {
         this.name = name;
     }
 
-    public double getOdds() {
+    public float getOdds() {
         return odds;
     }
 
-    public void setOdds(double odds) {
+    public void setOdds(float odds) {
         this.odds = odds;
     }
 }

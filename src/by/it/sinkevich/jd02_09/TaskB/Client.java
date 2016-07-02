@@ -19,7 +19,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(String name, Integer age, List<Bet> bets) {
+    public Client(String name, int age, List<Bet> bets) {
         this.name = name;
         this.age = age;
         this.bets = bets;
@@ -28,7 +28,7 @@ public class Client {
     @XmlElement(name = "Name", required = true)
     protected String name;
     @XmlElement(name = "Age", required = true)
-    protected Integer age;
+    protected int age;
     @XmlElementWrapper(name = "Bets")
     @XmlElement(name = "Bet", required = true)
     protected List<Bet> bets;
@@ -41,11 +41,11 @@ public class Client {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

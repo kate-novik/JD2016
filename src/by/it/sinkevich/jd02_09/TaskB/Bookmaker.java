@@ -19,7 +19,7 @@ public class Bookmaker {
     public Bookmaker() {
     }
 
-    public Bookmaker(String name, List<Bet> bets, Double profit) {
+    public Bookmaker(String name, List<Bet> bets, double profit) {
         this.name = name;
         this.bets = bets;
         this.profit = profit;
@@ -31,7 +31,29 @@ public class Bookmaker {
     @XmlElement(name = "Bet", required = true)
     protected List<Bet> bets;
     @XmlElement(name = "Profit", required = true)
-    protected Double profit;
+    protected double profit;
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Bet> getBets() {
+        return bets;
+    }
+
+    public void setBets(List<Bet> bets) {
+        this.bets = bets;
+    }
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
+    }
 }

@@ -21,10 +21,10 @@ public class Runner {
     private static HorseRaces horseRaces;
 
     static {
-        Horse horse1 = new Horse("Favorit", 2.2);
-        Horse horse2 = new Horse("Outsider", 11.5);
-        Horse horse3 = new Horse("Arrow", 5.5);
-        Horse horse4 = new Horse("Flash", 3.0);
+        Horse horse1 = new Horse("Favorit", 2.2f);
+        Horse horse2 = new Horse("Outsider", 11.5f);
+        Horse horse3 = new Horse("Arrow", 5.5f);
+        Horse horse4 = new Horse("Flash", 3.0f);
         List<Horse> horseList = new ArrayList<>();
         horseList.add(horse1);
         horseList.add(horse2);

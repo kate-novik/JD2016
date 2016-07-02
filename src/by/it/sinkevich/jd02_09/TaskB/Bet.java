@@ -21,7 +21,7 @@ public class Bet {
     public Bet() {
     }
 
-    public Bet(XMLGregorianCalendar time, Race race, Horse horse, Double betSum, Double payout) {
+    public Bet(XMLGregorianCalendar time, Race race, Horse horse, double betSum, double payout) {
 
         this.time = time;
         this.race = race;
@@ -38,9 +38,9 @@ public class Bet {
     @XmlElement(name = "Horse", required = true)
     protected Horse horse;
     @XmlElement(name = "BetSum", required = true)
-    protected Double betSum;
+    protected double betSum;
     @XmlElement(name = "Payout", required = true)
-    protected Double payout;
+    protected double payout;
 
     public XMLGregorianCalendar getTime() {
         return time;
@@ -66,19 +66,19 @@ public class Bet {
         this.horse = horse;
     }
 
-    public Double getBetSum() {
+    public double getBetSum() {
         return betSum;
     }
 
-    public void setBetSum(Double betSum) {
+    public void setBetSum(double betSum) {
         this.betSum = betSum;
     }
 
-    public Double getPayout() {
+    public double getPayout() {
         return payout;
     }
 
-    public void setPayout(Double payout) {
+    public void setPayout(double payout) {
         this.payout = payout;
     }
 }
