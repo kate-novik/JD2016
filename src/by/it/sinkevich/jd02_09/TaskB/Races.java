@@ -1,9 +1,6 @@
 package by.it.sinkevich.jd02_09.TaskB;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -15,6 +12,14 @@ import java.util.List;
 @XmlType(name = "Races", propOrder = "races")
 public class Races {
 
+    public Races() {
+    }
+
+    public Races(List<Race> races) {
+
+        this.races = races;
+    }
+    @XmlElementWrapper(name = "Races")
     @XmlElement(name = "Race", required = true)
     protected List<Race> races;
 

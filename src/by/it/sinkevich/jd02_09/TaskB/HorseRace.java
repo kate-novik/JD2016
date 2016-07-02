@@ -18,16 +18,30 @@ import java.util.List;
         "clients"
 })
 public class HorseRace {
+
+    public HorseRace() {
+    }
+
+    public HorseRace(XMLGregorianCalendar dateTime, Bookmaker bookmaker, List<Horse> horses, List<Race> races, List<Client> clients) {
+        this.dateTime = dateTime;
+        this.bookmaker = bookmaker;
+        this.horses = horses;
+        this.races = races;
+        this.clients = clients;
+    }
+
     @XmlElement(name = "DateTime", required = true)
     @XmlSchemaType(name = "dateTime")
-    @XmlID
     protected XMLGregorianCalendar dateTime;
     @XmlElement(name = "Bookmaker", required = true)
     protected Bookmaker bookmaker;
+    @XmlElementWrapper(name = "Horses")
     @XmlElement(name = "Horse", required = true)
     protected List<Horse> horses;
+    @XmlElementWrapper(name = "Races")
     @XmlElement(name = "Race", required = true)
     protected List<Race> races;
+    @XmlElementWrapper(name = "Clients")
     @XmlElement(name = "Client", required = true)
     protected List<Client> clients;
 

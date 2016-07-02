@@ -1,9 +1,6 @@
 package by.it.sinkevich.jd02_09.TaskB;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -12,17 +9,23 @@ import java.util.List;
  * @author Sinkevich Denis
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Horses", propOrder = "horses")
+@XmlType(name = "Horses", propOrder = {
+        "horse"
+})
 public class Horses {
 
-    @XmlElement(name = "Horse", required = true)
-    protected List<Horse> horses;
-
-    public List<Horse> getHorses() {
-        return horses;
+    public Horses() {
     }
 
-    public void setHorses(List<Horse> horses) {
-        this.horses = horses;
+    public Horses(List<Horse> horses) {
+
+        this.horse = horses;
+    }
+    @XmlElementWrapper(name = "Horses")
+    @XmlElement(name = "Horse", required = true)
+    protected List<Horse> horse;
+
+    public List<Horse> getHorses() {
+        return horse;
     }
 }

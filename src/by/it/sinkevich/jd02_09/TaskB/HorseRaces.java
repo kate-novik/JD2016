@@ -13,6 +13,13 @@ import java.util.List;
 @XmlRootElement(name = "HorseRaces")
 public class HorseRaces {
 
+    public HorseRaces() {
+    }
+
+    public HorseRaces(List<HorseRace> horseRaces) {
+        this.horseRaces = horseRaces;
+    }
+
     @XmlElement(name = "HorseRace", required = true)
     protected List<HorseRace> horseRaces;
 

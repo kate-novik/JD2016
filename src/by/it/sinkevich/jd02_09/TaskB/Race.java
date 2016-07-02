@@ -17,13 +17,23 @@ import java.util.List;
 })
 public class Race {
 
-    @XmlElement(required = true)
+    public Race() {
+    }
+
+    public Race(XMLGregorianCalendar time, List<Horse> horses, String winner) {
+
+        this.time = time;
+        this.horses = horses;
+        this.winner = winner;
+    }
+
+    @XmlElement(name = "Time", required = true)
     @XmlSchemaType(name = "time")
-    @XmlID
     protected XMLGregorianCalendar time;
+    @XmlElementWrapper(name = "Horses")
     @XmlElement(name = "Horse", required = true)
     protected List<Horse> horses;
-    @XmlElement(required = true)
+    @XmlElement(name = "Winner", required = true)
     protected String winner;
 
     public XMLGregorianCalendar getTime() {

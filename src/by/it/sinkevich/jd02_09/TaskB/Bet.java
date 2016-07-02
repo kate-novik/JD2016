@@ -18,17 +18,28 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class Bet {
 
-    @XmlElement(required = true)
+    public Bet() {
+    }
+
+    public Bet(XMLGregorianCalendar time, Race race, Horse horse, Double betSum, Double payout) {
+
+        this.time = time;
+        this.race = race;
+        this.horse = horse;
+        this.betSum = betSum;
+        this.payout = payout;
+    }
+
+    @XmlElement(name = "Time", required = true)
     @XmlSchemaType(name = "time")
-    @XmlID
     protected XMLGregorianCalendar time;
-    @XmlElement(required = true)
+    @XmlElement(name = "Race", required = true)
     protected Race race;
-    @XmlElement(required = true)
+    @XmlElement(name = "Horse", required = true)
     protected Horse horse;
-    @XmlElement(required = true)
+    @XmlElement(name = "BetSum", required = true)
     protected Double betSum;
-    @XmlElement(required = true)
+    @XmlElement(name = "Payout", required = true)
     protected Double payout;
 
     public XMLGregorianCalendar getTime() {

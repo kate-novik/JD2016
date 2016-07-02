@@ -1,6 +1,9 @@
 package by.it.sinkevich.jd02_09.TaskB;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * Class for jd02_09 taskB. Making beans to Test JAXB
@@ -14,10 +17,17 @@ import javax.xml.bind.annotation.*;
 })
 public class Horse {
 
-    @XmlElement(required = true)
-    @XmlID
+    public Horse() {
+    }
+
+    public Horse(String name, Double odds) {
+        this.name = name;
+        this.odds = odds;
+    }
+
+    @XmlElement(name = "Name", required = true)
     protected String name;
-    @XmlElement(required = true)
+    @XmlElement(name = "Odds", required = true)
     protected Double odds;
 
     public String getName() {
