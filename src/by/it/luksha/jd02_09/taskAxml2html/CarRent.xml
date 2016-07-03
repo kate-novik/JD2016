@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CarRent
-        xmlns="http://luksha.it-academy.by/xml/CarRent"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://luksha.it-academy.by/xml/CarRent CarRent.xsd">
-    <Name>Rent for rest</Name>
+<CarRent>
+    <Name>
+        Rent for rest
+    </Name>
     <Address>
-        <Geoaddress>
-            <Country>BY</Country>
-            <City>Minsk</City>
-            <Street>Central,37</Street>
-        </Geoaddress>
-        <Webaddress>
-            <Site>www.r4r.com</Site>
-            <Email>office@r4r.com</Email>
-        </Webaddress>
+        <Geoaddress>BY, Minsk, Central,37</Geoaddress>
+        <Webaddress>www.r4r.com, office@r4r.com</Webaddress>
         <Phone>+375(017)345-12-21</Phone>
     </Address>
     <ListCars>
-        <Car>
+        <Car id="1">
             <Price currency="eu">100</Price>
             <Brand>Toyota</Brand>
             <Model category="off-road">LC200</Model>
@@ -27,7 +19,7 @@
             <AirCool>auto</AirCool>
             <Isofix>yes</Isofix>
         </Car>
-        <Car>
+        <Car id="2">
             <Price>50</Price>
             <Brand>BMW</Brand>
             <Model category="business">7er</Model>
@@ -37,7 +29,7 @@
             <AirCool>auto</AirCool>
             <Isofix>no</Isofix>
         </Car>
-        <Car>
+        <Car id="3">
             <Price currency="usd">10</Price>
             <Brand>LADA</Brand>
             <Model category="economy">2107</Model>

@@ -22,7 +22,7 @@
             <Brand>Toyota</Brand>
             <Model category="off-road">LC200</Model>
             <Gearbox>auto</Gearbox>
-            <Engine value="4.2">petrol</Engine>
+            <Engine volume="4.2">petrol</Engine>
             <Places>7</Places>
             <AirCool>auto</AirCool>
             <Isofix>yes</Isofix>
@@ -32,7 +32,7 @@
             <Brand>BMW</Brand>
             <Model category="business">7er</Model>
             <Gearbox>auto</Gearbox>
-            <Engine value="3.0">petrol</Engine>
+            <Engine volume="3.0">petrol</Engine>
             <Places>5</Places>
             <AirCool>auto</AirCool>
             <Isofix>no</Isofix>
@@ -42,7 +42,7 @@
             <Brand>LADA</Brand>
             <Model category="economy">2107</Model>
             <Gearbox>manual</Gearbox>
-            <Engine value="1.4">petrol</Engine>
+            <Engine volume="1.4">petrol</Engine>
             <Places>4</Places>
             <AirCool>no</AirCool>
             <Isofix>no</Isofix>
