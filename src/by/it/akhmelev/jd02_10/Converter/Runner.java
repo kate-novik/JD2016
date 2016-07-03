@@ -22,6 +22,10 @@ public class Runner {
         System.out.println("\nиз XML-файла в JSON-текст\n");
         System.out.println(json);
 
+        //из XML-файла в JSON-файл
+        file=new File(src+"jd02_09/generate/json_data.json");
+        converter.saveConverterResultToFile(file);
+
         //из JSON-файла в XML-текст
         converter = converterFactory.createConverterBuilder("json_to_xml",Students.class);
         file=new File(src+"jd02_09/generate/json_data.json");
