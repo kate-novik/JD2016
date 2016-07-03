@@ -56,7 +56,7 @@ public class VariableVector extends AbstractVariable implements IVariable{
 
 
     @Override//вычитание
-    public AbstractVariable substraction(AbstractVariable var) {
+    public AbstractVariable subtraction(AbstractVariable var) {
 
         if (var instanceof VariableVector)
         {
@@ -78,7 +78,7 @@ public class VariableVector extends AbstractVariable implements IVariable{
             return v1;
         }
 
-        return super.substraction(var);
+        return super.subtraction(var);
     }
 
 
