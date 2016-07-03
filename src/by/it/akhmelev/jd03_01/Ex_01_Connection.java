@@ -11,14 +11,10 @@ public class Ex_01_Connection {
 
 
     public static void main(String[ ] args) {
-        Driver driver= null;
         try {
-            driver = new FabricMySQLDriver();
+            Driver driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        } catch (SQLException e) {e.printStackTrace();}
         try (Connection connection=
                      DriverManager.getConnection
                              (CN.URL_DB, CN.USER_DB, CN.PASSWORD_DB);){
