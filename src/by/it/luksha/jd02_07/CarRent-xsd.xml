@@ -3,9 +3,7 @@
         xmlns="http://luksha.it-academy.by/xml/CarRent"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://luksha.it-academy.by/xml/CarRent CarRent.xsd">
-    <Name>
-        Rent for rest
-    </Name>
+    <Name>Rent for rest</Name>
     <Address>
         <Geoaddress>
             <Country>BY</Country>
