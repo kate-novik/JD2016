@@ -11,17 +11,23 @@ public class UserCRUD {
 
     public User create(User user) throws SQLException {
         user.setID(0);
+        //формирование строки createUserSQL по данным bean user
         String createUserSQL = String.format(
                 "insert into users(Login,Password,Email,FK_Role) values('%s','%s','%s',%d);",
                 user.getLogin(), user.getPassword(), user.getEmail(), user.getFK_Role()
         );
         try (
-                Connection connection = ConnectionCreator.getConnection();
-                Statement statement = connection.createStatement();
+                //создаем соединение и объект для запросов к базе
+                Connection connection = ConnectionCreator.getConnection(); //создаем соединение с базой
+                Statement statement = connection.createStatement(); //создаем объект для обращения к базе
         ) {
+            //выполняем добавление в базу, должна быть юобавлена одна запись. Проверим это.
+            //create(insert) update delete - это executeUpdate, а select это executeQuery
             if (statement.executeUpdate(createUserSQL) == 1)
             {
+                //если все добавлено то узнаем последний ID
                 ResultSet resultSet = statement.executeQuery("SELECT LAST_INSERT_ID();");
+                //извлекаем из resultSet последний ID
                 if (resultSet.next())
                     user.setID(resultSet.getInt(1));
             }

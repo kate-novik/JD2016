@@ -1,11 +1,11 @@
 package by.it.akhmelev.jd03_02.crud;
 
 public class User {
-    int ID;
-    String Login;
-    String Password;
-    String Email;
-    int FK_Role;
+    private int ID;
+    private String Login;
+    private String Password;
+    private String Email;
+    private int FK_Role;
 
     public int getID() {
         return ID;
