@@ -1,1 +1,1 @@
-INSERT INTO payment (ID, FK_Account_Source, FK_Account_Destination, Description, Amount, Date_P) VALUES ('1', '1', '2', 'Перевод средств', '50', '2016-07-13');
+INSERT INTO payment (ID, FK_Account_Source, FK_Account_Destination, Description, Amount, Paydate) VALUES ('1', '1', '2', 'Перевод средств', '50', '2016-07-13');
