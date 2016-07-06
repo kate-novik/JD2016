@@ -96,4 +96,5 @@ public class User {
     public void setFk_role(int fk_role) {
         this.fk_role = fk_role;
     }
+
 }
