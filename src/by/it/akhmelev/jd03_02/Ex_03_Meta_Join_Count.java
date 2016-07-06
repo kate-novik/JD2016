@@ -7,13 +7,13 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
-public class Ex_03_Meta_Count {
+public class Ex_03_Meta_Join_Count {
     public static void main(String[] args) {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement();) {
 
             //получаем пользователей. Если неизвестно число полей, то нужно получить метаданные
-            ResultSet resultSet = statement.executeQuery("select * from users;");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users INNER JOIN role ON users.FK_Role=role.ID");
             while (resultSet.next()) {
                 ResultSetMetaData resultSetMetaData=resultSet.getMetaData();
                 int columnCount=resultSetMetaData.getColumnCount();
@@ -25,8 +25,8 @@ public class Ex_03_Meta_Count {
                 }
                 System.out.println();
             }
-            //общее число записей
-            resultSet=statement.executeQuery("SELECT COUNT(*) FROM users");
+            //общее число записей (для примера, правильнее сделать свой счетчик в предыдущем запросе)
+            resultSet=statement.executeQuery("SELECT COUNT(*) FROM users INNER JOIN role ON users.FK_Role=role.ID");
             if (resultSet.next())
                 System.out.println("Всего записей: "+resultSet.getInt(1));
 
