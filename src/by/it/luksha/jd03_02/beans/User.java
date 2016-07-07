@@ -1,7 +1,9 @@
-package by.it.luksha.jd03_02;
+package by.it.luksha.jd03_02.beans;
 
 
-//BEAN для сущности User из таблицы users
+/**
+ * BEAN для сущности User из таблицы users
+ */
 public class User {
     private int id;
     private String login;
