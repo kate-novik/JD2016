@@ -32,6 +32,13 @@ public class Account {
         this.state = state;
     }
 
+    public Account(Account account) {
+        this.balans = account.getBalans();
+        this.fk_Users = account.getFk_Users();
+        this.idAccount = account.getIdAccount();
+        this.state = account.getState();
+    }
+
     public int getIdAccount() {
         return idAccount;
     }

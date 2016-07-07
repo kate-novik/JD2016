@@ -33,13 +33,23 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(int idPayment, int fk_Account_Source, String description, int fk_Account_Destination, Date payDate, double amountPayment) {
+    public Payment(int idPayment, int fk_Account_Source, String description, int fk_Account_Destination, Date payDate,
+                   double amountPayment) {
         this.idPayment = idPayment;
         this.fk_Account_Source = fk_Account_Source;
         this.description = description;
         this.fk_Account_Destination = fk_Account_Destination;
         this.payDate = payDate;
         this.amountPayment = amountPayment;
+    }
+
+    public Payment(Payment payment) {
+        this.idPayment = payment.getIdPayment();
+        this.fk_Account_Source = payment.getFk_Account_Source();
+        this.description = payment.getDescription();
+        this.fk_Account_Destination = payment.getFk_Account_Destination();
+        this.payDate = payment.getPayDate();
+        this.amountPayment = payment.getAmountPayment();
     }
 
     public int getIdPayment() {

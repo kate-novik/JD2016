@@ -58,7 +58,7 @@ public class ActionsWithRole implements ActionsCRUD <Role,Integer> {
 
     @Override
     public Role update(Role object) throws SQLException {
-        String updateObject = String.format ("UPDATE role SET Role='%s' Where role.ID='%d';", object.getRole(), object.getRole());
+        String updateObject = String.format ("UPDATE role SET Role='%s' Where role.ID='%d';", object.getRole(), object.getIdRole());
         try (Connection connection = ConnectorDB.getConnection();
              Statement statement = connection.createStatement()) {
             //Синхронзация по соединению

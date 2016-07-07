@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
  * Created by Kate Novik.
  */
 public class ActionsWithUsersTest {
+
     private static ActionsCRUD<User,Integer> actionsCRUD;
     private static User user;
     private static List<User> listUsers;
@@ -32,18 +33,14 @@ public class ActionsWithUsersTest {
         System.out.println(listUsers.size());
         for (User user1 : listUsers) {
             actionsCRUD.delete(user1);
-            System.out.println(user1);
         }
     }
 
     @Test
     public void create() throws Exception {
-        //User user = new User (0, "Анна","Петровна","Соболь","MC267895, 19.05.2013","+375297785643", "г. Минск, ул. Гикало 1-2",
-        //        "anna", "234", "sobol_anna@gmail.com", 2);
         User userResult = new User (user);
         userResult = actionsCRUD.create(userResult);
         listUsers.add(userResult);
-        System.out.println(userResult);
         assertNotNull(userResult);
     }
 
@@ -53,7 +50,6 @@ public class ActionsWithUsersTest {
         userResult = actionsCRUD.create(userResult);
         userResult = actionsCRUD.read(userResult.getIdUser());
         listUsers.add(userResult);
-        System.out.println(userResult);
         assertNotNull(userResult);
     }
 
@@ -61,11 +57,8 @@ public class ActionsWithUsersTest {
     public void update() throws Exception {
         User userResult = new User (user);
         userResult = actionsCRUD.create(userResult);
-//        User user = new User (11, "Антонина","Петровна","Соболь","MC267895, 19.05.2013","+375297785643", "г. Минск, ул. Гикало 1-2",
-//                "anna", "234", "sobol_anna@gmail.com", 2);
         userResult = actionsCRUD.update(userResult);
         listUsers.add(userResult);
-        System.out.println(userResult);
         assertNotNull(userResult);
     }
 
@@ -73,9 +66,6 @@ public class ActionsWithUsersTest {
     public void delete() throws Exception {
         User userResult = new User (user);
         userResult = actionsCRUD.create(userResult);
-//        User user = new User (12, "Анна","Петровна","Соболь","MC267895, 19.05.2013","+375297785643", "г. Минск, ул. Гикало 1-2",
-//                "anna", "234", "sobol_anna@gmail.com", 2);
-        System.out.println(userResult);
         boolean flag = actionsCRUD.delete(userResult);
         assertTrue(flag);
     }
