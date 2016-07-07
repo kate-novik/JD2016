@@ -1,0 +1,1 @@
+ INSERT INTO rooms (type, price, isAvaliable) VALUES ('single', 50, 'yes'), ('double', 70, 'yes'), ('twin', 75, 'yes');
