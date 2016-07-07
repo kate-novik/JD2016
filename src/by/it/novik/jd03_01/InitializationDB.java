@@ -34,7 +34,7 @@ public class InitializationDB {
                     "ENGINE = InnoDB CHARACTER set UTF8 COLLATE UTF8_general_ci;");
             statement.execute("CREATE TABLE payment ( ID INT(11) NOT NULL AUTO_INCREMENT, FK_Account_Source INT(11) NOT NULL, " +
                     "FK_Account_Destination INT(11) NOT NULL , Description VARCHAR(200) NOT NULL , Amount DECIMAL(50) NOT NULL , " +
-                    "Date_P DATE NOT NULL , PRIMARY KEY (ID), Foreign Key (FK_Account_Source) REFERENCES account(ID), " +
+                    "Paydate Date NOT NULL , PRIMARY KEY (ID), Foreign Key (FK_Account_Source) REFERENCES account(ID), " +
                     "Foreign Key (FK_Account_Destination) REFERENCES account(ID)) ENGINE = InnoDB " +
                     "CHARACTER set UTF8 COLLATE UTF8_general_ci;");
             //Вставка значений в БД
@@ -49,11 +49,11 @@ public class InitializationDB {
             statement.executeUpdate("INSERT INTO account (ID, Balans, State, FK_Users) VALUES ('2', '547', 'Working', '1');");
             statement.executeUpdate("INSERT INTO account (ID, Balans, State, FK_Users) VALUES ('3', '3456', 'Working', '1');");
             statement.executeUpdate("INSERT INTO payment (ID, FK_Account_Source, FK_Account_Destination, Description, " +
-                    "Amount, Date_P) VALUES ('1', '1', '2', 'Перевод средств', '50', '2016-07-13');");
+                    "Amount, Paydate) VALUES ('1', '1', '2', 'Перевод средств', '50', '2016-07-13');");
             statement.executeUpdate("INSERT INTO payment (ID, FK_Account_Source, FK_Account_Destination, Description, " +
-                    "Amount, Date_P) VALUES ('2', '3', '1', 'Перевод средств', '100', '2016-07-01');");
+                    "Amount, Paydate) VALUES ('2', '3', '1', 'Перевод средств', '100', '2016-07-01');");
             statement.executeUpdate("INSERT INTO payment (ID, FK_Account_Source, FK_Account_Destination, Description, " +
-                    "Amount, Date_P) VALUES ('3', '2', '1', 'Перевод средств', '10', '2016-06-06');");
+                    "Amount, Paydate) VALUES ('3', '2', '1', 'Перевод средств', '10', '2016-06-06');");
             System.out.println("База данных проинициализирована!");
         } catch (SQLException e) {
             System.out.println("Error connection" + e);
