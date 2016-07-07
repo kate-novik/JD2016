@@ -1,6 +1,5 @@
 package by.it.sergeev.jd01_05.qvar16;
 
-import by.it.akhmelev.jd01_05.math.Task6;
 import by.it.sergeev.jd01_05.qvar16.TaskA.*;
 
 public class Main {
