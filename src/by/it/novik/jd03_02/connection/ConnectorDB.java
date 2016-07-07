@@ -1,4 +1,4 @@
-package by.it.novik.jd03_02;
+package by.it.novik.jd03_02.connection;
 
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 

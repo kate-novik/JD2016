@@ -1,6 +1,6 @@
 package by.it.novik.jd03_02.crud;
 
-import by.it.novik.jd03_02.ConnectorDB;
+import by.it.novik.jd03_02.connection.ConnectorDB;
 import by.it.novik.jd03_02.beans.User;
 
 import java.sql.Connection;
@@ -24,11 +24,12 @@ public class ActionsWithUsers implements ActionsCRUD <User,Integer> {
              Statement statement = connection.createStatement()) {
             //Синхронзация по соединению
             synchronized (connection) {
-                if (statement.executeUpdate(createObject) == 1)
+                if (statement.executeUpdate(createObject) == 1) //Вставка записи в таблицу
                 {
                     ResultSet resultSet = statement.executeQuery("SELECT LAST_INSERT_ID();");
-                    if (resultSet.next())
+                    if (resultSet.next()) {
                         object.setIdUser(resultSet.getInt(1));
+                    }
                     return object;
                 }
             }
@@ -45,7 +46,7 @@ public class ActionsWithUsers implements ActionsCRUD <User,Integer> {
                 //Синхронзация по соединению
                 synchronized (connection) {
                     ResultSet resultSet = statement.executeQuery(readObject);
-                    if (resultSet.next()) {
+                    if (resultSet.next()) { //Создание user в соответствии с полученными данными с таблицы
                         resultUser = new User(
                                 resultSet.getInt("ID"),
                                 resultSet.getString("First_Name"),
@@ -78,7 +79,7 @@ public class ActionsWithUsers implements ActionsCRUD <User,Integer> {
              Statement statement = connection.createStatement()) {
             //Синхронзация по соединению
             synchronized (connection) {
-                if (statement.executeUpdate(updateObject) == 1)
+                if (statement.executeUpdate(updateObject) == 1) //Обновление данных в таблице
                 {
                     return object; //Возвращаем обновленный в БД объект user
                 }
@@ -97,7 +98,7 @@ public class ActionsWithUsers implements ActionsCRUD <User,Integer> {
              Statement statement = connection.createStatement()) {
             //Синхронзация по соединению
             synchronized (connection) {
-                return (statement.executeUpdate(deleteObject) == 1);
+                return (statement.executeUpdate(deleteObject) == 1);//Возвращаем true при успешном удалении записи
             }
         }
         catch (SQLException e) {

@@ -48,24 +48,8 @@ public class User implements Serializable {
         super();
     }
 
-    public User(String firstName, String middleName, String lastName, String passport,
-                String phone, String address, String email, String nickname, String password,
-                int fk_Role) {
-        this.idUser = 0;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.passport = passport;
-        this.phone = phone;
-        this.address = address;
-        this.email = email;
-        this.nickname = nickname;
-        this.password = password;
-        this.fk_Role = fk_Role;
-    }
-
     public User(int idUser, String firstName, String middleName, String lastName, String passport,
-                String phone, String address, String email, String nickname, String password,
+                String address, String phone, String nickname, String email, String password,
                 int fk_Role) {
         this.idUser = idUser;
         this.firstName = firstName;
@@ -78,6 +62,20 @@ public class User implements Serializable {
         this.nickname = nickname;
         this.password = password;
         this.fk_Role = fk_Role;
+    }
+
+    public User (User user) {
+        this.idUser = user.getIdUser();
+        this.firstName = user.getFirstName();
+        this.middleName = user.getMiddleName();
+        this.lastName = user.getLastName();
+        this.passport = user.getPassport();
+        this.phone = user.getPhone();
+        this.address = user.getAddress();
+        this.email = user.getEmail();
+        this.nickname = user.getNickname();
+        this.password = user.getPassword();
+        this.fk_Role = user.getFK_Role();
     }
 
     public int getIdUser() {

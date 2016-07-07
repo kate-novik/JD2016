@@ -1,11 +1,14 @@
 package by.it.novik.jd03_02;
 
+import by.it.novik.jd03_02.connection.ConnectorDB;
+
 import java.sql.*;
 
 /**
  * Created by Kate Novik.
  */
 public class WorkWithTableRole {
+
     public static void main(String[] args) throws SQLException {
         String readRole = "Select ID From role Where role.Role = ?;";
         int idAdmin = 0;

@@ -13,21 +13,29 @@ public class ExecuteCRUD {
         //Create object ActionsWithUsers for working with table users
         ActionsCRUD <User,Integer> actionsCRUD = new ActionsWithUsers();
         //Create object User
-        User user = new User ( "Анна","Петровна","Соболь","MC267895, 19.05.2013", "г. Минск, ул. Гикало 1-2",
-                "+375297785643", "anna", "234", "sobol_anna@gmail.com", '2');
-        User resultUser;
+        User user = new User (0, "Анна","Петровна","Соболь","MC267895, 19.05.2013", "г. Минск, ул. Гикало 1-2", "+375297785643",
+                "anna", "sobol_anna@gmail.com", "234", 2);
         //Operation Create User
         try {
             //Insert user in table users
-            resultUser = actionsCRUD.create(user);
+            user = actionsCRUD.create(user);
             //Read user from table users
-            actionsCRUD.read(resultUser.getIdUser()).toString();
+            System.out.println(actionsCRUD.read(user.getIdUser()));
 
             //Update user in table users
-            //resultUser = actionsCRUD.update()
+            user.setFirstName("Антонина");
+            user = actionsCRUD.update(user);
+            //Read user from table users
+            System.out.println(actionsCRUD.read(user.getIdUser()));
+
+            //Delete user from table users
+            if (actionsCRUD.delete(user)) {
+                System.out.println("User удален! ID = " + user.getIdUser());
+            }
 
         } catch (SQLException e) {
             System.out.println("Error sql operation" + e);
+            e.printStackTrace();
         }
 
     }
