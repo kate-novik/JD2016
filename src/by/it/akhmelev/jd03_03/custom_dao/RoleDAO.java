@@ -15,11 +15,8 @@ public class RoleDAO extends DAO implements InterfaceDAO<Role> {
     public List<Role> getAll(String WHERE) {
         List<Role> roles = new ArrayList<>();
         String sql = "SELECT * FROM role " + WHERE + " ;";
-        try (
-                Connection connection = ConnectionCreator.getConnection();
-                Statement statement = connection.createStatement()
-        ) {
-            ResultSet rs = statement.executeQuery(sql);
+        try {
+            ResultSet rs = executeQuery(sql);
             while (rs.next()) {
                 Role role = new Role();
                 role.setId(rs.getInt("ID"));
@@ -47,7 +44,8 @@ public class RoleDAO extends DAO implements InterfaceDAO<Role> {
         String sql = String.format(
                 "insert INTO role(Role) values('%s',);",role.getRole()
         );
-        return (0 < executeUpdate(sql));
+        role.setId(executeUpdate(sql));
+        return (role.getId()>0);
     }
 
     @Override
