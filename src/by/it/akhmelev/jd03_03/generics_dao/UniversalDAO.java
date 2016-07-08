@@ -17,7 +17,7 @@ import java.util.List;
 // Код написал для примера и сильно не проверял, так что к прямому использованию он точно не готов
 // просто посмотрите что умеют Generics.
 
-//нет потокобезопасности, совсем. Пример. Иначе код очень сильно усложнится.
+//нет потокобезопасности, совсем. Т.к. пример. Иначе код сильно усложнится.
 //Поэтому никакого реального применения (!)
 public class UniversalDAO<TypeBean> {
 
@@ -25,14 +25,12 @@ public class UniversalDAO<TypeBean> {
     private String table; //это его таблица в базе
     Field[] fields; //это поля bean
 
-
     //конструктор DAO
     public UniversalDAO(TypeBean bean, String sqlTableName) {
         this.bean = bean;
         this.table = sqlTableName;
         this.fields = bean.getClass().getDeclaredFields();
     }
-
 
     //=======================================================================================================
     public List<TypeBean> getAll(String WHERE) throws SQLException {
@@ -168,6 +166,7 @@ public class UniversalDAO<TypeBean> {
     //=======================================================================================================
     //т.к. в Generics невозможно сделать new TypeBean(), а новые объекты нужны,
     //создадим объект и приведем его тип к TypeBean "вручную"
+    @SuppressWarnings("unchecked") //подавление warning-а
     private TypeBean newBean() {
         try {
             return (TypeBean) bean.getClass().newInstance();

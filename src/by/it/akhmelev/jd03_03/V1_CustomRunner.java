@@ -10,8 +10,6 @@ import java.util.List;
 
 public class V1_CustomRunner {
 
-    private static DAO dao;
-
     static void showUsers(){
         //покажем все, что есть в таблице пользователей
         System.out.println("\nТаблица пользователей:");
@@ -21,7 +19,7 @@ public class V1_CustomRunner {
 
     public static void main(String[] args) throws SQLException {
         //инициализация работы с базой
-        dao=DAO.getDAO();
+        DAO dao = DAO.getDAO();
         System.out.println("Роли пользователей");
         for (Role role: dao.role.getAll("")) {
             System.out.println(role);
