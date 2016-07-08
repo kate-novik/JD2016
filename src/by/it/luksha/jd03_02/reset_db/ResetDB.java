@@ -10,6 +10,11 @@ import java.sql.Statement;
  * Created by MMauz on 08.07.2016.
  */
 public class ResetDB {
+    /**
+     * Удаляет все таблицы в БД
+     *
+     * @throws SQLException
+     */
     public static void dropAllDB() throws SQLException {
         try (
                 Connection connection = ConnectionCreator.getConnection();
@@ -22,6 +27,11 @@ public class ResetDB {
         }
     }
 
+    /**
+     * Создает таблицы в БД
+     *
+     * @throws SQLException
+     */
     public static void createAllDB() throws SQLException {
         try (
                 Connection connection = ConnectionCreator.getConnection();
@@ -71,6 +81,11 @@ public class ResetDB {
         }
     }
 
+    /**
+     * Заполняет данными таблицы в БД
+     *
+     * @throws SQLException
+     */
     public static void insertAllDB() throws SQLException {
         try (
                 Connection connection = ConnectionCreator.getConnection();
