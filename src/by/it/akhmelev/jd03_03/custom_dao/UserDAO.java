@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO extends DAO implements InterfaceDAO<User> {
+public class UserDAO extends AbstractDAO implements InterfaceDAO<User> {
     @Override
     public List<User> getAll(String WHERE) {
         List<User> users = new ArrayList<>();
