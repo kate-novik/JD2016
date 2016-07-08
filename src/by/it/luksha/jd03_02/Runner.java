@@ -6,6 +6,7 @@ import by.it.luksha.jd03_02.beans.User;
 import by.it.luksha.jd03_02.crud.CarCRUD;
 import by.it.luksha.jd03_02.crud.OrderCRUD;
 import by.it.luksha.jd03_02.crud.UserCRUD;
+import by.it.luksha.jd03_02.reset_db.ResetDB;
 import by.it.luksha.jd03_02.taskB.TaskB;
 
 import java.sql.SQLException;
@@ -70,7 +71,14 @@ public class Runner {
         }
         */
 
-        TaskB.joinRolesUsers();
+        //TaskB.joinRolesUsers();
+        try {
+            ResetDB.dropAllDB();
+            ResetDB.createAllDB();
+            ResetDB.insertAllDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }
