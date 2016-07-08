@@ -34,7 +34,6 @@ public class RoleDAO extends DAO implements InterfaceDAO<Role> {
     @Override
     public Role read(int id) {
         List<Role> roles = getAll("WHERE ID=" + id + " LIMIT 0,1");
-        roles.get(1000);
         if (roles.size() > 0) {
             return roles.get(0);
         } else

@@ -12,6 +12,7 @@ public class DAO {
 
     public UserDAO user;    //DAO для пользователей
     public RoleDAO role;    //DAO для ролей
+    //...
 
     public static DAO getDAO() {   //метод, который создает DAO или возвращает существующий экземпляр
         if (dao == null) {
