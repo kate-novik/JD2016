@@ -7,7 +7,7 @@ import java.sql.*;
 /**
  * Created by Tanya Kust.
  */
-public class Insert_users {
+public class Insert_Roles {
     public static void main(String[] args) {
         // загружаем драйвер
         try {
@@ -23,23 +23,10 @@ public class Insert_users {
             if (!connection.isClosed()){System.out.println("соединение установлено");}
             // создание объекта запроса
             Statement statement = connection.createStatement();
-            String user1 = "INSERT INTO users(ID, Name, Login, Password, Email, Address, Discount, FK_Role" +
-                    ") VALUES (" +
-                    "1,'Ivanov Ivan','i.ivanov','hgkgdfxy','ivanov@mail.ru'," +
-                    "'Belarus, Minsk, Pushkin str.,37/11',0,'admin');";
-            String user2 = "INSERT INTO users(" +
-                    "ID, Name, Login, Password, Email, Address, Discount, FK_Role" +
-                    ") VALUES (" +
-                    "2,'Petrov Petr','p.petrov','jghjgrfgf','petrov@mail.ru'," +
-                    "'Belarus, Gomel, Gorkogo str.,5/68',0,'user');";
-            String user3 = "INSERT INTO users(" +
-                    "ID, Name, Login, Password, Email, Address, Discount, FK_Role" +
-                    ") VALUES (" +
-                    "3,'Sidorova Olga','s.olga','fgh5fghf','olga@mail.ru'," +
-                    "'Belarus, Brest, Masherov str.,28/157',5,'user');";
-            statement.executeUpdate(user1);
-            statement.executeUpdate(user2);
-            statement.executeUpdate(user3);
+            String role1 = "INSERT INTO roles(ID, Role) VALUES (1,'admin');";
+            String role2 = "INSERT INTO roles(ID, Role) VALUES (1,'user');";
+            statement.executeUpdate(role1);
+            statement.executeUpdate(role2);
             connection.close();
             if (connection.isClosed()){
                 System.out.println("соединение прервано");

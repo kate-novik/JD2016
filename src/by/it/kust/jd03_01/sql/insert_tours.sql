@@ -1,2 +1,0 @@
-INSERT INTO tours (ID, Country, City, Hotel, URL, Date, Days, Price, Type, Option1, Option2, FK_Users)
-VALUES (1, 'Spain', 'Barcelona', 'El Palace Hotel', 'https://www.hotelpalacebarcelona.com/en/', 2016-07-30, 14, 1500, 'Hot Tour', 'Flight', 'Medical insurance', 2)

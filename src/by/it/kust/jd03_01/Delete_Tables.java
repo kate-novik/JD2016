@@ -37,6 +37,12 @@ public class Delete_Tables {
             statement.executeUpdate(deleteTours);
             System.out.println("таблицы очищены");
 
+
+            statement.executeUpdate("DROP TABLE IF EXISTS roles");
+            statement.executeUpdate("DROP TABLE IF EXISTS tours");
+            statement.executeUpdate("DROP TABLE IF EXISTS users");
+            System.out.println("Таблицы удалены");
+            statement.close();
             connection.close();
             if (connection.isClosed()){
                 System.out.println("соединение прервано");
