@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleDAO extends DAO implements InterfaceDAO<Role> {
+public class RoleDAO extends AbstractDAO implements InterfaceDAO<Role> {
     @Override
     public List<Role> getAll(String WHERE) {
         List<Role> roles = new ArrayList<>();
