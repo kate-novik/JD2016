@@ -15,11 +15,8 @@ public class UserDAO extends DAO implements InterfaceDAO<User> {
     public List<User> getAll(String WHERE) {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM users " + WHERE + " ;";
-        try (
-                Connection connection = ConnectionCreator.getConnection();
-                Statement statement = connection.createStatement()
-        ) {
-            ResultSet rs = statement.executeQuery(sql);
+            ResultSet rs = executeQuery(sql);
+        try {
             while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("ID"));
@@ -30,7 +27,7 @@ public class UserDAO extends DAO implements InterfaceDAO<User> {
                 users.add(user);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            //тут нужно логгирование SQLException(e);
         }
         return users;
     }
@@ -50,7 +47,8 @@ public class UserDAO extends DAO implements InterfaceDAO<User> {
                         " values('%s','%s','%s',%d);",
                 user.getLogin(), user.getPassword(), user.getEmail(), user.getFk_Role()
         );
-        return (0 < executeUpdate(sql));
+        user.setId(executeUpdate(sql));
+        return (user.getId()>0);
     }
     @Override
     public boolean update(User user) {
