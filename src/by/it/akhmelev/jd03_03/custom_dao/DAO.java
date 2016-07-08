@@ -4,7 +4,6 @@ import by.it.akhmelev.jd03_03.connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DAO {
@@ -44,17 +43,5 @@ public class DAO {
             //тут нужно логгирование SQLException(e);
         }
         return result;
-    }
-
-    protected ResultSet executeQuery(String sql) {
-        ResultSet resultSet = null;
-        try (Connection connection = ConnectionCreator.getConnection();
-             Statement statement = connection.createStatement()
-        ) {
-            resultSet = statement.executeQuery(sql);
-        } catch (SQLException e) {
-            //тут нужно логгирование SQLException(e);
-        }
-        return resultSet;
     }
 }
