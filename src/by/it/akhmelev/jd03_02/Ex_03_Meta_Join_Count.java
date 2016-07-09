@@ -1,6 +1,5 @@
 package by.it.akhmelev.jd03_02;
 
-import by.it.vasilevich.jd02_05.demo.Resourses.Res;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
