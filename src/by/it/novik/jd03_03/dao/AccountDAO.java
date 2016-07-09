@@ -85,7 +85,4 @@ public class AccountDAO extends AbstractDAO implements IDAO<Account,Integer> {
         }
         return accountList;
     }
-
-
-
 }
