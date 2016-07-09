@@ -184,7 +184,7 @@ public class UniversalDAO<TypeBean> {
              Statement statement = connection.createStatement()) {
             result = statement.executeUpdate(sql);
             //получим ID, если это требуется извне.
-            if (returnLastID) {
+            if (result>0 && returnLastID) {
                 ResultSet resultSet = statement.executeQuery("SELECT LAST_INSERT_ID();");
                 if (resultSet.next()) result = resultSet.getInt(1);
             }
