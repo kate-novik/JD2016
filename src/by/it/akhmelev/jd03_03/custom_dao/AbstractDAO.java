@@ -20,6 +20,7 @@ public abstract class AbstractDAO{
         } catch (Exception e) {
             //тут нужно логгирование SQLException(e);
         }
+        //System.out.println(result+":"+sql); //проверить SQL можно снимая комментарий с этой строки
         return result;
     }
 }
