@@ -2,15 +2,12 @@ package by.it.kust.jd03_01;
 
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Connection;
+import java.sql.*;
 
 /**
  * Created by Tanya Kust.
  */
-public class MyConnection {
+public class step3_Insert_Roles {
     public static void main(String[] args) {
         // загружаем драйвер
         try {
@@ -23,9 +20,15 @@ public class MyConnection {
 
         // установка соединения
         try(Connection connection= DriverManager.getConnection(CN.URL_DB,CN.USER_DB,CN.PASSWORD_DB)) {
-            if (!connection.isClosed()){
-                System.out.println("соединение установлено");
-            }
+            if (!connection.isClosed()){System.out.println("соединение установлено");}
+            // создание объекта запроса
+            Statement statement = connection.createStatement();
+            String roles = "INSERT INTO roles (ID, Role) VALUES\n" +
+                    "(1, 'admin'),\n" +
+                    "(2, 'user');";
+            int res = statement.executeUpdate(roles);
+            if (res>0) System.out.println("Роли добавлены.");
+            statement.close();
             connection.close();
             if (connection.isClosed()){
                 System.out.println("соединение прервано");
