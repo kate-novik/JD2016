@@ -11,7 +11,7 @@ public class CN {
 
     // URL для MySQL
     public final static String URL_DB = "jdbc:mysql://localhost:2016/kust"+
-            "?useUnicode=true&amp;characterEncoding=UTF-8";
+            "?useUnicode=true&characterEncoding=UTF-8";
     public final static String USER_DB = "root";   // имя пользователя
     public final static String PASSWORD_DB = "";   // пароль
 }
