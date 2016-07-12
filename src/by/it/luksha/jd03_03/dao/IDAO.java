@@ -5,12 +5,14 @@ import java.util.List;
 
 /**
  * Интерфейс с описанием общих методов для взаимодействия с таблицами(CRUD + getAll)
+ *
  * @param <K> ключ в таблице
  * @param <T> бизнес-сущность
  */
-public interface IDAO<K,T> {
+public interface IDAO<K, T> {
     /**
      * Создание записи о сущности в БД
+     *
      * @param entity сущность
      * @return успех операции
      */
@@ -18,6 +20,7 @@ public interface IDAO<K,T> {
 
     /**
      * Чтение записи о сущности из БД по ключу
+     *
      * @param id ключ
      * @return сущность
      */
@@ -25,6 +28,7 @@ public interface IDAO<K,T> {
 
     /**
      * Обновление записи сущности в БД
+     *
      * @param entity сущность с изменениями
      * @return успех операции
      */
@@ -32,6 +36,7 @@ public interface IDAO<K,T> {
 
     /**
      * Удаление записи о сущности из БД
+     *
      * @param entity сущность для удаления
      * @return успех операции
      */
@@ -39,6 +44,7 @@ public interface IDAO<K,T> {
 
     /**
      * Получение списка всех сущностей по условию
+     *
      * @param where условие
      * @return список сущностей
      */

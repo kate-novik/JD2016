@@ -1,14 +1,17 @@
 package by.it.luksha.jd03_03;
 
 
+import by.it.luksha.jd03_03.beans.Car;
 import by.it.luksha.jd03_03.beans.User;
 import by.it.luksha.jd03_03.connector.ConnectorDB;
 import by.it.luksha.jd03_03.dao.DAO;
 
 import java.sql.*;
+import java.util.Locale;
 
 public class Runner {
     public static void main(String[] args) {
+        Locale.setDefault(new Locale("en_EN"));
         try {
             Connection cn = ConnectorDB.getConnection();
             Statement st = cn.createStatement();
@@ -27,5 +30,8 @@ public class Runner {
         //add
         dao.getUserDAO().create(user);
         System.out.printf("%s", user);
+        Car car = new Car(0, "Batmobil", "Spiceship", "off-road", 1000, 100.5);
+        dao.getCarDAO().create(car);
+        dao.getUserDAO().delete(user);
     }
 }

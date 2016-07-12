@@ -113,7 +113,7 @@ public class Car {
         this.cost = cost;
     }
 
-    public void setConsumption(float consumption) {
+    public void setConsumption(double consumption) {
         this.consumption = consumption;
     }
 }

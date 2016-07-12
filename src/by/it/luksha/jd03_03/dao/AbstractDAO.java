@@ -10,6 +10,7 @@ import java.sql.Statement;
 public abstract class AbstractDAO {
     /**
      * Общий метод для Create, Read, Update
+     *
      * @param sqlQuery sql запрос
      * @return результат sql запроса или id вставленной записи для insert
      */
@@ -18,7 +19,7 @@ public abstract class AbstractDAO {
         try (
                 Connection connection = ConnectorDB.getConnection();
                 Statement statement = connection.createStatement();
-                ) {
+        ) {
             resultQuery = statement.executeUpdate(sqlQuery);
             //
             if (sqlQuery.trim().toUpperCase().startsWith("INSERT")) {
