@@ -37,16 +37,6 @@ public class ResetDB {
                 Connection connection = ConnectionCreator.getConnection();
                 Statement statement = connection.createStatement();
         ) {
-            //таблица cars
-            statement.execute("CREATE TABLE `luksha`.`cars`(" +
-                    "`ID` INT(11) NOT NULL AUTO_INCREMENT," +
-                    "`Brand` VARCHAR(50) NOT NULL," +
-                    "`Model` VARCHAR(50) NOT NULL," +
-                    "`Category` VARCHAR(50) NOT NULL," +
-                    "`Cost` INT(11) NOT NULL," +
-                    "`Consumption` DOUBLE NOT NULL," +
-                    "PRIMARY KEY (`ID`)" +
-                    ") ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
 
             //таблица roles
             statement.execute("CREATE TABLE `luksha`.`roles` (" +
@@ -64,6 +54,16 @@ public class ResetDB {
                     "PRIMARY KEY (`ID`)," +
                     "FOREIGN KEY (FK_Role) REFERENCES roles(ID)" +
                     ") ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
+            //таблица cars
+            statement.execute("CREATE TABLE `luksha`.`cars`(" +
+                    "`ID` INT(11) NOT NULL AUTO_INCREMENT," +
+                    "`Brand` VARCHAR(50) NOT NULL," +
+                    "`Model` VARCHAR(50) NOT NULL," +
+                    "`Category` VARCHAR(50) NOT NULL," +
+                    "`Cost` INT(11) NOT NULL," +
+                    "`Consumption` DOUBLE NOT NULL," +
+                    "PRIMARY KEY (`ID`)" +
+                    ") ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             //таблица orders
             statement.execute("CREATE TABLE `luksha`.`orders` (" +
                     "`ID` INT(11) NOT NULL AUTO_INCREMENT," +
