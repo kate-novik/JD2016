@@ -1,2 +1,4 @@
-INSERT INTO ad (RoomCount, Price, Area, Floor, Floors, Address, FK_Users, Description)
-VALUES (2, 45000, '42', 1, 1, 'Murova 5', 1, 'Far app.');
+INSERT INTO ad  (
+ID, Price, Brand, Model, Type, Year, Engine, Transmission, Drive_unit, Mileage, Color, FK_Users
+)
+VALUES (NULL, 45000, 'Ferrari', 'F50', 'coupe', 2005, 'petrol', 'automatic', 'rear', 12000, 'red', 25);
