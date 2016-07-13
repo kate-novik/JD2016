@@ -16,6 +16,13 @@ enum Action {
             this.okPage ="/main.jsp";
         }
     },
+    CREATEFORM {
+        {
+            this.command = new CommandCreateform();
+            this.inPage="/createform.jsp";
+            this.okPage ="/main.jsp";
+        }
+    },
     LOGOUT {
         {
             this.command = new CommandLogout();
