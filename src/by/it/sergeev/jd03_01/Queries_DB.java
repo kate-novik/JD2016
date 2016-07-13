@@ -1,9 +1,7 @@
 package by.it.sergeev.jd03_01;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
 
 public class Queries_DB {
 
