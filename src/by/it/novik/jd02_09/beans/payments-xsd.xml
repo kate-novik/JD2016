@@ -3,7 +3,7 @@
 <Users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://beans.jd02_09.novik.it.by/"
        xsi:schemaLocation="http://beans.jd02_09.novik.it.by/">
-    <User idUser="16">
+    <User ID="16">
         <First_Name>
             Иван
         </First_Name>
@@ -58,7 +58,7 @@
     </User>
 
 
-    <User idUser="34">
+    <User ID="34">
         <First_Name>
             Петр
         </First_Name>

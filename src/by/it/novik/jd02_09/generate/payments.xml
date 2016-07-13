@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Users SYSTEM "payments.dtd" >
         <Users>
-            <User idUser="16">
+            <User ID="16">
                 <First_Name>
                     Иван
                 </First_Name>
@@ -55,7 +55,7 @@
             </User>
 
 
-            <User idUser="34">
+            <User ID="34">
                 <First_Name>
                     Петр
                 </First_Name>

@@ -4,7 +4,7 @@
 <div class="main container">
     <div class="row">
         <div class="col-sm-offset-3">
-            <h2>Registration form</h2>
+            <h2>Paying form</h2>
         </div>
     </div>
     <div class="row">
