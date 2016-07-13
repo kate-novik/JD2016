@@ -1,8 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ include file="include/begin-html.jsp" %>
 
 <div class="container">
 
-    <form class="form-horizontal" action=do?command=Accounts>
+    <form class="form-horizontal" action="do?command=Accounts" method="POST">
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
@@ -10,7 +11,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <label for="inputPassword3" class="col-sm-2 control-label">Пароль</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
             </div>

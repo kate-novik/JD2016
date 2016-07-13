@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://novik.it-academy.by/xml/Rolls">
     <Roll idRoll="1" name="Clients">
         <Users>
-            <User idUser="16">
+            <User ID="16">
                 <First_Name>
                     Иван
                 </First_Name>
@@ -64,7 +64,7 @@
     </Roll>
     <Roll idRoll="2" name="Admin">
         <Users>
-            <User idUser="34">
+            <User ID="34">
                 <First_Name>
                     Петр
                 </First_Name>

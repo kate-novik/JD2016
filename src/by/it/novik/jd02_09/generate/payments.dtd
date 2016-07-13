@@ -2,7 +2,7 @@
         <!ELEMENT Users (User*)>
         <!ELEMENT User (First_Name, Middle_Name, Last_Name, Passport,
                 Address, Phone, Email, Nickname, Password, Roll*, Account*)>
-        <!ATTLIST User idUser ID #REQUIRED>
+        <!ATTLIST User ID ID #REQUIRED>
         <!ELEMENT First_Name (#PCDATA)>
         <!ELEMENT Middle_Name (#PCDATA)>
         <!ELEMENT Last_Name (#PCDATA)>
