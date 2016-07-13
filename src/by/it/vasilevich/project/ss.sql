@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:2016
--- Время создания: Июл 08 2016 г., 07:33
+-- Время создания: Июл 13 2016 г., 12:21
 -- Версия сервера: 10.1.10-MariaDB
 -- Версия PHP: 5.6.15
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `vasilevich`
+-- База данных: `ss`
 --
 
 -- --------------------------------------------------------
@@ -33,9 +33,9 @@ CREATE TABLE `ad` (
   `Model` varchar(50) NOT NULL,
   `Type` text NOT NULL,
   `Year` int(4) NOT NULL,
-  `Engine's type` varchar(50) NOT NULL,
+  `Engine` varchar(50) NOT NULL,
   `Transmission` varchar(50) NOT NULL,
-  `Drive unit` varchar(50) NOT NULL,
+  `Drive_unit` varchar(50) NOT NULL,
   `Mileage` int(11) NOT NULL,
   `Color` varchar(50) NOT NULL,
   `FK_Users` int(11) NOT NULL
@@ -45,9 +45,17 @@ CREATE TABLE `ad` (
 -- Дамп данных таблицы `ad`
 --
 
-INSERT INTO `ad` (`ID`, `Price`, `Brand`, `Model`, `Type`, `Year`, `Engine's type`, `Transmission`, `Drive unit`, `Mileage`, `Color`, `FK_Users`) VALUES
+INSERT INTO `ad` (`ID`, `Price`, `Brand`, `Model`, `Type`, `Year`, `Engine`, `Transmission`, `Drive_unit`, `Mileage`, `Color`, `FK_Users`) VALUES
 (1, 12000, 'BMW', '530', 'sedan', 2006, 'diesel', 'manual', 'rear', 250000, 'black', 3),
-(2, 25000, 'AUDI', 'Q7', 'cross', 2011, 'diesel', 'manual', 'rear', 250000, 'black', 5);
+(2, 25000, 'AUDI', 'Q7', 'cross', 2011, 'diesel', 'manual', 'rear', 250000, 'black', 5),
+(3, 14000, 'BMW', '535', 'sedan', 2008, 'petrol', 'automatic', 'rear', 180000, 'grey', 5),
+(4, 10500, 'Volkswagen', 'Passat B6', 'avant', 2006, 'diesel', 'manual', 'front', 350000, 'blue', 6),
+(5, 9300, 'Kia', 'Rio', 'sedan', 2011, 'petrol', 'manual', 'front', 90000, 'red', 21),
+(6, 25000, 'AUDI', 'Q7', 'cross', 2011, 'diesel', 'manual', 'rear', 250000, 'black', 5),
+(7, 25000, 'AUDI', 'Q7', 'cross', 2011, 'diesel', 'manual', 'rear', 250000, 'black', 5),
+(8, 12000, 'BMW', '530', 'sedan', 2006, 'diesel', 'manual', 'rear', 250000, 'black', 3),
+(9, 12000, 'BMW', '530', 'sedan', 2006, 'diesel', 'manual', 'rear', 250000, 'black', 3),
+(10, 45000, 'Ferrari', 'F50', 'coupe', 2005, 'petrol', 'automatic', 'rear', 12000, 'red', 25);
 
 -- --------------------------------------------------------
 
@@ -129,7 +137,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `ad`
 --
 ALTER TABLE `ad`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `role`
 --
@@ -139,7 +147,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
