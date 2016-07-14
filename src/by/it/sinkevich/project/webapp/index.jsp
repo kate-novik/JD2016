@@ -15,7 +15,7 @@
         </div>
         <div class="col-sm-4">
             <h3>Авторизация</h3>
-            <form class="form-horizontal" action="do?command=login" method="post">
+            <form class="form-horizontal" action="do?command=login" method="post" accept-charset="UTF-8">
                 <fieldset>
 
                     <!-- Form Name -->

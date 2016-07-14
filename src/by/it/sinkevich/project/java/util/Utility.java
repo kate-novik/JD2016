@@ -15,4 +15,8 @@ public class Utility {
         }
         return debugInfo.toString();
     }
+
+    public static boolean isValid(String value, String pattern) {
+        return value != null && !value.isEmpty() && value.matches(pattern);
+    }
 }

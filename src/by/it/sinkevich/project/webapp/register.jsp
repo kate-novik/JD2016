@@ -5,7 +5,7 @@
     <h1>Регистрация</h1>
 </div>
 
-<form class="form-horizontal" action="do?command=register" method="post">
+<form class="form-horizontal" action="do?command=register" method="post" accept-charset="UTF-8">
     <fieldset>
 
         <!-- Text input-->
