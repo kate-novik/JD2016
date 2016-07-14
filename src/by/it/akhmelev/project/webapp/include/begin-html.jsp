@@ -33,12 +33,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="do?command=SignUp">Зарегистрироваться</a></li>
-              <li><a href="do?command=Login">Войти</a></li>
-              <li><a href="do?command=Logout">Выйти</a></li>
+              <li><a href='do?command=Login'>Войти</a></li>
+              <li><a href='do?command=Profile'>Профиль</a></li>
               <li><a href="/manager/html/list">Tomcat</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
 
+<p style="Font-weight: bold; color: RED;">${msg_error}</p>
 
