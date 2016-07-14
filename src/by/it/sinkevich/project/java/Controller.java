@@ -1,5 +1,7 @@
 package by.it.sinkevich.project.java;
 
+import by.it.sinkevich.project.java.util.Utility;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,6 +15,9 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        req.setAttribute(Action.message, Utility.getParametersFromRequest(req));
+
         ActionFactory actionFactory = new ActionFactory();
         ActionCommand command = actionFactory.getCommandFromRequest(req);
 

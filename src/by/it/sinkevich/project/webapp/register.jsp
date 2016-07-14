@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ include file="include/header.jsp" %>
 
-    <title>Registration</title>
+<div class="jumbotron text-center">
+    <h1>Регистрация</h1>
+</div>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-            crossorigin="anonymous"></script>
-
-</head>
-<body>
-<form class="form-horizontal">
+<form class="form-horizontal" action="do?command=register" method="post" accept-charset="UTF-8">
     <fieldset>
 
         <!-- Text input-->
@@ -44,17 +33,6 @@
             <div class="col-md-4">
                 <input id="email" name="email" type="email" class="form-control input-md" placeholder="Адрес почты">
                 <span class="help-block">Введите ваш адрес почты в интернете</span>
-            </div>
-        </div>
-
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="role">Ваша роль</label>
-            <div class="col-md-4">
-                <select id="role" name="role" class="form-control">
-                    <option value="Bookmaker">Букмекер</option>
-                    <option value="Client">Клиент</option>
-                </select>
             </div>
         </div>
 
@@ -86,8 +64,14 @@
             </div>
         </div>
 
+        <!-- Button -->
+        <div class="form-group">
+             <label class="col-md-4 control-label" for=""></label>
+             <div class="col-md-4">
+                  <a class="btn btn-primary" href="do?command=index" role="button">На главную</a>
+             </div>
+        </div>
     </fieldset>
 </form>
 
-</body>
-</html>
+<%@ include file="include/footer.jsp" %>

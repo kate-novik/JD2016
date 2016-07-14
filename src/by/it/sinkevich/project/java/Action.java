@@ -6,22 +6,28 @@ public enum Action {
     REGISTER {
         {
             command = new CommandRegister();
-            startPage = "/registration.html";
-            okPage = "/login.jsp";
+            startPage = "/register.jsp";
+            okPage = "/index.jsp";
+        }
+    },
+    INDEX {
+        {
+            command = new CommandIndex();
+            okPage = "/index.jsp";
         }
     },
     LOGIN {
         {
             command = new CommandLogin();
-            startPage = "/login.html";
-            okPage = "/main.jsp";
+            startPage = "/index.jsp";
+            okPage = "/index.jsp";
         }
     },
     LOGOUT {
         {
             command = new CommandLogout();
-            startPage = "/login.jsp";
-            okPage = "/login.jsp";
+            startPage = "/index.jsp";
+            okPage = "/index.jsp";
         }
     },
     ERROR {
@@ -49,4 +55,5 @@ public enum Action {
     public String startPage;
     public String okPage;
     public ActionCommand command;
+    public static String message = "message";
 }
