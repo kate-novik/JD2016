@@ -55,4 +55,5 @@ public enum Action {
     public String startPage;
     public String okPage;
     public ActionCommand command;
+    public static String message = "message";
 }

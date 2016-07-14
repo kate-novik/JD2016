@@ -21,6 +21,11 @@ public class Connector {
 
     static {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
             Driver driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
         } catch (SQLException e) {
