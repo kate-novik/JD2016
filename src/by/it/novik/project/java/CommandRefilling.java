@@ -1,5 +1,8 @@
 package by.it.novik.project.java;
 
+import by.it.novik.project.java.beans.Account;
+import by.it.novik.project.java.dao.DAO;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -8,6 +11,42 @@ import javax.servlet.http.HttpServletRequest;
 public class CommandRefilling implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        return Action.REFILL.inPage;
+        String page = Action.REFILL.inPage;
+        //Поле суммы в форме пополнения счета
+        String amount = request.getParameter("amount");
+        String id_account = request.getParameter("id_account");
+        //ID счета получаем из параметра
+        Integer id = Integer.parseInt(id_account);
+        request.setAttribute("id_account",id_account);
+        //Если не введена сумма, то возвращаем ту жу страницу
+        if (amount == null) {
+            return page;
+        }
+            if (Validation.validDataFromForm(amount, "amount")) {
+                //Получаем объект DAO
+                DAO dao = DAO.getDAO();
+                //Приводим сумму пополнения счета к типу Double
+                Double refill = Double.parseDouble(amount);
+                //Чтение счета по id
+                Account account = dao.getAccountDAO().read(id);
+                Double result = account.getBalans() + refill;
+                account.setBalans(result);
+                //Обновляем поле Balans счета
+                if (dao.getAccountDAO().update(account)) {
+                    request.setAttribute(Action.msgMessage,"Balans was refilled.");
+                    page = Action.REFILL.okPage;
+                }
+                else {
+                    request.setAttribute(Action.msgMessage,"Balans wasn't refilled. Enter amount .");
+                    page = Action.REFILL.inPage;
+                }
+
+        } else {
+                request.setAttribute(Action.msgMessage,"Not valid data! Repeat, please, input.");
+                page = Action.REFILL.inPage;
+            }
+
+
+        return page;
     }
 }

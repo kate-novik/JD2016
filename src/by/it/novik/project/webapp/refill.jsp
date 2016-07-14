@@ -9,20 +9,20 @@
     </div>
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="do?command=Refill&id_account=${id_account}" method="POST">
                 <div class="form-group">
                     <label class="col-sm-4 control-label"># of account</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static">12345678</p>
+                        <p class="form-control-static">${id_account}</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="amount" class="col-sm-4 control-label">Amount</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="amount">
+                            <input type="text" class="form-control" id="amount" name="amount">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Refill</button>
+                                <button class="btn btn-default" type="submit">Refill</button>
                             </span>
                         </div>
                     </div>

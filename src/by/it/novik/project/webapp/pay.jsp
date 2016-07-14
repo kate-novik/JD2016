@@ -4,28 +4,28 @@
 <div class="main container">
     <div class="row">
         <div class="col-sm-offset-3">
-            <h2>Registration form</h2>
+            <h2>Paying form</h2>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="do?command=Pay&id_account=${id_account}" method="POST">
                 <div class="form-group">
                     <label for="dest" class="col-sm-4 control-label">Destination</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="dest" placeholder="First name">
+                        <input type="text" name="destination" class="form-control" id="dest" placeholder="Destination">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description" class="col-sm-4 control-label">Description</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="description" placeholder="Second name">
+                        <input type="text" name="description" class="form-control" id="description" placeholder="Description">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="amount" class="col-sm-4 control-label">Amount</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="amount" placeholder="Phone">
+                        <input type="text" name="amount" class="form-control" id="amount" placeholder="Amount">
                     </div>
                 </div>
 

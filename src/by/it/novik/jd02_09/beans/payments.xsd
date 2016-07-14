@@ -18,7 +18,7 @@
     </key>
     <key name="KeyUser">
         <selector xpath="User"/>
-        <field xpath="@idUser"/>
+        <field xpath="@ID"/>
     </key>
     <key name="KeyAccount">
         <selector xpath="Account"/>
@@ -44,7 +44,7 @@
         <element name="Roll" type="kns:Roll" minOccurs="1" maxOccurs="unbounded"/>
         <element name="Account" type="kns:Account" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
-    <attribute name="idUser" type="integer" use="required"/>
+    <attribute name="ID" type="integer" use="required"/>
 
 </complexType>
 
