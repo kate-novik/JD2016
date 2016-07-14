@@ -7,18 +7,12 @@
                         data-target="#bs-example-navbar-collapse-6" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=do?command=Accounts>Payment system</a></div>
+                <a class="navbar-brand" href=do?command=Registration>Payment system</a></div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
                 <ul class="nav navbar-nav">
-                    <li  class="active"><a href=do?command=Accounts>Main</a></li>
                     <li><a href=do?command=Login>Login</a></li>
-                    <li><a href=do?command=Registration>Registration</a></li>
-
-                    <li><a href=do?command=Payments>Payments</a></li>
-
-                    <li><a href=do?command=Logout>Log out</a></li>
                     <li></li>
-                     <li>${message}</li>
+                                         <li>${message}</li>
                 </ul>
             </div>
         </div>

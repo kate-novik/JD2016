@@ -8,6 +8,7 @@
             <button class="btn btn-default" type="button"># of account</button>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-offset-3">
             <h2>Blocking account</h2>
@@ -18,20 +19,16 @@
             <thead>
             <tr>
                 <th># of account</th>
-                <th>Amount</th>
-                <th>State</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>1254</td>
-                <td></td>
-                <td></td>
+                <td>${id_account}</td>
                 <td>
-                        <button type="button" class="btn btn-default" aria-label="Center Align">
+                        <a href="do?command=Block&id_account=${id_account}" class="btn btn-default" aria-label="Center Align" >
                             Block
-                        </button>
+                        </a>
                     </div>
                 </td>
             </tr>
@@ -39,6 +36,5 @@
                     </table>
                 </div>
             </div>
-<p>Cmd Blocking: ${message}</p>
 
 <%@ include file="include/end-html.jsp" %>
