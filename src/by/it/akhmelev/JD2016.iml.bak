@@ -7,7 +7,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/by/it/akhmelev/jd03_02/sql" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/out" />
-      <excludeFolder url="file://$MODULE_DIR$/src/by/it/kushel/jd03_02" />
+      <excludeFolder url="file://$MODULE_DIR$/src/by/it/belsky" />
+      <excludeFolder url="file://$MODULE_DIR$/src/by/it/kushel" />
       <excludeFolder url="file://$MODULE_DIR$/src/by/it/sergeev/jd01_05" />
       <excludeFolder url="file://$MODULE_DIR$/src/projects/akhmelev" />
     </content>
