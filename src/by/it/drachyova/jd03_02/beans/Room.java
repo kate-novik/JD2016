@@ -1,9 +1,18 @@
 package by.it.drachyova.jd03_02.beans;
 
 public class Room {
+    private int id;
     private String type;
     private int price;
     private boolean isAvailable;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getType() {
         return type;
@@ -32,7 +41,8 @@ public class Room {
     public Room() {
     }
 
-    public Room(String type, int price, boolean isAvailable) {
+    public Room(int id, String type, int price, boolean isAvailable) {
+        this.id = id;
         this.type = type;
         this.price = price;
         this.isAvailable = isAvailable;
@@ -45,6 +55,7 @@ public class Room {
 
         Room room = (Room) o;
 
+        if (getId() != room.getId()) return false;
         if (getPrice() != room.getPrice()) return false;
         if (isAvailable() != room.isAvailable()) return false;
         if (!getType().equals(room.getType())) return false;
@@ -53,7 +64,8 @@ public class Room {
 
     @Override
     public int hashCode() {
-        int result = getType().hashCode();
+        int result = getId();
+        result = 31 * result + getType().hashCode();
         result = 31 * result + getPrice();
         result = 31 * result + (isAvailable() ? 1 : 0);
         return result;
@@ -62,6 +74,7 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
+                "id=" + id +
                 "type='" + type + '\'' +
                 ", price=" + price +
                 ", isAvailable=" + isAvailable +
