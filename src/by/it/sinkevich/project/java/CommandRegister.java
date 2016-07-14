@@ -13,22 +13,29 @@ public class CommandRegister implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = Action.REGISTER.startPage;
+
         if (request.getParameter("name") == null) {
             return page;
         }
-        if (Utility.isValid(request.getParameter("name"), Pattern.userNameRegex) &&
-                Utility.isValid(request.getParameter("dateOfBirth"), Pattern.dateRegex) &&
-                Utility.isValid(request.getParameter("email"), Pattern.emailRegex) &&
-                Utility.isValid(request.getParameter("login"), Pattern.loginRegex) &&
-                Utility.isValid(request.getParameter("password"), Pattern.passwordRegex)) {
+
+        String name = request.getParameter("name");
+        String dateOfBirth = request.getParameter("dateOfBirth");
+        String email = request.getParameter("email");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+
+        if (Utility.isValid(name, Pattern.userNameRegex) && Utility.isValid(dateOfBirth, Pattern.dateRegex) &&
+                Utility.isValid(email, Pattern.emailRegex) && Utility.isValid(login, Pattern.loginRegex) &&
+                Utility.isValid(password, Pattern.passwordRegex)) {
+
             User user = new User();
             user.setId(0);
-            user.setName(request.getParameter("name"));
-            user.setDateOfBirth(Date.valueOf(request.getParameter("dateOfBirth")));
-            user.setEmail(request.getParameter("email"));
+            user.setName(name);
+            user.setDateOfBirth(Date.valueOf(dateOfBirth));
+            user.setEmail(email);
             user.setFk_role(2);
-            user.setLogin(request.getParameter("login"));
-            user.setPassword(request.getParameter("password"));
+            user.setLogin(login);
+            user.setPassword(password);
 
             UserDAO userDAO = DAO.getDao().getUserDAO();
             if (userDAO.create(user)) {
