@@ -3,18 +3,33 @@ package by.it.vasilevich.jd03_03.beans;
 
 public class User {
 
-    private int ID;
+    private int id;
     private String Login;
     private String Password;
     private String Email;
     private int FK_Role;
 
-    public int getID() {
-        return ID;
+
+    public User() {
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public User(int id, String login, String password, String email, Integer fk_Role) {
+        this.id = id;
+        this.Login = login;
+        this.Password = password;
+        this.Email = email;
+        this.FK_Role = fk_Role;
+    }
+
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLogin() {
@@ -56,40 +71,36 @@ public class User {
 
         User user = (User) o;
 
-        return FK_Role == user.FK_Role && ID == user.ID && Email.equals(user.Email) && Login.equals(user.Login) && Password.equals(user.Password);
+        if (id != user.id) return false;
+        if (FK_Role != user.FK_Role) return false;
+        if (Login != null ? !Login.equals(user.Login) : user.Login != null) return false;
+        if (Password != null ? !Password.equals(user.Password) : user.Password != null) return false;
+        return Email != null ? Email.equals(user.Email) : user.Email == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = ID;
-        result = 31 * result + Login.hashCode();
-        result = 31 * result + Password.hashCode();
-        result = 31 * result + Email.hashCode();
+        int result = id;
+        result = 31 * result + (Login != null ? Login.hashCode() : 0);
+        result = 31 * result + (Password != null ? Password.hashCode() : 0);
+        result = 31 * result + (Email != null ? Email.hashCode() : 0);
         result = 31 * result + FK_Role;
         return result;
-    }
-
-    public User() {
-    }
-
-    public User(int ID, String login, String password, String email, int FK_Role) {
-        this.ID = ID;
-        Login = login;
-        Password = password;
-        Email = email;
-        this.FK_Role = FK_Role;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "ID=" + ID +
+                "id=" + id +
                 ", Login='" + Login + '\'' +
                 ", Password='" + Password + '\'' +
                 ", Email='" + Email + '\'' +
                 ", FK_Role=" + FK_Role +
-                "}\n";
+                '}';
     }
+
+
+
 }
 
