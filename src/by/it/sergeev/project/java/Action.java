@@ -1,7 +1,7 @@
 package by.it.sergeev.project.java;
 
 
-enum Action {
+public enum Action {
     SIGNUP {
         {
             this.command = new CommandSignUp();
