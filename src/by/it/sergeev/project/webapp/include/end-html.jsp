@@ -4,7 +4,7 @@
   <div class="container">
     <p>Сообщение сервера: ${message}</p>
 
-    <p>IT-academy © 2016 <a href="#">Реквизиты, контакты и все такое</a> </p>
+    <p>Minsk © 2016 <a href="#">specmedia@yandex.ru</a> </p>
   </div>
 </footer>
 

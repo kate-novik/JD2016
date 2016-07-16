@@ -19,7 +19,7 @@ enum Action {
     LOGOUT {
         {
             this.command = new CommandLogout();
-            this.inPage="/login.jsp";
+            this.inPage="/logout.jsp";
             this.okPage ="/login.jsp";
         }
     },

@@ -13,8 +13,8 @@ public class ActionFactory {
                 Action currentEnum = Action.valueOf(action.toUpperCase());
                 current = currentEnum.getCurrentCommand();
             } catch (IllegalArgumentException e) {
-                request.setAttribute(Action.msgError, "<b>Unknown command "+action+"</b>");
-                request.setAttribute(Action.msgMessage, "<b>Unknown command "+action+"</b>");
+                request.setAttribute(Action.msgError, "<b>Неизвестная команда: "+action+"</b>");
+                request.setAttribute(Action.msgMessage, "<b>Неизвестная команда: "+action+"</b>");
             }
         }
         //если команда не найдена, то вернем пустую.
