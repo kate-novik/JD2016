@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ include file="include/begin-html.jsp" %>
 <%@ include file="include/header-html.jsp" %>
 
@@ -5,7 +6,7 @@
     <div class="row">
         <div class="pull-right">
             <button type="button" class="btn btn-link">Kate Novik</button>
-            <a href="do?command=Accounts&reference=1" class="btn btn-default" type="button">Create Account</a>
+            <a href="do?command=New_Account" class="btn btn-default" type="button">Create Account</a>
         </div>
     </div>
     <div class="row">
@@ -31,6 +32,7 @@
                 <td></td>
                 <td>
                     <div class="btn-group">
+
                         <a href="do?command=Refill&id_account=2" class="btn btn-default btn-sm" aria-label="Left Align">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </a>
@@ -50,5 +52,6 @@
         </table>
     </div>
 </div>
+<p>${listAccounts}</p>
 
 <%@ include file="include/end-html.jsp" %>

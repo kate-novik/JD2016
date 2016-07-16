@@ -62,6 +62,7 @@
         </table>
     </div>
 </div>
+<p>${listPayments}</p>
 
 <p>Cmd GetPayments: ${message}</p>
 

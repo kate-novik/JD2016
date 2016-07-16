@@ -2,11 +2,11 @@ package by.it.novik.project.java;
 
 import by.it.novik.project.java.beans.Account;
 import by.it.novik.project.java.beans.Payment;
+import by.it.novik.project.java.beans.User;
 import by.it.novik.project.java.dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /**
@@ -16,6 +16,11 @@ public class CommandPay implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = Action.PAY.inPage;
+        //Получаем из сессии объект user
+        User user= (User) request.getSession(true).getAttribute("user");
+        if (user==null) {
+            return Action.LOGIN.inPage;
+        }
         //Поле суммы в форме пополнения счета
         String destination = request.getParameter("destination");
         String description = request.getParameter("description");
@@ -58,6 +63,7 @@ public class CommandPay implements ActionCommand {
 
                         payment = new Payment(0, id_account, description, id_destination, Date.valueOf(currentDate),
                                 pay_amount);
+
 
                     if (dao.getAccountDAO().update(account) && dao.getPaymentDAO().create(payment) &&
                             dao.getAccountDAO().update(destination_account)) {

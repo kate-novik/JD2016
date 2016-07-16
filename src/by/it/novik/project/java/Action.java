@@ -13,20 +13,33 @@ enum Action {
         {
             this.command = new CommandLogin();
             this.inPage="/index.jsp";
-            this.okPage ="/accounts.jsp";
+            this.okPage ="/profile.jsp";
         }
     },
     LOGOUT {
         {
             this.command = new CommandLogout();
             this.inPage="/logout.jsp";
-            this.okPage ="/login.jsp";
+            this.okPage ="/index.jsp";
 
         }
     },
     ACCOUNTS {
         {
             this.command = new CommandGetAccounts();
+            this.inPage="/accounts.jsp";
+            this.okPage ="/accounts.jsp";
+        }
+    },
+    PROFILE {
+        {
+            this.command = new CommandProfile();
+            this.inPage="/profile.jsp";
+        }
+    },
+    NEW_ACCOUNT {
+        {
+            this.command = new CommandCreateAccount();
             this.inPage="/accounts.jsp";
             this.okPage ="/accounts.jsp";
         }

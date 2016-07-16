@@ -5,12 +5,12 @@ import by.it.novik.project.java.beans.User;
 import by.it.novik.project.java.dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * Created by Kate Novik.
  */
-public class CommandGetAccounts implements ActionCommand{
+public class CommandCreateAccount implements ActionCommand{
+
     @Override
     public String execute(HttpServletRequest request) {
         String page = Action.ACCOUNTS.inPage;
@@ -21,17 +21,13 @@ public class CommandGetAccounts implements ActionCommand{
         }
         //Получаем объект DAO
         DAO dao = DAO.getDAO();
-        List<Account> listAccounts = dao.getAccountDAO().getAll("Where FK_Users = "+ user.getIdUser());
-        if (!listAccounts.isEmpty()) {
-            request.setAttribute(Action.msgMessage, "List of accounts for user " + user.getNickname());
-            request.setAttribute("listAccounts", listAccounts.toString());
-            page = Action.ACCOUNTS.okPage;
+        Account account = new Account(0,0,"Working",2);
+        if (dao.getAccountDAO().create(account)) {
+            request.setAttribute(Action.msgMessage, "Account № " + account.getIdAccount() +" was created.");
         }
         else {
-            request.setAttribute(Action.msgMessage, "Accounts don't exist.");
-            page = Action.ACCOUNTS.inPage;
+            request.setAttribute(Action.msgMessage, "Account wasn't created.");
         }
-
         return page;
     }
 }

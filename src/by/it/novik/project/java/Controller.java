@@ -1,12 +1,12 @@
 package by.it.novik.project.java;
 
+import by.it.novik.project.java.beans.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/do")
@@ -32,15 +32,20 @@ public class Controller extends HttpServlet {
         String viewPage = command.execute(request);
 
         response.setHeader("Cache-Control", "no-store");
-
+        User user= (User) request.getSession(true).getAttribute("user");
+        //Создадим куки на логин и зашифрованный пароль
+        Cookie cookieFirst = new Cookie("login",user.getNickname());
+        Cookie cookieSecond = new Cookie("password",user.getPassword());
+        cookieFirst.setMaxAge(30);
+        cookieSecond.setMaxAge(30);
+        response.addCookie(cookieFirst);
+        response.addCookie(cookieSecond);
         //метод отправляет пользователю страницу ответа
         if (viewPage != null) {
             ServletContext servletContext=getServletContext();
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher(viewPage);
             // вызов страницы ответа на запрос
             dispatcher.forward(request, response);
-            //можно короче:
-            //getServletContext().getRequestDispatcher(viewPage).forward(request,response);
         } else {
             // установка страницы c cообщением об ошибке
             viewPage = Action.ERROR.inPage;
