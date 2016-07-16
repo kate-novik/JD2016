@@ -89,6 +89,14 @@
                     <button id="registr" name="registr" class="btn btn-success">Зарегистрировать</button>
                 </div>
             </div>
+            <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="main"></label>
+                            <div class="col-md-4">
+                                <button id="main" name="main" class="btn btn-danger">Отмена</button>
+                            </div>
+                        </div>
+
 
         </fieldset>
     </form>

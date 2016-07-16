@@ -28,6 +28,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+            <li><a href="do?command=Orders">Orders</a></li>
               <li><a href="do?command=CreateAd">Add pruducts</a></li>
               <li><a href="do?command=ShowUsers">Users</a></li>
             </ul>
