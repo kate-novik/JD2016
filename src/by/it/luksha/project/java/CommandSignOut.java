@@ -11,16 +11,13 @@ public class CommandSignOut implements by.it.luksha.project.java.ActionCommand {
     public String execute(HttpServletRequest request) {
         String resultPage;
         HttpSession session = request.getSession(true);
-        User user;
+        User user = (User) session.getAttribute("user");
 
         /**
-         * Если сессии нет (пользователь не залогинен), то переход на страницу авторизации
+         * Если в сессии нет пользоавтеля (пользователь не залогинен), то переход на страницу авторизации
          */
-        if (session == null && request.getParameter("LogoutButton") != null) {
-            request.setAttribute(Action.msgMessage, "Сначало нужно войти");
+        if (user == null) {
             return Action.SIGNOUT.okPage;
-        } else {
-            user = (User) session.getAttribute("user");
         }
 
         try {

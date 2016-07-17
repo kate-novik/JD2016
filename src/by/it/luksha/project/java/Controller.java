@@ -52,6 +52,7 @@ public class Controller extends HttpServlet {
 
             /**
              * Создание cookie для пароля
+             * TODO: сделать шифрование пароля
              */
             Cookie cookiePassword = new Cookie("Password", user.getPassword());
             cookiePassword.setMaxAge(24 * 60 * 60);
