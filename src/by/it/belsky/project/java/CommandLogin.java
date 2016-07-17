@@ -4,6 +4,7 @@ import by.it.belsky.project.java.Beans.User;
 import by.it.belsky.project.java.custom_dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class CommandLogin implements ActionCommand {
@@ -35,6 +36,8 @@ public class CommandLogin implements ActionCommand {
                 request.setAttribute(
                         Action.msgMessage,
                         "Добро пожаловать, "+user.getLogin());
+                HttpSession session=request.getSession(true);
+                session.setAttribute("user",user);
                 page = Action.LOGIN.okPage;
             }
         }
