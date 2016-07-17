@@ -106,4 +106,32 @@ public class PaymentDAO extends AbstractDAO implements IDAO<Payment,Integer> {
         }
         return paymentList;
     }
+
+    public List<Payment> getAll(int id_user) {
+        Payment resultPayment;
+        List<Payment> paymentList = new ArrayList<>();
+        String readObject = "Select payment.ID, payment.FK_Account_Source, payment.FK_Account_Destination, payment.Description, payment.Amount, payment.Paydate" +
+                " From payment Inner Join account on payment.FK_Account_Source=account.ID Where account.FK_Users=" + id_user +";";
+        try (Connection connection = ConnectorDB.getConnection();
+             Statement statement = connection.createStatement()) {
+            //Синхронзация по классу
+            synchronized (PaymentDAO.class) {
+                ResultSet resultSet = statement.executeQuery(readObject);
+                while (resultSet.next()) { //Создание payment в соответствии с полученными данными с таблицы
+                    resultPayment = new Payment(
+                            resultSet.getInt("ID"),
+                            resultSet.getInt("FK_Account_Source"),
+                            resultSet.getString("Description"),
+                            resultSet.getInt("FK_Account_Destination"),
+                            resultSet.getDate("Paydate"),
+                            resultSet.getFloat("Amount"));
+                    paymentList.add(resultPayment);
+                }
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("Error connection or sql operation!" + e);
+        }
+        return paymentList;
+    }
 }

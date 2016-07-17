@@ -1,6 +1,7 @@
 package by.it.novik.project.java;
 
 import by.it.novik.project.java.beans.Account;
+import by.it.novik.project.java.beans.User;
 import by.it.novik.project.java.dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,11 @@ public class CommandBlocking implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = Action.BLOCK.inPage;
+        //Получаем из сессии объект user
+        User user= (User) request.getSession(true).getAttribute("user");
+        if (user==null) {
+            return Action.LOGIN.inPage;
+        }
         String id_account = request.getParameter("id_account");
         //ID счета получаем из параметра
         Integer id = Integer.parseInt(id_account);

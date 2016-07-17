@@ -10,12 +10,9 @@
                 <a class="navbar-brand" href=do?command=Accounts>Payment system</a></div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
                 <ul class="nav navbar-nav">
-                    <li  class="active"><a href=do?command=Accounts>Main</a></li>
-                    <li><a href=do?command=Login>Login</a></li>
-                    <li><a href=do?command=Registration>Registration</a></li>
-
+                    <li  class="active"><a href=do?command=Profile>Profile</a></li>
+                    <li ><a href=do?command=Accounts>Accounts</a></li>
                     <li><a href=do?command=Payments>Payments</a></li>
-
                     <li><a href=do?command=Logout>Log out</a></li>
                     <li></li>
                      <li>${message}</li>
