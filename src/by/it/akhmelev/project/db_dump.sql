@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:2016
--- Время создания: Июл 06 2016 г., 00:04
+-- Время создания: Июл 17 2016 г., 23:19
 -- Версия сервера: 10.1.10-MariaDB
 -- Версия PHP: 5.6.15
 
@@ -46,7 +46,9 @@ INSERT INTO `ad` (`ID`, `RoomCount`, `Price`, `Area`, `Floor`, `Floors`, `Addres
 (1, 2, 65000, '42', 3, 5, 'Кнорина 17', 'Хорошее жилье', 2),
 (27, 2, 65000, '42', 3, 5, 'Кнорина 18', 'Хорошая квартира', 2),
 (28, 2, 85000, '42', 3, 5, 'Независимости 35', 'Элитное жилье', 2),
-(29, 2, 45000, '42', 1, 1, 'Мурова 5', 'Доступное жилье на окраине Минска.', 2);
+(29, 2, 45000, '42', 1, 1, 'Мурова 5', 'Доступное жилье на окраине Минска.', 2),
+(58, 2, 60, '45', 2, 5, 'ул. Ленина, д.1, кв.1', 'Квартира в самом центре', 30),
+(59, 2, 60, '45', 2, 5, 'ул. Харонская, д.1, кв.1', 'Квартира за МКАД', 30);
 
 -- --------------------------------------------------------
 
@@ -87,7 +89,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`ID`, `Login`, `Password`, `Email`, `FK_Role`) VALUES
 (1, 'admin', 'padmin', 'admin@it.by', 1),
-(2, 'user', 'user', 'user@mail.ru', 2);
+(2, 'user', 'user', 'user@mail.ru', 2),
+(29, 'Сергей Иванович', 'siivanov', 'siivanov@mail.ru', 2),
+(30, 'UserLogin', 'UserPassword', 'siivaemail@gmail.com', 2);
 
 --
 -- Индексы сохранённых таблиц
@@ -119,12 +123,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `ad`
 --
 ALTER TABLE `ad`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

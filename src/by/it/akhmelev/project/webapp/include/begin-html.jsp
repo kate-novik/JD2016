@@ -29,12 +29,20 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="do?command=CreateAd">Создать объявление</a></li>
-              <li><a href="do?command=ShowUsers">Список пользователей</a></li>
+              <li><a href="do?command=AllUsers">Список пользователей</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="do?command=SignUp">Зарегистрироваться</a></li>
+              <!--
               <li><a href='do?command=Login'>Войти</a></li>
               <li><a href='do?command=Profile'>Профиль</a></li>
+              Эти две команды можно показать как одну вот так:
+              -->
+              ${user==null?
+                "<li><a href='do?command=Login'>Войти</a></li>"
+                    :
+                "<li><a href='do?command=Profile'>Профиль</a></li>"
+              }
               <li><a href="/manager/html/list">Tomcat</a></li>
             </ul>
           </div><!--/.nav-collapse -->

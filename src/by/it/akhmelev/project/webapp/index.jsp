@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="include/begin-html.jsp" %>
 
       <!-- Основное содержимое -->
@@ -10,6 +10,17 @@
       <h3>Заголовок. Объявления о продаже</h3>
       <p>Строка делится на 12 частей. Для каждой колонки таблицы
          можно указать класс .col-md-N, где N-число частей</p>
+
+         <p style="Font-weight: bold; color: RED;"></p>
+
+
+
+
+             <p>Login:<b>          UserLogin</b></p>
+             <hr>
+             <p>Email:<b>          email@gmail.com</b></p>
+             <hr>
+
       <div class="row">
         <div class="col-md-1">.col-md-1</div>
         <div class="col-md-3">.col-md-3</div>
@@ -31,6 +42,8 @@
         <div class="col-md-1">Этажность</div>
         <div class="col-md-2">Автор</div>
       </div>
+
+
 
 
 
