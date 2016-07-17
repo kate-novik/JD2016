@@ -52,7 +52,7 @@
             </div>
 
             <div class=col-md-2>
-                    <select id="role" name="FK_role" class="form-control">
+                    <select id="role" name="fk_Role" class="form-control">
                         <c:forEach items="${roles}" var="role">
                             <option value="${role.id}" role=${role.id} ${role.id==user.fk_Role?"selected":""}>
                                  ${role.role}
@@ -61,6 +61,11 @@
                     </select>
             </div>
 
+            <div class=col-md-1>
+                <button id="singlebutton" name="singlebutton" class="btn btn-success">
+                    Обновить
+                </button>
+            </div>
 
             <div class=col-md-1>
                 <button id="singlebutton" name="singlebutton" class="btn btn-danger"
@@ -70,11 +75,6 @@
                 </button>
             </div>
 
-            <div class=col-md-1>
-                <button id="singlebutton" name="singlebutton" class="btn btn-success">
-                    Обновить
-                </button>
-            </div>
         </form>
         </div>
    <br>
