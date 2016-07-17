@@ -15,7 +15,7 @@ public class CommandSignUp implements ActionCommand {
         User user = new User();
         if (frm.isPost())
         try {
-            user.setId(0);
+            //user.setId(0);
             //проверим поля (добавьте паттерны самостоятельно)
             user.setEmail(frm.getString("Email"));   //почта
             user.setLogin(frm.getString("Login"));   //логин

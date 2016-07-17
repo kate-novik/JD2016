@@ -28,7 +28,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="do?command=CreateAd">Создать объявление</a></li>
+              <li><a href="do?command=CreateRent">Предложить номер отеля</a></li>
               <li><a href="do?command=ShowUsers">Список пользователей</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -42,4 +42,3 @@
       </div>
 
 <p style="Font-weight: bold; color: RED;">${msg_error}</p>
-
