@@ -22,7 +22,10 @@ public class CommandAllUsers implements ActionCommand {
         User sessionUser = (User) httpSession.getAttribute("user");
 
         if (sessionUser == null)
-            {frm.setErrorMessage("Операции невозможны. Нужно выполнить вход.");}
+            {
+                frm.setErrorMessage("Операции невозможны. Нужно выполнить вход. ");
+                return Action.ALLUSERS.inPage;
+            }
         else if (frm.isPost())
         {
             Role sessionUserRole = null;
