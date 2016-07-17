@@ -30,6 +30,13 @@ public enum Action {
             this.okPage ="/";
         }
     },
+    ALLUSERS {
+        {
+            this.command = new CommandAllUsers();
+            this.inPage="/allusers.jsp";
+            this.okPage ="/allusers.jsp";
+        }
+    },
     ERROR {
         {
             //это не требуется, т.к. и так стоит в инициализации
