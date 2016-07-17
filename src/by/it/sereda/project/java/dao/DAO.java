@@ -6,7 +6,7 @@ public class DAO {
 
     public UserDAO user;    //DAO для пользователей
     public RoleDAO role;    //DAO для ролей
-    public AdDAO ad;        //DAO для объявлений
+    public RentDAO rent;        //DAO для объявлений
     //...
 
     public static DAO getDAO() {   //метод, который создает DAO или возвращает существующий экземпляр
@@ -16,9 +16,9 @@ public class DAO {
                     dao = new DAO();
                     dao.user = new UserDAO();
                     dao.role = new RoleDAO();
-                    dao.ad = new AdDAO();
+                    dao.rent = new RentDAO();
                     //новые куски DAO добавляются аналогично при расширении DAO
-                    //dao.ad = new AdDAO();
+                    //dao.ad = new RentDAO();
                     //...
                 }
             }

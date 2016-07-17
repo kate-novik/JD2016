@@ -1,6 +1,6 @@
 package by.it.sereda.project.java.beans;
 
-public class Ad {
+public class Rent {
 
     private int ID;
     private int RoomCount;
@@ -12,10 +12,10 @@ public class Ad {
     private String Description;
     private int FK_Users;
 
-    public Ad() {
+    public Rent() {
     }
 
-    public Ad(int ID, int roomCount, double price, double area, int floor, int floors, String address, String description, int FK_Users) {
+    public Rent(int ID, int roomCount, double price, double area, int floor, int floors, String address, String description, int FK_Users) {
         this.ID = ID;
         RoomCount = roomCount;
         Price = price;
@@ -103,7 +103,7 @@ public class Ad {
 
     @Override
     public String toString() {
-        return "Ad{" +
+        return "Rent{" +
                 "ID=" + ID +
                 ", RoomCount=" + RoomCount +
                 ", Price=" + Price +
@@ -121,17 +121,17 @@ public class Ad {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Ad ad = (Ad) o;
+        Rent rent = (Rent) o;
 
-        if (ID != ad.ID) return false;
-        if (RoomCount != ad.RoomCount) return false;
-        if (Double.compare(ad.Price, Price) != 0) return false;
-        if (Double.compare(ad.Area, Area) != 0) return false;
-        if (Floor != ad.Floor) return false;
-        if (Floors != ad.Floors) return false;
-        if (FK_Users != ad.FK_Users) return false;
-        if (Address != null ? !Address.equals(ad.Address) : ad.Address != null) return false;
-        return Description != null ? Description.equals(ad.Description) : ad.Description == null;
+        if (ID != rent.ID) return false;
+        if (RoomCount != rent.RoomCount) return false;
+        if (Double.compare(rent.Price, Price) != 0) return false;
+        if (Double.compare(rent.Area, Area) != 0) return false;
+        if (Floor != rent.Floor) return false;
+        if (Floors != rent.Floors) return false;
+        if (FK_Users != rent.FK_Users) return false;
+        if (Address != null ? !Address.equals(rent.Address) : rent.Address != null) return false;
+        return Description != null ? Description.equals(rent.Description) : rent.Description == null;
 
     }
 

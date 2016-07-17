@@ -23,10 +23,10 @@ public enum Action {
             this.okPage ="/login.jsp";
         }
     },
-    CREATEAD {
+    CREATERENT {
         {
-            this.command = new CommandCreateAd();
-            this.inPage="/createad.jsp";
+            this.command = new CommandCreateRent();
+            this.inPage="/createrent.jsp";
             this.okPage ="/";
         }
     },

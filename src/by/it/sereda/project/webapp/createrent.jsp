@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ include file="include/begin-html.jsp" %>
 
-<form class="form-horizontal" action="do?command=CREATEAD" method="POST">
+<form class="form-horizontal" action="do?command=CREATERENT" method="POST">
 <fieldset>
 
 <!-- Form Name -->

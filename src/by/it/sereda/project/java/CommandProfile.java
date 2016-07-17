@@ -1,6 +1,6 @@
 package by.it.sereda.project.java;
 
-import by.it.sereda.project.java.beans.Ad;
+import by.it.sereda.project.java.beans.Rent;
 import by.it.sereda.project.java.beans.User;
 import by.it.sereda.project.java.dao.DAO;
 
@@ -22,10 +22,10 @@ public class CommandProfile implements ActionCommand {
 
             //получим пользователя, его данные и его объявления
             User sessionUser = (User) httpSession.getAttribute("user");
-            List<Ad> ads = DAO.getDAO().ad.getAll("WHERE FK_Users='" + sessionUser.getId() + "'");
+            List<Rent> rents = DAO.getDAO().rent.getAll("WHERE FK_Users='" + sessionUser.getId() + "'");
             request.setAttribute("ProfileLogin", sessionUser.getEmail());
             request.setAttribute("ProfileEmail", sessionUser.getLogin());
-            request.setAttribute("ProfileAds", ads.toString());
+            request.setAttribute("ProfileAds", rents.toString());
             return Action.PROFILE.inPage;
 
         } catch (Exception e) {

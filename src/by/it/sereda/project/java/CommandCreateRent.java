@@ -1,15 +1,15 @@
 package by.it.sereda.project.java;
 
-import by.it.sereda.project.java.beans.Ad;
+import by.it.sereda.project.java.beans.Rent;
 import by.it.sereda.project.java.beans.User;
 import by.it.sereda.project.java.dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class CommandCreateAd implements ActionCommand {
+public class CommandCreateRent implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        String page= Action.CREATEAD.inPage;
+        String page= Action.CREATERENT.inPage;
         FormHelper frm=new FormHelper(request);
         frm.setMessage(frm.strDebugForm());
         User user= (User) request.getSession(true).getAttribute("user");
@@ -19,19 +19,19 @@ public class CommandCreateAd implements ActionCommand {
         //если данные из формы получены то пробуем создать объявление.
         if (frm.isPost())
         try {
-            Ad ad=new Ad();
-            ad.setID(0);
-            ad.setAddress(frm.getString("Address"));
-            ad.setDescription(frm.getString("Description"));
-            ad.setArea(frm.getDouble("Area"));
-            ad.setPrice(frm.getDouble("Price"));
-            ad.setFloor(frm.getInt("Floor"));
-            ad.setFloors(frm.getInt("Floors"));
-            ad.setRoomCount(frm.getInt("RoomCount"));
-            ad.setFK_Users(user.getId());
+            Rent rent =new Rent();
+            rent.setID(0);
+            rent.setAddress(frm.getString("Address"));
+            rent.setDescription(frm.getString("Description"));
+            rent.setArea(frm.getDouble("Area"));
+            rent.setPrice(frm.getDouble("Price"));
+            rent.setFloor(frm.getInt("Floor"));
+            rent.setFloors(frm.getInt("Floors"));
+            rent.setRoomCount(frm.getInt("RoomCount"));
+            rent.setFK_Users(user.getId());
             DAO dao= DAO.getDAO();
-            dao.ad.create(ad);
-            frm.setMessage(ad.toString());
+            dao.rent.create(rent);
+            frm.setMessage(rent.toString());
             return Action.LOGIN.okPage;
         } catch (Exception e) {
             frm.setErrorMessage(e.toString());
