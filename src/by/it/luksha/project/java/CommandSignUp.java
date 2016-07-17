@@ -23,13 +23,14 @@ public class CommandSignUp implements ActionCommand {
         }
 
         //проверка валидности и занятости логина
-        if (!(FormHelper.valid(login) && userDAO.getAll(String.format("where Login='%s'", login)).isEmpty())) {
+        FormHelper formHelper = new FormHelper(request);
+        if (!(userDAO.getAll(String.format("where Login='%s'", login)).isEmpty())) {
             request.setAttribute(Action.msgMessage, "Пользователь не создан. Данный логин занят.");
             return resultPage;
         }
 
         //проверка валидности и занятости email
-        if (!(FormHelper.valid(email) && userDAO.getAll(String.format("where Email='%s'", email)).isEmpty())) {
+        if (!(userDAO.getAll(String.format("where Email='%s'", email)).isEmpty())) {
             request.setAttribute(Action.msgMessage, "Пользователь не создан. Данный email зарегистрирован.");
             return resultPage;
         }

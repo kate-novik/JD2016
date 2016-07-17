@@ -7,14 +7,85 @@ package by.it.luksha.project.java;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * Класс с утилитами для валидации форм
+ * Класс с утилитами для работы с формами
  */
 public class FormHelper {
-    //этот класс для чтения и валидации данных в форме
-    //этот метод для отладки. Он покажет в виде текста, что пришло из формы
-    static String strDebugForm(HttpServletRequest request) {
+    private HttpServletRequest request;
+
+    public FormHelper(HttpServletRequest request) {
+        this.request = request;
+    }
+
+    /**
+     * Метод определяет типа запроса (POST или нет)
+     *
+     * @return true(post)/false(not post)
+     */
+    public boolean isPost() {
+        return request.getMethod().equalsIgnoreCase("post");
+    }
+
+    /**
+     * Метод проверяет данные на валидность и соответствие шаблону
+     *
+     * @param data  данные
+     * @param regex шаблон
+     * @return true (вылидны)
+     */
+    private boolean validData(String data, String regex) {
+        if (data == null) {
+            return false;
+        }
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(data);
+        if (matcher.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Метод возвращает валидное значение-строку параметра
+     *
+     * @param nameFieldForm название параметра
+     * @return валидное значение
+     * @throws Exception
+     */
+    public String getString(String nameFieldForm) throws Exception {
+        String value = request.getParameter(nameFieldForm);
+        boolean isValid = validData(value, ".*");
+        if (isValid) {
+            return value;
+        } else {
+            throw new Exception("Данные не валидны: это не строка");
+        }
+    }
+
+    /**
+     * Метод возвращает валидное значение-число по названию параметра
+     *
+     * @param nameFieldForm название параметра
+     * @return значение-число
+     * @throws Exception
+     */
+    public Integer getInt(String nameFieldForm) throws Exception {
+        String value = request.getParameter(nameFieldForm);
+        boolean res = (value != null && validData(value, "^(([1-9]*)|(([1-9]*),([0-9]*)))$"));
+        if (res) {
+            return Integer.parseInt(value);
+        } else
+            throw new Exception("Данные не валидны: это не число");
+    }
+
+    //это экземплярный метод для отладки. Он покажет в виде текста, что пришло из формы
+    //пока приватный, но вполне может быть и публичным
+    public String strDebugForm() {
         String formText = "";
         Enumeration<String> parameterNames = request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
@@ -24,17 +95,5 @@ public class FormHelper {
         }
         return formText;
     }
-    //валидация данных из формы с шаблоном по умолчанию
-    static boolean valid(String value){
-        String defaultPattern=".*";
-        return valid(value,defaultPattern);
-    }
 
-    //валидация данных из формы с заданным шаблоном
-    private static boolean valid(String value,String pattern){
-        //проверка на внимательность (для определения, вы просто копируете код или читаете)
-        //тут же явно не все, нужно проврить не просто вхождение паттерна в строку
-        //а полное соответствие всей строки шаблону. Доделайте.
-        return (value!=null) && value.matches(pattern);
-    }
 }
