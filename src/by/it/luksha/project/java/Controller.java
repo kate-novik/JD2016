@@ -1,9 +1,12 @@
 package by.it.luksha.project.java;
 
+import by.it.luksha.project.java.beans.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +28,7 @@ public class Controller extends HttpServlet {
                                 HttpServletResponse response)
             throws ServletException, IOException {
         //выставим в сообщение данные из формы (для отладки)
-        request.setAttribute(Action.msgMessage, FormHelper.strDebugForm(request));
+        request.setAttribute(Action.msgMessage, new FormHelper(request).strDebugForm());
 
         ActionFactory client = new ActionFactory(); // определение команды, пришедшей из JSP
         ActionCommand command = client.defineCommand(request);
@@ -36,14 +39,32 @@ public class Controller extends HttpServlet {
 
         response.setHeader("Cache-Control", "no-store");
 
+        User user = (User) request.getSession(true).getAttribute("user");
+
+
+        if (user != null) {
+            /**
+             * Создание cookie для логина
+             */
+            Cookie cookieLogin = new Cookie("Login", user.getLogin());
+            cookieLogin.setMaxAge(24 * 60 * 60);
+            response.addCookie(cookieLogin);
+
+            /**
+             * Создание cookie для пароля
+             * TODO: сделать шифрование пароля
+             */
+            Cookie cookiePassword = new Cookie("Password", user.getPassword());
+            cookiePassword.setMaxAge(24 * 60 * 60);
+            response.addCookie(cookiePassword);
+        }
+
         //метод отправляет пользователю страницу ответа
         if (viewPage != null) {
-            ServletContext servletContext=getServletContext();
+            ServletContext servletContext = getServletContext();
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher(viewPage);
             // вызов страницы ответа на запрос
             dispatcher.forward(request, response);
-            //можно короче:
-            //getServletContext().getRequestDispatcher(viewPage).forward(request,response);
         } else {
             // установка страницы c cообщением об ошибке
             viewPage = Action.ERROR.inPage;

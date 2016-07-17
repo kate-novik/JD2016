@@ -18,7 +18,23 @@ enum Action {
             this.okPage ="/index.jsp";
         }
     },
-    //авторизация
+    //завершить сессию
+    SIGNOUT {
+        {
+            this.command = new CommandSignOut();
+            this.inPage="/signout.jsp";
+            this.okPage ="/signin.jsp";
+        }
+    },
+    //главная страница
+    INDEX {
+        {
+            this.command = new CommandIndex();
+            this.inPage="/index.jsp";
+            this.okPage ="/index.jsp";
+        }
+    },
+    //добавление заказа
     ADDORDER {
         {
             this.command = new CommandAddOrder();
@@ -26,17 +42,10 @@ enum Action {
             this.okPage ="/order.jsp";
         }
     },
-    LOGOUT {
-        {
-            this.command = new CommandLogout();
-            this.inPage="/signin.jsp";
-            this.okPage ="/signin.jsp";
-        }
-    },
     //
     ERROR {
         {
-            this.command = new CommandLogout();
+            this.command = new CommandSignOut();
         }
     };
     public String inPage="/error.jsp";

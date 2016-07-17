@@ -17,8 +17,14 @@
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="/luksha">Главная</a></li>
-                        <li><a href="do?command=SignIn">Войти</a></li>
+                        <li><a href="do?command=Index">Главная</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Пользователь<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="do?command=SignIn">Войти</a></li>
+                                <li><a href="do?command=SignOut">Выйти</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#">Контакты</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
