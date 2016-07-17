@@ -9,13 +9,13 @@
     </div>
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
-            <form class="form-horizontal" action="do?command=Logout" method="POST">
+
                 <div class="form-group">
                     <div class="col-sm-offset-9 col-sm-3">
-                        <button type="submit" name="ButtonLogout" value="2" class="btn btn-default">Log Out</button>
+                        <a href="do?command=Logout&ButtonLogout=2" type="submit" class="btn btn-default">Log Out</a>
                     </div>
                 </div>
-            </form>
+
         </div>
     </div>
 </div>

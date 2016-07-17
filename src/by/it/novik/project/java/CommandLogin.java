@@ -44,7 +44,8 @@ public class CommandLogin implements ActionCommand {
                     HttpSession session = request.getSession(true);
                     //Передадим в сессию объект user
                     session.setAttribute("user", user);
-
+                    session.setAttribute("login",user.getNickname());
+                    session.setAttribute("password",user.getPassword());
                     request.setAttribute(Action.msgMessage, "Welcome, " + user.getNickname());
                     page = Action.LOGIN.okPage;
                 }

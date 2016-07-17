@@ -8,9 +8,11 @@ public class CommandLogout implements ActionCommand {
     public String execute(HttpServletRequest request) {
         //Проверка на нажатие кнопки Logout
         if (request.getParameter("ButtonLogout") != null) {
-            HttpSession session = request.getSession(true);
+            //HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession(false);
+            if (session !=null){
             //Уничтожение сессии
-            session.invalidate();
+            session.invalidate();}
             return Action.LOGOUT.okPage;
         }
         return Action.LOGOUT.inPage;

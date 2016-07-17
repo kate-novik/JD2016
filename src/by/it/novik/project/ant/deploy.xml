@@ -6,6 +6,7 @@
 <project name="Hello" default="10deploy" basedir="..">
     <!-- подключаем файл с настройками -->
     <property file="ant/deploy.properties"/>
+    <property file="java/resources/connection.properties"/>
 
     <!-- описываем classpath для копилятора -->
     <!-- каждый jar нужно описать отдельно (!),
@@ -13,6 +14,9 @@
     <path id="classpath">
         <fileset dir="${local.lib.dir}" includes="mysql-connector-java-5.1.38.jar" />
         <fileset dir="${local.lib.dir}" includes="commons-codec-1.10.jar" />
+        <fileset dir="${local.lib.dir}" includes="javax.servlet.jsp.jstl-api-1.2.1.jar" />
+        <fileset dir="${local.lib.dir}" includes="taglibs-standard-jstlel-1.2.1.jar" />
+        <fileset dir="${local.lib.dir}" includes="jstl-1.2.jar" />
         <fileset dir="${global.lib.dir}" includes="servlet-api.jar"/>
     </path>
 

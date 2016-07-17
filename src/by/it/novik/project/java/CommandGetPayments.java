@@ -22,14 +22,17 @@ public class CommandGetPayments implements ActionCommand {
         //Получаем объект DAO
         DAO dao = DAO.getDAO();
         //String id_account = request.getParameter("id_account");
-        Integer id_account = (Integer) request.getSession(true).getAttribute("id_account");
-        if (id_account != null){
+        //Integer id_account = (Integer) request.getSession(true).getAttribute("id_account");
+        String id = request.getParameter("id_account");
+
+        if (id != null){
+            Integer id_account = Integer.parseInt(id);
             List<Payment> listPayments = dao.getPaymentDAO().getAll(
                    "Where FK_Account_Source = " + id_account);
             //Integer.parseInt(id_account)
             if (!listPayments.isEmpty()) {
                 request.setAttribute(Action.msgMessage, "List of payments for account " + id_account);
-                request.setAttribute("listPayments", listPayments.toString());
+                request.setAttribute("listPayments", listPayments);
                 return page;
             }
             else {
@@ -41,7 +44,7 @@ public class CommandGetPayments implements ActionCommand {
         List<Payment> listPayments = dao.getPaymentDAO().getAll(user.getIdUser());
         if (!listPayments.isEmpty()) {
             request.setAttribute(Action.msgMessage, "List of payments for user " + user.getNickname());
-            request.setAttribute("listPayments", listPayments.toString());
+            request.setAttribute("listPayments", listPayments);
         }
         else {
             request.setAttribute(Action.msgMessage, "Payments don't exist.");

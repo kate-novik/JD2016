@@ -24,7 +24,7 @@ public class CommandGetAccounts implements ActionCommand{
         List<Account> listAccounts = dao.getAccountDAO().getAll("Where FK_Users = "+ user.getIdUser());
         if (!listAccounts.isEmpty()) {
             request.setAttribute(Action.msgMessage, "List of accounts for user " + user.getNickname());
-            request.setAttribute("listAccounts", listAccounts.toString());
+            request.setAttribute("listAccounts", listAccounts);
             page = Action.ACCOUNTS.okPage;
         }
         else {

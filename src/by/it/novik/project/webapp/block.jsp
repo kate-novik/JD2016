@@ -1,11 +1,13 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="include/begin-html.jsp" %>
 <%@ include file="include/header-html.jsp" %>
 
 <div class="main container">
     <div class="row">
         <div class="pull-right">
-            <button type="button" class="btn btn-link">Kate Novik</button>
-            <button class="btn btn-default" type="button"># of account</button>
+            <button type="button" class="btn btn-link"><c:out value="${user.nickname}" /></button>
+            <button class="btn btn-default" type="button"># of account <c:out value="${id_account}" /></button>
         </div>
     </div>
 

@@ -3,10 +3,12 @@ package by.it.novik.project.java;
 import by.it.novik.project.java.beans.Account;
 import by.it.novik.project.java.beans.Payment;
 import by.it.novik.project.java.beans.User;
+import by.it.novik.project.java.connection.ConnectorDB;
 import by.it.novik.project.java.dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 /**
@@ -64,15 +66,33 @@ public class CommandPay implements ActionCommand {
                         payment = new Payment(0, id_account, description, id_destination, Date.valueOf(currentDate),
                                 pay_amount);
 
+                    try {
+                        ConnectorDB.getConnection().setAutoCommit(false);
+                        if (dao.getAccountDAO().update(account) && dao.getPaymentDAO().create(payment) &&
+                                dao.getAccountDAO().update(destination_account)) {
+                            request.setAttribute(Action.msgMessage, "Payment was done.");
+                            page = Action.PAY.okPage;
+                            ConnectorDB.getConnection().commit();
+                        } else {
+                            request.setAttribute(Action.msgMessage, "Payment wasn't done. Repeat, please, enter.");
+                            page = Action.PAY.inPage;
+                        }
 
-                    if (dao.getAccountDAO().update(account) && dao.getPaymentDAO().create(payment) &&
-                            dao.getAccountDAO().update(destination_account)) {
-                        request.setAttribute(Action.msgMessage, "Payment was done.");
-                        page = Action.PAY.okPage;
-                    } else {
-                        request.setAttribute(Action.msgMessage, "Payment wasn't done. Repeat, please, enter.");
-                        page = Action.PAY.inPage;
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        try {
+                            ConnectorDB.getConnection().rollback();
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    } finally {
+                        try {
+                            ConnectorDB.getConnection().setAutoCommit(true);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
+
                 } else {
                     request.setAttribute(Action.msgMessage,"Account of destination doesn't exist. Repeat, please, enter.");
                     page = Action.PAY.inPage;

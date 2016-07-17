@@ -62,7 +62,7 @@ enum Action {
         {
             this.command = new CommandRefilling();
             this.inPage="/refill.jsp";
-            this.okPage ="/accounts.jsp";
+            this.okPage ="/do?command=Accounts";
         }
     },
     BLOCK {
