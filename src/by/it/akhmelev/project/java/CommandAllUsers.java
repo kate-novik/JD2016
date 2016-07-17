@@ -14,40 +14,50 @@ public class CommandAllUsers implements ActionCommand {
         HttpSession httpSession = request.getSession(true);
         FormHelper frm = new FormHelper(request);
         DAO dao = DAO.getDAO();
-
-
-        //покажем всех пользователей, без проверки прав
-        List<User> users = dao.user.getAll("");
-        request.setAttribute("users", users);
-        //передадим список их ролей
+        //получим список ролей (лучше бы это сделать при инциализации сервлета)
         List<Role> roles = dao.role.getAll("");
         request.setAttribute("roles", roles);
 
-        if (1<2)
-            return Action.ALLUSERS.inPage;
+        //получим пользователя из сессии и его роль
+        User sessionUser = (User) httpSession.getAttribute("user");
 
-        if (frm.isPost()) {
-            //получим пользователя
-            User user = (User) request.getSession(true).getAttribute("user");
-            //проверим является ли пользователь администратором
-            //Role role = (Role) DAO.getDAO().role.getAll("WHERE ID=" + user.getFk_Role());
-            Role role = null;
-            for (Role r: roles) {
-                if (r.getId()==user.getFk_Role())
-                    role=r;
+        if (sessionUser == null)
+            {frm.setErrorMessage("Операции невозможны. Нужно выполнить вход.");}
+        else if (frm.isPost())
+        {
+            Role sessionUserRole = null;
+            for (Role r : roles) {
+                if (r.getId() == sessionUser.getFk_Role())
+                    sessionUserRole = r;
             }
-            if (role == null || role.getRole().equals("user")) {
-                frm.setErrorMessage(
-                        String.format(
-                                "Операция для пользователя %s невозможна. Недостаточно прав.",
-                                user.getLogin())
-                );
-            }
-            else //иначе операция возможна. Определим, это обновление или удаление.
+            //проверим имеет ли пользователь права на операцию
+            if (sessionUserRole!=null && !sessionUserRole.getRole().equals("administrator")) {
+                frm.setErrorMessage("Операция невозможна. Недостаточно прав.");
+            } else //иначе операция возможна.
             {
-                frm.setMessage("Update "+user);
+                User user = new User();
+                try {
+                    user.setId(frm.getInt("ID"));
+                    user.setEmail(frm.getString("Email"));   //почта
+                    user.setLogin(frm.getString("Login"));   //логин
+                    user.setPassword(frm.getString("Password"));
+                    user.setFk_Role(frm.getInt("fk_Role"));
+                    frm.setMessage(user.toString());
+                    //Определим, это обновление или удаление.
+                    if (0 < user.getId()) {
+                        dao.user.update(user);
+                    } else if (0 > user.getId()) {
+                        user.setId(-1*user.getId());
+                        dao.user.delete(user);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
+        //покажем всех пользователей, вне зависимости от проверки прав
+        List<User> users = dao.user.getAll("");
+        request.setAttribute("users", users);
         return Action.ALLUSERS.inPage;
     }
 }
