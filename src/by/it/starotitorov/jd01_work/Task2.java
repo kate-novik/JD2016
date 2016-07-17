@@ -2,7 +2,7 @@ package by.it.starotitorov.jd01_work;
 
 /**
  * Created by Vasiliy Starotitorov on 27.04.2016.
- * On example: "There is time interval in seconds. Do the output it on page in hours, minutes and seconds."
+ * On example: "There is time interval in seconds. Do the output it on CommandPage in hours, minutes and seconds."
  * Continue task with calculation and  displaying days and weeks.
  */
 public class Task2 {

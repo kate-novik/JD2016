@@ -26,17 +26,22 @@ enum Action {
     LOGOUT {
         {
             this.command = new CommandLogout();
-            this.inPage="/login.jsp";
-            this.okPage ="/login.jsp";
+            this.inPage="/logout.jsp";
+            this.okPage ="/";
         }
     },
     ERROR {
         {
             this.command = new CommandLogout();
+
         }
+
     };
+
     public String inPage="/error.jsp";
-    public String okPage ="/error.jsp";
+    public String okPage ="/page.jsp";
+    public String fPage ="/profilepage.jsp";
+
     public ActionCommand command;
 
     public ActionCommand getCurrentCommand() {

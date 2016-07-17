@@ -3,7 +3,7 @@
 
       <!-- Основное содержимое -->
       <div class="page-header">
-        <h1>Поиск объявлений</h1>
+        <h1>Автосервис</h1>
         <p class="lead">Готовим макет для вывода данных в виде таблицы</p>
       </div>
 
@@ -15,21 +15,14 @@
         <div class="col-md-3">.col-md-3</div>
         <div class="col-md-2">.col-md-2</div>
         <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-2">.col-md-2</div>
+
       </div>
 
       <div class="row">
-        <div class="col-md-1">Цена</div>
-        <div class="col-md-3">Адрес</div>
-        <div class="col-md-2">Описание</div>
-        <div class="col-md-1">Число комнат</div>
-        <div class="col-md-1">Площадь</div>
-        <div class="col-md-1">Этаж</div>
-        <div class="col-md-1">Этажность</div>
-        <div class="col-md-2">Автор</div>
+        <div class="col-md-1">Модель</div>
+        <div class="col-md-3">Год выпуска</div>
+        <div class="col-md-2">Пробег</div>
+        <div class="col-md-1">Описание поломки</div>
       </div>
 
 
