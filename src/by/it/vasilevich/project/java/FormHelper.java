@@ -1,6 +1,5 @@
 package by.it.vasilevich.project.java;
 
-import by.it.akhmelev.project.java.Action;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
@@ -31,14 +30,14 @@ class FormHelper {
             throw new Exception("Not valid data");
     }
 
-    public Double getDouble(String nameFieldForm) throws Exception {
-        String value = request.getParameter(nameFieldForm);
-        boolean res = (value != null && valid(value, "[.,0-9-]+"));
-        if (res) {
-            return Double.parseDouble(value);
-        } else
-            throw new Exception("Not valid data");
-    }
+//    public Double getDouble(String nameFieldForm) throws Exception {
+//        String value = request.getParameter(nameFieldForm);
+//        boolean res = (value != null && valid(value, "[.,0-9-]+"));
+//        if (res) {
+//            return Double.parseDouble(value);
+//        } else
+//            throw new Exception("Not valid data");
+//    }
 
     public String getString(String nameFieldForm) throws Exception {
         String value = request.getParameter(nameFieldForm);
@@ -54,7 +53,7 @@ class FormHelper {
     }
 
     public void setMessage(String message){
-        request.setAttribute(by.it.akhmelev.project.java.Action.msgMessage, message);
+        request.setAttribute(by.it.vasilevich.project.java.Action.msgMessage, message);
     }
 
     public void setErrorMessage(String message){

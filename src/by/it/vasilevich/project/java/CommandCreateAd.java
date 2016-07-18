@@ -1,11 +1,9 @@
 package by.it.vasilevich.project.java;
 
-import by.it.akhmelev.project.java.*;
-import by.it.akhmelev.project.java.Action;
-import by.it.akhmelev.project.java.ActionCommand;
-import by.it.akhmelev.project.java.beans.Ad;
-import by.it.akhmelev.project.java.beans.User;
-import by.it.akhmelev.project.java.dao.DAO;
+
+import by.it.vasilevich.project.java.beans.Ad;
+import by.it.vasilevich.project.java.beans.User;
+import by.it.vasilevich.project.java.dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,13 +22,15 @@ public class CommandCreateAd implements ActionCommand {
         try {
             Ad ad=new Ad();
             ad.setID(0);
-            ad.setAddress(frm.getString("Address"));
-            ad.setDescription(frm.getString("Description"));
-            ad.setArea(frm.getDouble("Area"));
-            ad.setPrice(frm.getDouble("Price"));
-            ad.setFloor(frm.getInt("Floor"));
-            ad.setFloors(frm.getInt("Floors"));
-            ad.setRoomCount(frm.getInt("RoomCount"));
+            ad.setBrand(frm.getString("Brand"));
+            ad.setModel(frm.getString("Model"));
+            ad.setType(frm.getString("Type"));
+            ad.setYear(frm.getInt("Year"));
+            ad.setEngine(frm.getString("Engine"));
+            ad.setTransmission(frm.getString("Transmission"));
+            ad.setDrive_unit(frm.getString("Drive_unit"));
+            ad.setMileage(frm.getInt("Mileage"));
+            ad.setColor(frm.getString("Color"));
             ad.setFK_Users(user.getId());
             DAO dao=DAO.getDAO();
             dao.ad.create(ad);

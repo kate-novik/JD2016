@@ -1,6 +1,6 @@
 package by.it.vasilevich.project.java.dao;
 
-import by.it.vasilevich.jd03_02.ConnectionCreator;
+import by.it.vasilevich.project.java.dao.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -1,6 +1,6 @@
 package by.it.vasilevich.project.java.additional;
 
-import by.it.akhmelev.project.java.Action;
+import by.it.vasilevich.project.java.Action;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

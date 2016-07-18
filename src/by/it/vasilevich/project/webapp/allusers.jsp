@@ -2,25 +2,7 @@
 <%@ include file="include/begin-html.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!--
-=========================================================================================
-Эта страница использует EL+JSTL - Java Standart Template Library
-Чтобы это было возможно необходимо
-1. Скачать библиотеку http://central.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
-2. Положить ее в папку lib.local вашего проекта (она потом копируется через ant в WEB-INF)
-3. Объявить применение тегов JSTL указав в заголовке
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-4. После этого становятся доступными конструкции вида
-    <с:out value="текст" />                                 НЕ КОПИРУЙТЕ ЭТОТ КОД
-    <с:forEach var="yourItem" items="yourListItems">        НЕ КОПИРУЙТЕ ЭТОТ КОД
-          ${yourItem}<br> или ${yourItem.свойство}<br>      НЕ КОПИРУЙТЕ ЭТОТ КОД
-    <с:forEach>                                             НЕ КОПИРУЙТЕ ЭТОТ КОД
-(НЕ КОПИРУЙТЕ КОД ВЫШЕ, ТУТ <с:out - записано русскими буквами
-так сделано специально, чтобы не было замены при старте jsp)
 
-а код ниже можно использовать, он рабочий)
-=========================================================================================
--->
    <div class="row">
     <b>
         <div class=col-md-1>ID</div>
@@ -52,9 +34,9 @@
             </div>
 
             <div class=col-md-2>
-                    <select id="role" name="fk_Role" class="form-control">
+                    <select id="role" name="FK_Role" class="form-control">
                         <c:forEach items="${roles}" var="role">
-                            <option value="${role.id}" role=${role.id} ${role.id==user.fk_Role?"selected":""}>
+                            <option value="${role.id}" role=${role.id} ${role.id==user.FK_Role?"selected":""}>
                                  ${role.role}
                             </option>
                         </c:forEach>

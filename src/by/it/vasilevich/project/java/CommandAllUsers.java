@@ -1,11 +1,9 @@
 package by.it.vasilevich.project.java;
 
-import by.it.akhmelev.project.java.*;
-import by.it.akhmelev.project.java.Action;
-import by.it.akhmelev.project.java.ActionCommand;
-import by.it.akhmelev.project.java.beans.Role;
-import by.it.akhmelev.project.java.beans.User;
-import by.it.akhmelev.project.java.dao.DAO;
+
+import by.it.vasilevich.project.java.beans.Role;
+import by.it.vasilevich.project.java.beans.User;
+import by.it.vasilevich.project.java.dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,7 +31,7 @@ public class CommandAllUsers implements ActionCommand {
         {
             Role sessionUserRole = null;
             for (Role r : roles) {
-                if (r.getId() == sessionUser.getFk_Role())
+                if (r.getId() == sessionUser.getFK_Role())
                     sessionUserRole = r;
             }
             //проверим имеет ли пользователь права на операцию
@@ -47,7 +45,7 @@ public class CommandAllUsers implements ActionCommand {
                     user.setEmail(frm.getString("Email"));   //почта
                     user.setLogin(frm.getString("Login"));   //логин
                     user.setPassword(frm.getString("Password"));
-                    user.setFk_Role(frm.getInt("fk_Role"));
+                    user.setFK_Role(frm.getInt("fk_Role"));
                     frm.setMessage(user.toString());
                     //Определим, это обновление или удаление.
                     if (0 < user.getId()) {

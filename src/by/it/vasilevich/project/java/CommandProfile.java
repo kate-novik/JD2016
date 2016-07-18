@@ -1,11 +1,9 @@
 package by.it.vasilevich.project.java;
 
-import by.it.akhmelev.project.java.*;
-import by.it.akhmelev.project.java.Action;
-import by.it.akhmelev.project.java.ActionCommand;
-import by.it.akhmelev.project.java.beans.Ad;
-import by.it.akhmelev.project.java.beans.User;
-import by.it.akhmelev.project.java.dao.DAO;
+
+import by.it.vasilevich.project.java.beans.Ad;
+import by.it.vasilevich.project.java.beans.User;
+import by.it.vasilevich.project.java.dao.DAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
