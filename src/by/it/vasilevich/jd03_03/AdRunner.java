@@ -1,8 +1,11 @@
 package by.it.vasilevich.jd03_03;
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b0d0f6832c0651a55d08b90a6da14c6a1602da18
 import by.it.vasilevich.jd03_03.beans.Ad;
 import by.it.vasilevich.jd03_03.custom_dao.DAO;
 
