@@ -1,8 +1,6 @@
 package by.it.vasilevich.jd03_03;
 
 
-
-
 import by.it.vasilevich.jd03_03.beans.Ad;
 import by.it.vasilevich.jd03_03.custom_dao.DAO;
 
