@@ -2,6 +2,13 @@ package by.it.akhmelev.project.java;
 
 
 public enum Action {
+    INDEX {
+        {
+            this.command = new CommandIndex();
+            this.inPage="/index.jsp";
+            this.okPage ="/index.jsp";
+        }
+    },
     SIGNUP {
         {
             this.command = new CommandSignUp();
@@ -28,6 +35,13 @@ public enum Action {
             this.command = new CommandCreateAd();
             this.inPage="/createad.jsp";
             this.okPage ="/";
+        }
+    },
+    ALLUSERS {
+        {
+            this.command = new CommandAllUsers();
+            this.inPage="/allusers.jsp";
+            this.okPage ="/allusers.jsp";
         }
     },
     ERROR {

@@ -52,6 +52,7 @@ public class FilterUTF8 implements Filter {
         //тут можно изменить/прочитать выходной поток, но учтите, он уже создан и заполнен.
 
 
+
     }
 
     public void destroy() {
